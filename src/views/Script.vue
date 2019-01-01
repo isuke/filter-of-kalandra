@@ -5,21 +5,14 @@
     | |
     router-link(to="/script/text") Text
   .aside
-    | Aside
+    ul.sectionlist
+      li.item(v-for="section in $store.getters.outputObject['No Name']") {{ section.name }}
   .main
     router-view
 </template>
 
 <script lang="coffee">
-# import nanoid from "nanoid"
-
-# import ScriptIndex    from "./ScriptIndex.vue"
-
-# import sectionStore from "@/stores/sectionStore.coffee"
-
 export default {}
-  # components:
-  #   "script-index": ScriptIndex
 </script>
 
 <style lang="scss" scoped>

@@ -1,6 +1,6 @@
 <template lang="pug">
 .script-editor
-  textarea.textarea(v-model="$store.state.scriptText", :rows="rows()")
+  textarea.textarea(v-model.lazy="$store.state.scriptText", :rows="rows()")
 </template>
 
 <script lang="coffee">

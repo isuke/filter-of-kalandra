@@ -55,5 +55,6 @@ Hide "Gears"
     """
   mutations: {}
   getters:
+    outputObject: (state) -> advancedPoeFilter.getObject(state.scriptText)
     outputText: (state) -> advancedPoeFilter.compile(state.scriptText)
   actions: {}
