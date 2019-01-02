@@ -9,7 +9,11 @@
 </template>
 
 <script lang="coffee">
-export default {}
+import sample from "@/sample.coffee"
+
+export default
+  created: ->
+    @$store.commit "setScriptText", { scriptText: sample.scriptText } if process.env.NODE_ENV == "development"
 </script>
 
 
