@@ -5,6 +5,7 @@
       | |
       router-link(to="/script/editor") Script
 
+    main.main
       router-view
 </template>
 
@@ -13,7 +14,7 @@ import sample from "@/sample.coffee"
 
 export default
   created: ->
-    @$store.commit "setScriptText", { scriptText: sample.scriptText } if process.env.NODE_ENV == "development"
+    @$store.commit "setAdvancedScriptText", { advancedScriptText: sample.advancedScriptText } if process.env.NODE_ENV == "development"
 </script>
 
 

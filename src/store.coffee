@@ -7,10 +7,14 @@ import * as advancedPoeFilter from "advanced-poe-filter"
 
 export default new Vuex.Store
   state:
-    scriptText: ""
+    advancedScriptText: ""
   mutations:
-    setScriptText: (state, payload = {}) -> state.scriptText = payload.scriptText
+    setAdvancedScriptText: (state, payload = {}) -> state.advancedScriptText = payload.advancedScriptText
   getters:
-    outputObject: (state) -> advancedPoeFilter.getObject(state.scriptText)
-    outputText: (state) -> advancedPoeFilter.compile(state.scriptText)
+    simpleScriptObjects: (state) -> advancedPoeFilter.getObject(state.advancedScriptText)
+    simpleScriptTexts: (state) -> advancedPoeFilter.compile(state.advancedScriptText)
+    scriptNames: (state, getters) -> Object.keys(getters.simpleScriptObjects)
+    sectionNames: (state, getters) -> getters.simpleScriptObjects[getters.scriptNames[0]].map((o) => o.name)
+    blocks: (state, getters) -> (scriptName, sectionName) =>
+      getters.simpleScriptObjects[scriptName].find((s) => s.name == sectionName).blocks
   actions: {}

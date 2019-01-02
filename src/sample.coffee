@@ -1,5 +1,14 @@
 export default {
-  scriptText: """
+  advancedScriptText: """
+# This is Comment
+# This is Comment
+Show "Maps"
+    Class "Maps"
+    MapTier > 3
+    Identified False
+    SetBorderColor 250 251 252
+    PlayAlertSound 1 300
+
 Hide "Gems"
     Class "Gems"
     SetBorderColor       27 162 155
@@ -29,12 +38,14 @@ Hide "Gems"
         Show "Drop Only"
             BaseType "Vaal" "Added Chaos Damage Support" "Detonate Mines" "Portal"
             SetBackgroundColor Lighten(10%)
+            SetFontSize 42
             MinimapIcon 1 Green Diamond
         Show "'E' Series"
             BaseType "Enhance Support" "Enlighten Support" "Empower Support"
             SetBorderColor     Negate()
             SetTextColor       Negate()
             SetBackgroundColor Negate()
+            SetFontSize 45
             MinimapIcon 2 Green Diamond
 
 Hide "Gears"

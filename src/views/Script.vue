@@ -3,10 +3,12 @@
   .head
     router-link(to="/script/editor") Editor
     | |
+    router-link(to="/script/preview") Preview
+    | |
     router-link(to="/script/text") Text
   .aside
     ul.sectionlist
-      li.item(v-for="section in $store.getters.outputObject['No Name']") {{ section.name }}
+      li.item(v-for="sectionName in $store.getters.sectionNames") {{ sectionName }}
   .main
     router-view
 </template>

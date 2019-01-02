@@ -1,6 +1,6 @@
 <template lang="pug">
 .script-text
-  p.text {{ $store.getters.outputText['No Name'] }}
+  p.text {{ $store.getters.simpleScriptTexts['No Name'] }}
 </template>
 
 <script lang="coffee">

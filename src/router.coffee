@@ -1,10 +1,11 @@
 import Vue from "vue"
 import Router from "vue-router"
 
-import Home         from "./views/Home.vue"
-import Script       from "./views/Script.vue"
-import ScriptEditor from "./views/ScriptEditor.vue"
-import ScriptText   from "./views/ScriptText.vue"
+import Home          from "./views/Home.vue"
+import Script        from "./views/Script.vue"
+import ScriptEditor  from "./views/ScriptEditor.vue"
+import ScriptPreview from "./views/ScriptPreview.vue"
+import ScriptText    from "./views/ScriptText.vue"
 
 Vue.use Router
 
@@ -23,6 +24,10 @@ export default new Router
         {
           path: "editor"
           component: ScriptEditor
+        }
+        {
+          path: "preview",
+          component: ScriptPreview
         }
         {
           path: "text",
