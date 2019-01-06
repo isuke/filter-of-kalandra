@@ -12,6 +12,7 @@ forIn = (object, callback) =>
 export default new Vuex.Store
   state:
     advancedScriptText: ""
+    variables: {}
     properties: {
       "No Name": {}
     }
@@ -27,6 +28,11 @@ export default new Vuex.Store
       getters.simpleScriptObjects[scriptName].find((s) => s.name == sectionName).blocks
 
     #
+    # variables
+    #
+    variableNaems: (state) -> Object.keys(state.variables)
+
+    #
     # properties
     #
     propNames: (state, getters) -> Object.keys(state.properties[getters.scriptNames[0]])
@@ -35,6 +41,11 @@ export default new Vuex.Store
     # advancedScriptText
     #
     setAdvancedScriptText: (state, payload = {}) -> state.advancedScriptText = payload.advancedScriptText
+
+    #
+    # variables
+    #
+    setVariables: (state, payload = {}) -> state.variables = payload.variables
 
     #
     # properties

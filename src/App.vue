@@ -5,6 +5,8 @@
       | |
       router-link(to="/script/editor") Script
       | |
+      router-link(to="/variable") Variable
+      | |
       router-link(to="/property") Property
 
     main.main
@@ -17,8 +19,9 @@ import sample from "@/sample.coffee"
 export default
   methods:
     setSamples: ->
-      @$store.commit "setProperties", { properties: sample.properties }
       @$store.commit "setAdvancedScriptText", { advancedScriptText: sample.advancedScriptText }
+      @$store.commit "setVariables", { variables: sample.variables }
+      @$store.commit "setProperties", { properties: sample.properties }
   created: ->
     @setSamples() if process.env.NODE_ENV == "development"
 </script>

@@ -1,4 +1,4 @@
-export default {
+export default
   advancedScriptText: """
 # This is Comment
 # This is Comment
@@ -93,8 +93,79 @@ Hide "Gears"
             PlayEffect Red Temp
 
   """
-  properties: {
+  variables:
+    "'E' Series Gems": [
+      "Enhance Support",
+      "Enlighten Support",
+      "Empower Support"
+    ]
+    "White Gems": [
+      "Portal",
+      "Detonate Mines"
+    ]
+    "Drop Only Gems": [
+      "#'E' Series Gems",
+      "#White Gems",
+      "Added Chaos Damage Support",
+      "Vaal"
+    ]
+    "Vendor Only Gems": [
+      "Block Chance Reduction Support",
+      "Mirror Arrow"
+    ]
+    "Equipments": [
+      "#Weapons",
+      "#Gears",
+      "#Accessories"
+    ]
+    "Weapons": [
+      "#One Hand Weapons",
+      "#Two Hand Weapons"
+    ]
+    "One Hand Weapons": [
+      "Claws",
+      "Daggers",
+      "Wands",
+      "One Hand Swords",
+      "Thrusting One Hand Swords",
+      "One Hand Axes",
+      "One Hand Maces",
+      "Sceptres"
+    ]
+    "Two Hand Weapons": [
+      "Bows",
+      "Staves",
+      "Two Hand Swords",
+      "Two Hand Axes",
+      "Two Hand Maces",
+      "Fishing Rods"
+    ]
+    "Gears": [
+      "Gloves",
+      "Boots",
+      "Body Armours",
+      "Helmets",
+      "Shields",
+      "Quivers"
+    ]
+    "Accessories": [
+      "Belts",
+      "Amulets",
+      "Rings"
+    ]
+    "Six Sockets Equipments": [
+      "#Two Hand Weapons",
+      "Body Armours"
+    ]
+    "Four Sockets Equipments": [
+      "Gloves",
+      "Boots",
+      "Helmets"
+    ]
+    "Three Sockets Equipments": [
+      "#One Hand Weapons",
+      "Shields"
+    ]
+  properties:
     "No Name": { Hoge1: 1, Hoge2: "test", Hoge3: ["a", "b", "c"] }
     T2: { Hoge1: 2, Hoge2: "aaaa", Hoge3: ["x", "y", "z"] }
-  }
-}

@@ -6,6 +6,7 @@ import Script        from "./views/Script.vue"
 import ScriptEditor  from "./views/ScriptEditor.vue"
 import ScriptPreview from "./views/ScriptPreview.vue"
 import ScriptText    from "./views/ScriptText.vue"
+import Variable      from "./views/Variable.vue"
 import Property      from "./views/Property.vue"
 
 Vue.use Router
@@ -35,6 +36,11 @@ export default new Router
           component: ScriptText
         }
       ]
+    }
+    {
+      path: "/variable"
+      name: "variable"
+      component: Variable
     }
     {
       path: "/property"
