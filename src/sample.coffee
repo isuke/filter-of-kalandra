@@ -93,4 +93,8 @@ Hide "Gears"
             PlayEffect Red Temp
 
   """
+  properties: {
+    "No Name": { Hoge1: 1, Hoge2: "test", Hoge3: ["a", "b", "c"] }
+    T2: { Hoge1: 2, Hoge2: "aaaa", Hoge3: ["x", "y", "z"] }
+  }
 }

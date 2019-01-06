@@ -4,6 +4,8 @@
       router-link(to="/") Home
       | |
       router-link(to="/script/editor") Script
+      | |
+      router-link(to="/property") Property
 
     main.main
       router-view
@@ -13,8 +15,12 @@
 import sample from "@/sample.coffee"
 
 export default
+  methods:
+    setSamples: ->
+      @$store.commit "setProperties", { properties: sample.properties }
+      @$store.commit "setAdvancedScriptText", { advancedScriptText: sample.advancedScriptText }
   created: ->
-    @$store.commit "setAdvancedScriptText", { advancedScriptText: sample.advancedScriptText } if process.env.NODE_ENV == "development"
+    @setSamples() if process.env.NODE_ENV == "development"
 </script>
 
 
