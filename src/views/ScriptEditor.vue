@@ -1,19 +1,17 @@
 <template lang="pug">
 .script-editor
-  textarea.textarea(v-model.lazy="$store.state.advancedScriptText", :rows="rows()")
+  filter-editor.textarea(v-model="$store.state.advancedScriptText")
 </template>
 
 <script lang="coffee">
+import FilterEditor from "@/components/FilterEditor.vue"
+
 export default
-  methods:
-    rows: -> @$store.state.advancedScriptText.split("\n").length + 1
+  components:
+    "filter-editor": FilterEditor
 </script>
 
 <style lang="scss" scoped>
 .script-editor {
-  > .textarea {
-    font-family: "Courier New", Consolas, monospace;
-    width: 100%;
-  }
 }
 </style>

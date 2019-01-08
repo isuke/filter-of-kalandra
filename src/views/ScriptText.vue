@@ -1,18 +1,17 @@
 <template lang="pug">
 .script-text
-  p.text {{ $store.getters.simpleScriptTexts['No Name'] }}
+  filter-editor.textarea(v-model="$store.getters.simpleScriptTexts['No Name']", mode="original-poe-filter", :config="{ readOnly: true }")
 </template>
 
 <script lang="coffee">
-export default {}
+import FilterEditor from "@/components/FilterEditor.vue"
+
+export default
+  components:
+    "filter-editor": FilterEditor
 </script>
 
 <style lang="scss" scoped>
 .script-text {
-  > .text {
-    font-family: "Courier New", Consolas, monospace;
-    white-space: pre-wrap;
-    word-wrap: break-word;
-  }
 }
 </style>
