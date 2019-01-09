@@ -4,7 +4,7 @@ export default
 # This is Comment
 Show "Maps"
     Class "Maps"
-    MapTier > 3
+    MapTier > Prop("Map Tire")
     Identified False
     SetBorderColor 250 251 252
     PlayAlertSound 1 300
@@ -36,12 +36,12 @@ Hide "Gems"
 
     Mixin "Special"
         Show "Drop Only"
-            BaseType "Vaal" "Added Chaos Damage Support" "Detonate Mines" "Portal"
+            BaseType Var("Drop Only Gems")
             SetBackgroundColor Lighten(10%)
             SetFontSize 42
             MinimapIcon 1 Green Diamond
         Show "'E' Series"
-            BaseType "Enhance Support" "Enlighten Support" "Empower Support"
+            BaseType Var("'E' Series Gems")
             SetBorderColor     Negate()
             SetTextColor       Negate()
             SetBackgroundColor Negate()
@@ -93,79 +93,124 @@ Hide "Gears"
             PlayEffect Red Temp
 
   """
-  variables:
-    "'E' Series Gems": [
-      "Enhance Support",
-      "Enlighten Support",
-      "Empower Support"
+  variables: [
+    {
+      name: "'E' Series Gems"
+      items: [
+        "Enhance Support"
+        "Enlighten Support"
+        "Empower Support"
+      ]
+    }
+    {
+      name: "White Gems"
+      items: [
+        "Portal"
+        "Detonate Mines"
+      ]
+    }
+    {
+      name: "Drop Only Gems"
+      items: [
+        "#'E' Series Gems"
+        "#White Gems"
+        "Added Chaos Damage Support"
+        "Vaal"
+      ]
+    }
+    {
+      name: "Vendor Only Gems"
+      items: [
+        "Block Chance Reduction Support"
+        "Mirror Arrow"
+      ]
+    }
+    {
+      name: "Equipments"
+      items: [
+        "#Weapons"
+        "#Gears"
+        "#Accessories"
+      ]
+    }
+    {
+      name: "Weapons"
+      items: [
+        "#One Hand Weapons"
+        "#Two Hand Weapons"
+      ]
+    }
+    {
+      name: "One Hand Weapons"
+      items: [
+        "Claws"
+        "Daggers"
+        "Wands"
+        "One Hand Swords"
+        "Thrusting One Hand Swords"
+        "One Hand Axes"
+        "One Hand Maces"
+        "Sceptres"
+      ]
+    }
+    {
+      name: "Two Hand Weapons"
+      items: [
+        "Bows"
+        "Staves"
+        "Two Hand Swords"
+        "Two Hand Axes"
+        "Two Hand Maces"
+        "Fishing Rods"
+      ]
+    }
+    {
+      name: "Gears"
+      items: [
+        "Gloves"
+        "Boots"
+        "Body Armours"
+        "Helmets"
+        "Shields"
+        "Quivers"
+      ]
+    }
+    {
+      name: "Accessories"
+      items: [
+        "Belts"
+        "Amulets"
+        "Rings"
+      ]
+    }
+    {
+      name: "Six Sockets Equipments"
+      items: [
+        "#Two Hand Weapons"
+        "Body Armours"
+      ]
+    }
+    {
+      name: "Four Sockets Equipments"
+      items: [
+        "Gloves"
+        "Boots"
+        "Helmets"
+      ]
+    }
+    {
+      name: "Three Sockets Equipments"
+      items: [
+        "#One Hand Weapons"
+        "Shields"
+      ]
+    }
+  ]
+  properties: {
+    scriptNames: ["No Name", "T2"]
+    propNames: ["Map Tire", "Hoge2", "Hoge3"]
+    values: [
+      [ 1, "test1", ["a", "b", "c"] ]
+      [ 2, "test2", ["x", "y", "z"] ]
     ]
-    "White Gems": [
-      "Portal",
-      "Detonate Mines"
-    ]
-    "Drop Only Gems": [
-      "#'E' Series Gems",
-      "#White Gems",
-      "Added Chaos Damage Support",
-      "Vaal"
-    ]
-    "Vendor Only Gems": [
-      "Block Chance Reduction Support",
-      "Mirror Arrow"
-    ]
-    "Equipments": [
-      "#Weapons",
-      "#Gears",
-      "#Accessories"
-    ]
-    "Weapons": [
-      "#One Hand Weapons",
-      "#Two Hand Weapons"
-    ]
-    "One Hand Weapons": [
-      "Claws",
-      "Daggers",
-      "Wands",
-      "One Hand Swords",
-      "Thrusting One Hand Swords",
-      "One Hand Axes",
-      "One Hand Maces",
-      "Sceptres"
-    ]
-    "Two Hand Weapons": [
-      "Bows",
-      "Staves",
-      "Two Hand Swords",
-      "Two Hand Axes",
-      "Two Hand Maces",
-      "Fishing Rods"
-    ]
-    "Gears": [
-      "Gloves",
-      "Boots",
-      "Body Armours",
-      "Helmets",
-      "Shields",
-      "Quivers"
-    ]
-    "Accessories": [
-      "Belts",
-      "Amulets",
-      "Rings"
-    ]
-    "Six Sockets Equipments": [
-      "#Two Hand Weapons",
-      "Body Armours"
-    ]
-    "Four Sockets Equipments": [
-      "Gloves",
-      "Boots",
-      "Helmets"
-    ]
-    "Three Sockets Equipments": [
-      "#One Hand Weapons",
-      "Shields"
-    ]
-  properties:
-    "No Name": { Hoge1: 1, Hoge2: "test", Hoge3: ["a", "b", "c"] }
-    T2: { Hoge1: 2, Hoge2: "aaaa", Hoge3: ["x", "y", "z"] }
+  }

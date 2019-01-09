@@ -33,6 +33,8 @@ export default
       lineNumbers: true
       addModeClass: true
       styleActiveLine: true
+  watch:
+    value: (v) -> @cm.setValue v if @config.readOnly
   methods:
     createCM: ->
       conf = Object.assign { mode: @mode }, @defaultConf, @config, @requireConf

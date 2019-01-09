@@ -4,11 +4,14 @@
     thead.head
       tr.row
         th.head Property Name \ Script Name
-        td.scriptname(v-for="scriptNames in $store.getters.scriptNames") {{ scriptNames }}
+        td.scriptname(v-for="(scriptNames, i) in $store.getters.scriptNames")
+          input(type="text", v-model="$store.state.properties.scriptNames[i]")
     tbody
-      tr.row(v-for="propName in $store.getters.propNames")
-        th.propname {{ propName }}
-        td.propval(v-for="scriptName in $store.getters.scriptNames") {{ $store.state.properties[scriptName][propName] }}
+      tr.row(v-for="(propName, j) in $store.getters.propNames")
+        th.propname
+          input(type="text", v-model="$store.state.properties.propNames[j]")
+        td.propval(v-for="(scriptName, i) in $store.getters.scriptNames")
+          input(type="text", v-model="$store.state.properties.values[i][j]")
 
   button.newprop(@click="$store.dispatch('addPropsToProperties')") Add New Property
 

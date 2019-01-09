@@ -12,16 +12,18 @@ forIn = (object, callback) =>
 export default new Vuex.Store
   state:
     advancedScriptText: ""
-    variables: {}
+    variables: []
     properties: {
-      "No Name": {}
+      scriptNames: ["No Name"]
+      propNames: []
+      values: []
     }
   getters:
     #
     # advancedScriptText
     #
-    simpleScriptObjects: (state) -> advancedPoeFilter.getObject(state.advancedScriptText, {}, state.properties)
-    simpleScriptTexts: (state) -> advancedPoeFilter.compile(state.advancedScriptText, {}, state.properties)
+    simpleScriptObjects: (state, getters) -> advancedPoeFilter.getObject(state.advancedScriptText, getters.variablesForCompiler, getters.propertiesForCompiler)
+    simpleScriptTexts: (state, getters) -> advancedPoeFilter.compile(state.advancedScriptText, getters.variablesForCompiler, getters.propertiesForCompiler)
     scriptNames: (state, getters) -> Object.keys(getters.simpleScriptObjects)
     sectionNames: (state, getters) -> getters.simpleScriptObjects[getters.scriptNames[0]].map((o) => o.name)
     blocks: (state, getters) -> (scriptName, sectionName) =>
@@ -30,12 +32,29 @@ export default new Vuex.Store
     #
     # variables
     #
-    variableNaems: (state) -> Object.keys(state.variables)
+    variableNaems: (state) -> state.variables.map (v) => v.name
+    variablesForCompiler: (state) ->
+      result = {}
+      state.variables.forEach (variable) =>
+        # TODO: expand '#'
+        result[variable.name] = if variable.items.length <= 1 then variable.items[0] else variable.items
+      result
 
     #
     # properties
     #
-    propNames: (state, getters) -> Object.keys(state.properties[getters.scriptNames[0]])
+    propNames: (state, getters) -> state.properties.propNames
+    propValue: (state, getters) -> (scriptName, propName) =>
+      i = state.properties.scriptNames.findIndex (name) => name == scriptName
+      j = state.properties.propNames.findIndex (name) => name == propName
+      state.properties.values[i][j]
+    propertiesForCompiler: (state) ->
+      result = {}
+      state.properties.scriptNames.forEach (scriptName, i) =>
+        state.properties.propNames.forEach (propName, j) =>
+          result[scriptName] = {} if result[scriptName] == undefined
+          result[scriptName][propName] = state.properties.values[i][j]
+      result
   mutations:
     #
     # advancedScriptText
@@ -56,12 +75,8 @@ export default new Vuex.Store
     # properties
     #
     addScriptToProperties: ({ _commit, state, getters }) ->
-      newProps = {}
-      getters.propNames.forEach (propName) =>
-        newProps[propName] = 'New Val'
-      # TODO: random script name
-      Vue.set(state.properties, 'New Script', newProps)
+      state.properties.values.push new Array(state.properties.propNames.length)
+      state.properties.scriptNames.push "New Script #{state.properties.scriptNames.length + 1}"
     addPropsToProperties: ({ _commit, state, _getters }) ->
-      forIn state.properties, (props, scriptName) =>
-        # TODO: random prop name
-        Vue.set(state.properties[scriptName], 'New Prop', 'New Val')
+      state.properties.values.forEach (props) => props.push ''
+      state.properties.propNames.push "New Prop #{state.properties.propNames.length + 1}"
