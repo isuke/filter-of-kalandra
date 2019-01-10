@@ -10,6 +10,9 @@
       ul.list
         li.item(v-for="(item, j) in variable.items")
           input(type="text", v-model="$store.state.variables[i].items[j]")
+      button(@click.prevent="$store.commit('addItemToVariable', { index: i })") Add New Item
+
+    button(@click.prevent="$store.commit('addVariable')") Add New Variable
 </template>
 
 <script lang="coffee">

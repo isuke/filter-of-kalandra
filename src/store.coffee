@@ -3,6 +3,7 @@ import Vuex from "vuex"
 
 Vue.use(Vuex)
 
+import Color from "color"
 import * as advancedPoeFilter from "advanced-poe-filter"
 
 # TODO: move to utils
@@ -13,6 +14,7 @@ export default new Vuex.Store
   state:
     advancedScriptText: ""
     variables: []
+    colors: []
     properties: {
       scriptNames: ["No Name"]
       propNames: []
@@ -33,12 +35,23 @@ export default new Vuex.Store
     # variables
     #
     variableNaems: (state) -> state.variables.map (v) => v.name
-    variablesForCompiler: (state) ->
+    variablesForCompiler: (state, getters) ->
       result = {}
+
       state.variables.forEach (variable) =>
         # TODO: expand '#'
         result[variable.name] = if variable.items.length <= 1 then variable.items[0] else variable.items
+
+      state.colors.forEach (color, index) =>
+        rgb = getters.colorObject(index).rgb().color
+        result[color.name] = "#{rgb[0]} #{rgb[1]} #{rgb[2]}"
+
       result
+
+    #
+    # colors
+    #
+    colorObject: (state) -> (index) => new Color(state.colors[index].hex)
 
     #
     # properties
@@ -65,18 +78,25 @@ export default new Vuex.Store
     # variables
     #
     setVariables: (state, payload = {}) -> state.variables = payload.variables
+    addVariable: (state, payload = {}) -> state.variables.push { name: "New Variable #{state.variables.length + 1}", items: [] }
+    addItemToVariable: (state, payload = {}) ->
+      items = state.variables[payload.index].items
+      items.push "New Item #{items.length + 1}"
+
+    #
+    # colors
+    #
+    setColors: (state, payload = {}) -> state.colors = payload.colors
+    addColor: (state, payyload = {}) -> state.colors.push { name: "New Color #{state.colors.length + 1}", hex: "#000000" }
 
     #
     # properties
     #
     setProperties: (state, payload = {}) -> state.properties = payload.properties
-  actions:
-    #
-    # properties
-    #
-    addScriptToProperties: ({ _commit, state, getters }) ->
+    addScriptToProperties: (state, payload = {}) ->
       state.properties.values.push new Array(state.properties.propNames.length)
       state.properties.scriptNames.push "New Script #{state.properties.scriptNames.length + 1}"
-    addPropsToProperties: ({ _commit, state, _getters }) ->
+    addPropsToProperties: (state, payload = {}) ->
       state.properties.values.forEach (props) => props.push ''
       state.properties.propNames.push "New Prop #{state.properties.propNames.length + 1}"
+  actions: {}

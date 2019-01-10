@@ -13,9 +13,9 @@
         td.propval(v-for="(scriptName, i) in $store.getters.scriptNames")
           input(type="text", v-model="$store.state.properties.values[i][j]")
 
-  button.newprop(@click="$store.dispatch('addPropsToProperties')") Add New Property
+  button.newprop(@click="$store.commit('addPropsToProperties')") Add New Property
 
-  button.newscript(@click="$store.dispatch('addScriptToProperties')") Add New Script
+  button.newscript(@click="$store.commit('addScriptToProperties')") Add New Script
 </template>
 
 <script lang="coffee">

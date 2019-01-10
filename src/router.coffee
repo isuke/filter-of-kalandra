@@ -7,6 +7,7 @@ import ScriptEditor  from "./views/ScriptEditor.vue"
 import ScriptPreview from "./views/ScriptPreview.vue"
 import ScriptText    from "./views/ScriptText.vue"
 import Variable      from "./views/Variable.vue"
+import Color         from "./views/Color.vue"
 import Property      from "./views/Property.vue"
 
 Vue.use Router
@@ -41,6 +42,11 @@ export default new Router
       path: "/variable"
       name: "variable"
       component: Variable
+    }
+    {
+      path: "/color"
+      name: "color"
+      component: Color
     }
     {
       path: "/property"
