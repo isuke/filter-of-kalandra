@@ -18,6 +18,10 @@
   &action {
     color: #0195af; // TODO
   }
+
+  &error {
+    text-decoration: underline dotted #ff0000; // TODO
+  }
 }
 
 .cm-m-original-poe-filter.cm- {

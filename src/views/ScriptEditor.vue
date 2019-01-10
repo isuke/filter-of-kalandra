@@ -1,6 +1,6 @@
 <template lang="pug">
 .script-editor
-  filter-editor.textarea(v-model="$store.state.advancedScriptText")
+  filter-editor.textarea(v-model="$store.state.advancedScriptText", :syntax-error="$store.state.syntaxError")
 </template>
 
 <script lang="coffee">

@@ -24,6 +24,10 @@ export default
       required: false
       default: "advanced-poe-filter"
       validator: (value) -> ["advanced-poe-filter", "original-poe-filter"].includes value
+    syntaxError:
+      type: Object
+      required: false
+      default: -> undefined
   data: ->
     cm: undefined
     requireConf:
@@ -33,8 +37,20 @@ export default
       lineNumbers: true
       addModeClass: true
       styleActiveLine: true
+    errorMark: undefined
   watch:
     value: (v) -> @cm.setValue v if @config.readOnly
+    syntaxError: (e) ->
+      @errorMark.clear() if @errorMark
+
+      return unless e
+
+      start = e.location.start
+      end   = e.location.end
+      startPos = { line: start.line - 1, ch: start.column - 1 }
+      endPos   = { line: end.line   - 1, ch: 160 }
+      @errorMark = @cm.markText startPos, endPos,
+        className: 'cm-error'
   methods:
     createCM: ->
       conf = Object.assign { mode: @mode }, @defaultConf, @config, @requireConf
