@@ -10,7 +10,8 @@
     ul.sectionlist
       li.item(v-for="sectionName in $store.getters.sectionNames") {{ sectionName }}
   .main
-    router-view
+    keep-alive
+      router-view
 </template>
 
 <script lang="coffee">

@@ -12,7 +12,8 @@
       router-link(to="/property") Property
 
     main.main
-      router-view
+      keep-alive
+        router-view
 </template>
 
 <script lang="coffee">
