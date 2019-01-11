@@ -4,6 +4,7 @@
 </template>
 
 <script lang="coffee">
+import debounce from "lodash.debounce"
 import CodeMirror from "codemirror"
 import "codemirror/addon/selection/active-line"
 
@@ -59,7 +60,9 @@ export default
 
       @cm.setOption "styleActiveLine", nonEmpty: true
 
-      @cm.on "change", => @$emit 'change', @cm.getValue()
+      @cm.on "change", debounce () =>
+        @$emit 'change', @cm.getValue()
+      , 500
   mounted: ->
     @createCM()
 </script>
