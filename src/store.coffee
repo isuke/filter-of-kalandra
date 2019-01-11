@@ -13,6 +13,8 @@ forIn = (object, callback) =>
 export default new Vuex.Store
   state:
     advancedScriptText: ""
+    oldSimpleScriptObject: {}
+    oldSimpleScriptTexts: {}
     syntaxError: undefined
     variables: []
     colors: []
@@ -28,16 +30,19 @@ export default new Vuex.Store
     simpleScriptObjects: (state, getters) ->
       try
         result = advancedPoeFilter.getObject(state.advancedScriptText, getters.variablesForCompiler, getters.propertiesForCompiler)
+        state.oldSimpleScriptObject = result
         state.syntaxError = undefined
         result
       catch e
         state.syntaxError = e
-        {}
+        state.oldSimpleScriptObject
     simpleScriptTexts: (state, getters) ->
       try
-        advancedPoeFilter.compile(state.advancedScriptText, getters.variablesForCompiler, getters.propertiesForCompiler)
+        result = advancedPoeFilter.compile(state.advancedScriptText, getters.variablesForCompiler, getters.propertiesForCompiler)
+        state.oldSimpleScriptTexts = result
+        result
       catch _e
-        ""
+        state.oldSimpleScriptTexts
     scriptNames: (state, getters) -> Object.keys(getters.simpleScriptObjects)
     sectionNames: (state, getters) ->
       firstObject = getters.simpleScriptObjects[getters.scriptNames[0]]
