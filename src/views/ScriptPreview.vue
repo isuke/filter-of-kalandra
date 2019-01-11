@@ -17,6 +17,8 @@
 </template>
 
 <script lang="coffee">
+import Color from "color"
+
 # TODO: move to utils
 forIn = (object, callback) =>
   Object.keys(object).forEach (key) => callback(object[key], key)
@@ -34,17 +36,18 @@ export default
     getStyle: (block) ->
       if block.activity == 'Show'
         {
-          "border": "1px #{@getColorStr(block.actions.SetBorderColor)} solid"  if block.actions.SetBorderColor
-          "color": @getColorStr(block.actions.SetTextColor)                    if block.actions.SetTextColor
-          "background-color": @getColorStr(block.actions.SetBackgroundColor)   if block.actions.SetBackgroundColor
-          "font-size": "#{Math.round(block.actions.SetFontSize / 2)}px"                    if block.actions.SetFontSize
+          "border": "0.2em #{@getColorStr(block.actions.SetBorderColor)} solid" if block.actions.SetBorderColor
+          "color": @getColorStr(block.actions.SetTextColor)                     if block.actions.SetTextColor
+          "background-color": @getColorStr(block.actions.SetBackgroundColor)    if block.actions.SetBackgroundColor
+          "font-size": "#{Math.round(block.actions.SetFontSize / 2)}px"         if block.actions.SetFontSize
         }
       else
         {
           display: 'none'
         }
     getColorStr: (colorObject) ->
-      "##{colorObject.rgb.r.toString(16)}#{colorObject.rgb.g.toString(16)}#{colorObject.rgb.b.toString(16)}" # TODO: alpha
+      color = new Color(colorObject.rgb)
+      color.hex().replace('0x', '#') # TODO: alpha
 </script>
 
 <style lang="scss" scoped>
