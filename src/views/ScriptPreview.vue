@@ -13,17 +13,22 @@
           th.blockname {{ getBlockNameStr(block.name) }}
           td.preveiw
             img.image(src="https://via.placeholder.com/160x64/B46000/707070")
-            span.item(:style="getStyle(block)") Item Name
+            span.item(:style="getStyle(block)", @click.prevent="playAlertSound(block)") Item Name
 </template>
 
 <script lang="coffee">
 import Color from "color"
+
+import soundAudible from "@/mixins/soundAudible.coffee"
 
 # TODO: move to utils
 forIn = (object, callback) =>
   Object.keys(object).forEach (key) => callback(object[key], key)
 
 export default
+  mixins: [
+    soundAudible
+  ]
   methods:
     getBlockNameStr: (blockNameObject) ->
       temp = []
@@ -48,6 +53,15 @@ export default
     getColorStr: (colorObject) ->
       color = new Color(colorObject.rgb)
       color.hex().replace('0x', '#') # TODO: alpha
+    playAlertSound: (block) ->
+      sound = if block.actions.PlayAlertSound
+        block.actions.PlayAlertSound
+      else if block.actions.PlayAlertSoundPositional
+        block.actions.PlayAlertSoundPositional
+
+      return unless sound
+
+      @sound(sound.id, sound.volume)
 </script>
 
 <style lang="scss" scoped>
@@ -77,6 +91,7 @@ export default
               background-color: black;
               color: white;
               font-size: 11px;
+              cursor: pointer;
             }
           }
         }

@@ -1,7 +1,46 @@
 export default
   advancedScriptText: """
-# This is Comment
-# This is Comment
+# Sample Script For Debug
+
+Hide "Curerncies"
+    Class "Currencies"
+    BaseType Var("Sublime Currencies") Var("Lofty Currencies") Var("Precious Currencies") Var("Trivial Currencies") Var("Cheap Currencies")
+    SetTextColor Var("Currency Color")
+    SetBackgroundColor 0 0 0
+
+    Mixin "Rareness"
+        Show "Sublime"
+            BaseType Var("Sublime Currencies")
+            PlayAlertSound 1 300
+            SetFontSize Plus(6)
+            SetTextColor Negate()
+            SetBackgroundColor Negate()
+
+            Mixin "BaseType"
+                Show "Mirror of Kalandra"
+                    BaseType "Mirror of Kalandra"
+                    PlayAlertSound ShMirror 300
+                Show "Divine Orb"
+                    BaseType "Divine Orb"
+                    PlayAlertSound ShDivine 300
+        Show "Lofty"
+            BaseType Var("Lofty Currencies")
+            PlayAlertSound 2 300
+            SetFontSize Plus(4)
+
+            Mixin "BaseType"
+                Show "Chaos Orb"
+                    BaseType "Chaos Orb"
+                    PlayAlertSound ShChaos 300
+        Show "Precious"
+            BaseType Var("Precious Currencies")
+            PlayAlertSound 3 300
+            SetFontSize Plus(2)
+        Show "Trivial"
+            BaseType Var("Trivial Currencies")
+        Hide "Cheap"
+            BaseType Var("Cheap Currencies")
+
 Show "Maps"
     Class "Maps"
     MapTier > Prop("Map Tire")
@@ -9,43 +48,35 @@ Show "Maps"
     SetBorderColor 250 251 252
     PlayAlertSound 1 300
 
-Hide "Gems"
+Show "Gems"
     Class "Gems"
     SetBorderColor       Var("Skill Gem Color")
-    SetTextColor         Var("Skill Gem Color")
-    SetBackgroundColor    0   0   0
+    SetTextColor         255 255 255
+    SetBackgroundColor   Var("Skill Gem Color")
+    SetFontSize 32
 
     Mixin "Level"
         Show "High Level"
             GemLevel >= 18
-            SetBorderColor Darken(20%)
-            SetTextColor   Darken(20%)
-            MinimapIcon 1 Green Diamond
-
-    Mixin "Quality"
-        Show "High Level"
-            GemLevel >= 10
-            SetBorderColor Darken(20%)
-            SetTextColor   Darken(20%)
-            MinimapIcon 1 Green Diamond
-        Show "Middle Level"
-            GemLevel >= 1
-            SetBorderColor Darken(10%)
-            SetTextColor   Darken(10%)
+            SetBorderColor     Lighten(100%)
+            SetTextColor       Negate()
+            SetBackgroundColor Lighten(100%)
+            SetFontSize Plus(6)
             MinimapIcon 1 Green Diamond
 
     Mixin "Special"
         Show "Drop Only"
             BaseType Var("Drop Only Gems")
-            SetBackgroundColor Lighten(10%)
-            SetFontSize 42
+            SetBorderColor     255 0 0
+            SetTextColor       Negate()
+            SetBackgroundColor Lighten(100%)
             MinimapIcon 1 Green Diamond
         Show "'E' Series"
             BaseType Var("'E' Series Gems")
-            SetBorderColor     Negate()
+            SetBorderColor     0 0 255
             SetTextColor       Negate()
-            SetBackgroundColor Negate()
-            SetFontSize 45
+            SetBackgroundColor Lighten(100%)
+            SetFontSize Plus(6)
             MinimapIcon 2 Green Diamond
 
 Hide "Gears"
@@ -94,6 +125,59 @@ Hide "Gears"
 
   """
   variables: [
+    {
+      name: "Sublime Currencies"
+      items: [
+        "Albino Rhoa Feather"
+        "Divine Orb"
+        "Exalted Orb"
+        "Mirror of Kalandra"
+        "Orb of Annulment"
+      ]
+    }
+    {
+      name: "Lofty Currencies"
+      items: [
+        "Blessed Orb"
+        "Cartographer's Chisel"
+        "Chaos Orb"
+        "Gemcutter's Prism"
+        "Orb of Alchemy"
+        "Orb of Fusing"
+        "Orb of Regret"
+        "Orb of Scouring"
+        "Regal Orb"
+        "Vaal Orb"
+      ]
+    }
+    {
+      name: "Precious Currencies"
+      items: [
+        "Chromatic Orb"
+        "Glassblower's Bauble"
+        "Jeweller's Orb"
+        "Orb of Alteration"
+        "Orb of Chance"
+        "Silver Coin"
+      ]
+    }
+    {
+      name: "Trivial Currencies"
+      items: [
+        "Armourer's Scrap"
+        "Blacksmith's Whetstone"
+        "Orb of Augmentation"
+        "Orb of Transmutation"
+      ]
+    }
+    {
+      name: "Cheap Currencies"
+      items: [
+        "Portal Scroll"
+        "Scroll of Wisdom"
+      ]
+    }
+
     {
       name: "'E' Series Gems"
       items: [
