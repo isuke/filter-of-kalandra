@@ -14,10 +14,15 @@ macroNames = [
 functionNames = [
   "Negate"
   "Grayscale"
+  "Saturate"
+  "Desaturate"
   "Lighten"
   "Darken"
   "Whiten"
   "Blacken"
+  "Hex"
+  "Saturation"
+  "Lightness"
   "Plus"
   "Minus"
 ]

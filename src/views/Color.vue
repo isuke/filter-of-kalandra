@@ -7,6 +7,7 @@
         th Input
         th RGB
         th Hex
+        th HSL
         th Luminosity
         th Is Light?
     tbody
@@ -15,6 +16,7 @@
         th: input(type="color", v-model="color.hex")
         th {{ $store.getters.colorObject(i).rgb().color }}
         th {{ color.hex }}
+        th {{ $store.getters.colorObject(i).hsl().color.map(c => Math.round(c)) }}
         th {{ round($store.getters.colorObject(i).luminosity()) }}
         th {{ $store.getters.colorObject(i).isLight() }}
 
