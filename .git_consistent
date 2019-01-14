@@ -31,6 +31,37 @@ type:
       description: when downgrading dependencies
     - name: tada
       description: when celebrating
+scope:
+  type: enum
+  required: false
+  description: 'The scope could be specifying place of the commit change.'
+  prefix: '('
+  suffix: ')'
+  values:
+    -
+      name: Home
+      description: 'Home.vue'
+    -
+      name: Script
+      description: 'Script.vue'
+    -
+      name: ScriptEditor
+      description: 'ScriptEditor.vue'
+    -
+      name: ScriptPreview
+      description: 'ScriptPreview.vue'
+    -
+      name: ScriptText
+      description: 'ScriptText.vue'
+    -
+      name: Variable
+      description: 'Variable.vue'
+    -
+      name: Color
+      description: 'Color.vue'
+    -
+      name: Property
+      description: 'Property.vue'
 subject:
   type: string
   required: true
@@ -39,6 +70,22 @@ subject:
     firstLatter: lower
     dotAtEnd: false
     nonAscii: false
+issueKeyword:
+  type: branch
+  required: false
+  description: 'Github issue link'
+  regExp: 'issue([0-9]+)'
+  regExpFlag: 'i'
+  prefix: '(close #'
+  suffix: ")"
+issueLink:
+  type: branch
+  required: false
+  description: 'Github issue link'
+  regExp: 'issue([0-9]+)'
+  regExpFlag: 'i'
+  prefix: 'https://github.com/isuke/filter-of-kalandra/issues/'
+  suffix: "\n"
 body:
   type: text
   default: ''
