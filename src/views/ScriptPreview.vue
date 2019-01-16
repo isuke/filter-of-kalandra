@@ -1,6 +1,6 @@
 <template lang="pug">
 .script-preview
-  .section(v-for="sectionName in $store.getters.sectionNames")
+  .section(v-for="(scripts, sectionName) in simpleScriptObjectsForPreview")
     h1 {{ sectionName }}
 
     table.table
@@ -9,11 +9,12 @@
           th.head Block Name \ Script Name
           td.scriptname(v-for="scriptName in $store.getters.scriptNames") {{ scriptName }}
       tbody.body
-        tr.row(v-for="block in $store.getters.blocks('No Name', sectionName)")
-          th.blockname {{ getBlockNameStr(block.name) }}
-          td.preveiw
-            img.image(src="https://via.placeholder.com/160x64/B46000/707070")
-            span.item(:style="getStyle(block)", @click.prevent="playAlertSound(block)") Item Name
+        tr.row(v-for="(blocks, blockName) in scripts")
+          th.blockname {{ blockName }}
+          td.preveiw(v-for="(block, scriptName) in blocks")
+            .image
+              img.back(src="https://via.placeholder.com/160x64/B46000/707070")
+              span.item(:style="getStyle(block)", @click.prevent="playAlertSound(block)") Item Name
 </template>
 
 <script lang="coffee">
@@ -29,6 +30,19 @@ export default
   mixins: [
     soundAudible
   ]
+  computed:
+    simpleScriptObjectsForPreview: ->
+      result = {}
+      forIn @$store.getters.simpleScriptObjects, (sections, scriptName) =>
+        sections.forEach (section) =>
+          result[section.name] = {} unless result[section.name]
+          section.blocks.forEach (block) =>
+            blockName = @getBlockNameStr(block.name)
+            result[section.name][blockName] = {} unless result[section.name][blockName]
+            result[section.name][blockName][scriptName] = {}
+            result[section.name][blockName][scriptName].activity = block.activity
+            result[section.name][blockName][scriptName].actions = block.actions
+      result
   methods:
     getBlockNameStr: (blockNameObject) ->
       temp = []
@@ -78,20 +92,23 @@ export default
         > .row {
           > .blockname {}
           > .preveiw {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            position: relative;
+            > .image {
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              position: relative;
 
-            > .image {}
-            > .item {
-              position: absolute;
-              padding: 0.5em;
-              opacity: 0.5;
-              background-color: black;
-              color: white;
-              font-size: 11px;
-              cursor: pointer;
+              > .back {}
+              > .item {
+                position: absolute;
+                margin: auto;
+                padding: 0.5em;
+                opacity: 0.5;
+                background-color: black;
+                color: white;
+                font-size: 11px;
+                cursor: pointer;
+              }
             }
           }
         }

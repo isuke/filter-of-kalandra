@@ -322,7 +322,7 @@ Hide "Gears"
     { name: "Dodger Blue"                  , hex: "#1e90ff" } # rgb:  30, 144, 255
   ]
   properties: {
-    scriptNames: ["No Name", "T2"]
+    scriptNames: ["T1", "T2"]
     propNames: ["Map Tire", "Hoge2", "Hoge3"]
     values: [
       [ 1, "test1", ["a", "b", "c"] ]
