@@ -3,6 +3,7 @@ import Vuex from "vuex"
 
 Vue.use(Vuex)
 
+import localStorage from "store"
 import Color from "color"
 import * as advancedPoeFilter from "advanced-poe-filter"
 
@@ -118,4 +119,26 @@ export default new Vuex.Store
     addPropsToProperties: (state, payload = {}) ->
       state.properties.values.forEach (props) => props.push ''
       state.properties.propNames.push "New Prop #{state.properties.propNames.length + 1}"
-  actions: {}
+  actions:
+    saveToLocalStorage: ({ _commit, state }) ->
+      try
+        localStorage.set "filter-of-kalandra_advancedScriptText", state.advancedScriptText
+        localStorage.set "filter-of-kalandra_variables" , JSON.stringify(state.variables)
+        localStorage.set "filter-of-kalandra_colors"    , JSON.stringify(state.colors)
+        localStorage.set "filter-of-kalandra_properties", JSON.stringify(state.properties)
+        console.log "Saved to the LocalStorage."
+      catch e
+        console.error e.message
+    loadFromLocalStorage: ({ commit, _state }) ->
+      try
+        advancedScriptText = localStorage.get "filter-of-kalandra_hoge"
+        variables          = localStorage.get "filter-of-kalandra_variables"
+        colors             = localStorage.get "filter-of-kalandra_colors"
+        properties         = localStorage.get "filter-of-kalandra_properties"
+        commit "setAdvancedScriptText", advancedScriptText: advancedScriptText if advancedScriptText
+        commit "setVariables" ,  variables: JSON.parse variables               if variables
+        commit "setColors"    ,     colors: JSON.parse colors                  if colors
+        commit "setProperties", properties: JSON.parse properties              if properties
+        console.log "Loaded from the LocalStorage."
+      catch e
+        console.error e.message

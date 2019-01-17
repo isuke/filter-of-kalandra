@@ -15,6 +15,7 @@
     "color": "^3.1.0",
     "lodash.debounce": "^4.0.8",
     "register-service-worker": "^1.5.2",
+    "store": "^2.0.12",
     "vue": "^2.5.17",
     "vue-router": "^3.0.1",
     "vuex": "^3.0.1"
