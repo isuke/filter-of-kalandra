@@ -1,7 +1,24 @@
 :root {
-  font-size: 16px;
+  --unit: 16px;
+
+  --ft-size-xl: calc(var(--unit) * 2.00);
+  --ft-size-l:  calc(var(--unit) * 1.25);
+  --ft-size-m:  calc(var(--unit) * 0.75);
+  --ft-size-s:  calc(var(--unit) * 0.50);
+  --ft-size-xs: calc(var(--unit) * 0.25);
+
+  --space-size-xl: calc(var(--unit) * 2.875);
+  --space-size-l:  calc(var(--unit) * 1.875);
+  --space-size-m:  calc(var(--unit) * 1.000);
+  --space-size-s:  calc(var(--unit) * 0.875);
+  --space-size-xs: calc(var(--unit) * 0.125);
+
+  font-size: var(--unit);
 }
 
 body {
-  font-size: 0.875rem;
+  font-family: $default-font-family;
+  font-size: var(--ft-size-m);
+  background-color: $bg-color-base;
+  color: $ft-color-base;
 }

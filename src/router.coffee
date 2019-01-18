@@ -13,6 +13,7 @@ import Property      from "./views/Property.vue"
 Vue.use Router
 
 export default new Router
+  linkActiveClass: "-current"
   routes: [
     {
       path: "/"
@@ -27,6 +28,7 @@ export default new Router
         {
           path: "editor"
           component: ScriptEditor
+          alias: "/"
         }
         {
           path: "preview",

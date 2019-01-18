@@ -1,18 +1,22 @@
-<template>
-  <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png" />
-    <HelloWorld msg="Welcome to Your Vue.js App" />
-  </div>
+<template lang="pug">
+.home
+  h1.title Filter of Kalandra
 </template>
 
-<script>
-// @ is an alias to /src
-import HelloWorld from "@/components/HelloWorld.vue";
-
-export default {
-  name: "home",
-  components: {
-    HelloWorld
-  }
-};
+<script lang="coffee">
+export default {}
 </script>
+
+
+<style lang="scss" scoped>
+.home {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-size-xl);
+
+  > .title {
+    font-size: var(--ft-size-xl);
+  }
+}
+</style>

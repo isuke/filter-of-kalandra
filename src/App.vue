@@ -1,15 +1,6 @@
 <template lang="pug">
   #app
-    nav.nav
-      router-link(to="/") Home
-      | |
-      router-link(to="/script/editor") Script
-      | |
-      router-link(to="/variable") Variable
-      | |
-      router-link(to="/color") Color
-      | |
-      router-link(to="/property") Property
+    the-global-header
 
     main.main
       keep-alive
@@ -17,9 +8,13 @@
 </template>
 
 <script lang="coffee">
+import TheGlobalHeader from "@/components/TheGlobalHeader"
+
 import sample from "@/sample.coffee"
 
 export default
+  components:
+    "the-global-header": TheGlobalHeader
   data: ->
     saveIntervalID: undefined
   methods:

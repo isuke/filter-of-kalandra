@@ -1,0 +1,73 @@
+// -----------------------------------------------------------------------------
+// Typographies
+// -----------------------------------------------------------------------------
+
+//
+// Font Family
+//
+$default-font-family: HiraginoSans, Hiragino Kaku Gothic ProN, Meiryo, Arial, sans-serif;
+
+//
+// Font Weight
+//
+$default-font-weight:      400;
+$bold-font-weight:         700;
+
+// -----------------------------------------------------------------------------
+// Colors
+// -----------------------------------------------------------------------------
+
+$theme-color: hsl(260, 100%, 50%);
+
+//
+// Background
+//
+$bg-color-base: desaturate(darken($theme-color, 45%), 60%);
+
+//
+// Font
+//
+$ft-color-base: saturate(lighten($theme-color, 45%), 60%);
+$ft-color-active: lighten($theme-color, 30%);
+
+// -----------------------------------------------------------------------------
+// Layouts
+// -----------------------------------------------------------------------------
+
+//
+// Border
+//
+$base-border-height: 1px;
+$bold-border-height: 3px;
+
+$base-border-radius: 2px;
+
+//
+// Button
+//
+$base-button-height: 3rem;
+
+//
+// Input
+//
+$extra-large-input-height: 4rem;
+$large-input-height: 3rem;
+$small-input-height: 2rem;
+
+$input-side-padding: 1rem;
+
+//
+// z-index
+//
+$base-z-index: 0;
+
+// -----------------------------------------------------------------------------
+// Interaction
+// -----------------------------------------------------------------------------
+
+//
+// Animations
+//
+$base-duration: 150ms;
+$slow-duration: 550ms;
+$base-timing: ease;

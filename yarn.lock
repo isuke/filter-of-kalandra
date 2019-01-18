@@ -3126,6 +3126,11 @@ destroy@~1.0.4:
   resolved "https://registry.yarnpkg.com/destroy/-/destroy-1.0.4.tgz#978857442c44749e4206613e37946205826abd80"
   integrity sha1-l4hXRCxEdJ5CBmE+N5RiBYJqvYA=
 
+destyle.css@^1.0.5:
+  version "1.0.5"
+  resolved "https://registry.yarnpkg.com/destyle.css/-/destyle.css-1.0.5.tgz#9b66eb043d2288558bb46b6a698b75eab24c2d3a"
+  integrity sha512-LzpZrwBAmCHMITVQpxZdHlgmDgQRAa8zRiY/6qIA/p7s8uGvotULtNj/Yrq06tt5O7Yhy/vMuu7l3Ov0vGQy/w==
+
 detect-libc@^1.0.2:
   version "1.0.3"
   resolved "https://registry.yarnpkg.com/detect-libc/-/detect-libc-1.0.3.tgz#fa137c4bd698edf55cd5cd02ac559f91a4c4ba9b"
