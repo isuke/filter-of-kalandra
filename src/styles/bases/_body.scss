@@ -13,10 +13,14 @@
   --space-size-s:  calc(var(--unit) * 0.875);
   --space-size-xs: calc(var(--unit) * 0.125);
 
+  width: 100vw;
+  min-height: 100vh;
   font-size: var(--unit);
 }
 
 body {
+  width: 100%;
+  min-height: 100%;
   font-family: $default-font-family;
   font-size: var(--ft-size-m);
   background-color: $bg-color-base;

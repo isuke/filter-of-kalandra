@@ -1,11 +1,6 @@
 <template lang="pug">
 .script
-  .head
-    router-link(to="/script/editor") Editor
-    | |
-    router-link(to="/script/preview") Preview
-    | |
-    router-link(to="/script/text") Text
+  script-header.header
   .aside
     ul.sectionlist
       li.item(v-for="sectionName in $store.getters.sectionNames") {{ sectionName }}
@@ -15,7 +10,11 @@
 </template>
 
 <script lang="coffee">
-export default {}
+import ScriptHeader from "@/views/ScriptHeader"
+
+export default
+  components:
+    "script-header": ScriptHeader
 </script>
 
 <style lang="scss" scoped>
@@ -23,9 +22,8 @@ export default {}
   display: grid;
   grid-template-rows: 2rem 1fr;
   grid-template-columns: 10rem 1fr;
-  margin: 1rem;
 
-  > .head {
+  > .header {
     grid-row: 1;
     grid-column: 1 / -1;
   }

@@ -1,13 +1,10 @@
 <template lang="pug">
-header.the-global-header
-  h1.logo Filter of Kalandra
+.script-header
   nav.nav
     ul.list
-      router-link.item(tag="li", to="/", exact) Home
-      router-link.item(tag="li", to="/script") Script
-      router-link.item(tag="li", to="/variable") Variable
-      router-link.item(tag="li", to="/color") Color
-      router-link.item(tag="li", to="/property") Property
+      router-link.item(tag="li", to="/script/editor") Editor
+      router-link.item(tag="li", to="/script/preview") Preview
+      router-link.item(tag="li", to="/script/text") Text
 </template>
 
 <script lang="coffee">
@@ -16,17 +13,11 @@ export default {}
 
 
 <style lang="scss" scoped>
-.the-global-header {
+.script-header {
   display: inline-flex;
   flex-direction: row;
   align-items: stretch;
-  border-bottom: $base-border-height solid $ft-color-base;
-
-  .logo {
-    padding: var(--space-size-s);
-    padding: var(--space-size-s);
-    font-size: var(--ft-size-l);
-  }
+  padding-left: var(--space-size-xl);
 
   > .nav {
     flex: 1;
