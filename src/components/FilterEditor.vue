@@ -39,6 +39,8 @@ export default
       addModeClass: true
       styleActiveLine: true
       viewportMargin: Infinity
+      extraKeys:
+        Tab: => @cm.execCommand 'insertSoftTab'
     errorMark: undefined
   watch:
     value: (v) -> @cm.setValue v if @config.readOnly

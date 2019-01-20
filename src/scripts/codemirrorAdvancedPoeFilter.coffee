@@ -72,6 +72,7 @@ CodeMirror.defineMode "advanced-poe-filter", () =>
     return 'function'  if stream.match new RegExp "^(#{functionNames.join('|')})\\(.*\\)"
     return 'condition' if stream.match new RegExp "^(#{conditionNames.join('|')})"
     return 'action'    if stream.match new RegExp "^(#{actionNames.join('|')})"
+    return 'space'     if stream.match new RegExp "^ "
 
     stream.next()
 
