@@ -27,11 +27,16 @@ export default
   > .header {
     grid-row: 1;
     grid-column: 2;
+    position: sticky;
+    top: $global-header-height;
+    background-color: $bg-color-light;
+    z-index: $codemirror-z-index + 10;
   }
 
   > .aside {
     grid-row: 1 / -1;
     grid-column: 1;
+    background-color: $bg-color-light;
   }
 
   > .main {

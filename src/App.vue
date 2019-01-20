@@ -42,12 +42,19 @@ export default
   width: 100%;
   min-height: 100vh;
   display: grid;
-  grid-template-rows: 3rem 1fr 2rem;
+  grid-template-rows: $global-header-height 1fr 2rem;
   grid-template-columns: 1fr;
 
   > .header {
     grid-row: 1;
     grid-column: 1;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: $global-header-height;
+    background-color: $bg-color-base;
+    z-index: $codemirror-z-index + 10;
   }
 
   > .main {

@@ -18,6 +18,7 @@ $bold-font-weight:         700;
 // -----------------------------------------------------------------------------
 
 $theme-color-hue: 247;
+$accent-color-hue: $theme-color-hue - 180;
 
 $theme-color: hsl($theme-color-hue, 100%, 50%);
 
@@ -38,9 +39,11 @@ $ft-color-active: hsl($theme-color-hue, 100%, 70%);
 // -----------------------------------------------------------------------------
 
 //
-// Aside Size
+// Sizes
 //
 $aside-size-width: 12rem;
+
+$global-header-height: 3rem;
 
 //
 // Border
@@ -68,6 +71,7 @@ $input-side-padding: 1rem;
 // z-index
 //
 $base-z-index: 0;
+$codemirror-z-index: 5;
 
 // -----------------------------------------------------------------------------
 // Interaction

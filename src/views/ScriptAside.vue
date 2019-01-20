@@ -12,7 +12,6 @@ export default {}
 
 <style lang="scss" scoped>
 .script-aside {
-  background-color: $bg-color-light;
   padding-top:    var(--space-size-s);
   padding-bottom: var(--space-size-s);
   padding-left:   var(--space-size-l);
@@ -24,9 +23,10 @@ export default {}
 
   > .list {
     position: sticky;
-    top: 0;
+    top: $global-header-height;
     max-height: 90vh; // TODO
     overflow-y: scroll;
+    z-index: $codemirror-z-index + 10;
 
     > .item {
       cursor: pointer;
