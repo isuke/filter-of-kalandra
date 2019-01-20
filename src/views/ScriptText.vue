@@ -4,7 +4,7 @@
     ul
       li(v-for="scriptName in $store.getters.scriptNames")
         a(@click.prevent="changeCurrentScript(scriptName)", href="") {{ scriptName }}
-  filter-editor.textarea(v-model="$store.getters.simpleScriptTexts[currentScriptName]", mode="original-poe-filter", :config="{ readOnly: true }")
+  filter-editor.text(v-model="$store.getters.simpleScriptTexts[currentScriptName]", mode="original-poe-filter", :config="{ readOnly: true, lineWrapping: true }")
 </template>
 
 <script lang="coffee">
@@ -23,5 +23,8 @@ export default
 
 <style lang="scss" scoped>
 .script-text {
+  > .text {
+    max-width: calc(100vw - #{$aside-size-width});
+  }
 }
 </style>

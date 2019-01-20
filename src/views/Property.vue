@@ -1,5 +1,5 @@
 <template lang="pug">
-.property
+main.property
   table.table
     thead.head
       tr.row

@@ -20,11 +20,14 @@ export default {}
   display: inline-flex;
   flex-direction: row;
   align-items: stretch;
+  padding-left:   var(--space-size-l);
+  padding-right:  var(--space-size-l);
   border-bottom: $base-border-height solid $ft-color-base;
 
   .logo {
-    padding: var(--space-size-s);
-    padding: var(--space-size-s);
+    padding-top:    var(--space-size-s);
+    padding-bottom: var(--space-size-s);
+    padding-right:  var(--space-size-l);
     font-size: var(--ft-size-l);
   }
 

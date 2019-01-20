@@ -1,6 +1,6 @@
 <template lang="pug">
 .script-editor
-  filter-editor.textarea(v-model="$store.state.advancedScriptText", :syntax-error="$store.state.syntaxError")
+  filter-editor.editor(v-model="$store.state.advancedScriptText", :syntax-error="$store.state.syntaxError")
 </template>
 
 <script lang="coffee">
@@ -13,5 +13,6 @@ export default
 
 <style lang="scss" scoped>
 .script-editor {
+  max-width: calc(100vw - #{$aside-size-width});
 }
 </style>

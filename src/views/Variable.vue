@@ -1,5 +1,5 @@
 <template lang="pug">
-.variable
+main.variable
   .aside
     ul.list
       li.item(v-for="(variableName, i) in $store.getters.variableNaems")

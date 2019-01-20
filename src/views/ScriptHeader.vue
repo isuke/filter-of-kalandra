@@ -33,7 +33,6 @@ export default {}
         flex: 1;
         display: inline-flex;
         align-items: center;
-        margin: var(--space-size-xs);
         text-decoration-line: underline;
         cursor: pointer;
 

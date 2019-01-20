@@ -7,14 +7,15 @@
   --ft-size-s:  calc(var(--unit) * 0.50);
   --ft-size-xs: calc(var(--unit) * 0.25);
 
-  --space-size-xl: calc(var(--unit) * 2.875);
-  --space-size-l:  calc(var(--unit) * 1.875);
-  --space-size-m:  calc(var(--unit) * 1.000);
-  --space-size-s:  calc(var(--unit) * 0.875);
-  --space-size-xs: calc(var(--unit) * 0.125);
+  --space-size-xxl: calc(var(--unit) * 3.25);
+  --space-size-xl:  calc(var(--unit) * 2.00);
+  --space-size-l:   calc(var(--unit) * 1.25);
+  --space-size-m:   calc(var(--unit) * 0.75);
+  --space-size-s:   calc(var(--unit) * 0.50);
+  --space-size-xs:  calc(var(--unit) * 0.25);
 
   width: 100vw;
-  min-height: 100vh;
+  height: 100vh;
   font-size: var(--unit);
 }
 

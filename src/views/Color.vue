@@ -1,5 +1,5 @@
 <template lang="pug">
-.color
+main.color
   table
     thead
       tr

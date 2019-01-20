@@ -1,35 +1,36 @@
 <template lang="pug">
-.script
+main.script
   script-header.header
-  .aside
-    ul.sectionlist
-      li.item(v-for="sectionName in $store.getters.sectionNames") {{ sectionName }}
-  .main
-    keep-alive
-      router-view
+
+  script-adide.aside
+
+  keep-alive
+    router-view.main
 </template>
 
 <script lang="coffee">
 import ScriptHeader from "@/views/ScriptHeader"
+import ScriptAside from "@/views/ScriptAside"
 
 export default
   components:
     "script-header": ScriptHeader
+    "script-adide": ScriptAside
 </script>
 
 <style lang="scss" scoped>
 .script {
   display: grid;
   grid-template-rows: 2rem 1fr;
-  grid-template-columns: 10rem 1fr;
+  grid-template-columns: $aside-size-width 1fr;
 
   > .header {
     grid-row: 1;
-    grid-column: 1 / -1;
+    grid-column: 2;
   }
 
   > .aside {
-    grid-row: 2;
+    grid-row: 1 / -1;
     grid-column: 1;
   }
 

@@ -38,6 +38,7 @@ export default
       lineNumbers: true
       addModeClass: true
       styleActiveLine: true
+      viewportMargin: Infinity
     errorMark: undefined
   watch:
     value: (v) -> @cm.setValue v if @config.readOnly

@@ -2,9 +2,8 @@
   #app
     the-global-header.header
 
-    main.main
-      keep-alive
-        router-view
+    keep-alive
+      router-view.main
 
     the-global-footer.footer
 </template>
@@ -41,7 +40,7 @@ export default
 <style lang="scss" scoped>
 #app {
   width: 100%;
-  min-height: 100%;
+  min-height: 100vh;
   display: grid;
   grid-template-rows: 3rem 1fr 2rem;
   grid-template-columns: 1fr;

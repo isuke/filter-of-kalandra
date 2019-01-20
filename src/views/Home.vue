@@ -1,5 +1,5 @@
 <template lang="pug">
-.home
+main.home
   h1.title Filter of Kalandra
 </template>
 

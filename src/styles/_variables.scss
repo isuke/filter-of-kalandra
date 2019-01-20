@@ -17,22 +17,30 @@ $bold-font-weight:         700;
 // Colors
 // -----------------------------------------------------------------------------
 
-$theme-color: hsl(260, 100%, 50%);
+$theme-color-hue: 247;
+
+$theme-color: hsl($theme-color-hue, 100%, 50%);
 
 //
 // Background
 //
-$bg-color-base: desaturate(darken($theme-color, 45%), 60%);
+$bg-color-base:  hsl($theme-color-hue,  80%,   5%);
+$bg-color-light: hsl($theme-color-hue,  80%,  20%);
 
 //
 // Font
 //
-$ft-color-base: saturate(lighten($theme-color, 45%), 60%);
-$ft-color-active: lighten($theme-color, 30%);
+$ft-color-base:   hsl($theme-color-hue,  50%, 90%);
+$ft-color-active: hsl($theme-color-hue, 100%, 70%);
 
 // -----------------------------------------------------------------------------
 // Layouts
 // -----------------------------------------------------------------------------
+
+//
+// Aside Size
+//
+$aside-size-width: 12rem;
 
 //
 // Border
