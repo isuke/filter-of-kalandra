@@ -2,10 +2,10 @@
 main.script
   script-header.header
 
-  script-adide.aside
+  script-adide.aside(@click-section-name="scrollToSection")
 
   keep-alive
-    router-view.main
+    router-view.main(ref="main")
 </template>
 
 <script lang="coffee">
@@ -16,6 +16,9 @@ export default
   components:
     "script-header": ScriptHeader
     "script-adide": ScriptAside
+  methods:
+    scrollToSection: (sectionName) ->
+      @$refs.main.scrollToSection(sectionName) if @$refs.main.scrollToSection
 </script>
 
 <style lang="scss" scoped>

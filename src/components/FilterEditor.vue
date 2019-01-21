@@ -66,6 +66,14 @@ export default
       @cm.on "change", debounce () =>
         @$emit 'change', @cm.getValue()
       , 500
+    scrollToSection: (sectionName) ->
+      regexp = new RegExp("(Show|Hide) \"#{sectionName}\"")
+      keyDocs = document.getElementsByClassName('cm-m-advanced-poe-filter cm-keyword')
+      [].forEach.call keyDocs, (keyDoc) =>
+        if regexp.test keyDoc.textContent
+          y = keyDoc.getBoundingClientRect().top - (47 + 32) # TODO: header height
+          window.scrollBy 0, y
+          return
   mounted: ->
     @createCM()
 </script>

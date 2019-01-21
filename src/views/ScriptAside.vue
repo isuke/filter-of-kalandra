@@ -2,7 +2,10 @@
 aside.script-aside
   h1.title Section Names
   ul.list
-    li.item(v-for="sectionName in $store.getters.sectionNames") {{ sectionName }}
+    li.item(
+      v-for="sectionName in $store.getters.sectionNames",
+      @click="$emit('click-section-name', sectionName)"
+    ) {{ sectionName }}
 </template>
 
 <script lang="coffee">
