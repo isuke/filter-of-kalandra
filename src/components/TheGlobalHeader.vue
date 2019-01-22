@@ -22,7 +22,7 @@ export default {}
   align-items: stretch;
   padding-left:   var(--space-size-l);
   padding-right:  var(--space-size-l);
-  border-bottom: $base-border-height solid $ft-color-base;
+  border-bottom: $base-border-height solid $home-ft-color-base;
 
   .logo {
     padding-top:    var(--space-size-s);
@@ -50,7 +50,7 @@ export default {}
         cursor: pointer;
 
         &.-current {
-          color: $ft-color-active;
+          color: $home-ft-color-accent;
           font-weight: $bold-font-weight;
         }
       }

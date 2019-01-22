@@ -29,7 +29,6 @@ export default
   > .aside {
     grid-row: 1;
     grid-column: 1;
-    background-color: hsl(20,  80%,  20%); // TODO
   }
 
   > .main {

@@ -17,22 +17,41 @@ $bold-font-weight:         700;
 // Colors
 // -----------------------------------------------------------------------------
 
-$theme-color-hue: 247;
-$accent-color-hue: $theme-color-hue - 180;
-
-$theme-color: hsl($theme-color-hue, 100%, 50%);
-
 //
-// Background
+// Base and Home View
 //
-$bg-color-base:  hsl($theme-color-hue,  80%,   5%);
-$bg-color-light: hsl($theme-color-hue,  80%,  20%);
+$home-color-hue: 247;
+$home-bg-color-base:   hsl($home-color-hue,  80%,   5%);
+$home-ft-color-base:   hsl($home-color-hue,  50%,  90%);
+$home-ft-color-accent: hsl($home-color-hue, 100%,  70%);
 
 //
-// Font
+// Script View
 //
-$ft-color-base:   hsl($theme-color-hue,  50%, 90%);
-$ft-color-active: hsl($theme-color-hue, 100%, 70%);
+$script-color-hue: 190;
+$script-bg-color-base:   hsl($script-color-hue,  80%,   5%);
+$script-bg-color-light:  hsl($script-color-hue,  80%,  20%);
+$script-ft-color-base:   hsl($script-color-hue,  50%,  90%);
+$script-ft-color-accent: hsl($script-color-hue, 100%,  70%);
+
+//
+// Variable View
+//
+$variable-color-hue: 320;
+$variable-bg-color-base:   hsl($variable-color-hue,  80%,   5%);
+$variable-bg-color-light:  hsl($variable-color-hue,  80%,  20%);
+$variable-ft-color-base:   hsl($variable-color-hue,  50%,  90%);
+$variable-ft-color-accent: hsl($variable-color-hue, 100%,  70%);
+
+//
+// Color View
+//
+
+//
+// Property View
+//
+
+// $theme-color: hsl($theme-color-hue, 100%, 50%);
 
 // -----------------------------------------------------------------------------
 // Layouts

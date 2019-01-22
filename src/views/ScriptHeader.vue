@@ -18,6 +18,7 @@ export default {}
   flex-direction: row;
   align-items: stretch;
   padding-left: var(--space-size-xl);
+  background-color: $script-bg-color-light;
 
   > .nav {
     flex: 1;
@@ -37,7 +38,7 @@ export default {}
         cursor: pointer;
 
         &.-current {
-          color: $ft-color-active;
+          color: $script-ft-color-accent;
           font-weight: $bold-font-weight;
         }
       }
