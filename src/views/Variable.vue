@@ -1,9 +1,6 @@
 <template lang="pug">
 main.variable
-  .aside
-    ul.list
-      li.item(v-for="(variableName, i) in $store.getters.variableNaems")
-        input(type="text", v-model="$store.state.variables[i].name")
+  variable-aside.aside
   .main
     .variable(v-for="(variable, i) in $store.state.variables")
       input.name(type="text", v-model="$store.state.variables[i].name")
@@ -16,7 +13,11 @@ main.variable
 </template>
 
 <script lang="coffee">
-export default {}
+import VariableAside from "@/views/VariableAside.vue"
+
+export default
+  components:
+    "variable-aside": VariableAside
 </script>
 
 <style lang="scss" scoped>
@@ -28,6 +29,7 @@ export default {}
   > .aside {
     grid-row: 1;
     grid-column: 1;
+    background-color: hsl(20,  80%,  20%); // TODO
   }
 
   > .main {
