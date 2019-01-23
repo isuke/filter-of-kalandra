@@ -1,46 +1,36 @@
 <template lang="pug">
 main.property
-  table.table
-    thead.head
-      tr.row
-        th.head Property Name \ Script Name
-        td.scriptname(v-for="(scriptNames, i) in $store.getters.scriptNames")
-          input(type="text", v-model="$store.state.properties.scriptNames[i]")
-    tbody
-      tr.row(v-for="(propName, j) in $store.getters.propNames")
-        th.propname
-          input(type="text", v-model="$store.state.properties.propNames[j]")
-        td.propval(v-for="(scriptName, i) in $store.getters.scriptNames")
-          input(type="text", v-model="$store.state.properties.values[i][j]")
+  property-header.header
 
-  button.newprop(@click="$store.commit('addPropsToProperties')") Add New Property
-
-  button.newscript(@click="$store.commit('addScriptToProperties')") Add New Script
+  property-list.main
 </template>
 
 <script lang="coffee">
-export default {}
+import PropertyHeader from "@/views/PropertyHeader"
+import PropertyList   from "@/views/PropertyList"
+
+export default
+  components:
+    "property-header": PropertyHeader
+    "property-list": PropertyList
 </script>
 
 <style lang="scss" scoped>
 .property {
   display: grid;
-  grid-template-rows: 1fr 2rem;
-  grid-template-columns: 1fr 10rem;
+  grid-template-rows: $sub-header-height min-content;
+  grid-template-columns: 1fr;
 
-  > .table {
+  > .header {
     grid-row: 1;
     grid-column: 1;
+    position: sticky;
+    top: $global-header-height;
   }
 
-  > .newprop {
+  > .main {
     grid-row: 2;
     grid-column: 1;
-  }
-
-  > .newscript {
-    grid-row: 1;
-    grid-column: 2;
   }
 }
 </style>

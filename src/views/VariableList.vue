@@ -16,11 +16,9 @@ export default {}
 
 <style lang="scss" scoped>
 .variable-list {
-  --grid-columns: 2; // TODO: media
-
   display: grid;
   grid-auto-rows: max-content;
-  grid-template-columns: repeat(var(--grid-columns), 1fr);
+  grid-template-columns: repeat(auto-fill, minmax(20rem, 1fr));
   grid-auto-flow: row;
   gap: var(--space-size-s);
   padding: var(--space-size-s);
