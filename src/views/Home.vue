@@ -1,22 +1,50 @@
 <template lang="pug">
 main.home
-  h1.title Filter of Kalandra
+  h1.title
+    | Filter of Kalandra
+    span.beta β
+  h2.version v{{ version }}
 </template>
 
 <script lang="coffee">
-export default {}
-</script>
+import packageJson from "@/../package.json"
 
+export default
+  data: ->
+    version: packageJson.version
+</script>
 
 <style lang="scss" scoped>
 .home {
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: var(--space-size-xl);
 
   > .title {
-    font-size: var(--ft-size-xl);
+    font-size: var(--ft-size-xxl);
+
+    > .beta {
+      font-style: italic;
+      font-size: var(--ft-size-xl);
+      &::before { content: "("; }
+      &::after  { content: ")"; }
+    }
+
+  }
+
+  > .version {
+    font-size: var(--ft-size-l);
+    margin-top: var(--space-size-m);
+
+    &::before {
+      content: "-";
+      margin-right: 0.5em;
+    }
+    &::after {
+      content: "-";
+      margin-left: 0.5em;
+    }
   }
 }
 </style>

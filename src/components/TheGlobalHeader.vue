@@ -1,6 +1,8 @@
 <template lang="pug">
 header.the-global-header
-  h1.logo Filter of Kalandra
+  h1.logo
+    | Filter of Kalandra
+    span.beta β
   nav.nav
     ul.list
       router-link.item(tag="li", to="/", exact) Home
@@ -13,7 +15,6 @@ header.the-global-header
 <script lang="coffee">
 export default {}
 </script>
-
 
 <style lang="scss" scoped>
 .the-global-header {
@@ -29,6 +30,13 @@ export default {}
     padding-bottom: var(--space-size-s);
     padding-right:  var(--space-size-l);
     font-size: var(--ft-size-l);
+
+    > .beta {
+      font-style: italic;
+      font-size: var(--ft-size-m);
+      &::before { content: "("; }
+      &::after { content: ")"; }
+    }
   }
 
   > .nav {
