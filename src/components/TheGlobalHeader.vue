@@ -10,6 +10,9 @@ header.the-global-header
       router-link.item(tag="li", to="/variable") Variable
       router-link.item(tag="li", to="/color") Color
       router-link.item(tag="li", to="/property") Property
+  .actions
+    button.button Import
+    button.button Export
 </template>
 
 <script lang="coffee">
@@ -39,6 +42,16 @@ export default {}
     }
   }
 
+  > .actions {
+    display: inline-flex;
+    align-items: center;
+
+    > .button {
+      @include button($color-hue: $home-color-hue); // TODO
+      margin-left: var(--space-size-xs);
+    }
+  }
+
   > .nav {
     flex: 1;
     display: inline-flex;
@@ -53,7 +66,8 @@ export default {}
         flex: 1;
         display: inline-flex;
         align-items: center;
-        margin: var(--space-size-xs);
+        padding-left:  var(--space-size-m);
+        padding-right: var(--space-size-m);
         text-decoration-line: underline;
         cursor: pointer;
 
