@@ -1,0 +1,20 @@
+@import "./bg-ft-color";
+@import "./shadow";
+
+@mixin button($color-hue) {
+  padding: 0.5em 1em;
+  border-radius: $border-radius-base;
+  transition: $duration-base $timing-base box-shadow;
+  cursor: pointer;
+
+  @include bg-ft-color($color-hue);
+  @include shadow(1);
+
+  &:hover {
+    @include shadow(2);
+  }
+
+  &:active {
+    @include shadow(0);
+  }
+}

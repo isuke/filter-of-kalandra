@@ -3,9 +3,9 @@ aside.variable-aside
   h1.title Variable Names
   ul.list
     li.item(
-      v-for="(variableName, i) in $store.getters.variableNaems"
+      v-for="(variableName, i) in $store.getters.variableNaems",
+      @click="$emit('click-variable-name', variableName)"
     ) {{ variableName }}
-      //- input(type="text", v-model="$store.state.variables[i].name")
 </template>
 
 <script lang="coffee">
@@ -28,7 +28,7 @@ export default {}
   > .list {
     position: sticky;
     top: $global-header-height;
-    max-height: 90vh; // TODO
+    max-height: calc(100vh - #{$global-header-height} - #{$sub-header-height});
     overflow-y: scroll;
     z-index: $codemirror-z-index + 10;
 

@@ -11,7 +11,6 @@
 export default {}
 </script>
 
-
 <style lang="scss" scoped>
 .script-header {
   display: inline-flex;

@@ -24,7 +24,7 @@ export default
 <style lang="scss" scoped>
 .script {
   display: grid;
-  grid-template-rows: 2rem 1fr;
+  grid-template-rows: $sub-header-height 1fr;
   grid-template-columns: $aside-size-width 1fr;
 
   > .header {

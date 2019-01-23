@@ -37,7 +37,7 @@ $script-ft-color-accent: hsl($script-color-hue, 100%,  70%);
 //
 // Variable View
 //
-$variable-color-hue: 320;
+$variable-color-hue: 165;
 $variable-bg-color-base:   hsl($variable-color-hue,  80%,   5%);
 $variable-bg-color-light:  hsl($variable-color-hue,  80%,  20%);
 $variable-ft-color-base:   hsl($variable-color-hue,  50%,  90%);
@@ -60,31 +60,18 @@ $variable-ft-color-accent: hsl($variable-color-hue, 100%,  70%);
 //
 // Sizes
 //
-$aside-size-width: 12rem;
+$aside-size-width: 14rem;
 
 $global-header-height: 3rem;
+$sub-header-height: 3rem;
 
 //
 // Border
 //
-$base-border-height: 1px;
-$bold-border-height: 3px;
+$border-height-base: 1px;
+$border-height-bold: 3px;
 
-$base-border-radius: 2px;
-
-//
-// Button
-//
-$base-button-height: 3rem;
-
-//
-// Input
-//
-$extra-large-input-height: 4rem;
-$large-input-height: 3rem;
-$small-input-height: 2rem;
-
-$input-side-padding: 1rem;
+$border-radius-base: 3px;
 
 //
 // z-index
@@ -99,6 +86,7 @@ $codemirror-z-index: 5;
 //
 // Animations
 //
-$base-duration: 150ms;
-$slow-duration: 550ms;
-$base-timing: ease;
+$duration-base: 150ms;
+$duration-slow: 550ms;
+
+$timing-base: ease-in;

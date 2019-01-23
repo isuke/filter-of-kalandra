@@ -71,7 +71,7 @@ export default
       keyDocs = document.getElementsByClassName('cm-m-advanced-poe-filter cm-keyword')
       [].forEach.call keyDocs, (keyDoc) =>
         if regexp.test keyDoc.textContent
-          y = keyDoc.getBoundingClientRect().top - (47 + 32) # TODO: header height
+          y = keyDoc.getBoundingClientRect().top - (48 + 48) # TODO: header height
           window.scrollBy 0, y
           return
   mounted: ->

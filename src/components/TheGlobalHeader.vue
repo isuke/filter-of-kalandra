@@ -22,7 +22,7 @@ export default {}
   align-items: stretch;
   padding-left:   var(--space-size-l);
   padding-right:  var(--space-size-l);
-  border-bottom: $base-border-height solid $home-ft-color-base;
+  border-bottom: $border-height-base solid $home-ft-color-base;
 
   .logo {
     padding-top:    var(--space-size-s);

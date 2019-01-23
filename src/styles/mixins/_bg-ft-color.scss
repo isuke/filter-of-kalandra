@@ -1,0 +1,12 @@
+@mixin bg-ft-color($color-hue, $mode: 'light-accent') {
+  @if $mode == 'light' {
+    // TODO
+  } @else if $mode == 'light-accent' {
+    background-color: hsl($color-hue, 100%, 40%);
+    color: hsl($color-hue, 25%, 90%);
+  } @else if $mode == 'dark' {
+    // TODO
+  } @else if $mode == 'dark-accsent' {
+    // TODO
+  }
+}

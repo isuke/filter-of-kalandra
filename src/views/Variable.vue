@@ -1,47 +1,57 @@
 <template lang="pug">
 main.variable
-  variable-aside.aside
-  .main
-    .variable(v-for="(variable, i) in $store.state.variables")
-      input.name(type="text", v-model="$store.state.variables[i].name")
-      ul.list
-        li.item(v-for="(item, j) in variable.items")
-          input(type="text", v-model="$store.state.variables[i].items[j]")
-      button(@click.prevent="$store.commit('addItemToVariable', { index: i })") Add New Item
+  variable-header.header
 
-    button(@click.prevent="$store.commit('addVariable')") Add New Variable
+  variable-aside.aside(@click-variable-name="scrollToVariable")
+
+  variable-list.main
 </template>
 
 <script lang="coffee">
-import VariableAside from "@/views/VariableAside.vue"
+import VariableHeader from "@/views/VariableHeader.vue"
+import VariableAside  from "@/views/VariableAside.vue"
+import VariableList   from "@/views/VariableList.vue"
 
 export default
   components:
+    "variable-header": VariableHeader
     "variable-aside": VariableAside
+    "variable-list": VariableList
+  methods:
+    scrollToVariable: (variableName) ->
+      y = document.getElementById(variableName).getBoundingClientRect().top - 48 - 48 # TODO: header height
+      window.scrollBy 0, y
 </script>
 
 <style lang="scss" scoped>
 .variable {
   display: grid;
-  grid-template-rows: 1fr;
-  grid-template-columns: 20rem 1fr;
+  grid-template-rows: $sub-header-height 1fr;
+  grid-template-columns: $aside-size-width 1fr;
+
+  > .header {
+    grid-row: 1;
+    grid-column: 2;
+    position: sticky;
+    top: $global-header-height;
+  }
 
   > .aside {
-    grid-row: 1;
+    grid-row: 1 / -1;
     grid-column: 1;
   }
 
   > .main {
-    grid-row: 1;
+    grid-row: 2;
     grid-column: 2;
 
-    > .variable {
-      display: block;
+    // > .variable {
+    //   display: block;
 
-      > .name {
-        font-size: 1.5rem;
-      }
-    }
+    //   > .name {
+    //     font-size: 1.5rem;
+    //   }
+    // }
   }
 }
 </style>

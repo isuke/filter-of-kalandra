@@ -1,0 +1,14 @@
+@import "./bg-ft-color";
+@import "./shadow";
+
+@mixin card($color-hue) {
+  padding: var(--space-size-s);
+  border-radius: $border-radius-base;
+
+  @include bg-ft-color($color-hue);
+  @include shadow(1);
+
+  &:hover {
+    @include shadow(2);
+  }
+}
