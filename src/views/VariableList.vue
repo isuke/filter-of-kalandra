@@ -31,10 +31,9 @@ export default {}
     display: grid;
     grid-template-rows: auto 1fr auto;
     grid-template-columns: 1fr 2rem;
+    gap: var(--space-size-s);
 
     @include card($variable-color-hue);
-
-    transition: $duration-base all;
 
     > .name {
       grid-row: 1;

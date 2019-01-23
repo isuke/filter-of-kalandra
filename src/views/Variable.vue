@@ -44,14 +44,6 @@ export default
   > .main {
     grid-row: 2;
     grid-column: 2;
-
-    // > .variable {
-    //   display: block;
-
-    //   > .name {
-    //     font-size: 1.5rem;
-    //   }
-    // }
   }
 }
 </style>

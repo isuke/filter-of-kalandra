@@ -5,7 +5,7 @@ import "destyle.css";
 import "codemirror/lib/codemirror.css";
 import "codemirror/addon/fold/foldgutter.css";
 import "./styles/codemirror.scss";
-import "./styles/bases/_body.scss";
+import "./styles/_bases.scss";
 
 //
 // scripts
