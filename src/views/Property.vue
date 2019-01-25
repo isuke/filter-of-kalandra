@@ -18,7 +18,7 @@ export default
 <style lang="scss" scoped>
 .property {
   display: grid;
-  grid-template-rows: $sub-header-height min-content;
+  grid-template-rows: $sub-header-height 1fr;
   grid-template-columns: 1fr;
 
   > .header {

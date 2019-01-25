@@ -2,6 +2,9 @@
 .valiable-header
   .actions
     button.button(@click.prevent="$store.commit('addVariable')") Add New Variable
+    button.button() Import Default Variables
+    button.button() Import Json
+    button.button() Export
 </template>
 
 <script lang="coffee">
@@ -13,8 +16,9 @@ export default {}
   display: inline-flex;
   flex-direction: row;
   align-items: stretch;
-  background-color: $variable-bg-color-light;
   padding-left: var(--space-size-s);
+
+  @include bg-ft-color($variable-color-hue, "night");
 
   > .actions {
     flex: 1;
@@ -22,7 +26,8 @@ export default {}
     align-items: center;
 
     > .button {
-      @include button($color-hue: $variable-color-hue);
+      @include button-fill($variable-color-hue);
+      margin-right: var(--space-size-s);
     }
   }
 }

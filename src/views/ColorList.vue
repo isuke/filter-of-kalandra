@@ -2,7 +2,7 @@
 ul.color-list
   li.color(v-for="(color, i) in $store.state.colors")
     input.name(type="text", v-model="color.name")
-    button.deletebutton() ×
+    button.button.delete() ×
     input.input(type="color", v-model="color.hex")
     dl.list
       dt.term RGB
@@ -57,7 +57,8 @@ export default
   gap: var(--space-size-s);
   padding: var(--space-size-s);
 
-  background-color: hsl($color-color-hue,  50%,  90%); // TODO
+  background-color: $global-bg-color-day;
+  color: $global-ft-color-day;
 
   > .color {
     display: grid;
@@ -65,7 +66,8 @@ export default
     grid-template-rows: auto auto 1fr 3rem;
     grid-template-columns: 1fr 2rem;
 
-    @include card($color-color-hue);
+    @include card();
+    @include bg-ft-color($color-color-hue, "day");
 
     > .name {
       grid-row: 1;
@@ -73,7 +75,7 @@ export default
       font-size: var(--ft-size-l);
     }
 
-    > .deletebutton {
+    > .button {
       grid-row: 1;
       grid-column: 2;
       font-size: var(--ft-size-l);
@@ -89,7 +91,8 @@ export default
       grid-column: 1 / -1;
       display: grid;
       grid-auto-rows: max-content;
-      grid-template-columns: 10rem 1fr;
+      grid-template-columns: 1fr 1fr;
+      column-gap: var(--space-size-s);
 
       > .term { /* no-op */ }
       > .description { /* no-op */ }

@@ -5,11 +5,11 @@ header.the-global-header
     span.beta β
   nav.nav
     ul.list
-      router-link.item(tag="li", to="/", exact) Home
-      router-link.item(tag="li", to="/script") Script
-      router-link.item(tag="li", to="/variable") Variable
-      router-link.item(tag="li", to="/color") Color
-      router-link.item(tag="li", to="/property") Property
+      router-link.item.home(tag="li", to="/", exact) Home
+      router-link.item.script(tag="li", to="/script") Script
+      router-link.item.variable(tag="li", to="/variable") Variable
+      router-link.item.color(tag="li", to="/color") Color
+      router-link.item.property(tag="li", to="/property") Property
   .actions
     button.button Import
     button.button Export
@@ -26,9 +26,11 @@ export default {}
   align-items: stretch;
   padding-left:   var(--space-size-l);
   padding-right:  var(--space-size-l);
-  border-bottom: $border-height-base solid $home-ft-color-base;
+  background-color: $global-bg-color-night;
+  color: $global-ft-color-night;
 
   .logo {
+    align-self: center;
     padding-top:    var(--space-size-s);
     padding-bottom: var(--space-size-s);
     padding-right:  var(--space-size-l);
@@ -39,16 +41,6 @@ export default {}
       font-size: var(--ft-size-m);
       &::before { content: "("; }
       &::after { content: ")"; }
-    }
-  }
-
-  > .actions {
-    display: inline-flex;
-    align-items: center;
-
-    > .button {
-      @include button($color-hue: $home-color-hue); // TODO
-      margin-left: var(--space-size-xs);
     }
   }
 
@@ -66,16 +58,32 @@ export default {}
         flex: 1;
         display: inline-flex;
         align-items: center;
-        padding-left:  var(--space-size-m);
-        padding-right: var(--space-size-m);
-        text-decoration-line: underline;
+        justify-content: center;
+        @ghost padding-left-right(var(--space-size-m));
+        padding-bottom: var(--space-size-xs);
+        @ghost border-top-radius(#{$border-radius-base});
+        margin-top: var(--space-size-xs);
         cursor: pointer;
 
-        &.-current {
-          color: $home-ft-color-accent;
-          font-weight: $bold-font-weight;
+        &.home.-current {
+          background-color: $global-bg-color-day;
+          color: $global-ft-color-day
         }
+        &.script.-current   { @include bg-ft-color($script-color-hue  , "night"); }
+        &.variable.-current { @include bg-ft-color($variable-color-hue, "night"); }
+        &.color.-current    { @include bg-ft-color($color-color-hue   , "night"); }
+        &.property.-current { @include bg-ft-color($property-color-hue, "night"); }
       }
+    }
+  }
+
+  > .actions {
+    display: inline-flex;
+    align-items: center;
+
+    > .button {
+      @include button-skelton($global-accent-color-hue, "night");
+      margin-left: var(--space-size-m);
     }
   }
 }

@@ -20,6 +20,8 @@ export default
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  background-color: $global-bg-color-day;
+  color: $global-ft-color-day;
 
   > .title {
     font-size: var(--ft-size-xxl);
@@ -30,7 +32,6 @@ export default
       &::before { content: "("; }
       &::after  { content: ")"; }
     }
-
   }
 
   > .version {

@@ -1,14 +1,11 @@
 @import "./bg-ft-color";
 @import "./shadow";
 
-@mixin button($color-hue) {
-  padding: 0.5em 1em;
-  border-radius: $border-radius-base;
-  transition: $duration-base $timing-base box-shadow;
-  cursor: pointer;
-
-  @include bg-ft-color($color-hue);
+@mixin button-fill($_color-hue) {
+  @include _button-base();
   @include shadow(1);
+
+  transition: $duration-base $timing-base box-shadow;
 
   &:hover {
     @include shadow(2);
@@ -17,4 +14,30 @@
   &:active {
     @include shadow(0);
   }
+}
+
+@mixin button-skelton($color-hue, $mode: "day") {
+  @include _button-base();
+
+  background-color: transparent;
+  color: $global-ft-color-night;
+  border: $border-height-base $global-ft-color-night solid;
+
+  @ghost transition(#{$duration-base}, #{$timing-base}, background-color, color, border-color);
+
+  &:hover {
+    border-color: _ft-color($color-hue, $mode);
+    color: _ft-color($color-hue, $mode);
+  }
+
+  &:active {
+    border-color: _ft-color($color-hue, $mode, true);
+    color: _ft-color($color-hue, $mode, true);
+  }
+}
+
+@mixin _button-base() {
+  padding: 0.5em 1em;
+  border-radius: $border-radius-base;
+  cursor: pointer;
 }

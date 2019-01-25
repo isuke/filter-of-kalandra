@@ -2,10 +2,10 @@
 ul.variable-list
   li.variable(v-for="(variable, i) in $store.state.variables", :id="variable.name")
     input.name(type="text", v-model="$store.state.variables[i].name")
-    button.deletebutton() ×
+    button.button.delete() ×
     ul.list
       li.item(v-for="(item, j) in variable.items")
-        button.deletebutton() ×
+        button.button.delete() ×
         input.input(type="text", v-model="$store.state.variables[i].items[j]")
     button.newbutton(@click.prevent="$store.commit('addItemToVariable', { index: i })") Add New Item
 </template>
@@ -23,7 +23,8 @@ export default {}
   gap: var(--space-size-s);
   padding: var(--space-size-s);
 
-  background-color: hsl($variable-color-hue,  50%,  90%); // TODO
+  background-color: $global-bg-color-day;
+  color: $global-ft-color-day;
 
   > .variable {
     display: grid;
@@ -31,7 +32,8 @@ export default {}
     grid-template-columns: 1fr 2rem;
     gap: var(--space-size-s);
 
-    @include card($variable-color-hue);
+    @include card();
+    @include bg-ft-color($variable-color-hue, "day");
 
     > .name {
       grid-row: 1;
@@ -39,7 +41,7 @@ export default {}
       font-size: var(--ft-size-l);
     }
 
-    > .deletebutton {
+    > .button {
       grid-row: 1;
       grid-column: 2;
       font-size: var(--ft-size-l);
@@ -54,7 +56,9 @@ export default {}
         align-items: center;
         width: 100%;
 
-        > .deletebutton {}
+        > .button {
+          margin-right: var(--space-size-xs);
+        }
 
         > .input {
           flex: 1;
@@ -66,6 +70,8 @@ export default {}
     > .newbutton {
       grid-row: 3;
       grid-column: 1 / -1;
+
+      @include button-fill($variable-color-hue);
     }
   }
 }

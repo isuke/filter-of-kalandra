@@ -20,7 +20,7 @@ export default {}
   padding-left:   var(--space-size-l);
   padding-right:  var(--space-size-l);
 
-  @include bg-ft-color($color-color-hue);
+  @include bg-ft-color($color-color-hue, "night");
 
   > .title {
     font-size: var(--ft-size-l);

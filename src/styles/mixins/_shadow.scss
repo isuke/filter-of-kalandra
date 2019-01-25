@@ -2,10 +2,10 @@
   @if        $depth == 0 {
     box-shadow: none;
   } @else if $depth == 1 {
-    box-shadow: 0 0.125rem 0.250rem 0 rgba(0, 0, 0, 0.16);
+    box-shadow: 0.125rem 0.125rem 0.250rem 0.125rem rgba(0, 0, 0, 0.16);
   } @else if $depth == 2 {
-    box-shadow: 0 0.250rem 0.750rem 0 rgba(0, 0, 0, 0.18);
+    box-shadow: 0.125rem 0.250rem 0.750rem 0.125rem rgba(0, 0, 0, 0.18);
   } @else if $depth == 3 {
-    box-shadow: 0 0.500rem 1.000rem 0 rgba(0, 0, 0, 0.20);
+    box-shadow: 0.125rem 0.500rem 1.000rem 0.125rem rgba(0, 0, 0, 0.20);
   }
 }

@@ -16,7 +16,7 @@ export default {}
   align-items: stretch;
   padding-left: var(--space-size-s);
 
-  @include bg-ft-color($property-color-hue);
+  @include bg-ft-color($property-color-hue, "night");
 
   > .actions {
     flex: 1;
@@ -24,7 +24,7 @@ export default {}
     align-items: center;
 
     > .button {
-      @include button($color-hue: $property-color-hue);
+      @include button-fill($property-color-hue);
       margin-right: var(--space-size-s);
     }
   }

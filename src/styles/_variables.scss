@@ -18,43 +18,17 @@ $bold-font-weight:         700;
 // Colors
 // -----------------------------------------------------------------------------
 
-//
-// Base and Home View
-//
-$home-color-hue: 247;
-$home-bg-color-base:   hsl($home-color-hue,  80%,   5%);
-$home-ft-color-base:   hsl($home-color-hue,  50%,  90%);
-$home-ft-color-accent: hsl($home-color-hue, 100%,  70%);
+$global-bg-color-day: #f0f0f0;
+$global-ft-color-day: #04041b;
+$global-bg-color-night: #252525;
+$global-ft-color-night: #fafafd;
+$global-accent-color-hue: 215;
 
-//
-// Script View
-//
-$script-color-hue: 190;
-$script-bg-color-base:   hsl($script-color-hue,  80%,   5%);
-$script-bg-color-light:  hsl($script-color-hue,  80%,  20%);
-$script-ft-color-base:   hsl($script-color-hue,  50%,  90%);
-$script-ft-color-accent: hsl($script-color-hue, 100%,  70%);
-
-//
-// Variable View
-//
-$variable-color-hue: 165;
-$variable-bg-color-base:   hsl($variable-color-hue,  80%,   5%);
-$variable-bg-color-light:  hsl($variable-color-hue,  80%,  20%);
-$variable-ft-color-base:   hsl($variable-color-hue,  50%,  90%);
-$variable-ft-color-accent: hsl($variable-color-hue, 100%,  70%);
-
-//
-// Color View
-//
-$color-color-hue: 70;
-
-//
-// Property View
-//
-$property-color-hue: 55;
-
-// $theme-color: hsl($theme-color-hue, 100%, 50%);
+$home-color-hue:     80 + 42 * 4;
+$script-color-hue:   80 + 42 * 3;
+$variable-color-hue: 80 + 42 * 2;
+$color-color-hue:    80 + 42 * 1;
+$property-color-hue: 80 + 42 * 0;
 
 // -----------------------------------------------------------------------------
 // Layouts
@@ -72,7 +46,7 @@ $sub-header-height: 3rem;
 // Border
 //
 $border-height-base: 1px;
-$border-height-bold: 3px;
+$border-height-bold: 2px;
 
 $border-radius-base: 3px;
 
@@ -86,9 +60,6 @@ $codemirror-z-index: 5;
 // Interaction
 // -----------------------------------------------------------------------------
 
-//
-// Animations
-//
 $duration-base: 150ms;
 $duration-slow: 550ms;
 

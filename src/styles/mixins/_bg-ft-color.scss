@@ -1,12 +1,37 @@
-@mixin bg-ft-color($color-hue, $mode: 'light-accent') {
-  @if $mode == 'light' {
-    // TODO
-  } @else if $mode == 'light-accent' {
-    background-color: hsl($color-hue, 100%, 40%);
-    color: hsl($color-hue, 25%, 90%);
-  } @else if $mode == 'dark' {
-    // TODO
-  } @else if $mode == 'dark-accsent' {
-    // TODO
+@mixin bg-ft-color($color-hue, $mode: "day", $accent: false) {
+  background-color: _bg-color($color-hue, $mode, $accent);
+  color: _ft-color($color-hue, $mode, $accent);
+}
+
+@function _bg-color($color-hue, $mode: "day", $accent: false) {
+  @if $mode == "day" {
+    @if $accent == true {
+      @return hsl($color-hue, 100%, 85%);
+    } @else {
+      @return hsl($color-hue, 100%, 95%);
+    }
+  } @else if $mode == "night" {
+    @if $accent == true {
+      @return hsl($color-hue, 80%, 20%); // TODO
+    } @else {
+      @return hsl($color-hue, 80%, 20%);
+    }
+
+  }
+}
+
+@function _ft-color($color-hue, $mode: "day", $accent: false) {
+  @if $mode == "day" {
+    @if $accent == true {
+      @return hsl($color-hue, 60%, 5%); // TODO
+    } @else {
+      @return hsl($color-hue, 60%, 5%);
+    }
+  } @else if $mode == "night" {
+    @if $accent == true {
+      @return hsl($color-hue, 100%, 65%);
+    } @else {
+      @return hsl($color-hue, 25%, 90%);
+    }
   }
 }

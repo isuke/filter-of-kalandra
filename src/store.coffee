@@ -44,7 +44,7 @@ export default new Vuex.Store
         result
       catch _e
         state.oldSimpleScriptTexts
-    scriptNames: (state, getters) -> Object.keys(getters.simpleScriptObjects)
+    scriptNames: (state, _getters) -> state.properties.scriptNames
     sectionNames: (state, getters) ->
       firstObject = getters.simpleScriptObjects[getters.scriptNames[0]]
       if firstObject then firstObject.map((o) => o.name) else []
@@ -114,7 +114,7 @@ export default new Vuex.Store
     #
     setProperties: (state, payload = {}) -> state.properties = payload.properties
     addScriptToProperties: (state, payload = {}) ->
-      state.properties.values.push new Array(state.properties.propNames.length)
+      state.properties.values.push new Array(state.properties.propNames.length).fill("")
       state.properties.scriptNames.push "New Script #{state.properties.scriptNames.length + 1}"
     addPropsToProperties: (state, payload = {}) ->
       state.properties.values.forEach (props) => props.push ''

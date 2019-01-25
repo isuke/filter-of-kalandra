@@ -17,7 +17,8 @@ export default {}
   flex-direction: row;
   align-items: stretch;
   padding-left: var(--space-size-xl);
-  background-color: $script-bg-color-light;
+
+  @include bg-ft-color($script-color-hue, "night");
 
   > .nav {
     flex: 1;
@@ -37,8 +38,7 @@ export default {}
         cursor: pointer;
 
         &.-current {
-          color: $script-ft-color-accent;
-          font-weight: $bold-font-weight;
+          color: _ft-color($script-color-hue, "night", true);
         }
       }
     }

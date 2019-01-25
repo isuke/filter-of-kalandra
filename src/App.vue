@@ -53,7 +53,6 @@ export default
     left: 0;
     width: 100%;
     height: $global-header-height;
-    background-color: $home-bg-color-base;
     z-index: $codemirror-z-index + 10;
   }
 
