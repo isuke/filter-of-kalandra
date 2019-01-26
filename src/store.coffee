@@ -107,7 +107,8 @@ export default new Vuex.Store
     # colors
     #
     setColors: (state, payload = {}) -> state.colors = payload.colors
-    addColor: (state, payyload = {}) -> state.colors.push { name: "New Color #{state.colors.length + 1}", hex: "#000000" }
+    addColor: (state, payload = {}) -> state.colors.push { name: "New Color #{state.colors.length + 1}", hex: "#000000" }
+    removeColor: (state, payload = {}) -> state.colors.splice(payload.index, 1)
 
     #
     # properties

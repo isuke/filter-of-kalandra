@@ -2,7 +2,7 @@
 ul.color-list
   li.color(v-for="(color, i) in $store.state.colors")
     input.name(type="text", v-model="color.name")
-    button.button.delete() ×
+    button.button.delete(@click="$store.commit('removeColor', { index: i })") ×
     input.input(type="color", v-model="color.hex")
     dl.list
       dt.term RGB
