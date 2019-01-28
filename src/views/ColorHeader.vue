@@ -4,7 +4,7 @@
     button.button.new(@click.prevent="$store.commit('addColor')") Add New Color
     button.button.importdefault() Import Default Colors
     button.button.importjson() Import Json
-    button.button.export() Export
+    button.button.export(@click.prevent="$store.dispatch('exportColors')") Export
 </template>
 
 <script lang="coffee">

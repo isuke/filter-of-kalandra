@@ -121,6 +121,16 @@ export default new Vuex.Store
       state.properties.values.forEach (props) => props.push ''
       state.properties.propNames.push "New Prop #{state.properties.propNames.length + 1}"
   actions:
+    exportColors: ({ _commit, state }) ->
+      content = JSON.stringify(state.colors)
+      fileName = "colors.json"
+
+      # TODO: move to utils
+      downLoadLink = document.createElement("a")
+      downLoadLink.download = fileName
+      downLoadLink.href = URL.createObjectURL new Blob([content], type: "application/json")
+      downLoadLink.dataset.downloadurl = ["application/json", downLoadLink.download, downLoadLink.href].join(":")
+      downLoadLink.click()
     saveToLocalStorage: ({ _commit, state }) ->
       try
         localStorage.set "filter-of-kalandra_advancedScriptText", state.advancedScriptText
