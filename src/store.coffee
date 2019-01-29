@@ -123,6 +123,9 @@ export default new Vuex.Store
       state.properties.values.forEach (props) => props.push ''
       state.properties.propNames.push "New Prop #{state.properties.propNames.length + 1}"
   actions:
+    #
+    # colors
+    #
     importDefaultColors: ({ _commit, state }, payload = {}) ->
       defaultData.colors.forEach (defaultColor) =>
         index = state.colors.findIndex (c) => c.name == defaultColor.name
@@ -130,6 +133,21 @@ export default new Vuex.Store
           state.colors[index].hex = defaultColor.hex
         else
           state.colors.push defaultColor
+    importColorsFromJSONFile: ({ _commit, state }, payload = {}) ->
+      new Promise((resolve, reject) =>
+        reader = new FileReader()
+        reader.onload = (event) => resolve(event.target.result)
+        reader.readAsText payload.file
+      ).then((result) =>
+        JSON.parse(result).forEach (importColor) =>
+          index = state.colors.findIndex (c) => c.name == importColor.name
+          if index > -1 && payload.canOverride
+            state.colors[index].hex = importColor.hex
+          else
+            state.colors.push importColor
+      ).catch((error) =>
+        console.error error.message
+      )
     exportColors: ({ _commit, state }) ->
       content = JSON.stringify(state.colors)
       fileName = "colors.json"
@@ -140,6 +158,10 @@ export default new Vuex.Store
       downLoadLink.href = URL.createObjectURL new Blob([content], type: "application/json")
       downLoadLink.dataset.downloadurl = ["application/json", downLoadLink.download, downLoadLink.href].join(":")
       downLoadLink.click()
+
+    #
+    # local strorage
+    #
     saveToLocalStorage: ({ _commit, state }) ->
       try
         localStorage.set "filter-of-kalandra_advancedScriptText", state.advancedScriptText

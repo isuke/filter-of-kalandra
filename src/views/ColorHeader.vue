@@ -3,7 +3,7 @@
   .actions
     button.button.new(@click.prevent="$store.commit('addColor')") Add New Color
     button.button.importdefault(@click.prevent="$refs.importDefaultModal.open()") Import Default Colors
-    button.button.importjson() Import Json
+    button.button.importjson(@click.prevent="$refs.importJSONModal.open()") Import JSON
     button.button.export(@click.prevent="$store.dispatch('exportColors')") Export
 
   simple-modal.modal.importdefault(
@@ -14,8 +14,20 @@
   )
     .content(slot="content")
       label.label
-        input.input(type="checkbox", v-model="canOverride")
+        input.checkbox(type="checkbox", v-model="canOverride")
         | Overwrite if exists same name color.
+
+  simple-modal.modal.importjson(
+    ref="importJSONModal",
+    headerStr="Import JSON",
+    execStr="Import",
+    @exec="importJSON"
+  )
+    .content(slot="content")
+      label.label
+        input.checkbox(type="checkbox", v-model="canOverride")
+        | Overwrite if exists same name color.
+      input.file(type="file", accept=".json", @change="changeJSONFile")
 </template>
 
 <script lang="coffee">
@@ -24,12 +36,17 @@ import SimpleModal from "@/components/SimpleModal.vue"
 export default
   data: ->
     canOverride: false
+    jsonFile: undefined
   components:
     "simple-modal": SimpleModal
   methods:
+    changeJSONFile: (event) -> @jsonFile = event.target.files[0]
     importDefault: ->
       await @$store.dispatch('importDefaultColors', { canOverride: @canOverride })
       @$refs.importDefaultModal.close('execed')
+    importJSON: ->
+      await @$store.dispatch('importColorsFromJSONFile', { canOverride: @canOverride, file: @jsonFile })
+      @$refs.importJSONModal.close('execed')
 </script>
 
 <style lang="scss" scoped>
@@ -61,13 +78,18 @@ export default
 }
 
 .color-header > .modal {
-  &.importdefault {
-    > .content {
-      > .label {
-        > .input {
-          margin-right: 1em;
-        }
+  > .content {
+    display: flex;
+    flex-direction: column;
+
+    > .label {
+      > .checkbox {
+        margin-right: 1em;
       }
+    }
+
+    > .file {
+      margin-top: var(--space-size-m);
     }
   }
 }

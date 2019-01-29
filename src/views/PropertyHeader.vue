@@ -1,7 +1,7 @@
 <template lang="pug">
 .property-header
   .actions
-    button.button.importjson() Import Json
+    button.button.importjson() Import JSON
     button.button.export() Export
 </template>
 

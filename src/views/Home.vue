@@ -7,11 +7,11 @@ main.home
 </template>
 
 <script lang="coffee">
-import packageJson from "@/../package.json"
+import packageJSON from "@/../package.json"
 
 export default
   data: ->
-    version: packageJson.version
+    version: packageJSON.version
 </script>
 
 <style lang="scss" scoped>

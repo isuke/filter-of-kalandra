@@ -3,7 +3,7 @@
   .actions
     button.button(@click.prevent="$store.commit('addVariable')") Add New Variable
     button.button() Import Default Variables
-    button.button() Import Json
+    button.button() Import JSON
     button.button() Export
 </template>
 
