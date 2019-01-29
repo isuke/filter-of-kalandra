@@ -1,11 +1,11 @@
 <template lang="pug">
-  #app
-    the-global-header.header
+#app
+  the-global-header.header
 
-    keep-alive
-      router-view.main
+  keep-alive
+    router-view.main
 
-    the-global-footer.footer
+  the-global-footer.footer
 </template>
 
 <script lang="coffee">
@@ -35,7 +35,6 @@ export default
     @$store.dispatch "loadFromLocalStorage"
     @setSaveInterval()
 </script>
-
 
 <style lang="scss" scoped>
 #app {

@@ -7,6 +7,8 @@ import localStorage from "store"
 import Color from "color"
 import * as advancedPoeFilter from "advanced-poe-filter"
 
+import defaultData from "./defaultData.coffee"
+
 # TODO: move to utils
 forIn = (object, callback) =>
   Object.keys(object).forEach (key) => callback(object[key], key)
@@ -121,6 +123,13 @@ export default new Vuex.Store
       state.properties.values.forEach (props) => props.push ''
       state.properties.propNames.push "New Prop #{state.properties.propNames.length + 1}"
   actions:
+    importDefaultColors: ({ _commit, state }, payload = {}) ->
+      defaultData.colors.forEach (defaultColor) =>
+        index = state.colors.findIndex (c) => c.name == defaultColor.name
+        if index > -1 && payload.canOverride
+          state.colors[index].hex = defaultColor.hex
+        else
+          state.colors.push defaultColor
     exportColors: ({ _commit, state }) ->
       content = JSON.stringify(state.colors)
       fileName = "colors.json"

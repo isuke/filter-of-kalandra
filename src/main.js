@@ -2,6 +2,7 @@
 // styles
 //
 import "destyle.css";
+import "./styles/sweep.css";
 import "codemirror/lib/codemirror.css";
 import "codemirror/addon/fold/foldgutter.css";
 import "./styles/codemirror.scss";
