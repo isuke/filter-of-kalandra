@@ -3,7 +3,7 @@
   .actions
     button.button.new(@click.prevent="$store.commit('addVariable')") Add New Variable
     button.button.importdefault(@click.prevent="$refs.importDefaultModal.open()") Import Default Variables
-    button.button.importjson() Import JSON
+    button.button.importjson(@click.prevent="$refs.importJSONModal.open()") Import JSON
     button.button.export(@click.prevent="$store.dispatch('exportVariables')") Export
 
   simple-modal.modal.importdefault(
@@ -16,6 +16,18 @@
       label.label
         input.checkbox(type="checkbox", v-model="canOverwrite")
         | Overwrite if exists same name variable.
+
+  simple-modal.modal.importjson(
+    ref="importJSONModal",
+    headerStr="Import JSON",
+    execStr="Import",
+    @exec="importJSON"
+  )
+    .content(slot="content")
+      label.label
+        input.checkbox(type="checkbox", v-model="canOverwrite")
+        | Overwrite if exists same name variable.
+      input.file(type="file", accept=".json", @change="changeJSONFile")
 </template>
 
 <script lang="coffee">
@@ -24,12 +36,17 @@ import SimpleModal from "@/components/SimpleModal.vue"
 export default
   data: ->
     canOverwrite: false
+    jsonFile: undefined
   components:
     "simple-modal": SimpleModal
   methods:
+    changeJSONFile: (event) -> @jsonFile = event.target.files[0]
     importDefault: ->
       await @$store.dispatch('importDefaultVariables', { canOverwrite: @canOverwrite })
       @$refs.importDefaultModal.close('execed')
+    importJSON: ->
+      await @$store.dispatch('importVariablesFromJSONFile', { canOverwrite: @canOverwrite, file: @jsonFile })
+      @$refs.importJSONModal.close('execed')
 </script>
 
 <style lang="scss" scoped>

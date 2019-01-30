@@ -140,6 +140,24 @@ export default new Vuex.Store
             console.log "skip '#{defaultVariable.name}'"
         else
           state.variables.push defaultVariable
+    importVariablesFromJSONFile: ({ _commit, state }, payload = {}) ->
+      new Promise((resolve, reject) =>
+        reader = new FileReader()
+        reader.onload = (event) => resolve(event.target.result)
+        reader.readAsText payload.file
+      ).then((result) =>
+        JSON.parse(result).forEach (importVariable) =>
+          index = state.variables.findIndex (v) => v.name == importVariable.name
+          if index > -1
+            if payload.canOverwrite
+              state.variables[index].items = importVariable.items
+            else
+              console.log "skip '#{importVariable.name}'"
+          else
+            state.variables.push importVariable
+      ).catch((error) =>
+        console.error error.message
+      )
     exportVariables: ({ _commit, state }) ->
       content = JSON.stringify(state.variables)
       fileName = "variables.json"
@@ -173,7 +191,10 @@ export default new Vuex.Store
         JSON.parse(result).forEach (importColor) =>
           index = state.colors.findIndex (c) => c.name == importColor.name
           if index > -1 && payload.canOverwrite
-            state.colors[index].hex = importColor.hex
+            if payload.canOverwrite
+              state.colors[index].hex = importColor.hex
+            else
+              console.log "skip '#{importColor.name}'"
           else
             state.colors.push importColor
       ).catch((error) =>
