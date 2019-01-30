@@ -101,6 +101,7 @@ export default new Vuex.Store
     #
     setVariables: (state, payload = {}) -> state.variables = payload.variables
     addVariable: (state, payload = {}) -> state.variables.push { name: "New Variable #{state.variables.length + 1}", items: [] }
+    removeVariable: (state, payload = {}) -> state.variables.splice(payload.index, 1)
     addItemToVariable: (state, payload = {}) ->
       items = state.variables[payload.index].items
       items.push "New Item #{items.length + 1}"

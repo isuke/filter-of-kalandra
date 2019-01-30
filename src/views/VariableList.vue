@@ -2,7 +2,7 @@
 ul.variable-list
   li.variable(v-for="(variable, i) in $store.state.variables", :id="variable.name")
     input.name(type="text", v-model="$store.state.variables[i].name")
-    button.button.delete() ×
+    button.button.delete(@click="$store.commit('removeVariable', { index: i })") ×
     ul.list
       li.item(v-for="(item, j) in variable.items")
         button.button.delete() ×
