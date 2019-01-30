@@ -2,7 +2,7 @@
 main.color
   color-header.header
 
-  color-aside.aside
+  color-aside.aside(@click-color-name="scrollToColor")
 
   color-list.main
 </template>
@@ -17,6 +17,10 @@ export default
     "color-header": ColorHeader
     "color-aside": ColorAside
     "color-list": ColorList
+  methods:
+    scrollToColor: (ColorName) ->
+      y = document.getElementById(ColorName).getBoundingClientRect().top - 48 - 48 # TODO: header height
+      window.scrollBy 0, y
 </script>
 
 <style lang="scss" scoped>

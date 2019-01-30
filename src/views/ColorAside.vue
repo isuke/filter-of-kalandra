@@ -4,7 +4,7 @@ aside.color-aside
   ul.list
     li.item(
       v-for="color in $store.state.colors",
-      @click=""
+      @click="$emit('click-color-name', color.name)"
     ) {{ color.name }}
 </template>
 
