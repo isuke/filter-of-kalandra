@@ -9,6 +9,8 @@
 </template>
 
 <script lang="coffee">
+import debounce from "lodash.debounce"
+
 import TheGlobalHeader from "@/components/TheGlobalHeader"
 import TheGlobalFooter from "@/components/TheGlobalFooter"
 
@@ -18,13 +20,31 @@ export default
   components:
     "the-global-header": TheGlobalHeader
     "the-global-footer": TheGlobalFooter
-  data: ->
-    saveIntervalID: undefined
+  computed:
+    advancedScriptText: -> @$store.state.advancedScriptText
+    variables:          -> @$store.state.variables
+    colors:             -> @$store.state.colors
+    properties:         -> @$store.state.properties
+  watch:
+    advancedScriptText: debounce ->
+      @$store.dispatch("saveAdvancedScriptTextToLocalStorage")
+    , 1000
+    variables:
+      handler: debounce ->
+        @$store.dispatch("saveVariablesToLocalStorage")
+      , 1000
+      deep: true
+    colors:
+      handler: debounce ->
+        @$store.dispatch("saveColorsToLocalStorage")
+      , 1000
+      deep: true
+    properties:
+      handler: debounce ->
+        @$store.dispatch("savePropertiesToLocalStorage")
+      , 1000
+      deep: true
   methods:
-    setSaveInterval: ->
-      @saveIntervalID = setInterval (=> @$store.dispatch "saveToLocalStorage"), 1000 * 30
-    clearSaveInterval: ->
-      @saveIntervalID = clearInterval @saveIntervalID
     setSamples: ->
       @$store.commit "setAdvancedScriptText", advancedScriptText: sample.advancedScriptText
       @$store.commit "setVariables", variables: sample.variables
@@ -33,7 +53,6 @@ export default
   created: ->
     @setSamples() if process.env.NODE_ENV == "development"
     @$store.dispatch "loadFromLocalStorage"
-    @setSaveInterval()
 </script>
 
 <style lang="scss" scoped>

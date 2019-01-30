@@ -214,13 +214,28 @@ export default new Vuex.Store
     #
     # local strorage
     #
-    saveToLocalStorage: ({ _commit, state }) ->
+    saveAdvancedScriptTextToLocalStorage: ({ _commit, state }) ->
       try
         localStorage.set "filter-of-kalandra_advancedScriptText", state.advancedScriptText
-        localStorage.set "filter-of-kalandra_variables" , JSON.stringify(state.variables)
-        localStorage.set "filter-of-kalandra_colors"    , JSON.stringify(state.colors)
+        console.log "Save dvancedScriptText to LocalStorage."
+      catch e
+        console.error e.message
+    saveVariablesToLocalStorage: ({ _commit, state }) ->
+      try
+        localStorage.set "filter-of-kalandra_variables", JSON.stringify(state.variables)
+        console.log "Save variables to LocalStorage."
+      catch e
+        console.error e.message
+    saveColorsToLocalStorage: ({ _commit, state }) ->
+      try
+        localStorage.set "filter-of-kalandra_colors", JSON.stringify(state.colors)
+        console.log "Save colors to LocalStorage."
+      catch e
+        console.error e.message
+    savePropertiesToLocalStorage: ({ _commit, state }) ->
+      try
         localStorage.set "filter-of-kalandra_properties", JSON.stringify(state.properties)
-        console.log "Saved to the LocalStorage."
+        console.log "Save properties to LocalStorage."
       catch e
         console.error e.message
     loadFromLocalStorage: ({ commit, _state }) ->
