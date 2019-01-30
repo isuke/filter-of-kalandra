@@ -105,6 +105,9 @@ export default new Vuex.Store
     addItemToVariable: (state, payload = {}) ->
       items = state.variables[payload.index].items
       items.push "New Item #{items.length + 1}"
+    removeItemFromVariable: (state, payload = {}) ->
+      items = state.variables[payload.index].items
+      items.splice(payload.itemIndex, 1)
 
     #
     # colors

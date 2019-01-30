@@ -5,7 +5,7 @@ ul.variable-list
     button.button.delete(@click="$store.commit('removeVariable', { index: i })") ×
     ul.list
       li.item(v-for="(item, j) in variable.items")
-        button.button.delete() ×
+        button.button.delete(@click="$store.commit('removeItemFromVariable', { index: i , itemIndex: j})") ×
         input.input(type="text", v-model="$store.state.variables[i].items[j]")
     button.newbutton(@click.prevent="$store.commit('addItemToVariable', { index: i })") Add New Item
 </template>
