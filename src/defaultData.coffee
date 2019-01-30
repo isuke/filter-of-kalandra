@@ -164,6 +164,40 @@ export default
         "Shields"
       ]
     }
+    {
+      name: "Atlas Base Items"
+      items: [
+        "#Atlas Base Gears"
+        "#Atlas Base Accessories"
+      ]
+    }
+    {
+      name: "Atlas Base Gears"
+      items: [
+        "Bone Helmet"
+        "Spiked Gloves"
+        "Gripped Gloves"
+        "Fingerless Silk Gloves"
+        "Two-Toned Boots"
+      ]
+    }
+    {
+      name: "Atlas Base Accessories"
+      items: [
+        "Marble Amulet"
+        "Blue Pearl Amulet"
+        "Opal Ring"
+        "Steel Ring"
+        "Vanguard Belt"
+        "Crystal Belt"
+      ]
+    }
+    {
+      name: "Atziri Gears"
+      items: [
+        "Sacrificial Garb"
+      ]
+    }
   ]
   colors: [
     { name: "Normal Item Color"            , hex: "#c8c8c8" } # rgb: 200, 200, 200
