@@ -128,6 +128,20 @@ export default new Vuex.Store
       state.properties.propNames.push "New Prop #{state.properties.propNames.length + 1}"
   actions:
     #
+    # variables
+    #
+    exportVariables: ({ _commit, state }) ->
+      content = JSON.stringify(state.variables)
+      fileName = "variables.json"
+
+      # TODO: move to utils
+      downLoadLink = document.createElement("a")
+      downLoadLink.download = fileName
+      downLoadLink.href = URL.createObjectURL new Blob([content], type: "application/json")
+      downLoadLink.dataset.downloadurl = ["application/json", downLoadLink.download, downLoadLink.href].join(":")
+      downLoadLink.click()
+
+    #
     # colors
     #
     importDefaultColors: ({ _commit, state }, payload = {}) ->

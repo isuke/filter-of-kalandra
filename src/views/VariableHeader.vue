@@ -4,7 +4,7 @@
     button.button(@click.prevent="$store.commit('addVariable')") Add New Variable
     button.button() Import Default Variables
     button.button() Import JSON
-    button.button() Export
+    button.button(@click.prevent="$store.dispatch('exportVariables')") Export
 </template>
 
 <script lang="coffee">
