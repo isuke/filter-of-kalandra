@@ -1,4 +1,170 @@
 export default
+  variables: [
+    {
+      name: "Currencies"
+      items: [
+        "Albino Rhoa Feather"
+        "Armourer's Scrap"
+        "Blacksmith's Whetstone"
+        "Blessed Orb"
+        "Cartographer's Chisel"
+        "Chaos Orb"
+        "Chromatic Orb"
+        "Divine Orb"
+        "Exalted Orb"
+        "Gemcutter's Prism"
+        "Glassblower's Bauble"
+        "Jeweller's Orb"
+        "Mirror of Kalandra"
+        "Orb of Alchemy"
+        "Orb of Alteration"
+        "Orb of Annulment"
+        "Orb of Augmentation"
+        "Orb of Chance"
+        "Orb of Fusing"
+        "Orb of Regret"
+        "Orb of Scouring"
+        "Orb of Transmutation"
+        "Perandus Coin"
+        "Portal Scroll"
+        "Regal Orb"
+        "Scroll of Wisdom"
+        "Silver Coin"
+        "Vaal Orb"
+      ]
+    }
+    {
+      name: "Shards"
+      items: [
+        "Alchemy Shard"
+        "Alteration Shard"
+        "Annulment Shard"
+        "Chaos Shard"
+        "Exalted Shard"
+        "Mirror Shard"
+        "Regal Shard"
+        "Scroll Fragment"
+        "Transmutation Shard"
+      ]
+    }
+    {
+      name: "'E' Series Gems"
+      items: [
+        "Enhance Support"
+        "Enlighten Support"
+        "Empower Support"
+      ]
+    }
+    {
+      name: "White Gems"
+      items: [
+        "Portal"
+        "Detonate Mines"
+      ]
+    }
+    {
+      name: "Drop Only Gems"
+      items: [
+        "#'E' Series Gems"
+        "#White Gems"
+        "Added Chaos Damage Support"
+        "Vaal"
+      ]
+    }
+    {
+      name: "Vendor Only Gems"
+      items: [
+        "Block Chance Reduction Support"
+        "Mirror Arrow"
+      ]
+    }
+    {
+      name: "Equipments"
+      items: [
+        "#Weapons"
+        "#Gears"
+        "#Accessories"
+      ]
+    }
+    {
+      name: "Weapons"
+      items: [
+        "#One Hand Weapons"
+        "#Two Hand Weapons"
+      ]
+    }
+    {
+      name: "One Hand Weapons"
+      items: [
+        "Claws"
+        "Daggers"
+        "Wands"
+        "One Hand Swords"
+        "Thrusting One Hand Swords"
+        "One Hand Axes"
+        "One Hand Maces"
+        "Sceptres"
+      ]
+    }
+    {
+      name: "Two Hand Weapons"
+      items: [
+        "Bows"
+        "Staves"
+        "Two Hand Swords"
+        "Two Hand Axes"
+        "Two Hand Maces"
+        "Fishing Rods"
+      ]
+    }
+    {
+      name: "Gears"
+      items: [
+        "Gloves"
+        "Boots"
+        "Body Armours"
+        "Helmets"
+        "Shields"
+        "Quivers"
+      ]
+    }
+    {
+      name: "Jewelries"
+      items: [
+        "Amulets"
+        "Rings"
+      ]
+    }
+    {
+      name: "Accessories"
+      items: [
+        "#Jewelries"
+        "Belts"
+      ]
+    }
+    {
+      name: "Six Sockets Equipments"
+      items: [
+        "#Two Hand Weapons"
+        "Body Armours"
+      ]
+    }
+    {
+      name: "Four Sockets Equipments"
+      items: [
+        "Gloves"
+        "Boots"
+        "Helmets"
+      ]
+    }
+    {
+      name: "Three Sockets Equipments"
+      items: [
+        "#One Hand Weapons"
+        "Shields"
+      ]
+    }
+  ]
   colors: [
     { name: "Normal Item Color"            , hex: "#c8c8c8" } # rgb: 200, 200, 200
     { name: "Magic Item Color"             , hex: "#8888ff" } # rgb: 136, 136, 255

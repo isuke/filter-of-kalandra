@@ -130,6 +130,16 @@ export default new Vuex.Store
     #
     # variables
     #
+    importDefaultVariables: ({ _commit, state }, payload = {}) ->
+      defaultData.variables.forEach (defaultVariable) =>
+        index = state.variables.findIndex (v) => v.name == defaultVariable.name
+        if index > -1
+          if payload.canOverwrite
+            state.variables[index].items = defaultVariable.items
+          else
+            console.log "skip '#{defaultVariable.name}'"
+        else
+          state.variables.push defaultVariable
     exportVariables: ({ _commit, state }) ->
       content = JSON.stringify(state.variables)
       fileName = "variables.json"
@@ -147,8 +157,11 @@ export default new Vuex.Store
     importDefaultColors: ({ _commit, state }, payload = {}) ->
       defaultData.colors.forEach (defaultColor) =>
         index = state.colors.findIndex (c) => c.name == defaultColor.name
-        if index > -1 && payload.canOverride
-          state.colors[index].hex = defaultColor.hex
+        if index > -1 && payload.canOverwrite
+          if payload.canOverwrite
+            state.colors[index].hex = defaultColor.hex
+          else
+            console.log "skip '#{defaultColor.name}'"
         else
           state.colors.push defaultColor
     importColorsFromJSONFile: ({ _commit, state }, payload = {}) ->
@@ -159,7 +172,7 @@ export default new Vuex.Store
       ).then((result) =>
         JSON.parse(result).forEach (importColor) =>
           index = state.colors.findIndex (c) => c.name == importColor.name
-          if index > -1 && payload.canOverride
+          if index > -1 && payload.canOverwrite
             state.colors[index].hex = importColor.hex
           else
             state.colors.push importColor

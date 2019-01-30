@@ -14,7 +14,7 @@
   )
     .content(slot="content")
       label.label
-        input.checkbox(type="checkbox", v-model="canOverride")
+        input.checkbox(type="checkbox", v-model="canOverwrite")
         | Overwrite if exists same name color.
 
   simple-modal.modal.importjson(
@@ -25,7 +25,7 @@
   )
     .content(slot="content")
       label.label
-        input.checkbox(type="checkbox", v-model="canOverride")
+        input.checkbox(type="checkbox", v-model="canOverwrite")
         | Overwrite if exists same name color.
       input.file(type="file", accept=".json", @change="changeJSONFile")
 </template>
@@ -35,17 +35,17 @@ import SimpleModal from "@/components/SimpleModal.vue"
 
 export default
   data: ->
-    canOverride: false
+    canOverwrite: false
     jsonFile: undefined
   components:
     "simple-modal": SimpleModal
   methods:
     changeJSONFile: (event) -> @jsonFile = event.target.files[0]
     importDefault: ->
-      await @$store.dispatch('importDefaultColors', { canOverride: @canOverride })
+      await @$store.dispatch('importDefaultColors', { canOverwrite: @canOverwrite })
       @$refs.importDefaultModal.close('execed')
     importJSON: ->
-      await @$store.dispatch('importColorsFromJSONFile', { canOverride: @canOverride, file: @jsonFile })
+      await @$store.dispatch('importColorsFromJSONFile', { canOverwrite: @canOverwrite, file: @jsonFile })
       @$refs.importJSONModal.close('execed')
 </script>
 
