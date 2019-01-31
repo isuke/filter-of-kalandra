@@ -5,7 +5,7 @@ dialog.simple-modal(ref="self", @click.self="close('cancelled')")
     button.button.close(@click.prevent="close('cancelled')") ×
   slot(name="content")
   .footer
-    button.button.import(@click.prevent="$emit('exec')") {{ execStr }}
+    button.button.import(@click.prevent="$emit('exec')", :disabled="! canExec") {{ execStr }}
 </template>
 
 <script lang="coffee">
@@ -19,6 +19,10 @@ export default
       type: String
       required: false
       default: "OK"
+    canExec:
+      type: Boolean
+      required: false
+      default: true
   methods:
     open: -> @$refs.self.showModal()
     close: (returnValue) -> @$refs.self.close(returnValue)

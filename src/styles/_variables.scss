@@ -18,11 +18,15 @@ $bold-font-weight:         700;
 // Colors
 // -----------------------------------------------------------------------------
 
-$global-bg-color-day: #f0f0f0;
-$global-ft-color-day: #04041b;
+$global-bg-color-day:         #f0f0f0;
+$global-bg-disable-color-day: #82828a;
+$global-ft-color-day:         #04041b;
+
 $global-bg-color-night: #252525;
 $global-ft-color-night: #fafafd;
 $global-accent-color-hue: 215;
+
+$error-ft-color: #fd574e;
 
 $home-color-hue:     80 + 42 * 4;
 $script-color-hue:   80 + 42 * 3;

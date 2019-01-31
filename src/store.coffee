@@ -230,7 +230,16 @@ export default new Vuex.Store
       downLoadLink.href = URL.createObjectURL new Blob([content], type: "application/json")
       downLoadLink.dataset.downloadurl = ["application/json", downLoadLink.download, downLoadLink.href].join(":")
       downLoadLink.click()
-
+    importPropertiesFromJSONFile: ({ _commit, state }, payload = {}) ->
+      new Promise((resolve, reject) =>
+        reader = new FileReader()
+        reader.onload = (event) => resolve(event.target.result)
+        reader.readAsText payload.file
+      ).then((result) =>
+        state.properties = JSON.parse(result)
+      ).catch((error) =>
+        console.error error.message
+      )
 
     #
     # local strorage

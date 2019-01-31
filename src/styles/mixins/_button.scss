@@ -5,13 +5,18 @@
   @include _button-base();
   @include shadow(1);
 
-  transition: $duration-base $timing-base box-shadow;
+  @ghost transition(#{$duration-base}, #{$timing-base}, background-color, color, border-color, box-shadow);
 
   &:hover {
     @include shadow(2);
   }
 
   &:active {
+    @include shadow(0);
+  }
+
+  &:disabled {
+    background-color: $global-bg-disable-color-day;
     @include shadow(0);
   }
 }
@@ -39,5 +44,4 @@
 @mixin _button-base() {
   padding: 0.5em 1em;
   border-radius: $border-radius-base;
-  cursor: pointer;
 }
