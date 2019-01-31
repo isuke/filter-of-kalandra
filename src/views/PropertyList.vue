@@ -11,7 +11,7 @@
       tr.row(v-for="(propName, j) in $store.getters.propNames")
         td.data.propname
           input.input(type="text", v-model="$store.state.properties.propNames[j]")
-          button.delete() ×
+          button.delete(@click="$store.commit('removePropsFromProperties', { index: j })") ×
         td.data.propval(v-for="(scriptName, i) in $store.getters.scriptNames")
           input(type="text", v-model="$store.state.properties.values[i][j]")
 

@@ -129,6 +129,9 @@ export default new Vuex.Store
     addPropsToProperties: (state, payload = {}) ->
       state.properties.values.forEach (props) => props.push ''
       state.properties.propNames.push "New Prop #{state.properties.propNames.length + 1}"
+    removePropsFromProperties: (state, payload = {}) ->
+      state.properties.propNames.splice(payload.index, 1)
+      state.properties.values.forEach (value) => value.splice(payload.index, 1)
   actions:
     #
     # variables
