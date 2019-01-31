@@ -2,7 +2,7 @@
 .property-header
   .actions
     button.button.importjson() Import JSON
-    button.button.export() Export
+    button.button.export(@click.prevent="$store.dispatch('exportProperties')") Export
 </template>
 
 <script lang="coffee">

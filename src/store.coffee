@@ -218,6 +218,21 @@ export default new Vuex.Store
       downLoadLink.click()
 
     #
+    # properties
+    #
+    exportProperties: ({ _commit, state }) ->
+      content = JSON.stringify(state.properties)
+      fileName = "properties.json"
+
+      # TODO: move to utils
+      downLoadLink = document.createElement("a")
+      downLoadLink.download = fileName
+      downLoadLink.href = URL.createObjectURL new Blob([content], type: "application/json")
+      downLoadLink.dataset.downloadurl = ["application/json", downLoadLink.download, downLoadLink.href].join(":")
+      downLoadLink.click()
+
+
+    #
     # local strorage
     #
     saveAdvancedScriptTextToLocalStorage: ({ _commit, state }) ->
