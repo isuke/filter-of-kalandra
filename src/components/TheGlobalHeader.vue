@@ -2,7 +2,7 @@
 header.the-global-header
   h1.logo
     | Filter of Kalandra
-    span.beta β
+    span.beta α
   nav.nav
     ul.list
       router-link.item.home(tag="li", to="/", exact) Home

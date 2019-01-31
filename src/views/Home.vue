@@ -2,16 +2,14 @@
 main.home
   h1.title
     | Filter of Kalandra
-    span.beta β
+    span.beta α
   h2.version v{{ version }}
 </template>
 
 <script lang="coffee">
-import packageJSON from "@/../package.json"
-
 export default
   data: ->
-    version: packageJSON.version
+    version: process.env.VUE_APP_VERSION
 </script>
 
 <style lang="scss" scoped>
