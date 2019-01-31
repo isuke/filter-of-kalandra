@@ -123,6 +123,9 @@ export default new Vuex.Store
     addScriptToProperties: (state, payload = {}) ->
       state.properties.values.push new Array(state.properties.propNames.length).fill("")
       state.properties.scriptNames.push "New Script #{state.properties.scriptNames.length + 1}"
+    removeScriptFromProperties: (state, payload = {}) ->
+      state.properties.scriptNames.splice(payload.index, 1)
+      state.properties.values.splice(payload.index, 1)
     addPropsToProperties: (state, payload = {}) ->
       state.properties.values.forEach (props) => props.push ''
       state.properties.propNames.push "New Prop #{state.properties.propNames.length + 1}"

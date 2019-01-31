@@ -6,7 +6,7 @@
         th.head Property Name \ Script Name
         td.data.scriptname(v-for="(scriptNames, i) in $store.getters.scriptNames")
           input(type="text", v-model="$store.state.properties.scriptNames[i]")
-          button.delete() ×
+          button.delete(@click="$store.commit('removeScriptFromProperties', { index: i })") ×
     tbody.body
       tr.row(v-for="(propName, j) in $store.getters.propNames")
         td.data.propname
@@ -44,8 +44,6 @@ export default
   > .table {
     grid-row: 1;
     grid-column: 1;
-
-    // border: $border-height-base hsl($property-color-hue, 100%, 40%) solid;
 
     > .head {
       border-bottom: $border-height-base _ft-color($property-color-hue, "day", true) solid;
