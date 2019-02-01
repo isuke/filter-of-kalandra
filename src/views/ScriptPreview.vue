@@ -1,20 +1,18 @@
 <template lang="pug">
 .script-preview
-  .section(v-for="(scripts, sectionName) in simpleScriptObjectsForPreview")
-    h1 {{ sectionName }}
+  .subheader.none
+  .subheader.scriptname(v-for="scriptName in $store.getters.scriptNames") {{ scriptName }}
 
-    table.table
-      thead.head
-        tr.row
-          th.head Block Name \ Script Name
-          td.scriptname(v-for="scriptName in $store.getters.scriptNames") {{ scriptName }}
-      tbody.body
-        tr.row(v-for="(blocks, blockName) in scripts")
-          th.blockname {{ blockName }}
-          td.preveiw(v-for="(block, scriptName) in blocks")
-            .image
-              img.back(src="https://via.placeholder.com/160x64/B46000/707070")
-              span.item(:style="getStyle(block)", @click.prevent="playAlertSound(block)") Item Name
+  template(v-for="(scripts, sectionName) in simpleScriptObjectsForPreview")
+    .sectionname {{ sectionName }}
+
+    template(v-for="(blocks, blockName) in scripts")
+      .blockname {{ blockName }}
+
+      template(v-for="(block, scriptName) in blocks")
+        .image
+          img.back(:src="bgImage")
+          span.item(:style="getStyle(block)", @click.prevent="playAlertSound(block)") Item Name
 </template>
 
 <script lang="coffee">
@@ -22,11 +20,15 @@ import Color from "color"
 
 import soundAudible from "@/mixins/soundAudible.coffee"
 
+import bgImage from "@/assets/images/preview-bg-200x150.png"
+
 # TODO: move to utils
 forIn = (object, callback) =>
   Object.keys(object).forEach (key) => callback(object[key], key)
 
 export default
+  data: ->
+    bgImage: bgImage
   mixins: [
     soundAudible
   ]
@@ -79,40 +81,93 @@ export default
 </script>
 
 <style lang="scss" scoped>
-.script-preview {
-  > .section {
-    > .table {
-      > .head {
-        > .row {
-          > .head {}
-          > .scriptname {}
-        }
-      }
-      > .body {
-        > .row {
-          > .blockname {}
-          > .preveiw {
-            > .image {
-              display: flex;
-              align-items: center;
-              justify-content: center;
-              position: relative;
+$my-header-z-index: $base-z-index + 10;
 
-              > .back {}
-              > .item {
-                position: absolute;
-                margin: auto;
-                padding: 0.5em;
-                opacity: 0.5;
-                background-color: black;
-                color: white;
-                font-size: 11px;
-                cursor: pointer;
-              }
-            }
-          }
-        }
-      }
+.script-preview {
+  display: grid;
+  grid-template-columns: max-content;
+  grid-column-gap: var(--space-size-s);
+  padding-left: var(--space-size-m);
+  padding-right: var(--space-size-m);
+
+  background-color: $global-bg-color-day;
+  color: $global-ft-color-day;
+
+  > .subheader {
+    position: sticky;
+    display: flex;
+    align-items: center;
+    height: $sub-header-height;
+    top: calc(#{$global-header-height} + #{$sub-header-height});
+    padding: var(--space-size-m);
+    font-size: var(--ft-size-l);
+    background-color: $global-bg-color-day;
+    z-index: $my-header-z-index;
+
+    &.none {
+      grid-row: 1;
+      grid-column: 1;
+    }
+
+    &.scriptname {
+      grid-row: 1;
+      grid-column: auto;
+
+      display: flex;
+      justify-content: center;
+      white-space: nowrap;
+    }
+  }
+
+  > .sectionname {
+    grid-row: auto;
+    grid-column: 1 / -1;
+
+    position: sticky;
+    display: flex;
+    align-items: center;
+    top: calc(#{$global-header-height} + #{$sub-header-height});
+    height: $sub-header-height;
+    font-size: var(--ft-size-l);
+    background-color: $global-bg-color-day;
+    z-index: $my-header-z-index;
+  }
+
+  > .blockname {
+    grid-row: auto;
+    grid-column: 1;
+
+    display: flex;
+    align-items: center;
+    max-width: 24rem;
+    overflow: scroll;
+    white-space: nowrap;
+  }
+
+  > .image {
+    grid-row: auto;
+    grid-column: auto;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+
+    > .back {
+      position: relative;
+      overflow: hidden;
+      @ghost size(160px, 64px);
+    }
+
+    > .item {
+      position: absolute;
+      margin: auto;
+      padding: 0.5em;
+      opacity: 0.5;
+      background-color: black;
+      color: white;
+      font-size: 11px;
+      cursor: pointer;
     }
   }
 }
