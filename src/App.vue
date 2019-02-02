@@ -25,6 +25,7 @@ export default
     variables:          -> @$store.state.variables
     colors:             -> @$store.state.colors
     properties:         -> @$store.state.properties
+    filterName:         -> @$store.state.filterName
   watch:
     advancedScriptText: debounce ->
       @$store.dispatch("saveAdvancedScriptTextToLocalStorage")
@@ -44,6 +45,9 @@ export default
         @$store.dispatch("savePropertiesToLocalStorage")
       , 1000
       deep: true
+    filterName: debounce ->
+      @$store.dispatch("saveFilterNameToLocalStorage")
+    , 1000
   methods:
     setSamples: ->
       @$store.commit "setAdvancedScriptText", advancedScriptText: sample.advancedScriptText

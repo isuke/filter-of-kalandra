@@ -15,6 +15,7 @@ forIn = (object, callback) =>
 
 export default new Vuex.Store
   state:
+    filterName: "New Filter"
     advancedScriptText: ""
     oldSimpleScriptObject: {}
     oldSimpleScriptTexts: {}
@@ -41,7 +42,7 @@ export default new Vuex.Store
         state.oldSimpleScriptObject
     simpleScriptTexts: (state, getters) ->
       try
-        result = advancedPoeFilter.compile(state.advancedScriptText, getters.variablesForCompiler, getters.propertiesForCompiler)
+        result = advancedPoeFilter.compile(state.advancedScriptText, getters.variablesForCompiler, getters.propertiesForCompiler, state.filterName)
         state.oldSimpleScriptTexts = result
         result
       catch _e
@@ -91,6 +92,11 @@ export default new Vuex.Store
           result[scriptName][propName] = state.properties.values[i][j]
       result
   mutations:
+    #
+    # filterName
+    #
+    setFilterName: (state, payload = {}) -> state.filterName = payload.filterName
+
     #
     # advancedScriptText
     #
@@ -244,6 +250,12 @@ export default new Vuex.Store
     #
     # local strorage
     #
+    saveFilterNameToLocalStorage: ({ _commit, state }) ->
+      try
+        localStorage.set "filter-of-kalandra_filter-name", state.filterName
+        console.log "Save filterName to LocalStorage."
+      catch e
+        console.error e.message
     saveAdvancedScriptTextToLocalStorage: ({ _commit, state }) ->
       try
         localStorage.set "filter-of-kalandra_advancedScriptText", state.advancedScriptText
@@ -270,10 +282,12 @@ export default new Vuex.Store
         console.error e.message
     loadFromLocalStorage: ({ commit, _state }) ->
       try
-        advancedScriptText = localStorage.get "filter-of-kalandra_hoge"
+        filterName         = localStorage.get "filter-of-kalandra_filter-name"
+        advancedScriptText = localStorage.get "filter-of-kalandra_advancedScriptText"
         variables          = localStorage.get "filter-of-kalandra_variables"
         colors             = localStorage.get "filter-of-kalandra_colors"
         properties         = localStorage.get "filter-of-kalandra_properties"
+        commit "setFilterName", filterName: filterName                         if filterName
         commit "setAdvancedScriptText", advancedScriptText: advancedScriptText if advancedScriptText
         commit "setVariables" ,  variables: JSON.parse variables               if variables
         commit "setColors"    ,     colors: JSON.parse colors                  if colors

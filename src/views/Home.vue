@@ -1,8 +1,6 @@
 <template lang="pug">
 main.home
-  h1.title
-    | Filter of Kalandra
-    span.beta α
+  h1.title Filter of Kalandra
   h2.version v{{ version }}
 </template>
 
@@ -24,11 +22,10 @@ export default
   > .title {
     font-size: var(--ft-size-xxl);
 
-    > .beta {
+    &::after {
+      content: "(α)";
       font-style: italic;
       font-size: var(--ft-size-xl);
-      &::before { content: "("; }
-      &::after  { content: ")"; }
     }
   }
 

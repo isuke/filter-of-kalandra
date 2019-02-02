@@ -9,6 +9,7 @@ import ScriptText    from "./views/ScriptText.vue"
 import Variable      from "./views/Variable.vue"
 import Color         from "./views/Color.vue"
 import Property      from "./views/Property.vue"
+import Setting       from "./views/Setting.vue"
 
 Vue.use Router
 
@@ -54,5 +55,10 @@ export default new Router
       path: "/property"
       name: "property"
       component: Property
+    }
+    {
+      path: "/setting"
+      name: "setting"
+      component: Setting
     }
   ]

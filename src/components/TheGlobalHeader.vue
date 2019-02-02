@@ -1,15 +1,13 @@
 <template lang="pug">
 header.the-global-header
-  h1.logo
-    | Filter of Kalandra
-    span.beta α
+  router-link.item.logo(tag="h1", to="/", exact) Filter of Kalandra
   nav.nav
     ul.list
-      router-link.item.home(tag="li", to="/", exact) Home
       router-link.item.script(tag="li", to="/script") Script
       router-link.item.variable(tag="li", to="/variable") Variable
       router-link.item.color(tag="li", to="/color") Color
       router-link.item.property(tag="li", to="/property") Property
+      router-link.item.setting(tag="li", to="/setting") Setting
   .actions
     button.button Import
     button.button Export
@@ -35,12 +33,12 @@ export default {}
     padding-bottom: var(--space-size-s);
     padding-right:  var(--space-size-l);
     font-size: var(--ft-size-l);
+    cursor: pointer;
 
-    > .beta {
+    &::after {
+      content: "(α)";
       font-style: italic;
       font-size: var(--ft-size-m);
-      &::before { content: "("; }
-      &::after { content: ")"; }
     }
   }
 
@@ -65,14 +63,14 @@ export default {}
         margin-top: var(--space-size-xs);
         cursor: pointer;
 
-        &.home.-current {
-          background-color: $global-bg-color-day;
-          color: $global-ft-color-day
-        }
         &.script.-current   { @include bg-ft-color($script-color-hue  , "night"); }
         &.variable.-current { @include bg-ft-color($variable-color-hue, "night"); }
         &.color.-current    { @include bg-ft-color($color-color-hue   , "night"); }
         &.property.-current { @include bg-ft-color($property-color-hue, "night"); }
+        &.setting.-current {
+          background-color: $global-bg-color-day;
+          color: $global-ft-color-day
+        }
       }
     }
   }

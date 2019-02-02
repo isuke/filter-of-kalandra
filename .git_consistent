@@ -62,6 +62,9 @@ scope:
     -
       name: Property
       description: 'Property.vue'
+    -
+      name: Setting
+      description: 'Setting.vue'
 subject:
   type: string
   required: true
