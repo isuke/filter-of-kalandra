@@ -1,0 +1,14 @@
+
+@mixin text-input() {
+  padding: 0.5em;
+  border-bottom: $border-height-base solid $global-ft-non-accent-color-day;
+  @ghost border-top-radius(#{$border-radius-base});
+
+  @ghost transition(#{$duration-base}, #{$timing-base}, background-color, color, border-color);
+
+  &:focus {
+    background-color: $global-bg-color-day;
+    color: $global-ft-color-day;
+    border-color: $global-ft-accent-color-day;
+  }
+}

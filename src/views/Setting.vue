@@ -27,6 +27,8 @@ export default {}
     > .input {
       grid-column: 2;
       padding: var(--space-size-m);
+
+      @include text-input();
     }
   }
 }

@@ -39,6 +39,8 @@ export default {}
       grid-row: 1;
       grid-column: 1;
       font-size: var(--ft-size-l);
+
+      @include text-input();
     }
 
     > .button {
@@ -62,8 +64,9 @@ export default {}
 
         > .input {
           flex: 1;
-        }
 
+          @include text-input();
+        }
       }
     }
 

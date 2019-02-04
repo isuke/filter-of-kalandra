@@ -5,7 +5,7 @@
       tr.row
         th.head Property Name \ Script Name
         td.data.scriptname(v-for="(scriptNames, i) in $store.getters.scriptNames")
-          input(type="text", v-model="$store.state.properties.scriptNames[i]")
+          input.input(type="text", v-model="$store.state.properties.scriptNames[i]")
           button.delete(@click="$store.commit('removeScriptFromProperties', { index: i })") ×
     tbody.body
       tr.row(v-for="(propName, j) in $store.getters.propNames")
@@ -13,7 +13,7 @@
           input.input(type="text", v-model="$store.state.properties.propNames[j]")
           button.delete(@click="$store.commit('removePropsFromProperties', { index: j })") ×
         td.data.propval(v-for="(scriptName, i) in $store.getters.scriptNames")
-          input(type="text", v-model="$store.state.properties.values[i][j]")
+          input.input(type="text", v-model="$store.state.properties.values[i][j]")
 
   .newprop
     button.button(@click="$store.commit('addPropsToProperties')") Add New Property
@@ -52,7 +52,11 @@ export default
         @include bg-ft-color($property-color-hue, "day", true);
 
         > .head { padding: var(--space-size-s); }
-        > .data { padding: var(--space-size-s); }
+        > .data {
+          padding: var(--space-size-s);
+
+          > .input { @include text-input(); }
+        }
       }
     }
     > .body {
@@ -60,7 +64,11 @@ export default
         &:nth-child(odd)  { @include bg-ft-color($property-color-hue, "day", false); }
         &:nth-child(even) { @include bg-ft-color($property-color-hue, "day", true); }
 
-        > .data { padding: var(--space-size-s); }
+        > .data {
+          padding: var(--space-size-s);
+
+          > .input { @include text-input(); }
+        }
       }
     }
   }

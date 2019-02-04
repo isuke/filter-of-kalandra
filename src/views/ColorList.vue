@@ -73,6 +73,8 @@ export default
       grid-row: 1;
       grid-column: 1;
       font-size: var(--ft-size-l);
+
+      @include text-input();
     }
 
     > .button {
