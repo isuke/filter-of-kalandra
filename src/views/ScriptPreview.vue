@@ -17,8 +17,18 @@
               :size="block.actions.MinimapIcon.size",
               :color="block.actions.MinimapIcon.color",
               :shape="block.actions.MinimapIcon.shape",
-              v-if="block.actions.MinimapIcon")
-            span.item(:style="getStyle(block)", @click.prevent="playAlertSound(block)") Item Name
+              v-if="block.activity === 'Show' && block.actions.MinimapIcon"
+            )
+            span.name(
+              :style="getNameStyle(block.actions)",
+              @click.prevent="playAlertSound(block.actions)",
+              v-if="block.activity === 'Show'"
+            ) Item Name
+            .playeffect(
+              :class="{ '-temp': block.actions.PlayEffect.temp }",
+              :style="getPlayEffectStyle(block.actions.PlayEffect)",
+              v-if="block.activity === 'Show' && block.actions.PlayEffect"
+            )
 </template>
 
 <script lang="coffee">
@@ -64,30 +74,33 @@ export default
         else
           temp.push("#{key} is Any")
       temp.join(' - ')
-    getStyle: (block) ->
-      if block.activity == 'Show'
-        {
-          "border": "0.2em #{@getColorStr(block.actions.SetBorderColor)} solid" if block.actions.SetBorderColor
-          "color": @getColorStr(block.actions.SetTextColor)                     if block.actions.SetTextColor
-          "background-color": @getColorStr(block.actions.SetBackgroundColor)    if block.actions.SetBackgroundColor
-          "font-size": "#{Math.round(block.actions.SetFontSize / 2)}px"         if block.actions.SetFontSize
-        }
-      else
-        {
-          display: 'none'
-        }
+    getNameStyle: (actions) ->
+      {
+        "border": "0.2em #{@getColorStr(actions.SetBorderColor)} solid" if actions.SetBorderColor
+        "color": @getColorStr(actions.SetTextColor)                     if actions.SetTextColor
+        "background-color": @getColorStr(actions.SetBackgroundColor)    if actions.SetBackgroundColor
+        "font-size": "#{Math.round(actions.SetFontSize / 2)}px"         if actions.SetFontSize
+      }
     getColorStr: (colorObject) ->
       color = new Color(colorObject.rgb)
       color.hex().replace('0x', '#') # TODO: alpha
-    playAlertSound: (block) ->
-      sound = if block.actions.PlayAlertSound
-        block.actions.PlayAlertSound
-      else if block.actions.PlayAlertSoundPositional
-        block.actions.PlayAlertSoundPositional
+    playAlertSound: (actions) ->
+      sound = if actions.PlayAlertSound
+        actions.PlayAlertSound
+      else if actions.PlayAlertSoundPositional
+        actions.PlayAlertSoundPositional
 
       return unless sound
 
       @sound(sound.id, sound.volume)
+    getPlayEffectStyle: (playEffect) ->
+      switch playEffect.color
+        when "Red"    then { "background-color": "hsla(  0, 100%, 45%, 0.6)", color: "white" }
+        when "Green"  then { "background-color": "hsla(110, 100%, 45%, 0.6)", color: "white" }
+        when "Blue"   then { "background-color": "hsla(230, 100%, 45%, 0.6)", color: "white" }
+        when "Brown"  then { "background-color": "hsla( 20, 100%, 45%, 0.6)", color: "white" }
+        when "White"  then { "background-color": "rgba(255, 255, 255 , 0.6)", color: "black" }
+        when "Yellow" then { "background-color": "hsla( 60, 100%, 45%, 0.6)", color: "black" }
 </script>
 
 <style lang="scss" scoped>
@@ -174,7 +187,9 @@ $my-header-z-index: $base-z-index + 10;
       display: flex;
       align-items: center;
 
-      > .item {
+      > .icon { /* no-op */ }
+
+      > .name {
         margin: auto;
         padding: 0.5em;
         opacity: 0.5;
@@ -182,6 +197,20 @@ $my-header-z-index: $base-z-index + 10;
         color: white;
         font-size: 11px;
         cursor: pointer;
+      }
+
+      > .playeffect {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        @ghost circle(1.5rem);
+        margin-left: var(--space-size-s);
+
+        &.-temp::before {
+          content: "T";
+          font-size: var(--ft-size-m);
+          font-weight: $bold-font-weight;
+        }
       }
     }
   }
