@@ -253,31 +253,31 @@ export default new Vuex.Store
     saveFilterNameToLocalStorage: ({ _commit, state }) ->
       try
         localStorage.set "filter-of-kalandra_filter-name", state.filterName
-        console.log "Save filterName to LocalStorage."
+        console.log "Save filterName to LocalStorage."         if process.env.NODE_ENV == "development"
       catch e
         console.error e.message
     saveAdvancedScriptTextToLocalStorage: ({ _commit, state }) ->
       try
         localStorage.set "filter-of-kalandra_advancedScriptText", state.advancedScriptText
-        console.log "Save dvancedScriptText to LocalStorage."
+        console.log "Save advancedScriptText to LocalStorage." if process.env.NODE_ENV == "development"
       catch e
         console.error e.message
     saveVariablesToLocalStorage: ({ _commit, state }) ->
       try
         localStorage.set "filter-of-kalandra_variables", JSON.stringify(state.variables)
-        console.log "Save variables to LocalStorage."
+        console.log "Save variables to LocalStorage."          if process.env.NODE_ENV == "development"
       catch e
         console.error e.message
     saveColorsToLocalStorage: ({ _commit, state }) ->
       try
         localStorage.set "filter-of-kalandra_colors", JSON.stringify(state.colors)
-        console.log "Save colors to LocalStorage."
+        console.log "Save colors to LocalStorage."             if process.env.NODE_ENV == "development"
       catch e
         console.error e.message
     savePropertiesToLocalStorage: ({ _commit, state }) ->
       try
         localStorage.set "filter-of-kalandra_properties", JSON.stringify(state.properties)
-        console.log "Save properties to LocalStorage."
+        console.log "Save properties to LocalStorage."         if process.env.NODE_ENV == "development"
       catch e
         console.error e.message
     loadFromLocalStorage: ({ commit, _state }) ->
