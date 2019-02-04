@@ -12,11 +12,19 @@
       template(v-for="(block, scriptName) in blocks")
         .image
           img.back(:src="bgImage")
-          span.item(:style="getStyle(block)", @click.prevent="playAlertSound(block)") Item Name
+          .item
+            minimap-icon.icon(
+              :size="block.actions.MinimapIcon.size",
+              :color="block.actions.MinimapIcon.color",
+              :shape="block.actions.MinimapIcon.shape",
+              v-if="block.actions.MinimapIcon")
+            span.item(:style="getStyle(block)", @click.prevent="playAlertSound(block)") Item Name
 </template>
 
 <script lang="coffee">
 import Color from "color"
+
+import MinimapIcon from "@/components/MinimapIcon.vue"
 
 import soundAudible from "@/mixins/soundAudible.coffee"
 
@@ -27,6 +35,8 @@ forIn = (object, callback) =>
   Object.keys(object).forEach (key) => callback(object[key], key)
 
 export default
+  components:
+    "minimap-icon": MinimapIcon
   data: ->
     bgImage: bgImage
   mixins: [
@@ -161,13 +171,18 @@ $my-header-z-index: $base-z-index + 10;
 
     > .item {
       position: absolute;
-      margin: auto;
-      padding: 0.5em;
-      opacity: 0.5;
-      background-color: black;
-      color: white;
-      font-size: 11px;
-      cursor: pointer;
+      display: flex;
+      align-items: center;
+
+      > .item {
+        margin: auto;
+        padding: 0.5em;
+        opacity: 0.5;
+        background-color: black;
+        color: white;
+        font-size: 11px;
+        cursor: pointer;
+      }
     }
   }
 }
