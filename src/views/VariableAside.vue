@@ -31,7 +31,7 @@ export default {}
     top: $global-header-height;
     max-height: calc(100vh - #{$global-header-height} - #{$sub-header-height});
     overflow-y: scroll;
-    z-index: $codemirror-z-index + 10;
+    @include bg-ft-color($variable-color-hue, "night");
 
     > .item {
       cursor: pointer;

@@ -31,7 +31,6 @@ export default {}
     top: $global-header-height;
     max-height: calc(100vh - #{$global-header-height} - #{$sub-header-height});
     overflow-y: scroll;
-    z-index: $codemirror-z-index + 10;
 
     > .item {
       cursor: pointer;

@@ -64,7 +64,7 @@ export default
   width: 100%;
   min-height: 100vh;
   display: grid;
-  grid-template-rows: $global-header-height 1fr 2rem;
+  grid-template-rows: $global-header-height 1fr auto;
   grid-template-columns: 1fr;
 
   > .header {
