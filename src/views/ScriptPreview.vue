@@ -179,7 +179,7 @@ $my-header-z-index: $base-z-index + 10;
     > .back {
       position: relative;
       overflow: hidden;
-      @ghost size(160px, 64px);
+      @ghost size(200px, 80px);
     }
 
     > .item {
