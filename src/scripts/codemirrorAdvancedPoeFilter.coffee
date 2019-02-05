@@ -66,7 +66,8 @@ actionNames = [
 
 CodeMirror.defineMode "advanced-poe-filter", () =>
   token: (stream, state) =>
-    return 'comment'   if stream.match /^.*# .*/
+    return 'outputcomment' if stream.match /^.*#:.*/
+    return 'comment'   if stream.match /^.*#.*/
     return 'keyword'   if stream.match new RegExp "^(#{keywords.join('|')}) +\"[^\"]+\""
     return 'macro'     if stream.match new RegExp "^(#{macroNames.join('|')})\\(.*\\)"
     return 'function'  if stream.match new RegExp "^(#{functionNames.join('|')})\\(.*\\)"
@@ -78,7 +79,7 @@ CodeMirror.defineMode "advanced-poe-filter", () =>
 
 CodeMirror.defineMode "original-poe-filter", () =>
   token: (stream, state) =>
-    return 'comment'   if stream.match /^.*# .*/
+    return 'comment'   if stream.match /^.*#.*/
     return 'keyword'   if stream.match new RegExp "^(#{keywords.join('|')})"
     return 'condition' if stream.match new RegExp "^(#{conditionNames.join('|')})"
     return 'action'    if stream.match new RegExp "^(#{actionNames.join('|')})"

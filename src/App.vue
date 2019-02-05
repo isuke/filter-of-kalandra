@@ -51,11 +51,11 @@ export default
   methods:
     setSamples: ->
       @$store.commit "setAdvancedScriptText", advancedScriptText: sample.advancedScriptText
-      @$store.commit "setVariables", variables: sample.variables
-      @$store.commit "setColors", colors: sample.colors
+      @$store.dispatch('importDefaultVariables', { canOverwrite: false })
+      @$store.dispatch('importDefaultColors', { canOverwrite: false })
       @$store.commit "setProperties", properties: sample.properties
   created: ->
-    @setSamples() if process.env.NODE_ENV == "development"
+    @setSamples()
     @$store.dispatch "loadFromLocalStorage"
 </script>
 
