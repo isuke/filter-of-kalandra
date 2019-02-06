@@ -3,13 +3,13 @@
   <head>
     <% if (NODE_ENV === "production") { %>
     <!-- Global site tag (gtag.js) - Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=<%= process.env.GoogleAnalyticsID %>"></script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=<%= VUE_APP_GoogleAnalyticsID %>"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
       function gtag() { dataLayer.push(arguments); }
       gtag('js', new Date());
 
-      gtag('config', '<%= process.env.GoogleAnalyticsID %>');
+      gtag('config', '<%= VUE_APP_GoogleAnalyticsID %>');
     </script>
     <% } %>
     <meta charset="utf-8">
@@ -23,7 +23,7 @@
     <meta property="og:url" content="TODO" />
     <meta property="og:description" content="Next level 'path of exile' filter generator." />
     <link rel="icon" href="<%= BASE_URL %>favicon.ico">
-    <title><%= NODE_ENV === "development" ? '[DEV] ' : '' %>filter-of-kalandra(α)</title>
+    <title><%= NODE_ENV === "development" ? '[DEV] ' : '' %>Filter of Kalandra</title>
   </head>
   <body>
     <noscript>
