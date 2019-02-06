@@ -14,6 +14,7 @@ import Setting       from "./views/Setting.vue"
 Vue.use Router
 
 export default new Router
+  mode: 'history'
   linkActiveClass: "-current"
   routes: [
     {
