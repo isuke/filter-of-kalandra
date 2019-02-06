@@ -30,7 +30,8 @@
   }
 
   &error {
-    text-decoration: underline dotted #ff0000; // TODO
+    background-color: #ff4a4a; // TODO
+    color: inherit; // TODO
   }
 }
 
