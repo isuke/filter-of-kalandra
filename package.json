@@ -1,6 +1,6 @@
 {
   "name": "filter-of-kalandra",
-  "version": "0.2.1",
+  "version": "0.3.0",
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",
@@ -8,8 +8,8 @@
     "lint": "vue-cli-service lint",
     "test:e2e": "vue-cli-service test:e2e",
     "test:unit": "vue-cli-service test:unit",
-    "predploy": "yarn run build",
-    "dploy": "netlify deploy --prod"
+    "predeploy": "yarn run build",
+    "deploy": "netlify deploy --prod"
   },
   "dependencies": {
     "advanced-poe-filter": "0.2.2",

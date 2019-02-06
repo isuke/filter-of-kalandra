@@ -17,6 +17,7 @@
 
 [source, sh]
 ----
+$ yarn global add verdaccio
 $ yarn global add vue-cli
 $ yarn global add netlify-cli
 ----
