@@ -11,7 +11,7 @@
     :canExec="canOverwrite",
     @exec="importJSON"
   )
-    .content(slot="content")
+    template(v-slot:content)
       label.label.-attention
         input.checkbox(type="checkbox", v-model="canOverwrite")
         | All exists property are removed when import JSON !
@@ -61,7 +61,7 @@ export default
 }
 
 .property-header > .modal {
-  > .content {
+  /deep/ .content {
     display: flex;
     flex-direction: column;
 

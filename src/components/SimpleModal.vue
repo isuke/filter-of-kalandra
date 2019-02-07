@@ -3,7 +3,8 @@ dialog.simple-modal(ref="self", @click.self="close('cancelled')")
   .header
     h1.title {{ headerStr }}
     button.button.close(@click.prevent="close('cancelled')") ×
-  slot(name="content")
+  .content
+    slot(name="content")
   .footer
     button.button.import(@click.prevent="$emit('exec')", :disabled="! canExec") {{ execStr }}
 </template>

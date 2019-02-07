@@ -12,7 +12,7 @@
     execStr="Import",
     @exec="importDefault"
   )
-    .content(slot="content")
+    template(v-slot:content)
       label.label
         input.checkbox(type="checkbox", v-model="canOverwrite")
         | Overwrite if exists same name variable.
@@ -23,7 +23,7 @@
     execStr="Import",
     @exec="importJSON"
   )
-    .content(slot="content")
+    template(v-slot:content)
       label.label
         input.checkbox(type="checkbox", v-model="canOverwrite")
         | Overwrite if exists same name variable.
@@ -78,7 +78,7 @@ export default
 }
 
 .variable-header > .modal {
-  > .content {
+  /deep/ .content {
     display: flex;
     flex-direction: column;
 
