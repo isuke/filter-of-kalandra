@@ -10,7 +10,7 @@ header.the-global-header
       router-link.item.setting(tag="li", to="/setting") Setting
   .actions
     button.button Import
-    button.button Export
+    button.button(@click.prevent="$store.dispatch('exportAll')") Export
 </template>
 
 <script lang="coffee">

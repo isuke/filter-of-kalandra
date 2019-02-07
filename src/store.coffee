@@ -3,8 +3,9 @@ import Vuex from "vuex"
 
 Vue.use(Vuex)
 
-import localStorage from "store"
 import Color from "color"
+import localStorage from "store"
+import * as zip from "jsziptools/zip"
 import * as advancedPoeFilter from "advanced-poe-filter"
 
 import defaultData from "./defaultData.coffee"
@@ -295,3 +296,32 @@ export default new Vuex.Store
         console.log "Loaded from the LocalStorage."
       catch e
         console.error e.message
+
+    #
+    # zip import/export
+    #
+    exportAll: ({ _commit, state, getters }) ->
+      filters = []
+      forIn getters.simpleScriptTexts, (simpleScriptText, scriptName) =>
+        filters.push { name: "#{state.filterName}_#{scriptName}.filter", buffer: simpleScriptText }
+
+      files = [
+        name: state.filterName
+        dir: filters.concat [
+          { name: "script.advancedfilter", buffer: state.advancedScriptText }
+          { name: "variables.json"       , buffer: JSON.stringify(state.variables) }
+          { name: "colors.json"          , buffer: JSON.stringify(state.colors) }
+          { name: "properties.json"      , buffer: JSON.stringify(state.properties) }
+        ]
+      ]
+
+      zip
+        .pack
+          files: files
+        .then (buffer) =>
+          # TODO: move to utils
+          downLoadLink = document.createElement("a")
+          downLoadLink.download = "#{state.filterName}.zip"
+          downLoadLink.href = URL.createObjectURL new Blob([buffer], type: "application/zip")
+          downLoadLink.dataset.downloadurl = ["application/zip", downLoadLink.download, downLoadLink.href].join(":")
+          downLoadLink.click()
