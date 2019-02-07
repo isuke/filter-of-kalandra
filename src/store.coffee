@@ -8,11 +8,9 @@ import localStorage from "store"
 import * as zip from "jsziptools/zip"
 import * as advancedPoeFilter from "advanced-poe-filter"
 
-import defaultData from "./defaultData.coffee"
+import { forIn, download } from "@/scripts/utils.coffee"
 
-# TODO: move to utils
-forIn = (object, callback) =>
-  Object.keys(object).forEach (key) => callback(object[key], key)
+import defaultData from "./defaultData.coffee"
 
 export default new Vuex.Store
   state:
@@ -172,15 +170,7 @@ export default new Vuex.Store
         console.error error.message
       )
     exportVariables: ({ _commit, state }) ->
-      content = JSON.stringify(state.variables)
-      fileName = "variables.json"
-
-      # TODO: move to utils
-      downLoadLink = document.createElement("a")
-      downLoadLink.download = fileName
-      downLoadLink.href = URL.createObjectURL new Blob([content], type: "application/json")
-      downLoadLink.dataset.downloadurl = ["application/json", downLoadLink.download, downLoadLink.href].join(":")
-      downLoadLink.click()
+      download "variables.json", JSON.stringify(state.variables), "application/json"
 
     #
     # colors
@@ -214,29 +204,13 @@ export default new Vuex.Store
         console.error error.message
       )
     exportColors: ({ _commit, state }) ->
-      content = JSON.stringify(state.colors)
-      fileName = "colors.json"
-
-      # TODO: move to utils
-      downLoadLink = document.createElement("a")
-      downLoadLink.download = fileName
-      downLoadLink.href = URL.createObjectURL new Blob([content], type: "application/json")
-      downLoadLink.dataset.downloadurl = ["application/json", downLoadLink.download, downLoadLink.href].join(":")
-      downLoadLink.click()
+      download "colors.json", JSON.stringify(state.colors), "application/json"
 
     #
     # properties
     #
     exportProperties: ({ _commit, state }) ->
-      content = JSON.stringify(state.properties)
-      fileName = "properties.json"
-
-      # TODO: move to utils
-      downLoadLink = document.createElement("a")
-      downLoadLink.download = fileName
-      downLoadLink.href = URL.createObjectURL new Blob([content], type: "application/json")
-      downLoadLink.dataset.downloadurl = ["application/json", downLoadLink.download, downLoadLink.href].join(":")
-      downLoadLink.click()
+      download "properties.json", JSON.stringify(state.properties), "application/json"
     importPropertiesFromJSONFile: ({ _commit, state }, payload = {}) ->
       new Promise((resolve, reject) =>
         reader = new FileReader()
@@ -319,9 +293,4 @@ export default new Vuex.Store
         .pack
           files: files
         .then (buffer) =>
-          # TODO: move to utils
-          downLoadLink = document.createElement("a")
-          downLoadLink.download = "#{state.filterName}.zip"
-          downLoadLink.href = URL.createObjectURL new Blob([buffer], type: "application/zip")
-          downLoadLink.dataset.downloadurl = ["application/zip", downLoadLink.download, downLoadLink.href].join(":")
-          downLoadLink.click()
+          download "#{state.filterName}.zip", buffer, "application/zip"

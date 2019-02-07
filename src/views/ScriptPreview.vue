@@ -36,13 +36,11 @@ import Color from "color"
 
 import MinimapIcon from "@/components/MinimapIcon.vue"
 
+import { forIn } from "@/scripts/utils.coffee"
+
 import soundAudible from "@/mixins/soundAudible.coffee"
 
 import bgImage from "@/assets/images/preview-bg-200x150.png"
-
-# TODO: move to utils
-forIn = (object, callback) =>
-  Object.keys(object).forEach (key) => callback(object[key], key)
 
 export default
   components:

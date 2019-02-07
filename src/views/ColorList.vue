@@ -21,6 +21,8 @@ ul.color-list
 </template>
 
 <script lang="coffee">
+import { round } from "@/scripts/utils.coffee"
+
 export default
   methods:
     getRGBStr: (index) ->
@@ -42,10 +44,7 @@ export default
         "color": color.hex
         "border": "0.2em #{color.hex} solid"
       }
-    # TODO: move to utils
-    round: (val, precision = 2) ->
-      digit = Math.pow(10, precision)
-      Math.round(val * digit) / digit
+    round: round
 </script>
 
 <style lang="scss" scoped>
