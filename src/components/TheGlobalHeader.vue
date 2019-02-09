@@ -9,12 +9,51 @@ header.the-global-header
       router-link.item.property(tag="li", to="/property") Property
       router-link.item.setting(tag="li", to="/setting") Setting
   .actions
-    button.button Import
+    button.button(@click.prevent="$refs.importAllModal.open()") Import
     button.button(@click.prevent="$store.dispatch('exportAll')") Export
+
+  simple-modal.modal.import(
+    ref="importAllModal",
+    headerStr="Import",
+    execStr="Import",
+    :canExec="canOverwrite",
+    @exec="importAll"
+  )
+    template(v-slot:content)
+      .group
+        input.checkbox(:id="`canOverwrite-${_uid}`", type="checkbox", v-model="canOverwrite")
+        label.label.-attention(:for="`canOverwrite-${_uid}`") All exists data are removed when import JSON !
+      .group
+        input.radio(:id="`importType-dir-${_uid}`", type="radio", :name="`importType-${_uid}`", value="dir", v-model="importType")
+        label.label(:for="`importType-dir-${_uid}`") Import Folder
+        input.radio(:id="`importType-zip-${_uid}`", type="radio", :name="`importType-${_uid}`", value="zip", v-model="importType")
+        label.label(:for="`importType-zip-${_uid}`") Import Zip
+      .group
+        input.file(v-show="importType == 'dir'", type="file", @change="changeImportFileList", webkitdirectory)
+        input.file(v-show="importType == 'zip'", type="file", @change="changeImportZipFile", accept=".zip")
 </template>
 
 <script lang="coffee">
-export default {}
+import SimpleModal from "@/components/SimpleModal.vue"
+
+export default
+  data: ->
+    canOverwrite: false
+    importType: 'dir'
+    importFileList: undefined
+    importZipFile: undefined
+  components:
+    "simple-modal": SimpleModal
+  methods:
+    changeImportFileList: (event) -> @importFileList = event.target.files
+    changeImportZipFile:  (event) -> @importZipFile  = event.target.files[0]
+    importAll: ->
+      if @importType == 'dir'
+        @$store.dispatch('importAllFromFileList', fileList: @importFileList)
+      else
+        @$store.dispatch('importAllFromZip', file: @importZipFile)
+      @$refs.importAllModal.close('execed')
+      @canOverwrite = false
 </script>
 
 <style lang="scss" scoped>
@@ -82,6 +121,38 @@ export default {}
     > .button {
       @include button-skelton($global-accent-color-hue, "night");
       margin-left: var(--space-size-m);
+    }
+  }
+}
+
+.the-global-header > .modal {
+  /deep/ .content {
+    display: flex;
+    flex-direction: column;
+
+    > .group {
+      display: flex;
+      flex-direction: row;
+
+      &:not(:first-child) { margin-top: var(--space-size-m); }
+
+      > .label {
+        margin-right: 1em;
+
+        &.-attention {
+          color: $error-ft-color;
+        }
+      }
+
+      > .checkbox {
+        margin-right: 1em;
+      }
+
+      > .radio {
+        margin-right: 1em;
+      }
+
+      > .file { /* no-op */ }
     }
   }
 }

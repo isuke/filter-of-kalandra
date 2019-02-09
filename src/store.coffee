@@ -99,7 +99,9 @@ export default new Vuex.Store
     #
     # advancedScriptText
     #
-    setAdvancedScriptText: (state, payload = {}) -> state.advancedScriptText = payload.advancedScriptText
+    setAdvancedScriptText: (state, payload = {}) ->
+      state.advancedScriptText = payload.advancedScriptText
+      window._cm.setValue payload.advancedScriptText if window._cm # HACK
 
     #
     # variables
@@ -139,9 +141,23 @@ export default new Vuex.Store
       state.properties.values.forEach (value) => value.splice(payload.index, 1)
   actions:
     #
+    # advancedScriptText
+    #
+    importAdvancedScriptTextFromTextFile: ({ commit }, payload = {}) ->
+      new Promise((resolve, reject) =>
+        reader = new FileReader()
+        reader.onload = (event) => resolve(event.target.result)
+        reader.readAsText payload.file
+      ).then((result) =>
+        commit("setAdvancedScriptText", advancedScriptText: result)
+      ).catch((error) =>
+        console.error error.message
+      )
+
+    #
     # variables
     #
-    importDefaultVariables: ({ _commit, state }, payload = {}) ->
+    importDefaultVariables: ({ state }, payload = {}) ->
       defaultData.variables.forEach (defaultVariable) =>
         index = state.variables.findIndex (v) => v.name == defaultVariable.name
         if index > -1
@@ -151,7 +167,7 @@ export default new Vuex.Store
             console.log "skip '#{defaultVariable.name}'"
         else
           state.variables.push defaultVariable
-    importVariablesFromJSONFile: ({ _commit, state }, payload = {}) ->
+    importVariablesFromJSONFile: ({ state }, payload = {}) ->
       new Promise((resolve, reject) =>
         reader = new FileReader()
         reader.onload = (event) => resolve(event.target.result)
@@ -169,13 +185,13 @@ export default new Vuex.Store
       ).catch((error) =>
         console.error error.message
       )
-    exportVariables: ({ _commit, state }) ->
+    exportVariables: ({ state }) ->
       download "variables.json", JSON.stringify(state.variables), "application/json"
 
     #
     # colors
     #
-    importDefaultColors: ({ _commit, state }, payload = {}) ->
+    importDefaultColors: ({ state }, payload = {}) ->
       defaultData.colors.forEach (defaultColor) =>
         index = state.colors.findIndex (c) => c.name == defaultColor.name
         if index > -1 && payload.canOverwrite
@@ -185,7 +201,7 @@ export default new Vuex.Store
             console.log "skip '#{defaultColor.name}'"
         else
           state.colors.push defaultColor
-    importColorsFromJSONFile: ({ _commit, state }, payload = {}) ->
+    importColorsFromJSONFile: ({ state }, payload = {}) ->
       new Promise((resolve, reject) =>
         reader = new FileReader()
         reader.onload = (event) => resolve(event.target.result)
@@ -203,15 +219,15 @@ export default new Vuex.Store
       ).catch((error) =>
         console.error error.message
       )
-    exportColors: ({ _commit, state }) ->
+    exportColors: ({ state }) ->
       download "colors.json", JSON.stringify(state.colors), "application/json"
 
     #
     # properties
     #
-    exportProperties: ({ _commit, state }) ->
+    exportProperties: ({ state }) ->
       download "properties.json", JSON.stringify(state.properties), "application/json"
-    importPropertiesFromJSONFile: ({ _commit, state }, payload = {}) ->
+    importPropertiesFromJSONFile: ({ state }, payload = {}) ->
       new Promise((resolve, reject) =>
         reader = new FileReader()
         reader.onload = (event) => resolve(event.target.result)
@@ -225,37 +241,37 @@ export default new Vuex.Store
     #
     # local strorage
     #
-    saveFilterNameToLocalStorage: ({ _commit, state }) ->
+    saveFilterNameToLocalStorage: ({ state }) ->
       try
         localStorage.set "filter-of-kalandra_filter-name", state.filterName
         console.log "Save filterName to LocalStorage."         if process.env.NODE_ENV == "development"
       catch e
         console.error e.message
-    saveAdvancedScriptTextToLocalStorage: ({ _commit, state }) ->
+    saveAdvancedScriptTextToLocalStorage: ({ state }) ->
       try
         localStorage.set "filter-of-kalandra_advancedScriptText", state.advancedScriptText
         console.log "Save advancedScriptText to LocalStorage." if process.env.NODE_ENV == "development"
       catch e
         console.error e.message
-    saveVariablesToLocalStorage: ({ _commit, state }) ->
+    saveVariablesToLocalStorage: ({ state }) ->
       try
         localStorage.set "filter-of-kalandra_variables", JSON.stringify(state.variables)
         console.log "Save variables to LocalStorage."          if process.env.NODE_ENV == "development"
       catch e
         console.error e.message
-    saveColorsToLocalStorage: ({ _commit, state }) ->
+    saveColorsToLocalStorage: ({ state }) ->
       try
         localStorage.set "filter-of-kalandra_colors", JSON.stringify(state.colors)
         console.log "Save colors to LocalStorage."             if process.env.NODE_ENV == "development"
       catch e
         console.error e.message
-    savePropertiesToLocalStorage: ({ _commit, state }) ->
+    savePropertiesToLocalStorage: ({ state }) ->
       try
         localStorage.set "filter-of-kalandra_properties", JSON.stringify(state.properties)
         console.log "Save properties to LocalStorage."         if process.env.NODE_ENV == "development"
       catch e
         console.error e.message
-    loadFromLocalStorage: ({ commit, _state }) ->
+    loadFromLocalStorage: ({ commit }) ->
       try
         filterName         = localStorage.get "filter-of-kalandra_filter-name"
         advancedScriptText = localStorage.get "filter-of-kalandra_advancedScriptText"
@@ -274,7 +290,45 @@ export default new Vuex.Store
     #
     # zip import/export
     #
-    exportAll: ({ _commit, state, getters }) ->
+    importAllFromFileList: ({ state, commit, dispatch }, payload = {}) ->
+      Array.prototype.forEach.call payload.fileList, (file) =>
+        switch file.name
+          when "variables.json"
+            dispatch("importVariablesFromJSONFile", file: file, canOverwrite: true)
+          when "colors.json"
+            dispatch("importColorsFromJSONFile", file: file, canOverwrite: true)
+          when "properties.json"
+            dispatch("importPropertiesFromJSONFile", file: file)
+          else
+            match = file.name.match /^(.*)\.(.*)$/
+            name = match[1]
+            ext  = match[2]
+            if ext == 'advancedfilter'
+              commit("setFilterName", filterName: name)
+              dispatch("importAdvancedScriptTextFromTextFile", file: file)
+    importAllFromZip: ({ state, commit, dispatch }, payload = {}) ->
+      zip
+        .unpack
+          buffer: payload.file
+        .then (reader) =>
+          reader.getFileNames().forEach (filePath) =>
+            reader.readFileAsBlob(filePath).then (file) =>
+              fileName = filePath.match(/([^\/]+?)?$/)[1]
+              switch fileName
+                when "variables.json"
+                  dispatch("importVariablesFromJSONFile", file: file, canOverwrite: true)
+                when "colors.json"
+                  dispatch("importColorsFromJSONFile", file: file, canOverwrite: true)
+                when "properties.json"
+                  dispatch("importPropertiesFromJSONFile", file: file)
+                else
+                  match = fileName.match /^(.*)\.(.*)$/
+                  name = match[1]
+                  ext  = match[2]
+                  if ext == 'advancedfilter'
+                    commit("setFilterName", filterName: name)
+                    dispatch("importAdvancedScriptTextFromTextFile", file: file)
+    exportAll: ({ state, getters }) ->
       filters = []
       forIn getters.simpleScriptTexts, (simpleScriptText, scriptName) =>
         filters.push { name: "#{state.filterName}_#{scriptName}.filter", buffer: simpleScriptText }
@@ -282,10 +336,10 @@ export default new Vuex.Store
       files = [
         name: state.filterName
         dir: filters.concat [
-          { name: "script.advancedfilter", buffer: state.advancedScriptText }
-          { name: "variables.json"       , buffer: JSON.stringify(state.variables) }
-          { name: "colors.json"          , buffer: JSON.stringify(state.colors) }
-          { name: "properties.json"      , buffer: JSON.stringify(state.properties) }
+          { name: "#{state.filterName}.advancedfilter", buffer: state.advancedScriptText }
+          { name: "variables.json" , buffer: JSON.stringify(state.variables) }
+          { name: "colors.json"    , buffer: JSON.stringify(state.colors) }
+          { name: "properties.json", buffer: JSON.stringify(state.properties) }
         ]
       ]
 

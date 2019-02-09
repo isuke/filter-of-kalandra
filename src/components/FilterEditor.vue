@@ -66,6 +66,8 @@ export default
       @cm.on "change", debounce () =>
         @$emit 'change', @cm.getValue()
       , 500
+
+      @cm
     scrollToSection: (sectionName) ->
       regexp = new RegExp("(Show|Hide) \"#{sectionName}\"")
       keyDocs = document.getElementsByClassName('cm-m-advanced-poe-filter cm-keyword')
@@ -75,7 +77,7 @@ export default
           window.scrollBy 0, y
           return
   mounted: ->
-    @createCM()
+    window._cm = @createCM() # HACK
 </script>
 
 <style lang="scss" scoped>
