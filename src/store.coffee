@@ -26,6 +26,7 @@ export default new Vuex.Store
       propNames: []
       values: []
     }
+    scriptNumLimit: if process.env.NODE_ENV == "development" then 10 else 2
   getters:
     #
     # advancedScriptText
@@ -90,6 +91,7 @@ export default new Vuex.Store
           result[scriptName] = {} if result[scriptName] == undefined
           result[scriptName][propName] = state.properties.values[i][j]
       result
+    canAddScript: (state, getters) -> getters.scriptNames.length < state.scriptNumLimit
   mutations:
     #
     # filterName
@@ -126,10 +128,15 @@ export default new Vuex.Store
     #
     # properties
     #
-    setProperties: (state, payload = {}) -> state.properties = payload.properties
+    setProperties: (state, payload = {}) ->
+      state.properties =
+        scriptNames: payload.properties.scriptNames.slice(0, state.scriptNumLimit)
+        propNames:   payload.properties.propNames.slice(0, state.scriptNumLimit)
+        values:      payload.properties.values.slice(0, state.scriptNumLimit)
     addScriptToProperties: (state, payload = {}) ->
-      state.properties.values.push new Array(state.properties.propNames.length).fill("")
-      state.properties.scriptNames.push "New Script #{state.properties.scriptNames.length + 1}"
+      if state.properties.scriptNames.length < state.scriptNumLimit
+        state.properties.values.push new Array(state.properties.propNames.length).fill("")
+        state.properties.scriptNames.push "New Script #{state.properties.scriptNames.length + 1}"
     removeScriptFromProperties: (state, payload = {}) ->
       state.properties.scriptNames.splice(payload.index, 1)
       state.properties.values.splice(payload.index, 1)
@@ -227,13 +234,13 @@ export default new Vuex.Store
     #
     exportProperties: ({ state }) ->
       download "properties.json", JSON.stringify(state.properties), "application/json"
-    importPropertiesFromJSONFile: ({ state }, payload = {}) ->
+    importPropertiesFromJSONFile: ({ state, commit }, payload = {}) ->
       new Promise((resolve, reject) =>
         reader = new FileReader()
         reader.onload = (event) => resolve(event.target.result)
         reader.readAsText payload.file
       ).then((result) =>
-        state.properties = JSON.parse(result)
+        commit "setProperties", properties: JSON.parse(result)
       ).catch((error) =>
         console.error error.message
       )

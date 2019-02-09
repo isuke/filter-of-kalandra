@@ -19,7 +19,7 @@
     button.button(@click="$store.commit('addPropsToProperties')") Add New Property
 
   .newscript
-    button.button(@click="$store.commit('addScriptToProperties')") Add New Script
+    button.button(@click="$store.commit('addScriptToProperties')", :disabled="! $store.getters.canAddScript") Add New Script
 </template>
 
 <script lang="coffee">
