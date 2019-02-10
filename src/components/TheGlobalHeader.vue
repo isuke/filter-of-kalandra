@@ -9,8 +9,8 @@ header.the-global-header
       router-link.item.property(tag="li", to="/property") Property
       router-link.item.setting(tag="li", to="/setting") Setting
   .actions
-    button.button(@click.prevent="$refs.importAllModal.open()") Import
-    button.button(@click.prevent="$store.dispatch('exportAll')") Export
+    button.button.import(@click.prevent="$refs.importAllModal.open()") Import
+    button.button.export(@click.prevent="$store.dispatch('exportAll')") Export
 
   simple-modal.modal.import(
     ref="importAllModal",
@@ -121,6 +121,10 @@ export default
     > .button {
       @include button-skelton($global-accent-color-hue, "night");
       margin-left: var(--space-size-m);
+
+      &.import {
+        &::after { content: " ..."; }
+      }
     }
   }
 }

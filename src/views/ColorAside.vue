@@ -32,6 +32,8 @@ export default {}
     max-height: calc(100vh - #{$global-header-height} - #{$sub-header-height});
     overflow-y: scroll;
 
+    @include hide-scrollbar();
+
     > .item {
       cursor: pointer;
       text-decoration: underline;

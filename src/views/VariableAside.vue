@@ -33,6 +33,8 @@ export default {}
     overflow-y: scroll;
     @include bg-ft-color($variable-color-hue, "night");
 
+    @include hide-scrollbar();
+
     > .item {
       cursor: pointer;
       text-decoration: underline;

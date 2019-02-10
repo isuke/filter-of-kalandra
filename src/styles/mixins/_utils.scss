@@ -1,0 +1,7 @@
+@mixin hide-scrollbar() {
+  scrollbar-width: none; /* for Firefox */
+
+  &::-webkit-scrollbar {
+    display: none; /* for Chrome */
+  }
+}

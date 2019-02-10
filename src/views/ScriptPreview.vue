@@ -152,6 +152,8 @@ $my-header-z-index: $base-z-index + 10;
     font-size: var(--ft-size-l);
     background-color: $global-bg-color-day;
     z-index: $my-header-z-index;
+
+    @include hide-scrollbar();
   }
 
   > .blockname {
