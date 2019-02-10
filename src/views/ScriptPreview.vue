@@ -165,6 +165,8 @@ $my-header-z-index: $base-z-index + 10;
     max-width: 24rem;
     overflow: scroll;
     white-space: nowrap;
+
+    @include hide-scrollbar();
   }
 
   > .image {
