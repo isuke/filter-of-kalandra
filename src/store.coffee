@@ -5,7 +5,6 @@ Vue.use(Vuex)
 
 import Color from "color"
 import localStorage from "store"
-import * as zip from "jsziptools/zip"
 import * as advancedPoeFilter from "advanced-poe-filter"
 
 import { forIn, download } from "@/scripts/utils.coffee"
@@ -313,6 +312,8 @@ export default new Vuex.Store
               commit("setFilterName", filterName: name)
               dispatch("importAdvancedScriptTextFromTextFile", file: file)
     importAllFromZip: ({ state, commit, dispatch }, payload = {}) ->
+      zip = await `import(/* webpackChunkName: "zip"*/ "jsziptools/zip")`
+
       zip
         .unpack
           buffer: payload.file
@@ -335,6 +336,8 @@ export default new Vuex.Store
                     commit("setFilterName", filterName: name)
                     dispatch("importAdvancedScriptTextFromTextFile", file: file)
     exportAll: ({ state, getters }) ->
+      zip = await `import(/* webpackChunkName: "zip"*/ "jsziptools/zip")`
+
       filters = []
       forIn getters.simpleScriptTexts, (simpleScriptText, scriptName) =>
         filters.push { name: "#{state.filterName}_#{scriptName}.filter", buffer: simpleScriptText }

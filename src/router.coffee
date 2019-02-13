@@ -1,15 +1,10 @@
 import Vue from "vue"
 import Router from "vue-router"
 
-import Home          from "./views/Home.vue"
 import Script        from "./views/Script.vue"
 import ScriptEditor  from "./views/ScriptEditor.vue"
 import ScriptPreview from "./views/ScriptPreview.vue"
 import ScriptText    from "./views/ScriptText.vue"
-import Variable      from "./views/Variable.vue"
-import Color         from "./views/Color.vue"
-import Property      from "./views/Property.vue"
-import Setting       from "./views/Setting.vue"
 
 Vue.use Router
 
@@ -20,7 +15,7 @@ export default new Router
     {
       path: "/"
       name: "home"
-      component: Home
+      component: => `import(/* webpackChunkName: "home"*/ "./views/Home.vue")`
     }
     {
       path: "/script"
@@ -45,21 +40,21 @@ export default new Router
     {
       path: "/variable"
       name: "variable"
-      component: Variable
+      component: => `import(/* webpackChunkName: "variable"*/ "./views/Variable.vue")`
     }
     {
       path: "/color"
       name: "color"
-      component: Color
+      component: => `import(/* webpackChunkName: "color"*/ "./views/Color.vue")`
     }
     {
       path: "/property"
       name: "property"
-      component: Property
+      component: => `import(/* webpackChunkName: "property"*/ "./views/Property.vue")`
     }
     {
       path: "/setting"
       name: "setting"
-      component: Setting
+      component: => `import(/* webpackChunkName: "setting"*/ "./views/Setting.vue")`
     }
   ]
