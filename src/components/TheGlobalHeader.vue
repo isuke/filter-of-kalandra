@@ -10,7 +10,7 @@ header.the-global-header
       router-link.item.setting(tag="li", to="/setting") Setting
   .actions
     button.button.import(@click.prevent="$refs.importAllModal.open()") Import
-    button.button.export(@click.prevent="$store.dispatch('exportAll')") Export
+    button.button.export(@click.prevent="exportAll") Export
 
   simple-modal.modal.import(
     ref="importAllModal",
@@ -48,12 +48,16 @@ export default
     changeImportFileList: (event) -> @importFileList = event.target.files
     changeImportZipFile:  (event) -> @importZipFile  = event.target.files[0]
     importAll: ->
+      @$ga.event('import button', 'click') if process.env.NODE_ENV == "production"
       if @importType == 'dir'
         @$store.dispatch('importAllFromFileList', fileList: @importFileList)
       else
         @$store.dispatch('importAllFromZip', file: @importZipFile)
       @$refs.importAllModal.close('execed')
       @canOverwrite = false
+    exportAll: ->
+      @$ga.event('export button', 'click') if process.env.NODE_ENV == "production"
+      @$store.dispatch('exportAll')
 </script>
 
 <style lang="scss" scoped>
