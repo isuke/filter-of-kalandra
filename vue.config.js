@@ -1,3 +1,5 @@
+const HtmlWebpackPlugin = require("@vue/preload-webpack-plugin");
+const PreloadWebpackPlugin = require("@vue/preload-webpack-plugin");
 const MonacoWebpackPlugin = require("monaco-editor-webpack-plugin");
 
 process.env.VUE_APP_VERSION = require("./package.json").version;
@@ -21,6 +23,16 @@ module.exports = {
         maxSize: 250000
       }
     },
-    plugins: [new MonacoWebpackPlugin({ languages: [] })]
+    plugins: [
+      new HtmlWebpackPlugin(),
+      new PreloadWebpackPlugin({
+        rel: "preload",
+        include: {
+          type: "asyncChunks",
+          entries: ["monaco"]
+        }
+      }),
+      new MonacoWebpackPlugin({ languages: [] })
+    ]
   }
 };
