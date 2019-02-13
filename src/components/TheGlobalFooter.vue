@@ -3,7 +3,7 @@ footer.the-global-footer
   .copyright © 2019 HUJIYAMA Isuke
   address.info
     ul.list
-      li.item: a.link(href="https://github.com/isuke", target="_blank") https://github.com/isuke
+      li.item: a.link(href="https://github.com/isuke", target="_blank", rel="noopener noreferrer") https://github.com/isuke
 </template>
 
 <script lang="coffee">
