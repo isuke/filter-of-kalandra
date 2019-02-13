@@ -5,7 +5,6 @@
 
 <script lang="coffee">
 import debounce from "lodash.debounce"
-import * as monaco from 'monaco-editor'
 
 export default
   model:
@@ -29,19 +28,20 @@ export default
     syntaxError: (e) -> null # TODO
   methods:
     createMonaco: ->
-      editor = monaco.editor.create @$refs.textarea,
-        value: @value
-        theme: "advancedPoeFilterTheme"
-        language: "advancedPoeFilter"
-        wordWrap: 'bounded'
-        wordWrapColumn: 160
-        wordWrapMinified: true
-        wrappingIndent: "indent"
+      `import(/* webpackChunkName: "monaco" */ "monaco-editor")`.then (monaco) =>
+        @editor = monaco.editor.create @$refs.textarea,
+          value: @value
+          theme: "advancedPoeFilterTheme"
+          language: "advancedPoeFilter"
+          wordWrap: 'bounded'
+          wordWrapColumn: 160
+          wordWrapMinified: true
+          wrappingIndent: "indent"
 
-      editor.onDidChangeModelContent debounce =>
-        @$emit 'change', editor.getValue()
+        @editor.onDidChangeModelContent debounce =>
+          @$emit 'change', @editor.getValue()
 
-      editor
+        window.editor = @editor # HACK
     scrollToSection: (sectionName) ->
       match = @editor.getModel().findMatches(new RegExp("^(Show|Hide) \"#{sectionName}\""), null, true, true, null, false, 1)[0]
       if match
@@ -50,8 +50,7 @@ export default
         @editor.setPosition(lineNumber: lineNumber, column: 1)
         @editor.focus()
   mounted: ->
-    @editor = @createMonaco()
-    window.editor = @editor # HACK
+    @createMonaco()
 </script>
 
 <style lang="scss" scoped>

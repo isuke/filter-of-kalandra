@@ -329,7 +329,7 @@ export default new Vuex.Store
               commit("setFilterName", filterName: name)
               dispatch("importAdvancedScriptTextFromTextFile", file: file)
     importAllFromZip: ({ state, commit, dispatch }, payload = {}) ->
-      zip = await `import(/* webpackChunkName: "zip"*/ "jsziptools/zip")`
+      zip = await `import(/* webpackChunkName: "zip" */ "jsziptools/zip")`
 
       zip
         .unpack
@@ -353,7 +353,7 @@ export default new Vuex.Store
                     commit("setFilterName", filterName: name)
                     dispatch("importAdvancedScriptTextFromTextFile", file: file)
     exportAll: ({ state, getters }) ->
-      zip = await `import(/* webpackChunkName: "zip"*/ "jsziptools/zip")`
+      zip = await `import(/* webpackChunkName: "zip" */ "jsziptools/zip")`
 
       filters = []
       forIn getters.simpleScriptTexts, (simpleScriptText, scriptName) =>
