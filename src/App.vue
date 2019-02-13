@@ -21,42 +21,54 @@ export default
     "the-global-header": TheGlobalHeader
     "the-global-footer": TheGlobalFooter
   computed:
+    filterName:         -> @$store.state.filterName
     advancedScriptText: -> @$store.state.advancedScriptText
     variables:          -> @$store.state.variables
     colors:             -> @$store.state.colors
     properties:         -> @$store.state.properties
-    filterName:         -> @$store.state.filterName
   watch:
+    filterName: debounce ->
+      @$store.dispatch("saveFilterNameToLocalStorage")
+        .then(=> console.log "Save FilterName to LocalStorage." if process.env.NODE_ENV == "development")
+        .catch((e) => console.error e.message)
+    , 1000
     advancedScriptText: debounce ->
       @$store.dispatch("saveAdvancedScriptTextToLocalStorage")
+        .then(=> console.log "Save AdvancedScriptText to LocalStorage." if process.env.NODE_ENV == "development")
+        .catch((e) => console.error e.message)
     , 1000
     variables:
       handler: debounce ->
         @$store.dispatch("saveVariablesToLocalStorage")
+          .then(=> console.log "Save Variables to LocalStorage." if process.env.NODE_ENV == "development")
+          .catch((e) => console.error e.message)
       , 1000
       deep: true
     colors:
       handler: debounce ->
         @$store.dispatch("saveColorsToLocalStorage")
+          .then(=> console.log "Save Colors to LocalStorage." if process.env.NODE_ENV == "development")
+          .catch((e) => console.error e.message)
       , 1000
       deep: true
     properties:
       handler: debounce ->
         @$store.dispatch("savePropertiesToLocalStorage")
+          .then(=> console.log "Save Properties to LocalStorage." if process.env.NODE_ENV == "development")
+          .catch((e) => console.error e.message)
       , 1000
       deep: true
-    filterName: debounce ->
-      @$store.dispatch("saveFilterNameToLocalStorage")
-    , 1000
-  methods:
-    setSamples: ->
-      @$store.commit "setAdvancedScriptText", advancedScriptText: sample.advancedScriptText
-      @$store.dispatch('importDefaultVariables', { canOverwrite: false })
-      @$store.dispatch('importDefaultColors', { canOverwrite: false })
-      @$store.commit "setProperties", properties: sample.properties
   created: ->
-    @setSamples()
-    @$store.dispatch "loadFromLocalStorage"
+    @$store.dispatch("loadFromLocalStorage")
+      .then((loaded) =>
+        console.log "Loaded from the LocalStorage." if process.env.NODE_ENV == "development"
+        @$store.commit "setAdvancedScriptText", advancedScriptText: sample.advancedScriptText unless loaded.includes "advancedScriptText"
+        @$store.dispatch 'importDefaultVariables', canOverwrite: false                        unless loaded.includes "variables"
+        @$store.dispatch 'importDefaultColors', canOverwrite: false                           unless loaded.includes "colors"
+        @$store.commit "setProperties", properties: sample.properties                         unless loaded.includes "properties"
+      ).catch((e) =>
+        console.error e.message
+      )
 </script>
 
 <style lang="scss" scoped>

@@ -4,7 +4,7 @@ import Vuex from "vuex"
 Vue.use(Vuex)
 
 import Color from "color"
-import localStorage from "store"
+import localStorage from "store/dist/store.modern.min.js"
 import * as advancedPoeFilter from "advanced-poe-filter"
 
 import { forIn, download } from "@/scripts/utils.coffee"
@@ -247,50 +247,67 @@ export default new Vuex.Store
     # local strorage
     #
     saveFilterNameToLocalStorage: ({ state }) ->
-      try
-        localStorage.set "filter-of-kalandra_filter-name", state.filterName
-        console.log "Save filterName to LocalStorage."         if process.env.NODE_ENV == "development"
-      catch e
-        console.error e.message
+      new Promise (resolve, reject) =>
+        try
+          localStorage.set "filter-of-kalandra_filterName", state.filterName
+          resolve()
+        catch e
+          reject(e)
     saveAdvancedScriptTextToLocalStorage: ({ state }) ->
-      try
-        localStorage.set "filter-of-kalandra_advancedScriptText", state.advancedScriptText
-        console.log "Save advancedScriptText to LocalStorage." if process.env.NODE_ENV == "development"
-      catch e
-        console.error e.message
+      new Promise (resolve, reject) =>
+        try
+          localStorage.set "filter-of-kalandra_advancedScriptText", state.advancedScriptText
+          resolve()
+        catch e
+          reject(e)
     saveVariablesToLocalStorage: ({ state }) ->
-      try
-        localStorage.set "filter-of-kalandra_variables", JSON.stringify(state.variables)
-        console.log "Save variables to LocalStorage."          if process.env.NODE_ENV == "development"
-      catch e
-        console.error e.message
+      new Promise (resolve, reject) =>
+        try
+          localStorage.set "filter-of-kalandra_variables", JSON.stringify(state.variables)
+          resolve()
+        catch e
+          reject(e)
     saveColorsToLocalStorage: ({ state }) ->
-      try
-        localStorage.set "filter-of-kalandra_colors", JSON.stringify(state.colors)
-        console.log "Save colors to LocalStorage."             if process.env.NODE_ENV == "development"
-      catch e
-        console.error e.message
+      new Promise (resolve, reject) =>
+        try
+          localStorage.set "filter-of-kalandra_colors", JSON.stringify(state.colors)
+          resolve()
+        catch e
+          reject(e)
     savePropertiesToLocalStorage: ({ state }) ->
-      try
-        localStorage.set "filter-of-kalandra_properties", JSON.stringify(state.properties)
-        console.log "Save properties to LocalStorage."         if process.env.NODE_ENV == "development"
-      catch e
-        console.error e.message
+      new Promise (resolve, reject) =>
+        try
+          localStorage.set "filter-of-kalandra_properties", JSON.stringify(state.properties)
+          resolve()
+        catch e
+          reject(e)
     loadFromLocalStorage: ({ commit }) ->
-      try
-        filterName         = localStorage.get "filter-of-kalandra_filter-name"
-        advancedScriptText = localStorage.get "filter-of-kalandra_advancedScriptText"
-        variables          = localStorage.get "filter-of-kalandra_variables"
-        colors             = localStorage.get "filter-of-kalandra_colors"
-        properties         = localStorage.get "filter-of-kalandra_properties"
-        commit "setFilterName", filterName: filterName                         if filterName
-        commit "setAdvancedScriptText", advancedScriptText: advancedScriptText if advancedScriptText
-        commit "setVariables" ,  variables: JSON.parse variables               if variables
-        commit "setColors"    ,     colors: JSON.parse colors                  if colors
-        commit "setProperties", properties: JSON.parse properties              if properties
-        console.log "Loaded from the LocalStorage."
-      catch e
-        console.error e.message
+      new Promise (resolve, reject) =>
+        try
+          loaded = []
+          filterName         = localStorage.get "filter-of-kalandra_filterName"
+          advancedScriptText = localStorage.get "filter-of-kalandra_advancedScriptText"
+          variables          = localStorage.get "filter-of-kalandra_variables"
+          colors             = localStorage.get "filter-of-kalandra_colors"
+          properties         = localStorage.get "filter-of-kalandra_properties"
+          if filterName
+            commit "setFilterName", filterName: filterName
+            loaded.push 'filterName'
+          if advancedScriptText
+            commit "setAdvancedScriptText", advancedScriptText: advancedScriptText
+            loaded.push 'advancedScriptText'
+          if variables
+            commit "setVariables", variables: JSON.parse variables
+            loaded.push 'variables'
+          if colors
+            commit "setColors", colors: JSON.parse colors
+            loaded.push 'colors'
+          if properties
+            commit "setProperties", properties: JSON.parse properties
+            loaded.push 'properties'
+          resolve loaded
+        catch e
+          reject e
 
     #
     # zip import/export
