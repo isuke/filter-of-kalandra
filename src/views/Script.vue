@@ -32,7 +32,7 @@ export default
     grid-column: 2;
     position: sticky;
     top: $global-header-height;
-    z-index: $codemirror-z-index + 10;
+    z-index: $editor-z-index + 10;
   }
 
   > .aside {

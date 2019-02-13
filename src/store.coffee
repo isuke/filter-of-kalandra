@@ -62,7 +62,6 @@ export default new Vuex.Store
       result = {}
 
       state.variables.forEach (variable) =>
-        # TODO: expand '#'
         result[variable.name] = if variable.items.length <= 1 then variable.items[0] else variable.items
 
       state.colors.forEach (color, index) =>
@@ -103,7 +102,7 @@ export default new Vuex.Store
     #
     setAdvancedScriptText: (state, payload = {}) ->
       state.advancedScriptText = payload.advancedScriptText
-      window._cm.setValue payload.advancedScriptText if window._cm # HACK
+      window.editor.setValue payload.advancedScriptText if window.editor # HACK
 
     #
     # variables

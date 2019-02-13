@@ -75,7 +75,7 @@ export default
     left: 0;
     width: 100%;
     height: $global-header-height;
-    z-index: $codemirror-z-index + 10;
+    z-index: $editor-z-index + 10;
   }
 
   > .main {

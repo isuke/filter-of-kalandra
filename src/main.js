@@ -3,9 +3,6 @@
 //
 import "destyle.css";
 import "./styles/sweep.css";
-import "codemirror/lib/codemirror.css";
-import "codemirror/addon/fold/foldgutter.css";
-import "./styles/codemirror.scss";
 import "./styles/_bases.scss";
 
 //
@@ -15,8 +12,8 @@ import Vue from "vue";
 import App from "./App.vue";
 import router from "./router.coffee";
 import store from "./store.coffee";
+import "./scripts/monacoAdvancedPoeFilter.coffee";
 import "./registerServiceWorker";
-import "./scripts/codemirrorAdvancedPoeFilter";
 
 Vue.config.productionTip = false;
 
