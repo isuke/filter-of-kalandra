@@ -4,7 +4,7 @@
   .subheader.scriptname(v-for="scriptName in $store.getters.scriptNames") {{ scriptName }}
 
   template(v-for="(scripts, sectionName) in simpleScriptObjectsForPreview")
-    .sectionname {{ sectionName }}
+    .sectionname(:id="sectionName") {{ sectionName }}
 
     template(v-for="(blocks, blockName) in scripts")
       .blockname {{ blockName }}
@@ -99,6 +99,12 @@ export default
         when "Brown"  then { "background-color": "hsla( 20, 100%, 45%, 0.6)", color: "white" }
         when "White"  then { "background-color": "rgba(255, 255, 255 , 0.6)", color: "black" }
         when "Yellow" then { "background-color": "hsla( 60, 100%, 45%, 0.6)", color: "black" }
+    scrollToSection: (sectionName) ->
+      # HACK
+      window.scrollTo 0, 0
+      y = document.getElementById(sectionName).getBoundingClientRect().top - 48 - 48 # TODO: header height
+      window.scrollBy 0, y
+
 </script>
 
 <style lang="scss" scoped>
