@@ -12,7 +12,7 @@ export default
 
 # The simplest filter is applied as follows
 
-Show "Simple Example"
+Show "Simple Sample"
     Class "Currency"
     SetBackgroundColor 50 0 0 255
 
@@ -23,7 +23,7 @@ Show "Simple Example"
 # This Script is converted as follows by compile.
 
 #: ################################################################################
-#: # Simple Example                                                               #
+#: # Simple Sample                                                                #
 #: ################################################################################
 #: Show
 #:     Class "Currency"
@@ -37,7 +37,7 @@ Show "Simple Example"
 # These are 'Variable'.
 # You can use these by 'Var' keyword.
 
-Show "Variable Example"
+Show "Variable Sample"
     Class "Gem"
     BaseType Var("White Gems")
     SetBackgroundColor 255 255 255 255
@@ -45,7 +45,7 @@ Show "Variable Example"
 # This Script is converted as follows by compile.
 
 #: ################################################################################
-#: # Variable Example                                                             #
+#: # Variable Sample                                                              #
 #: ################################################################################
 #: Show
 #:     Class "Gem"
@@ -61,13 +61,13 @@ Show "Variable Example"
 # This page makes color management easier.
 # How to use 'Color' is exactly the same as 'Variable'.
 
-Show "Color Example"
+Show "Color Sample"
     Class "Currency"
     SetBackgroundColor 50 0 0 255
     SetTextColor Var("Currency Color")
 
 #: ################################################################################
-#: # Color Example                                                                #
+#: # Color Sample                                                                 #
 #: ################################################################################
 #: Show
 #:     Class "Currency"
@@ -84,7 +84,7 @@ Show "Color Example"
 
 # You can use these by 'Prop' keyword.
 
-Show "Property Example"
+Show "Property Sample"
     Class "Map"
     MapTier >= Prop("Show Map Tire")
     SetBackgroundColor 10 10 10 255
@@ -92,7 +92,7 @@ Show "Property Example"
 # This Script is converted as follows TWO FILES by compile.
 
 #: ################################################################################
-#: # Property Example                                                             #
+#: # Property Sample                                                              #
 #: ################################################################################
 #: Show
 #:     Class "Map"
@@ -100,7 +100,7 @@ Show "Property Example"
 #:     SetBackgroundColor 10 10 10 255
 
 #: ################################################################################
-#: # Property Example                                                             #
+#: # Property Sample                                                              #
 #: ################################################################################
 #: Show
 #:     Class "Map"
@@ -118,7 +118,7 @@ Show "Property Example"
 # 'Mixin' is very important keyword.
 # First, please look at the script below.
 
-Show "Mixin Example"
+Show "Mixin Sample"
     Class "Gem"
     SetBorderColor       Var("Skill Gem Color")
     SetTextColor         255 255 255
@@ -136,7 +136,7 @@ Show "Mixin Example"
 # This Script is converted as follows by compile.
 
 #: ################################################################################
-#: # Mixin Example                                                                #
+#: # Mixin Sample                                                                 #
 #: ################################################################################
 #: # Level is "High Level"
 #: Show
@@ -168,9 +168,9 @@ Show "Mixin Example"
 # while those with GemLevel equal to or larger than 18 are setFontSize 38,
 # and those with GemLevel equal to or larger than 10 are indicated with SetFontSize 36.
 
-# Let's see a more complicated example.
+# Let's see a more complicated sample.
 
-Show "Complex Mixin Example"
+Show "Complex Mixin Sample"
     Class "Gems"
     SetBorderColor       Var("Skill Gem Color")
     SetTextColor         255 255 255
@@ -196,7 +196,7 @@ Show "Complex Mixin Example"
 # This Script is converted as follows by compile.
 
 #: ################################################################################
-#: # Complex Mixin Example                                                        #
+#: # Complex Mixin Sample                                                         #
 #: ################################################################################
 #: # Level is "High Level" - Special is "Drop Only"
 #: Show
@@ -286,7 +286,7 @@ Show "Complex Mixin Example"
 
 # Mixin can nest.
 
-Hide "Nested Mixin Example"
+Hide "Nested Mixin Sample"
     Class "Gloves" "Boots" "Body Armours" "Helmets" "Shields"
 
     Mixin "Rarity"
@@ -314,7 +314,7 @@ Hide "Nested Mixin Example"
 # This Script is converted as follows by compile.
 
 #: ################################################################################
-#: # Nested Mixin Example                                                         #
+#: # Nested Mixin Sample                                                          #
 #: ################################################################################
 #: # Rarity is "Rare" - Shaper/Elder is "Shaper"
 #: Show
@@ -360,6 +360,59 @@ Hide "Nested Mixin Example"
 #:     Class "Gloves" "Boots" "Body Armours" "Helmets" "Shields"
 #:     DisableDropSound True
 #:
+
+## ↓ Unorganized Documents ↓ ##
+
+Show "Color Function Sample"
+    SetBackgroundColor Var("Skill Gem Color")
+    SetFontSize 40
+
+    Mixin "Function"
+        Show "Negate()"
+            Quality = 1
+            SetBackgroundColor Negate()
+        Show "Grayscale()"
+            Quality = 2
+            SetBackgroundColor Grayscale()
+        Show "Saturate(90%)"
+            Quality = 3
+            SetBackgroundColor Saturate(90%)
+        Show "Desaturate(90%)"
+            Quality = 4
+            SetBackgroundColor Desaturate(90%)
+        Show "Lighten(60%)"
+            Quality = 5
+            SetBackgroundColor Lighten(60%)
+        Show "Darken(60%)"
+            Quality = 6
+            SetBackgroundColor Darken(60%)
+        Show "Whiten(90%)"
+            Quality = 7
+            SetBackgroundColor Whiten(90%)
+        Show "Blacken(90%)"
+            Quality = 8
+            SetBackgroundColor Blacken(90%)
+        Show "Hex(360)"
+            Quality = 9
+            SetBackgroundColor Hex(360)
+        Show "Saturation(10%)"
+            Quality = 10
+            SetBackgroundColor Saturation(10%)
+        Show "Lightness(10%)"
+            Quality = 11
+            SetBackgroundColor Lightness(10%)
+
+Show "FontSize Function Sample"
+    SetBackgroundColor Var("Skill Gem Color")
+    SetFontSize 32
+
+    Mixin "Function"
+        Show "Plus(4)"
+            Quality = 1
+            SetFontSize Plus(4)
+        Show "Minus(4)"
+            Quality = 2
+            SetFontSize Minus(4)
 
   """
   properties: {
