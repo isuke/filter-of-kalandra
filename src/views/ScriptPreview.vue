@@ -1,5 +1,5 @@
 <template lang="pug">
-.script-preview
+.script-preview(ref="self")
   .subheader.none
   .subheader.scriptname(v-for="scriptName in $store.getters.scriptNames") {{ scriptName }}
 
@@ -13,22 +13,24 @@
         .image
           img.back(:src="bgImage")
           .item
-            minimap-icon.icon(
-              :size="block.actions.MinimapIcon.size",
-              :color="block.actions.MinimapIcon.color",
-              :shape="block.actions.MinimapIcon.shape",
-              v-if="block.activity === 'Show' && block.actions.MinimapIcon"
-            )
+            .iconwrap
+              minimap-icon.icon(
+                :size="block.actions.MinimapIcon.size",
+                :color="block.actions.MinimapIcon.color",
+                :shape="block.actions.MinimapIcon.shape",
+                v-if="block.activity === 'Show' && block.actions.MinimapIcon"
+              )
             span.name(
               :style="getNameStyle(block.actions)",
               @click.prevent="playAlertSound(block.actions)",
-              v-if="block.activity === 'Show'"
+              v-show="block.activity === 'Show' || isAlt"
             ) Item Name
-            .playeffect(
-              :class="{ '-temp': block.actions.PlayEffect.temp }",
-              :style="getPlayEffectStyle(block.actions.PlayEffect)",
-              v-if="block.activity === 'Show' && block.actions.PlayEffect"
-            )
+            .playeffectwrap
+              .playeffect(
+                :class="{ '-temp': block.actions.PlayEffect.temp }",
+                :style="getPlayEffectStyle(block.actions.PlayEffect)",
+                v-if="block.activity === 'Show' && block.actions.PlayEffect"
+              )
 </template>
 
 <script lang="coffee">
@@ -47,6 +49,7 @@ export default
     "minimap-icon": MinimapIcon
   data: ->
     bgImage: bgImage
+    isAlt: false
   mixins: [
     soundAudible
   ]
@@ -77,7 +80,7 @@ export default
         "border": "0.2em #{@getColorStr(actions.SetBorderColor)} solid" if actions.SetBorderColor
         "color": @getColorStr(actions.SetTextColor)                     if actions.SetTextColor
         "background-color": @getColorStr(actions.SetBackgroundColor)    if actions.SetBackgroundColor
-        "font-size": "#{Math.round(actions.SetFontSize / 2)}px"         if actions.SetFontSize
+        "font-size": "#{Math.round(actions.SetFontSize / 2.5)}px"         if actions.SetFontSize
       }
     getColorStr: (colorObject) ->
       color = new Color(colorObject.rgb)
@@ -104,7 +107,11 @@ export default
       window.scrollTo 0, 0
       y = document.getElementById(sectionName).getBoundingClientRect().top - 48 - 48 # TODO: header height
       window.scrollBy 0, y
-
+  mounted: ->
+    window.addEventListener 'keydown', (event) =>
+      @isAlt = true if event.key == 'Alt'
+    window.addEventListener 'keyup', (event) =>
+      @isAlt = false if event.key == 'Alt'
 </script>
 
 <style lang="scss" scoped>
@@ -116,6 +123,7 @@ $my-header-z-index: $base-z-index + 10;
   grid-column-gap: var(--space-size-s);
   padding-left: var(--space-size-m);
   padding-right: var(--space-size-m);
+  padding-bottom: var(--space-size-m);
 
   background-color: $global-bg-color-day;
   color: $global-ft-color-day;
@@ -194,30 +202,41 @@ $my-header-z-index: $base-z-index + 10;
       position: absolute;
       display: flex;
       align-items: center;
+      @ghost size(100%);
+      white-space: nowrap;
 
-      > .icon { /* no-op */ }
+      > .iconwrap {
+        @ghost size(32px);
+        @ghost margin-left-right(var(--space-size-xs));
+
+        > .icon { /* no-op */ }
+      }
 
       > .name {
         margin: auto;
         padding: 0.5em;
-        opacity: 0.5;
+        opacity: 0.5; // TODO
         background-color: black;
         color: white;
-        font-size: 11px;
+        font-size: 11px; // Override by js
         cursor: pointer;
       }
 
-      > .playeffect {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        @ghost circle(1.5rem);
-        margin-left: var(--space-size-s);
+      > .playeffectwrap {
+        @ghost size(32px);
+        @ghost margin-left-right(var(--space-size-xs));
 
-        &.-temp::before {
-          content: "T";
-          font-size: var(--ft-size-m);
-          font-weight: $bold-font-weight;
+        > .playeffect {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          @ghost circle(32px);
+
+          &.-temp::before {
+            content: "T";
+            font-size: var(--ft-size-m);
+            font-weight: $bold-font-weight;
+          }
         }
       }
     }
