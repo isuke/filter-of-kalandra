@@ -1,5 +1,5 @@
 <template lang="pug">
-.filer-editor
+.filer-editor(:class="{ '-error': hasSyntaxError }")
   .textarea(ref="textarea")
 </template>
 
@@ -24,8 +24,26 @@ export default
       default: -> undefined
   data: ->
     editor: undefined
+    errorDecorations: []
   watch:
-    syntaxError: (e) -> null # TODO
+    syntaxError: (error) ->
+      if error # TODO: chack prototype is peg$SyntaxError
+        location = error.location
+        @errorDecorations = @editor.deltaDecorations @errorDecorations, [
+          {
+            range: new monaco.Range(location.start.line, location.start.column, location.end.line, location.end.column)
+            options:
+              inlineClassName: "error"
+              linesDecorationsClassName: "error-gutter"
+              hoverMessage:
+                value: error.message
+          }
+        ]
+      else
+        @editor.deltaDecorations @errorDecorations, []
+        @errorDecorations = []
+  computed:
+    hasSyntaxError: -> !! @syntaxError
   methods:
     createMonaco: ->
       `import(/* webpackChunkName: "monaco" */ "monaco-editor")`.then (monaco) =>
@@ -56,6 +74,11 @@ export default
 <style lang="scss" scoped>
 .filer-editor {
   height: 100%;
+  border: $border-height-bold $global-bg-color-day solid;
+
+  &.-error {
+    border: $border-height-bold $error-ft-color solid;
+  }
 
   > .textarea {
     height: 100%;
