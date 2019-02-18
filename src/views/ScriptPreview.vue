@@ -77,14 +77,14 @@ export default
       temp.join(' - ')
     getNameStyle: (actions) ->
       {
-        "border": "0.2em #{@getColorStr(actions.SetBorderColor)} solid" if actions.SetBorderColor
+        "border": "1px #{@getColorStr(actions.SetBorderColor)} solid"   if actions.SetBorderColor
         "color": @getColorStr(actions.SetTextColor)                     if actions.SetTextColor
         "background-color": @getColorStr(actions.SetBackgroundColor)    if actions.SetBackgroundColor
-        "font-size": "#{Math.round(actions.SetFontSize / 2.5)}px"         if actions.SetFontSize
+        "font-size": "#{Math.round(actions.SetFontSize / 2.5)}px"       if actions.SetFontSize
       }
     getColorStr: (colorObject) ->
       color = new Color(colorObject.rgb)
-      color.hex().replace('0x', '#') # TODO: alpha
+      "rgba(#{color.rgb().color.join(',')},#{colorObject.alpha / 255})"
     playAlertSound: (actions) ->
       sound = if actions.PlayAlertSound
         actions.PlayAlertSound
@@ -217,7 +217,6 @@ $my-header-z-index: $base-z-index + 10;
       > .name {
         margin: auto;
         padding: 0.5em;
-        opacity: 0.5; // TODO
         background-color: black;
         color: white;
         font-size: 11px; // Override by js
