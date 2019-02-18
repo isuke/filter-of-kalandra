@@ -10,9 +10,9 @@
       .blockname {{ blockName }}
 
       template(v-for="(block, scriptName) in blocks")
-        .image
-          img.back(:src="bgImage")
-          .item
+        .item
+          img.bgimage(:src="bgImage")
+          .inner
             .iconwrap
               minimap-icon.icon(
                 :size="block.actions.MinimapIcon.size",
@@ -42,7 +42,7 @@ import { forIn } from "@/scripts/utils.coffee"
 
 import soundAudible from "@/mixins/soundAudible.coffee"
 
-import bgImage from "@/assets/images/preview-bg-200x150.png"
+import bgImage from "@/assets/images/preview-bg-208x48.png"
 
 export default
   components:
@@ -120,6 +120,8 @@ $my-header-z-index: $base-z-index + 10;
 .script-preview {
   display: grid;
   grid-template-columns: max-content;
+  grid-auto-columns: max-content;
+  grid-row-gap: var(--space-size-xs);
   grid-column-gap: var(--space-size-s);
   padding-left: var(--space-size-m);
   padding-right: var(--space-size-m);
@@ -183,7 +185,7 @@ $my-header-z-index: $base-z-index + 10;
     @include hide-scrollbar();
   }
 
-  > .image {
+  > .item {
     grid-row: auto;
     grid-column: auto;
 
@@ -192,17 +194,17 @@ $my-header-z-index: $base-z-index + 10;
     justify-content: center;
     position: relative;
 
-    > .back {
+    > .bgimage {
       position: relative;
       overflow: hidden;
-      @ghost size(200px, 80px);
+      @ghost size(208px, 48px);
     }
 
-    > .item {
+    > .inner {
       position: absolute;
       display: flex;
       align-items: center;
-      @ghost size(100%);
+      @ghost size(208px, 48px);
       white-space: nowrap;
 
       > .iconwrap {

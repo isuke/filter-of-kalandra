@@ -15,6 +15,7 @@ export default
 Show "Simple Sample"
     Class "Currency"
     SetBackgroundColor 50 0 0 255
+    PlayAlertSound 1 300
 
 # It is almost the same as conventional writing style,
 # but you need a name after 'Show'.
@@ -293,16 +294,18 @@ Hide "Nested Mixin Sample"
         Hide "Rare"
             Rarity Rare
             SetFontSize 45
-            PlayEffect Yellow Temp
+            SetBackgroundColor Var("Rare Item Color")
 
             Mixin "Shaper/Elder"
                 Show "Shaper"
                     ShaperItem True
                     SetBackgroundColor 0 0 255 200
+                    MinimapIcon Largest Blue Triangle
                     PlayEffect White
                 Show "Elder"
                     ElderItem True
                     SetBackgroundColor 20 20 255 200
+                    MinimapIcon Largest Brown Triangle
                     PlayEffect White
         Hide "Magic"
             Rarity Magic
@@ -365,7 +368,7 @@ Hide "Nested Mixin Sample"
 
 Show "Color Function Sample"
     SetBackgroundColor Var("Skill Gem Color")
-    SetFontSize 40
+    SetFontSize 45
 
     Mixin "Function"
         Show "Negate()"
