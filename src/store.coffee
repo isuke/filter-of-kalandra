@@ -5,7 +5,6 @@ Vue.use(Vuex)
 
 import Color from "color"
 import localStorage from "store/dist/store.modern.min.js"
-import * as advancedPoeFilter from "advanced-poe-filter"
 
 import { forIn, download } from "@/scripts/utils.coffee"
 
@@ -15,8 +14,8 @@ export default new Vuex.Store
   state:
     filterName: "New Filter"
     advancedScriptText: ""
-    oldSimpleScriptObject: {}
-    oldSimpleScriptTexts: {}
+    simpleScriptObject: {}
+    simpleScriptTexts: {}
     syntaxError: undefined
     variables: []
     colors: []
@@ -30,44 +29,17 @@ export default new Vuex.Store
     #
     # advancedScriptText
     #
-    simpleScriptObjects: (state, getters) ->
-      try
-        result = advancedPoeFilter.getObject(state.advancedScriptText, getters.variablesForCompiler, getters.propertiesForCompiler)
-        state.oldSimpleScriptObject = result
-        state.syntaxError = undefined
-        result
-      catch e
-        state.syntaxError = e
-        state.oldSimpleScriptObject
-    simpleScriptTexts: (state, getters) ->
-      try
-        result = advancedPoeFilter.compile(state.advancedScriptText, getters.variablesForCompiler, getters.propertiesForCompiler, state.filterName)
-        state.oldSimpleScriptTexts = result
-        result
-      catch _e
-        state.oldSimpleScriptTexts
     scriptNames: (state, _getters) -> state.properties.scriptNames
     sectionNames: (state, getters) ->
-      firstObject = getters.simpleScriptObjects[getters.scriptNames[0]]
+      firstObject = state.simpleScriptObject[getters.scriptNames[0]]
       if firstObject then firstObject.map((o) => o.name) else []
     blocks: (state, getters) -> (scriptName, sectionName) =>
-      getters.simpleScriptObjects[scriptName].find((s) => s.name == sectionName).blocks
+      state.simpleScriptObject[scriptName].find((s) => s.name == sectionName).blocks
 
     #
     # variables
     #
     variableNaems: (state) -> state.variables.map (v) => v.name
-    variablesForCompiler: (state, getters) ->
-      result = {}
-
-      state.variables.forEach (variable) =>
-        result[variable.name] = if variable.items.length <= 1 then variable.items[0] else variable.items
-
-      state.colors.forEach (color, index) =>
-        rgb = getters.colorObject(index).rgb().color
-        result[color.name] = "#{rgb[0]} #{rgb[1]} #{rgb[2]}"
-
-      result
 
     #
     # colors
@@ -82,13 +54,6 @@ export default new Vuex.Store
       i = state.properties.scriptNames.findIndex (name) => name == scriptName
       j = state.properties.propNames.findIndex (name) => name == propName
       state.properties.values[i][j]
-    propertiesForCompiler: (state) ->
-      result = {}
-      state.properties.scriptNames.forEach (scriptName, i) =>
-        state.properties.propNames.forEach (propName, j) =>
-          result[scriptName] = {} if result[scriptName] == undefined
-          result[scriptName][propName] = state.properties.values[i][j]
-      result
     canAddScript: (state, getters) -> getters.scriptNames.length < state.scriptNumLimit
   mutations:
     #
@@ -102,6 +67,9 @@ export default new Vuex.Store
     setAdvancedScriptText: (state, payload = {}) ->
       state.advancedScriptText = payload.advancedScriptText
       window.editor.setValue payload.advancedScriptText if window.editor # HACK
+    setSyntaxError: (state, payload = {}) -> state.syntaxError = payload.syntaxError
+    setSimpleScriptObject: (state, payload = {}) -> state.simpleScriptObject = payload.simpleScriptObject
+    setSimpleScriptTexts: (state, payload = {})  -> state.simpleScriptTexts  = payload.simpleScriptTexts
 
     #
     # variables
@@ -356,7 +324,7 @@ export default new Vuex.Store
       zip = await `import(/* webpackChunkName: "zip" */ "jsziptools/zip")`
 
       filters = []
-      forIn getters.simpleScriptTexts, (simpleScriptText, scriptName) =>
+      forIn state.simpleScriptTexts, (simpleScriptText, scriptName) =>
         filters.push { name: "#{state.filterName}_#{scriptName}.filter", buffer: simpleScriptText }
 
       files = [

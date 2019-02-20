@@ -5,7 +5,7 @@
       li.item(v-for="scriptName in $store.getters.scriptNames")
         a.scriptname(@click.prevent="changeCurrentScript(scriptName)", href="") {{ scriptName }}
   //- filter-editor.text(v-model="$store.getters.simpleScriptTexts[currentScriptName]", mode="original-poe-filter", :config="{ readOnly: true, lineWrapping: true }")
-  textarea.textarea(v-model="$store.getters.simpleScriptTexts[currentScriptName]", readOnly)
+  textarea.textarea(v-model="$store.state.simpleScriptTexts[currentScriptName]", readOnly)
 </template>
 
 <script lang="coffee">

@@ -3,7 +3,7 @@
   .subheader.none
   .subheader.scriptname(v-for="scriptName in $store.getters.scriptNames") {{ scriptName }}
 
-  template(v-for="(scripts, sectionName) in simpleScriptObjectsForPreview")
+  template(v-for="(scripts, sectionName) in simpleScriptObjectForPreview")
     .sectionname(:id="sectionName") {{ sectionName }}
 
     template(v-for="(blocks, blockName) in scripts")
@@ -54,9 +54,9 @@ export default
     soundAudible
   ]
   computed:
-    simpleScriptObjectsForPreview: ->
+    simpleScriptObjectForPreview: ->
       result = {}
-      forIn @$store.getters.simpleScriptObjects, (sections, scriptName) =>
+      forIn @$store.state.simpleScriptObject, (sections, scriptName) =>
         sections.forEach (section) =>
           result[section.name] = {} unless result[section.name]
           section.blocks.forEach (block) =>
