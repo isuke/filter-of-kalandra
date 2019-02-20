@@ -1,50 +1,26 @@
 <template lang="pug">
 ul.color-list
-  li.color(v-for="(color, i) in $store.state.colors", :key="i", :id="color.name")
+  li.color(
+    v-for="(color, i) in $store.state.colors",
+    :key="i",
+    :id="color.name"
+  )
     input.name(type="text", v-model="color.name")
     button.button.delete(@click="$store.commit('removeColor', { index: i })") ×
-    input.input(type="color", v-model="color.hex")
-    dl.list
-      dt.term RGB
-      dd.description {{ getRGBStr(i) }}
-      dt.term HEX
-      dd.description {{ color.hex }}
-      dt.term HSL
-      dd.description {{ getHSLStr(i) }}
-      dt.term Luminosity
-      dd.description {{ round($store.getters.colorObject(i).luminosity()) }}
-      dt.term Is Light?
-      dd.description {{ $store.getters.colorObject(i).isLight() }}
-    .previews
-      .preview.background: span.item(:style="getBackgroundStyle(color, i)") Item Name
-      .preview.font: span.item(:style="getFontStyle(color, i)") Item Name
+    input.input(type="color", v-model.lazy="color.hex")
+    color-list-item.detail(
+      :name="color.name",
+      :hex="color.hex",
+    )
+
 </template>
 
 <script lang="coffee">
-import { round } from "@/scripts/utils.coffee"
+import ColorListItem from "@/views/ColorListItem"
 
 export default
-  methods:
-    getRGBStr: (index) ->
-      color = @$store.getters.colorObject(index).rgb().color
-      "#{color[0]} #{color[1]} #{color[2]}"
-    getHSLStr: (index) ->
-      color = @$store.getters.colorObject(index).hsl().color.map((c) => Math.round(c))
-      "#{color[0]}° #{color[1]}% #{color[2]}%"
-    getBackgroundStyle: (color, index) ->
-      colorObject = @$store.getters.colorObject(index)
-      {
-        "background-color": color.hex
-        "color": if colorObject.isLight() then "black" else "white"
-      }
-    getFontStyle: (color, index) ->
-      colorObject = @$store.getters.colorObject(index)
-      {
-        "background-color": if colorObject.isLight() then "black" else "white"
-        "color": color.hex
-        "border": "0.2em #{color.hex} solid"
-      }
-    round: round
+  components:
+    "color-list-item": ColorListItem
 </script>
 
 <style lang="scss" scoped>
@@ -62,7 +38,7 @@ export default
   > .color {
     display: grid;
     gap: var(--space-size-s);
-    grid-template-rows: auto auto 1fr 3rem;
+    grid-template-rows: auto auto 1fr;
     grid-template-columns: 1fr 2rem;
 
     @include card();
@@ -87,40 +63,9 @@ export default
       grid-column: 1 / -1;
     }
 
-    > .list {
+    > .detail {
       grid-row: 3;
       grid-column: 1 / -1;
-      display: grid;
-      grid-auto-rows: max-content;
-      grid-template-columns: 1fr 1fr;
-      column-gap: var(--space-size-s);
-
-      > .term { /* no-op */ }
-      > .description { /* no-op */ }
-    }
-
-    > .previews {
-      grid-row: 4;
-      grid-column: 1 / -1;
-
-      display: inline-grid;
-      grid-template-columns: 1fr 1fr;
-      gap: var(--space-size-s);
-
-      .preview {
-        flex: 1;
-
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        background-color: black;
-        padding: 0.5rem;
-        border-radius: $border-radius-base;
-
-        > .item {
-          padding: 0.5em;
-        }
-      }
     }
   }
 }

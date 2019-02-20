@@ -44,6 +44,7 @@ export default new Vuex.Store
     #
     # colors
     #
+    # TODO: remove
     colorObject: (state) -> (index) => new Color(state.colors[index].hex)
 
     #
