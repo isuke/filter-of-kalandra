@@ -64,9 +64,14 @@ main.home
       li.item
         h2.headding Contact Form
         p.text
-          | Should set form that contact the developer.
+          | Should set form that contact us.
           | You will can use if you have new ideas and questions.
         span.badge.-todo
+      li.item
+        h2.headding Improve Performance
+        p.text
+          | Always try to improve performance.
+        span.badge.-doing
 </template>
 
 <script lang="coffee">
