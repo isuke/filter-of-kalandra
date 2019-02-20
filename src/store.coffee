@@ -97,7 +97,7 @@ export default new Vuex.Store
     setProperties: (state, payload = {}) ->
       state.properties =
         scriptNames: payload.properties.scriptNames.slice(0, state.scriptNumLimit)
-        propNames:   payload.properties.propNames.slice(0, state.scriptNumLimit)
+        propNames:   payload.properties.propNames
         values:      payload.properties.values.slice(0, state.scriptNumLimit)
     addScriptToProperties: (state, payload = {}) ->
       if state.properties.scriptNames.length < state.scriptNumLimit
