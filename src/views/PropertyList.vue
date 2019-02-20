@@ -4,15 +4,15 @@
     thead.head
       tr.row
         th.head Property Name \ Script Name
-        td.data.scriptname(v-for="(scriptNames, i) in $store.getters.scriptNames")
+        td.data.scriptname(v-for="(scriptNames, i) in $store.getters.scriptNames", :key="i")
           input.input(type="text", v-model="$store.state.properties.scriptNames[i]")
           button.delete(@click="$store.commit('removeScriptFromProperties', { index: i })") ×
     tbody.body
-      tr.row(v-for="(propName, j) in $store.getters.propNames")
+      tr.row(v-for="(propName, j) in $store.getters.propNames", :key="j")
         td.data.propname
           input.input(type="text", v-model="$store.state.properties.propNames[j]")
           button.delete(@click="$store.commit('removePropsFromProperties', { index: j })") ×
-        td.data.propval(v-for="(scriptName, i) in $store.getters.scriptNames")
+        td.data.propval(v-for="(scriptName, i) in $store.getters.scriptNames", :key="i")
           input.input(type="text", v-model="$store.state.properties.values[i][j]")
 
   .newprop

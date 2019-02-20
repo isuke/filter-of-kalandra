@@ -4,6 +4,7 @@ aside.variable-aside
   ul.list
     li.item(
       v-for="(variableName, i) in $store.getters.variableNaems",
+      :key="i",
       @click="$emit('click-variable-name', variableName)"
     ) {{ variableName }}
 </template>

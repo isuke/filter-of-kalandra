@@ -1,10 +1,10 @@
 <template lang="pug">
 ul.variable-list
-  li.variable(v-for="(variable, i) in $store.state.variables", :id="variable.name")
+  li.variable(v-for="(variable, i) in $store.state.variables", :key="i", :id="variable.name")
     input.name(type="text", v-model="$store.state.variables[i].name")
     button.button.delete(@click="$store.commit('removeVariable', { index: i })") ×
     ul.list
-      li.item(v-for="(item, j) in variable.items")
+      li.item(v-for="(item, j) in variable.items", :key="j")
         button.button.delete(@click="$store.commit('removeItemFromVariable', { index: i , itemIndex: j})") ×
         input.input(type="text", v-model="$store.state.variables[i].items[j]")
     button.newbutton(@click.prevent="$store.commit('addItemToVariable', { index: i })") Add New Item

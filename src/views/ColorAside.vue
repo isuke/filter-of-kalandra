@@ -3,7 +3,8 @@ aside.color-aside
   h1.title Color Names
   ul.list
     li.item(
-      v-for="color in $store.state.colors",
+      v-for="(color, i) in $store.state.colors",
+      :key="i",
       @click="$emit('click-color-name', color.name)"
     ) {{ color.name }}
 </template>

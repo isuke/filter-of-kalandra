@@ -2,7 +2,7 @@
 .script-text
   header.header
     ul.list
-      li.item(v-for="scriptName in $store.getters.scriptNames")
+      li.item(v-for="(scriptName, i) in $store.getters.scriptNames", :key="i")
         a.scriptname(@click.prevent="changeCurrentScript(scriptName)", href="") {{ scriptName }}
   //- filter-editor.text(v-model="$store.getters.simpleScriptTexts[currentScriptName]", mode="original-poe-filter", :config="{ readOnly: true, lineWrapping: true }")
   textarea.textarea(v-model="$store.state.simpleScriptTexts[currentScriptName]", readOnly)

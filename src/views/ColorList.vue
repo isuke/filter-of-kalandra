@@ -1,6 +1,6 @@
 <template lang="pug">
 ul.color-list
-  li.color(v-for="(color, i) in $store.state.colors", :id="color.name")
+  li.color(v-for="(color, i) in $store.state.colors", :key="i", :id="color.name")
     input.name(type="text", v-model="color.name")
     button.button.delete(@click="$store.commit('removeColor', { index: i })") ×
     input.input(type="color", v-model="color.hex")
