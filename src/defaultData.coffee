@@ -198,6 +198,62 @@ export default
         "Sacrificial Garb"
       ]
     }
+    {
+      name: "Bench Craft Mods"
+      items: [
+        "of Weaponcraft"
+        "of Spellcraft"
+        "of Crafting"
+      ]
+    }
+    {
+      name: "Incursion Mods"
+      items: [
+        "Tacati's"
+        "Citaqualotl's"
+        "Matatl's"
+        "Topotante's"
+        "Xopec's"
+        "Guatelitzi's"
+        "of Tacati"
+        "of Citaqualotl"
+        "of Matatl"
+        "of Puhuarte"
+        "of Guatelitzi"
+      ]
+    }
+    {
+      name: "Delve Mods"
+      items: [
+        "Subterranean"
+        "of the Underground"
+      ]
+    }
+    {
+      name: "Betrayal Mods"
+      items: [
+        "Veiled"
+        "Leo's Veiled"
+        "Catarina's Veiled"
+        "Elreon's Veiled"
+        "Vorici's Veiled"
+        "Haku's Veiled"
+        "Tora's Veiled"
+        "Vagan's Veiled"
+        "Guff's Veiled"
+        "It That Fled's Veiled"
+        "Gravicius' Veiled"
+        "Korell's Veiled"
+        "Rin's Veiled"
+        "of the Veil"
+        "of Janus' Veil"
+        "of Hillock's Veil"
+        "of Jorgin's Veil"
+        "of Cameria's Veil"
+        "of Aisling's Veil"
+        "of Riker's Veil"
+      ]
+    }
   ]
   colors: [
     { name: "Normal Item Color"            , hex: "#c8c8c8" } # rgb: 200, 200, 200

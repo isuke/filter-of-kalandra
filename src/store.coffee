@@ -113,6 +113,23 @@ export default new Vuex.Store
     removePropsFromProperties: (state, payload = {}) ->
       state.properties.propNames.splice(payload.index, 1)
       state.properties.values.forEach (value) => value.splice(payload.index, 1)
+
+    #
+    # all
+    #
+    resetAll: (state) ->
+      state.filterName = "New Filter"
+      state.advancedScriptText = ""
+      state.simpleScriptObject = {}
+      state.simpleScriptTexts = {}
+      state.syntaxError = undefined
+      state.variables = []
+      state.colors = []
+      state.properties = {
+        scriptNames: ["No Name"]
+        propNames: []
+        values: []
+      }
   actions:
     #
     # advancedScriptText
@@ -282,6 +299,8 @@ export default new Vuex.Store
     # zip import/export
     #
     importAllFromFileList: ({ state, commit, dispatch }, payload = {}) ->
+      commit "resetAll"
+
       Array.prototype.forEach.call payload.fileList, (file) =>
         switch file.name
           when "variables.json"
@@ -304,6 +323,8 @@ export default new Vuex.Store
         .unpack
           buffer: payload.file
         .then (reader) =>
+          commit "resetAll"
+
           reader.getFileNames().forEach (filePath) =>
             reader.readFileAsBlob(filePath).then (file) =>
               fileName = filePath.match(/([^\/]+?)?$/)[1]
