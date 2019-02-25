@@ -11,6 +11,7 @@ Vue.use Router
 export default new Router
   mode: 'history'
   linkActiveClass: "-current"
+  scrollBehavior: (to, from, savedPosition) -> if savedPosition then savedPosition else { x: 0, y: 0 }
   routes: [
     {
       path: "/"
