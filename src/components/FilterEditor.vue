@@ -27,18 +27,21 @@ export default
     errorDecorations: []
   watch:
     syntaxError: (error) ->
-      if error # TODO: chack prototype is peg$SyntaxError
-        location = error.location
-        @errorDecorations = @editor.deltaDecorations @errorDecorations, [
-          {
-            range: new monaco.Range(location.start.line, location.start.column, location.end.line, location.end.column)
-            options:
-              inlineClassName: "error"
-              linesDecorationsClassName: "error-gutter"
-              hoverMessage:
-                value: error.message
-          }
-        ]
+      if error
+        if error.name == "SyntaxError"
+          location = error.location
+          @errorDecorations = @editor.deltaDecorations @errorDecorations, [
+            {
+              range: new monaco.Range(location.start.line, location.start.column, location.end.line, location.end.column)
+              options:
+                inlineClassName: "error"
+                linesDecorationsClassName: "error-gutter"
+                hoverMessage:
+                  value: error.message
+            }
+          ]
+        else
+          console.error error
       else
         @editor.deltaDecorations @errorDecorations, []
         @errorDecorations = []
