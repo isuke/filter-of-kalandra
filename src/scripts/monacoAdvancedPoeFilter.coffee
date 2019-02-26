@@ -3,7 +3,7 @@
 
   monaco.languages.setMonarchTokensProvider 'advancedPoeFilter',
     keywords: [
-      'Show', 'Hide', 'Mixin'
+      'Show', 'Hide', 'Unset', 'Fork', 'Mixin'
     ]
     conditionKeywords: [
       'Class'
@@ -83,6 +83,8 @@
             cases:
               'Show': 'keyword.show'
               'Hide': 'keyword.hide'
+              'Unset': 'keyword.unset'
+              'Fork': 'keyword.fork'
               'Mixin': 'keyword.mixin'
               '@conditionKeywords': 'keyword.condition'
               '@actionKeywords': 'keyword.action'
@@ -164,8 +166,10 @@
       { token: 'comment.output'     , foreground: '8282ff' }
       { token: 'keyword'            , foreground: '268bd2' }
       { token: 'keyword.show'       , foreground: '268bd2' }
-      { token: 'keyword.hide'       , foreground: '268bd2' }
-      { token: 'keyword.mixin'      , foreground: '268bd2' }
+      { token: 'keyword.hide'       , foreground: '4984ab' }
+      { token: 'keyword.unset'      , foreground: '3d86b7' }
+      { token: 'keyword.fork'       , foreground: '2542ce' }
+      { token: 'keyword.mixin'      , foreground: '2542ce' }
       { token: 'keyword.condition'  , foreground: '859900' }
       { token: 'keyword.action'     , foreground: '3A9900' }
       { token: 'number'             , foreground: 'cb4b16' }
