@@ -311,11 +311,12 @@ export default new Vuex.Store
             dispatch("importPropertiesFromJSONFile", file: file)
           else
             match = file.name.match /^(.*)\.(.*)$/
-            name = match[1]
-            ext  = match[2]
-            if ext == 'advancedfilter'
-              commit("setFilterName", filterName: name)
-              dispatch("importAdvancedScriptTextFromTextFile", file: file)
+            if match
+              name = match[1]
+              ext  = match[2]
+              if ext == 'advancedfilter'
+                commit("setFilterName", filterName: name)
+                dispatch("importAdvancedScriptTextFromTextFile", file: file)
     importAllFromZip: ({ state, commit, dispatch }, payload = {}) ->
       zip = await `import(/* webpackChunkName: "zip" */ "jsziptools/zip")`
 
