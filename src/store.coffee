@@ -138,7 +138,6 @@ export default new Vuex.Store
       state.filterName = "New Filter"
       state.advancedScriptText = ""
       state.simpleScriptObject = {}
-      state.simpleScriptTexts = {}
       state.syntaxError = undefined
       state.variables = []
       state.colors = []
@@ -368,11 +367,13 @@ export default new Vuex.Store
                   if ext == 'advancedfilter'
                     commit("setFilterName", filterName: name)
                     dispatch("importAdvancedScriptTextFromTextFile", file: file)
-    exportAll: ({ state, getters }) ->
+    exportAll: ({ state, getters, dispatch }) ->
       zip = await `import(/* webpackChunkName: "zip" */ "jsziptools/zip")`
 
       filters = []
-      forIn state.simpleScriptTexts, (simpleScriptText, scriptName) =>
+
+      texts = await dispatch("createSimpleScriptTexts")
+      forIn texts, (simpleScriptText, scriptName) =>
         filters.push { name: "#{state.filterName}_#{scriptName}.filter", buffer: simpleScriptText }
 
       files = [
