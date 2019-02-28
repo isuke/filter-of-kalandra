@@ -25,7 +25,7 @@ export default
 .script {
   display: grid;
   grid-template-rows: $sub-header-height 1fr;
-  grid-template-columns: $aside-size-width 1fr;
+  grid-template-columns: $aside-size-width calc(100vw - #{$aside-size-width});
 
   > .header {
     grid-row: 1;

@@ -23,9 +23,9 @@
 @function _ft-color($color-hue, $mode: "day", $accent: false) {
   @if $mode == "day" {
     @if $accent == true {
-      @return hsl($color-hue, 60%, 5%); // TODO
+      @return hsl($color-hue, 100%,  50%);
     } @else {
-      @return hsl($color-hue, 60%, 5%);
+      @return hsl($color-hue,  60%,   5%);
     }
   } @else if $mode == "night" {
     @if $accent == true {

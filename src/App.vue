@@ -10,7 +10,6 @@
 
 <script lang="coffee">
 import debounce from "lodash.debounce"
-import * as advancedPoeFilter from "advanced-poe-filter"
 
 import TheGlobalHeader from "@/components/TheGlobalHeader"
 import TheGlobalFooter from "@/components/TheGlobalFooter"
@@ -27,24 +26,6 @@ export default
     variables:          -> @$store.state.variables
     colors:             -> @$store.state.colors
     properties:         -> @$store.state.properties
-    variablesForCompiler: ->
-      result = {}
-
-      @variables.forEach (variable) =>
-        result[variable.name] = if variable.items.length <= 1 then variable.items[0] else variable.items
-
-      @colors.forEach (color, index) =>
-        rgb = @$store.getters.colorObject(index).rgb().color
-        result[color.name] = "#{rgb[0]} #{rgb[1]} #{rgb[2]}"
-
-      result
-    propertiesForCompiler: ->
-      result = {}
-      @properties.scriptNames.forEach (scriptName, i) =>
-        @properties.propNames.forEach (propName, j) =>
-          result[scriptName] = {} if result[scriptName] == undefined
-          result[scriptName][propName] = @properties.values[i][j]
-      result
   watch:
     filterName: debounce ->
       @setSimpleScriptObjectAndTexts()
@@ -85,11 +66,9 @@ export default
   methods:
     setSimpleScriptObjectAndTexts: ->
       try
-        object = advancedPoeFilter.getObject(@advancedScriptText, @variablesForCompiler, @propertiesForCompiler)
-        texts = advancedPoeFilter.compile(@advancedScriptText, @variablesForCompiler, @propertiesForCompiler, @filterName)
-        @$store.commit 'setSimpleScriptObject', simpleScriptObject: object
-        @$store.commit 'setSimpleScriptTexts', simpleScriptTexts: texts
-        @$store.commit 'setSyntaxError', syntaxError: undefined
+        @$store.dispatch("createSimpleScriptObject").then (object) =>
+          @$store.commit 'setSimpleScriptObject', simpleScriptObject: object
+          @$store.commit 'setSyntaxError', syntaxError: undefined
       catch e
         @$store.commit 'setSyntaxError', syntaxError: e
   created: ->

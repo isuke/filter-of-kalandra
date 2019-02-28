@@ -5,6 +5,7 @@ Vue.use(Vuex)
 
 import Color from "color"
 import localStorage from "store/dist/store.modern.min.js"
+import * as advancedPoeFilter from "advanced-poe-filter"
 
 import { forIn, download } from "@/scripts/utils.coffee"
 
@@ -15,7 +16,6 @@ export default new Vuex.Store
     filterName: "New Filter"
     advancedScriptText: ""
     simpleScriptObject: {}
-    simpleScriptTexts: {}
     syntaxError: undefined
     variables: []
     colors: []
@@ -40,6 +40,17 @@ export default new Vuex.Store
     # variables
     #
     variableNaems: (state) -> state.variables.map (v) => v.name
+    variablesForCompiler: (state, getters) ->
+      result = {}
+
+      state.variables.forEach (variable) =>
+        result[variable.name] = if variable.items.length <= 1 then variable.items[0] else variable.items
+
+      state.colors.forEach (color, index) =>
+        rgb = getters.colorObject(index).rgb().color
+        result[color.name] = "#{rgb[0]} #{rgb[1]} #{rgb[2]}"
+
+      result
 
     #
     # colors
@@ -56,6 +67,13 @@ export default new Vuex.Store
       j = state.properties.propNames.findIndex (name) => name == propName
       state.properties.values[i][j]
     canAddScript: (state, getters) -> getters.scriptNames.length < state.scriptNumLimit
+    propertiesForCompiler: (state) ->
+      result = {}
+      state.properties.scriptNames.forEach (scriptName, i) =>
+        state.properties.propNames.forEach (propName, j) =>
+          result[scriptName] = {} if result[scriptName] == undefined
+          result[scriptName][propName] = state.properties.values[i][j]
+      result
   mutations:
     #
     # filterName
@@ -70,7 +88,6 @@ export default new Vuex.Store
       window.editor.setValue payload.advancedScriptText if window.editor # HACK
     setSyntaxError: (state, payload = {}) -> state.syntaxError = payload.syntaxError
     setSimpleScriptObject: (state, payload = {}) -> state.simpleScriptObject = payload.simpleScriptObject
-    setSimpleScriptTexts: (state, payload = {})  -> state.simpleScriptTexts  = payload.simpleScriptTexts
 
     #
     # variables
@@ -228,6 +245,14 @@ export default new Vuex.Store
       ).catch((error) =>
         console.error error.message
       )
+
+    #
+    # compile
+    #
+    createSimpleScriptObject: ({ state, getters }) ->
+      advancedPoeFilter.getObject(state.advancedScriptText, getters.variablesForCompiler, getters.propertiesForCompiler)
+    createSimpleScriptTexts: ({ state, getters }) ->
+      advancedPoeFilter.compile(state.advancedScriptText, getters.variablesForCompiler, getters.propertiesForCompiler, state.filterName)
 
     #
     # local strorage

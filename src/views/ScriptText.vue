@@ -2,10 +2,16 @@
 .script-text
   header.header
     ul.list
-      li.item(v-for="(scriptName, i) in $store.getters.scriptNames", :key="i")
-        a.scriptname(@click.prevent="changeCurrentScript(scriptName)", href="") {{ scriptName }}
-  //- filter-editor.text(v-model="$store.getters.simpleScriptTexts[currentScriptName]", mode="original-poe-filter", :config="{ readOnly: true, lineWrapping: true }")
-  textarea.textarea(v-model="$store.state.simpleScriptTexts[currentScriptName]", readOnly)
+      li.item(
+        v-for="(scriptName, i) in $store.getters.scriptNames",
+        :key="i",
+        @click.prevent="changeCurrentScript(scriptName)",
+        :class="{ '-current': scriptName === currentScriptName }"
+      )
+        | {{ scriptName }}
+    .actions
+      button.button.reload(@click.prevent="reload") Reload
+  pre.text(ref="text", v-text="texts[currentScriptName]")
 </template>
 
 <script lang="coffee">
@@ -16,10 +22,26 @@ export default
     "filter-editor": FilterEditor
   data: ->
     currentScriptName: undefined
+    texts: {}
   methods:
-    changeCurrentScript: (scriptName) -> @currentScriptName = scriptName
+    changeCurrentScript: (scriptName) ->
+      @currentScriptName = scriptName
+      @$nextTick => @createMonaco()
+    createMonaco: ->
+      if @$refs.text.childElementCount == 0
+        `import(/* webpackChunkName: "monaco" */ "monaco-editor")`.then (monaco) =>
+          monaco.editor.colorizeElement @$refs.text,
+            mimeType: "advancedPoeFilter"
+            theme: "advancedPoeFilterTheme"
+            tabSize: 4
+    reload: ->
+      @$store.dispatch("createSimpleScriptTexts").then (texts) =>
+        @texts = texts
+        @$nextTick => @createMonaco()
   created: ->
     @currentScriptName = @$store.getters.scriptNames[0]
+  mounted: ->
+    @reload()
 </script>
 
 <style lang="scss" scoped>
@@ -28,30 +50,50 @@ export default
   color: $global-ft-color-day;
 
   > .header {
+    display: inline-flex;
+    flex-direction: row;
+    align-items: center;
+    width: 100%;
+
+    @include bg-ft-color($script-color-hue, "day");
+
     > .list {
+      flex: 1;
       display: inline-flex;
       flex-direction: row;
       align-items: center;
       justify-content: center;
-      width: 100%;
       height: $sub-header-height;
-      padding-left: var(--space-size-s);
+      padding-left: var(--space-size-xl);
 
       > .item {
         flex: 1;
+        display: inline-flex;
+        align-items: center;
+        text-decoration-line: underline;
+        cursor: pointer;
+
+        &.-current {
+          color: _ft-color($script-color-hue, "day", true);
+        }
+      }
+    }
+
+    > .actions {
+      display: inline-flex;
+      align-items: center;
+
+      > .button {
+        @include button-fill($color-color-hue);
+        margin-right: var(--space-size-s);
       }
     }
   }
 
-  // > .text {
-  //   width: calc(100vw - #{$aside-size-width});
-  // }
-  > .textarea {
-    font-family: $mono-font-family;
+  > .text {
     padding: 0.5em;
-    width: calc(100vw - #{$aside-size-width});
-    height: calc(100% - #{$sub-header-height});
-    // height: calc(100vh - #{$global-header-height} - #{$sub-header-height})
+    background-color: white;
+    overflow-x: scroll;
   }
 }
 </style>
