@@ -72,6 +72,11 @@ main.home
         p.text
           | Always try to improve performance.
         span.badge.-doing
+      li.item
+        h2.headding Import from GitHub URL
+        p.text
+          | Make to import own or others filter from GitHub URL.
+        span.badge.-todo
 </template>
 
 <script lang="coffee">
