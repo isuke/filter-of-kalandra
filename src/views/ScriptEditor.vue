@@ -8,12 +8,27 @@
 </template>
 
 <script lang="coffee">
+import debounce from "lodash.debounce"
+
 import FilterEditor from "@/components/FilterEditor.vue"
 
 export default
   components:
     "filter-editor": FilterEditor
+  computed:
+    advancedScriptText: -> @$store.state.advancedScriptText
+  watch:
+    advancedScriptText: debounce ->
+      @setSimpleScriptObject()
+    , 3000
   methods:
+    setSimpleScriptObject: ->
+      try
+        @$store.dispatch("createSimpleScriptObject").then (object) =>
+          @$store.commit 'setSimpleScriptObject', simpleScriptObject: object
+          @$store.commit 'setSyntaxError', syntaxError: undefined
+      catch e
+        @$store.commit 'setSyntaxError', syntaxError: e
     scrollToSection: (sectionName) ->
       @$refs.editor.scrollToSection(sectionName)
 </script>

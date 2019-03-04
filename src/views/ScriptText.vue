@@ -53,7 +53,9 @@ export default
     display: inline-flex;
     flex-direction: row;
     align-items: center;
+    padding-left: var(--space-size-xl);
     width: 100%;
+    height: $sub-header-height;
 
     @include bg-ft-color($script-color-hue, "day");
 
@@ -63,8 +65,6 @@ export default
       flex-direction: row;
       align-items: center;
       justify-content: center;
-      height: $sub-header-height;
-      padding-left: var(--space-size-xl);
 
       > .item {
         flex: 1;

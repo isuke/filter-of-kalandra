@@ -64,7 +64,7 @@ export default
 
         window.editor = @editor # HACK
     scrollToSection: (sectionName) ->
-      match = @editor.getModel().findMatches(new RegExp("^[^#| ][^ ][^#]+ \"#{sectionName}\""), null, true, true, null, false, 1)[0]
+      match = @editor.getModel().findMatches(new RegExp("^(Show|Hide|Unset|Var|Prop)[^\n]+\"#{sectionName}\"$"), null, true, true, null, false, 1)[0]
       if match
         lineNumber = match.range.startLineNumber
         @editor.revealPositionInCenter(lineNumber: lineNumber, column: 1)

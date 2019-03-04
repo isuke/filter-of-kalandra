@@ -1342,10 +1342,10 @@ address@^1.0.3:
   resolved "https://registry.yarnpkg.com/address/-/address-1.0.3.tgz#b5f50631f8d6cec8bd20c963963afb55e06cbce9"
   integrity sha512-z55ocwKBRLryBs394Sm3ushTtBeg6VAeuku7utSoSnsJKvKcnXFIyC6vh27n3rXyxSgkJBBCAvyOn7gSUcTYjg==
 
-advanced-poe-filter@0.5.2:
-  version "0.5.2"
-  resolved "http://localhost:4873/advanced-poe-filter/-/advanced-poe-filter-0.5.2.tgz#2902ef78d8f489e4c9eabb1ef81bfcca86a81c78"
-  integrity sha512-8fFDHYo49y4vPjAYJxwv62xZ5Rk1NXyKxllBOy3JZvtzwZIwS9g9h/doK1HrgtBY4bl7XSW+HQMScRIETE/lHg==
+advanced-poe-filter@0.6.0:
+  version "0.6.0"
+  resolved "http://localhost:4873/advanced-poe-filter/-/advanced-poe-filter-0.6.0.tgz#7b9fc01cd5adff620035073fccdbf94a6ca869fe"
+  integrity sha512-JnviEs6Ynbl039tSS+qieiSgzZT5CRE/PzK3PMfewtNXdocNiafEwCU3md2Fsefnl4aTLNQf95/HuniDwiUEmQ==
   dependencies:
     color "^3.1.0"
     lodash.clonedeep "^4.5.0"

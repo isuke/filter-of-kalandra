@@ -28,20 +28,17 @@ export default
     properties:         -> @$store.state.properties
   watch:
     filterName: debounce ->
-      @setSimpleScriptObjectAndTexts()
       @$store.dispatch("saveFilterNameToLocalStorage")
         .then()
         .catch((e) => console.error e.message)
     , 1500
     advancedScriptText: debounce ->
-      @setSimpleScriptObjectAndTexts()
       @$store.dispatch("saveAdvancedScriptTextToLocalStorage")
         .then()
         .catch((e) => console.error e.message)
     , 1000
     variables:
       handler: debounce ->
-        @setSimpleScriptObjectAndTexts()
         @$store.dispatch("saveVariablesToLocalStorage")
           .then()
           .catch((e) => console.error e.message)
@@ -49,7 +46,6 @@ export default
       deep: true
     colors:
       handler: debounce ->
-        @setSimpleScriptObjectAndTexts()
         @$store.dispatch("saveColorsToLocalStorage")
           .then()
           .catch((e) => console.error e.message)
@@ -57,20 +53,11 @@ export default
       deep: true
     properties:
       handler: debounce ->
-        @setSimpleScriptObjectAndTexts()
         @$store.dispatch("savePropertiesToLocalStorage")
           .then()
           .catch((e) => console.error e.message)
       , 1500
       deep: true
-  methods:
-    setSimpleScriptObjectAndTexts: ->
-      try
-        @$store.dispatch("createSimpleScriptObject").then (object) =>
-          @$store.commit 'setSimpleScriptObject', simpleScriptObject: object
-          @$store.commit 'setSyntaxError', syntaxError: undefined
-      catch e
-        @$store.commit 'setSyntaxError', syntaxError: e
   created: ->
     @$store.dispatch("loadFromLocalStorage")
       .then((loaded) =>

@@ -31,8 +31,11 @@ export default new Vuex.Store
     #
     scriptNames: (state, _getters) -> state.properties.scriptNames
     sectionNames: (state, getters) ->
-      firstObject = state.simpleScriptObject[getters.scriptNames[0]]
-      if firstObject then firstObject.map((o) => o.name) else []
+      result = []
+      regexp = /^(Show|Hide|Unset|Var|Prop)[^\n]+"([^\n]+)"$/gm
+      while match = regexp.exec(state.advancedScriptText)
+        result.push match[2]
+      result
     blocks: (state, getters) -> (scriptName, sectionName) =>
       state.simpleScriptObject[scriptName].find((s) => s.name == sectionName).blocks
 
