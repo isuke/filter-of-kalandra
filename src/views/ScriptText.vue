@@ -28,7 +28,7 @@ export default
       @currentScriptName = scriptName
       @$nextTick => @createMonaco()
     createMonaco: ->
-      if @$refs.text.childElementCount == 0
+      if @$refs.text.childElementCount == 0 && @texts[@currentScriptName].length < 100000
         `import(/* webpackChunkName: "monaco" */ "monaco-editor")`.then (monaco) =>
           monaco.editor.colorizeElement @$refs.text,
             mimeType: "advancedPoeFilter"
