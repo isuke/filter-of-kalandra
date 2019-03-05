@@ -17,6 +17,7 @@ import store from './store.coffee'
 import './scripts/monacoAdvancedPoeFilter.coffee'
 // import "./registerServiceWorker";
 
+// Vue.config.devtools = false
 Vue.config.performance = process.env.NODE_ENV !== 'production'
 Vue.config.productionTip = process.env.NODE_ENV !== 'production'
 

@@ -12,6 +12,7 @@ import { forIn, download } from "@/scripts/utils.coffee"
 import defaultData from "./defaultData.coffee"
 
 export default new Vuex.Store
+  strict: false
   state:
     filterName: "New Filter"
     advancedScriptText: ""
@@ -90,7 +91,7 @@ export default new Vuex.Store
       state.advancedScriptText = payload.advancedScriptText
       window.editor.setValue payload.advancedScriptText if window.editor # HACK
     setSyntaxError: (state, payload = {}) -> state.syntaxError = payload.syntaxError
-    setSimpleScriptObject: (state, payload = {}) -> state.simpleScriptObject = payload.simpleScriptObject
+    setSimpleScriptObject: (state, payload = {}) -> state.simpleScriptObject = Object.freeze(payload.simpleScriptObject)
 
     #
     # variables
