@@ -19,16 +19,9 @@ export default
     advancedScriptText: -> @$store.state.advancedScriptText
   watch:
     advancedScriptText: debounce ->
-      @setSimpleScriptObject()
-    , 3000
+      @$store.dispatch("requestSimpleScriptObjectToWorker")
+    , 1000
   methods:
-    setSimpleScriptObject: ->
-      try
-        @$store.dispatch("createSimpleScriptObject").then (object) =>
-          @$store.commit 'setSimpleScriptObject', simpleScriptObject: object
-          @$store.commit 'setSyntaxError', syntaxError: undefined
-      catch e
-        @$store.commit 'setSyntaxError', syntaxError: e
     scrollToSection: (sectionName) ->
       @$refs.editor.scrollToSection(sectionName)
 </script>

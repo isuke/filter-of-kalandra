@@ -47,7 +47,8 @@
     "sass-loader": "^7.0.1",
     "vue-cli-plugin-coffee": "latest",
     "vue-cli-plugin-pug": "latest",
-    "vue-template-compiler": "^2.6.3"
+    "vue-template-compiler": "^2.6.3",
+    "worker-loader": "^2.0.0"
   },
   "gitHooks": {
     "pre-commit": "lint-staged"

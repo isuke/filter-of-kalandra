@@ -16,6 +16,21 @@ module.exports = {
     }
   },
   configureWebpack: {
+    module: {
+      rules: [
+        {
+          test: /worker\.js$/,
+          use: {
+            loader: 'worker-loader',
+            options: {
+              inline: process.env.NODE_ENV !== 'production',
+              name: '[name].[hash].js',
+              publicPath: '/workers/'
+            }
+          }
+        }
+      ]
+    },
     optimization: {
       splitChunks: {
         minSize: 10000,

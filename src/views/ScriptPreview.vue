@@ -59,6 +59,10 @@ export default
   mixins: [
     soundAudible
   ]
+  computed:
+    simpleScriptObject: -> @$store.state.simpleScriptObject
+  watch:
+    simpleScriptObject: -> @resetSimpleScriptObjectForPreview()
   methods:
     resetSimpleScriptObjectForPreview: ->
       @simpleScriptObjectForPreview = {}
@@ -66,7 +70,7 @@ export default
         @$set @simpleScriptObjectForPreview, sectionName, {}
     createSectionObject: (sectionName) ->
       result = {}
-      forIn @$store.state.simpleScriptObject, (sections, scriptName) =>
+      forIn @simpleScriptObject, (sections, scriptName) =>
         section = sections.filter((s) => s.name == sectionName)[0]
         if section
           # if section.blocks.length > 100 # TODO: wait cursor
@@ -114,12 +118,7 @@ export default
         when "White"  then { "background-color": "rgba(255, 255, 255 , 0.6)", color: "black" }
         when "Yellow" then { "background-color": "hsla( 60, 100%, 45%, 0.6)", color: "black" }
     reload: ->
-      try
-        @$store.dispatch("createSimpleScriptObject").then (object) =>
-          @$store.commit 'setSimpleScriptObject', simpleScriptObject: object
-          @resetSimpleScriptObjectForPreview()
-      catch e
-        console.error e
+      @$store.dispatch("requestSimpleScriptObjectToWorker")
     scrollToSection: (sectionName) ->
       # HACK
       window.scrollTo 0, 0

@@ -9,6 +9,8 @@ import * as advancedPoeFilter from "advanced-poe-filter"
 
 import { forIn, download } from "@/scripts/utils.coffee"
 
+import CompileWorker from './compile.worker.js'
+
 import defaultData from "./defaultData.coffee"
 
 export default new Vuex.Store
@@ -17,6 +19,7 @@ export default new Vuex.Store
     filterName: "New Filter"
     advancedScriptText: ""
     simpleScriptObject: {}
+    simpleScriptTexts: {}
     syntaxError: undefined
     variables: []
     colors: []
@@ -26,6 +29,7 @@ export default new Vuex.Store
       values: []
     }
     scriptNumLimit: if process.env.NODE_ENV == "development" then 10 else 2
+    _compileWorker: undefined
   getters:
     #
     # advancedScriptText
@@ -92,6 +96,7 @@ export default new Vuex.Store
       window.editor.setValue payload.advancedScriptText if window.editor # HACK
     setSyntaxError: (state, payload = {}) -> state.syntaxError = payload.syntaxError
     setSimpleScriptObject: (state, payload = {}) -> state.simpleScriptObject = Object.freeze(payload.simpleScriptObject)
+    setSimpleScriptTexts: (state, payload = {}) -> state.simpleScriptTexts = Object.freeze(payload.simpleScriptTexts)
 
     #
     # variables
@@ -252,10 +257,49 @@ export default new Vuex.Store
     #
     # compile
     #
-    createSimpleScriptObject: ({ state, getters }) ->
-      advancedPoeFilter.getObject(state.advancedScriptText, getters.variablesForCompiler, getters.propertiesForCompiler)
-    createSimpleScriptTexts: ({ state, getters }) ->
-      advancedPoeFilter.compile(state.advancedScriptText, getters.variablesForCompiler, getters.propertiesForCompiler, state.filterName)
+    createSimpleScriptObject: ({ state, commit, getters }) ->
+      object = advancedPoeFilter.getObject(state.advancedScriptText, getters.variablesForCompiler, getters.propertiesForCompiler)
+      commit "setSimpleScriptObject", simpleScriptObject: object
+      object
+    createSimpleScriptTexts: ({ state, commit, getters }) ->
+      texts = advancedPoeFilter.compile(state.advancedScriptText, getters.variablesForCompiler, getters.propertiesForCompiler, state.filterName)
+      commit "setSimpleScriptTexts", simpleScriptTexts: texts
+      texts
+
+    #
+    # web-worker
+    #
+    createCompileWorker: ({ state, getters, commit }) ->
+      worker = new CompileWorker()
+      worker.addEventListener "message", (message) =>
+        if message.data.status == "success"
+          if message.data.type == "Object"
+            commit "setSimpleScriptObject", simpleScriptObject: message.data.result
+          else if message.data.type == "Text"
+            commit "setSimpleScriptTexts", simpleScriptTexts: message.data.result
+          else
+            console.error "Unkown type: `#{message.data.type}`"
+          commit "setSyntaxError", syntaxError: undefined
+        else
+          commit "setSyntaxError", syntaxError: message.data.result
+      worker.addEventListener "error", (error) =>
+        commit "setSyntaxError", syntaxError: { message: error.message }
+      state._compileWorker = worker
+    requestSimpleScriptObjectToWorker: ({ state, getters }) ->
+      if state._compileWorker
+        state._compileWorker.postMessage
+          type: "Object"
+          advancedScriptText: state.advancedScriptText
+          variables:  getters.variablesForCompiler
+          properties: getters.propertiesForCompiler
+    requestSimpleScriptTextsToWorker: ({ state, getters }) ->
+      if state._compileWorker
+        state._compileWorker.postMessage
+          type: "Text"
+          advancedScriptText: state.advancedScriptText
+          variables:  getters.variablesForCompiler
+          properties: getters.propertiesForCompiler
+          filterName: state.fileName
 
     #
     # local strorage

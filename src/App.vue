@@ -62,12 +62,13 @@ export default
     @$store.dispatch("loadFromLocalStorage")
       .then((loaded) =>
         @$store.commit "setAdvancedScriptText", advancedScriptText: sample.advancedScriptText unless loaded.includes "advancedScriptText"
-        @$store.dispatch 'importDefaultVariables', canOverwrite: false                        unless loaded.includes "variables"
-        @$store.dispatch 'importDefaultColors', canOverwrite: false                           unless loaded.includes "colors"
+        @$store.dispatch "importDefaultVariables", canOverwrite: false                        unless loaded.includes "variables"
+        @$store.dispatch "importDefaultColors", canOverwrite: false                           unless loaded.includes "colors"
         @$store.commit "setProperties", properties: sample.properties                         unless loaded.includes "properties"
       ).catch((e) =>
         console.error e.message
       )
+    @$store.dispatch("createCompileWorker")
 </script>
 
 <style lang="scss" scoped>

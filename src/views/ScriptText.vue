@@ -11,7 +11,7 @@
         | {{ scriptName }}
     .actions
       button.button.reload(@click.prevent="reload") Reload
-  pre.text(ref="text", v-text="texts[currentScriptName]")
+  pre.text(ref="text", v-text="text")
 </template>
 
 <script lang="coffee">
@@ -22,22 +22,22 @@ export default
     "filter-editor": FilterEditor
   data: ->
     currentScriptName: undefined
-    texts: {}
+  computed:
+    texts: -> @$store.state.simpleScriptTexts
+    text: -> @texts[@currentScriptName]
+  watch:
+    text: -> @$nextTick => @createMonaco()
   methods:
-    changeCurrentScript: (scriptName) ->
-      @currentScriptName = scriptName
-      @$nextTick => @createMonaco()
+    changeCurrentScript: (scriptName) -> @currentScriptName = scriptName
     createMonaco: ->
-      if @$refs.text.childElementCount == 0 && @texts[@currentScriptName].length < 100000
+      if @$refs.text.childElementCount == 0 && @text.length < 100000
         `import(/* webpackChunkName: "monaco" */ "monaco-editor")`.then (monaco) =>
           monaco.editor.colorizeElement @$refs.text,
             mimeType: "advancedPoeFilter"
             theme: "advancedPoeFilterTheme"
             tabSize: 4
     reload: ->
-      @$store.dispatch("createSimpleScriptTexts").then (texts) =>
-        @texts = texts
-        @$nextTick => @createMonaco()
+      @$store.dispatch("requestSimpleScriptTextsToWorker")
   created: ->
     @currentScriptName = @$store.getters.scriptNames[0]
   mounted: ->
