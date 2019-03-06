@@ -66,8 +66,7 @@ export default
       name: "Drop Only Gems"
       items: [
         "#'E' Series Gems"
-        "#White Gems"
-        "Added Chaos Damage Support"
+        "Portal"
         "Vaal"
       ]
     }
