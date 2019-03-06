@@ -21,12 +21,16 @@
       'Rarity'
       'ShaperItem'
       'ElderItem'
+      'FracturedItem'
+      'SynthesisedItem'
       'Corrupted'
       'Identified'
       'ShapedMap'
       'Height'
       'Width'
       'HasExplicitMod'
+      'AnyEnchantment'
+      'HasEnchantment'
     ]
     actionKeywords: [
       'SetBorderColor'

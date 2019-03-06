@@ -1342,13 +1342,12 @@ address@^1.0.3:
   resolved "https://registry.yarnpkg.com/address/-/address-1.0.3.tgz#b5f50631f8d6cec8bd20c963963afb55e06cbce9"
   integrity sha512-z55ocwKBRLryBs394Sm3ushTtBeg6VAeuku7utSoSnsJKvKcnXFIyC6vh27n3rXyxSgkJBBCAvyOn7gSUcTYjg==
 
-advanced-poe-filter@0.6.0:
-  version "0.6.0"
-  resolved "http://localhost:4873/advanced-poe-filter/-/advanced-poe-filter-0.6.0.tgz#7b9fc01cd5adff620035073fccdbf94a6ca869fe"
-  integrity sha512-JnviEs6Ynbl039tSS+qieiSgzZT5CRE/PzK3PMfewtNXdocNiafEwCU3md2Fsefnl4aTLNQf95/HuniDwiUEmQ==
+advanced-poe-filter@0.7.0:
+  version "0.7.0"
+  resolved "http://localhost:4873/advanced-poe-filter/-/advanced-poe-filter-0.7.0.tgz#cea4b1780cacf293b7a967f6d2808cd408d84cdf"
+  integrity sha512-IVdpAC/dK3ywljDZdQLuJP5Qste+zzPx6AnLGcHQja7P5wp63dqgQNuXIibGB08ZT9pVuItaZMsp8DRMgUlAKA==
   dependencies:
     color "^3.1.0"
-    lodash.clonedeep "^4.5.0"
 
 ajv-errors@^1.0.0:
   version "1.0.1"
@@ -5921,7 +5920,7 @@ lodash.assign@^4.2.0:
   resolved "https://registry.yarnpkg.com/lodash.assign/-/lodash.assign-4.2.0.tgz#0d99f3ccd7a6d261d19bdaeb9245005d285808e7"
   integrity sha1-DZnzzNem0mHRm9rrkkUAXShYCOc=
 
-lodash.clonedeep@^4.3.2, lodash.clonedeep@^4.5.0:
+lodash.clonedeep@^4.3.2:
   version "4.5.0"
   resolved "https://registry.yarnpkg.com/lodash.clonedeep/-/lodash.clonedeep-4.5.0.tgz#e23f3f9c4f8fbdde872529c1071857a086e5ccef"
   integrity sha1-4j8/nE+Pvd6HJSnBBxhXoIblzO8=
