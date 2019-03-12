@@ -5,15 +5,18 @@
       tr.row
         th.head Property Name \ Script Name
         td.data.scriptname(v-for="(scriptNames, i) in $store.getters.scriptNames", :key="i")
-          input.input(type="text", v-model="$store.state.properties.scriptNames[i]")
-          button.delete(@click="$store.commit('removeScriptFromProperties', { index: i })") ×
+          .wrapper
+            input.input(type="text", v-model="$store.state.properties.scriptNames[i]")
+            button.delete(@click="$store.commit('removeScriptFromProperties', { index: i })") ×
     tbody.body
       tr.row(v-for="(propName, j) in $store.getters.propNames", :key="j")
         td.data.propname
-          input.input(type="text", v-model="$store.state.properties.propNames[j]")
-          button.delete(@click="$store.commit('removePropsFromProperties', { index: j })") ×
+          .wrapper
+            input.input(type="text", v-model="$store.state.properties.propNames[j]")
+            button.delete(@click="$store.commit('removePropsFromProperties', { index: j })") ×
         td.data.propval(v-for="(scriptName, i) in $store.getters.scriptNames", :key="i")
-          input.input(type="text", v-model="$store.state.properties.values[i][j]")
+          .wrapper
+            input.input(type="text", v-model="$store.state.properties.values[i][j]")
 
   .newprop
     button.button(@click="$store.commit('addPropsToProperties')") Add New Property
@@ -41,33 +44,55 @@ export default
   background-color: $global-bg-color-day;
   color: $global-ft-color-day;
 
+  overflow-x: scroll;
+
   > .table {
     grid-row: 1;
     grid-column: 1;
 
     > .head {
-      border-bottom: $border-height-base _ft-color($property-color-hue, "day", true) solid;
+      border-bottom: $border-height-base $global-ft-color-day solid;
+      background-color: darken($global-bg-color-day, 8%); // HACK: mixin
 
       > .row {
-        @include bg-ft-color($property-color-hue, "day", true);
-
         > .head { padding: var(--space-size-s); }
         > .data {
           padding: var(--space-size-s);
 
-          > .input { @include text-input(); }
+          > .wrapper {
+            display: inline-flex;
+            width: 100%;
+
+            > .input {
+              flex: 1;
+              @include text-input();
+            }
+            > .delete { margin: var(--space-size-xs); }
+          }
         }
       }
     }
     > .body {
       > .row {
-        &:nth-child(odd)  { @include bg-ft-color($property-color-hue, "day", false); }
-        &:nth-child(even) { @include bg-ft-color($property-color-hue, "day", true); }
+        &:nth-child(odd)  { background-color: darken($global-bg-color-day,  4%); } // HACK: mixin
+        &:nth-child(even) { background-color: darken($global-bg-color-day, 10%); } // HACK: mixin
 
         > .data {
           padding: var(--space-size-s);
 
-          > .input { @include text-input(); }
+          &.propname { min-width: 20rem; }
+          &.propval  { min-width: 10rem; }
+
+          > .wrapper {
+            display: inline-flex;
+            width: 100%;
+
+            > .input {
+              flex: 1;
+              @include text-input();
+            }
+            > .delete { margin: var(--space-size-xs); }
+          }
         }
       }
     }
@@ -77,14 +102,20 @@ export default
     grid-row: 2;
     grid-column: 1;
 
-    > .button { @include button-fill($property-color-hue); }
+    > .button {
+      width: 100%;
+      @include button-fill($property-color-hue);
+    }
   }
 
   > .newscript {
     grid-row: 1;
     grid-column: 2;
 
-    > .button { @include button-fill($property-color-hue); }
+    > .button {
+      height: 100%;
+      @include button-fill($property-color-hue);
+    }
   }
 }
 </style>
