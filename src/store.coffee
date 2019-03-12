@@ -299,7 +299,7 @@ export default new Vuex.Store
           advancedScriptText: state.advancedScriptText
           variables:  getters.variablesForCompiler
           properties: getters.propertiesForCompiler
-          filterName: state.fileName
+          filterName: state.filterName
 
     #
     # local strorage
