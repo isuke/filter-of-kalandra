@@ -23,9 +23,11 @@ module.exports = {
           use: {
             loader: 'worker-loader',
             options: {
-              inline: process.env.NODE_ENV !== 'production',
-              name: '[name].[hash].js',
-              publicPath: '/workers/'
+              inline: true,
+              fallback: false
+              // inline: process.env.NODE_ENV !== 'production',
+              // name: '[name].[hash].js',
+              // publicPath: '/workers/'
             }
           }
         }
