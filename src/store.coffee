@@ -416,6 +416,8 @@ export default new Vuex.Store
                     commit("setFilterName", filterName: name)
                     dispatch("importAdvancedScriptTextFromTextFile", file: file)
     exportAll: ({ state, getters, dispatch }) ->
+      alert "Started export. Please wait a second after click 'ok'."
+
       zip = await `import(/* webpackChunkName: "zip" */ "jsziptools/zip")`
 
       filters = []
