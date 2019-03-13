@@ -38,11 +38,13 @@
       'AnyEnchantment'
       'HasEnchantment'
     ]
-    actionKeywords: [
+    actionTextKeywords: [
       'SetBorderColor'
       'SetTextColor'
       'SetBackgroundColor'
       'SetFontSize'
+    ]
+    actionEffectKeywords: [
       'PlayAlertSound'
       'PlayAlertSoundPositional'
       'DisableDropSound'
@@ -97,7 +99,8 @@
               'Fork': 'keyword.fork'
               'Mixin': 'keyword.mixin'
               '@conditionKeywords': 'keyword.condition'
-              '@actionKeywords': 'keyword.action'
+              '@actionTextKeywords': 'keyword.action.text'
+              '@actionEffectKeywords': 'keyword.action.effect'
               '@values': 'variable.value'
               '@macroNames':
                 token: 'macro.name'
@@ -180,8 +183,9 @@
       { token: 'keyword.unset'      , foreground: '3d86b7' }
       { token: 'keyword.fork'       , foreground: '2542ce' }
       { token: 'keyword.mixin'      , foreground: '2542ce' }
-      { token: 'keyword.condition'  , foreground: '859900' }
-      { token: 'keyword.action'     , foreground: '3A9900' }
+      { token: 'keyword.condition'  , foreground: '7c8f00' }
+      { token: 'keyword.action.text', foreground: '3a9900' }
+      { token: 'keyword.action.effect', foreground: 'cc0086' }
       { token: 'number'             , foreground: 'cb4b16' }
       { token: 'variable.value'     , foreground: 'cb4b16' }
       { token: 'macro'              , foreground: '2aa198', fontStyle: 'underline' }
