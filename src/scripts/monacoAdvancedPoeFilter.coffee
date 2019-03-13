@@ -1,7 +1,13 @@
 `import(/* webpackChunkName: "monaco" */ "monaco-editor")`.then (monaco) =>
-  monaco.languages.register(id: 'advancedPoeFilter')
+  languageID = 'advancedPoeFilter'
 
-  monaco.languages.setMonarchTokensProvider 'advancedPoeFilter',
+  monaco.languages.register(id: languageID)
+
+  monaco.languages.setLanguageConfiguration languageID,
+    comments:
+      lineComment: '#'
+
+  monaco.languages.setMonarchTokensProvider languageID,
     keywords: [
       'Show', 'Hide', 'Unset', 'Fork', 'Mixin'
     ]
