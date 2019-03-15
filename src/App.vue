@@ -26,6 +26,7 @@ export default
     variables:          -> @$store.state.variables
     colors:             -> @$store.state.colors
     properties:         -> @$store.state.properties
+    options:            -> @$store.state.options
   watch:
     filterName: debounce ->
       @$store.dispatch("saveFilterNameToLocalStorage")
@@ -54,6 +55,13 @@ export default
     properties:
       handler: debounce ->
         @$store.dispatch("savePropertiesToLocalStorage")
+          .then()
+          .catch((e) => console.error e.message)
+      , 1500
+      deep: true
+    options:
+      handler: debounce ->
+        @$store.dispatch("saveOptionsToLocalStorage")
           .then()
           .catch((e) => console.error e.message)
       , 1500

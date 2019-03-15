@@ -23,11 +23,15 @@ export default new Vuex.Store
     syntaxError: undefined
     variables: []
     colors: []
-    properties: {
+    properties:
       scriptNames: ["No Name"]
       propNames: []
       values: []
-    }
+    options:
+      addDisableDropSoundToHideBlock: true
+      convertPlayAlertSoundPositionalToPlayAlertSound: false
+      removeCustomAlertSound: false
+      initialFontSize: 32
     scriptNumLimit: if process.env.NODE_ENV == "development" then 10 else 2
     _compileWorker: undefined
   getters:
@@ -139,6 +143,11 @@ export default new Vuex.Store
     removePropsFromProperties: (state, payload = {}) ->
       state.properties.propNames.splice(payload.index, 1)
       state.properties.values.forEach (value) => value.splice(payload.index, 1)
+
+    #
+    # options
+    #
+    setOptions: (state, payload = {}) -> state.options = payload.options
 
     #
     # all
@@ -255,14 +264,40 @@ export default new Vuex.Store
       )
 
     #
+    # options
+    #
+    importOptionsFromJSONFile: ({ state, commit }, payload = {}) ->
+      new Promise((resolve, reject) =>
+        reader = new FileReader()
+        reader.onload = (event) => resolve(event.target.result)
+        reader.readAsText payload.file
+      ).then((result) =>
+        commit "setOptions", options: JSON.parse(result)
+      ).catch((error) =>
+        console.error error.message
+      )
+
+    #
     # compile
     #
     createSimpleScriptObject: ({ state, commit, getters }) ->
-      object = advancedPoeFilter.getObject(state.advancedScriptText, getters.variablesForCompiler, getters.propertiesForCompiler)
+      object = advancedPoeFilter.getObject(
+        state.advancedScriptText,
+        getters.variablesForCompiler,
+        getters.propertiesForCompiler,
+        state.filterName,
+        state.options
+      )
       commit "setSimpleScriptObject", simpleScriptObject: object
       object
     createSimpleScriptTexts: ({ state, commit, getters }) ->
-      texts = advancedPoeFilter.compile(state.advancedScriptText, getters.variablesForCompiler, getters.propertiesForCompiler, state.filterName)
+      texts = advancedPoeFilter.compile(
+        state.advancedScriptText,
+        getters.variablesForCompiler,
+        getters.propertiesForCompiler,
+        state.filterName,
+        state.options
+      )
       commit "setSimpleScriptTexts", simpleScriptTexts: texts
       texts
 
@@ -292,6 +327,8 @@ export default new Vuex.Store
           advancedScriptText: state.advancedScriptText
           variables:  getters.variablesForCompiler
           properties: getters.propertiesForCompiler
+          filterName: state.filterName
+          options:    state.options
     requestSimpleScriptTextsToWorker: ({ state, getters }) ->
       if state._compileWorker
         state._compileWorker.postMessage
@@ -300,6 +337,7 @@ export default new Vuex.Store
           variables:  getters.variablesForCompiler
           properties: getters.propertiesForCompiler
           filterName: state.filterName
+          options:    state.options
 
     #
     # local strorage
@@ -339,6 +377,13 @@ export default new Vuex.Store
           resolve()
         catch e
           reject(e)
+    saveOptionsToLocalStorage: ({ state }) ->
+      new Promise (resolve, reject) =>
+        try
+          localStorage.set "filter-of-kalandra_options", JSON.stringify(state.options)
+          resolve()
+        catch e
+          reject(e)
     loadFromLocalStorage: ({ commit }) ->
       new Promise (resolve, reject) =>
         try
@@ -348,6 +393,7 @@ export default new Vuex.Store
           variables          = localStorage.get "filter-of-kalandra_variables"
           colors             = localStorage.get "filter-of-kalandra_colors"
           properties         = localStorage.get "filter-of-kalandra_properties"
+          options            = localStorage.get "filter-of-kalandra_options"
           if filterName
             commit "setFilterName", filterName: filterName
             loaded.push 'filterName'
@@ -363,6 +409,9 @@ export default new Vuex.Store
           if properties
             commit "setProperties", properties: JSON.parse properties
             loaded.push 'properties'
+          if options
+            commit "setOptions", options: JSON.parse options
+            loaded.push 'options'
           resolve loaded
         catch e
           reject e
@@ -381,6 +430,8 @@ export default new Vuex.Store
             dispatch("importColorsFromJSONFile", file: file, canOverwrite: true)
           when "properties.json"
             dispatch("importPropertiesFromJSONFile", file: file)
+          when "options.json"
+            dispatch("importOptionsFromJSONFile", file: file)
           else
             match = file.name.match /^(.*)\.(.*)$/
             if match
@@ -408,6 +459,8 @@ export default new Vuex.Store
                   dispatch("importColorsFromJSONFile", file: file, canOverwrite: true)
                 when "properties.json"
                   dispatch("importPropertiesFromJSONFile", file: file)
+                when "options.json"
+                  dispatch("importOptionsFromJSONFile", file: file)
                 else
                   match = fileName.match /^(.*)\.(.*)$/
                   name = match[1]
@@ -433,6 +486,7 @@ export default new Vuex.Store
           { name: "variables.json" , buffer: JSON.stringify(state.variables) }
           { name: "colors.json"    , buffer: JSON.stringify(state.colors) }
           { name: "properties.json", buffer: JSON.stringify(state.properties) }
+          { name: "options.json"   , buffer: JSON.stringify(state.options) }
         ]
       ]
 

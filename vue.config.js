@@ -39,6 +39,10 @@ module.exports = {
         maxSize: 250000
       }
     },
+    // chainWebpack: (config) => {
+    //   config.plugins.delete('preload')
+    //   config.plugins.delete('prefetch')
+    // },
     plugins: [
       new PreloadWebpackPlugin({
         rel: 'preload',

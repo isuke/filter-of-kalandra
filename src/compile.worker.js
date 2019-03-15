@@ -6,9 +6,15 @@ self.addEventListener('message', (event) => {
   try {
     let result = undefined
     if (event.data.type === 'Object') {
-      result = advancedPoeFilter.getObject(event.data.advancedScriptText, event.data.variables, event.data.properties)
+      result = advancedPoeFilter.getObject(
+        event.data.advancedScriptText,
+        event.data.variables,
+        event.data.properties,
+        event.data.filterName,
+        event.data.options
+      )
     } else if (event.data.type === 'Text') {
-      result = advancedPoeFilter.compile(event.data.advancedScriptText, event.data.variables, event.data.properties, event.data.filterName)
+      result = advancedPoeFilter.compile(event.data.advancedScriptText, event.data.variables, event.data.properties, event.data.filterName, event.data.options)
     } else {
       console.error(`Unkown type: \`${event.data.type}\``)
     }
