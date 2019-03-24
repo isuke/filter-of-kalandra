@@ -1342,10 +1342,10 @@ address@^1.0.3:
   resolved "https://registry.yarnpkg.com/address/-/address-1.0.3.tgz#b5f50631f8d6cec8bd20c963963afb55e06cbce9"
   integrity sha512-z55ocwKBRLryBs394Sm3ushTtBeg6VAeuku7utSoSnsJKvKcnXFIyC6vh27n3rXyxSgkJBBCAvyOn7gSUcTYjg==
 
-advanced-poe-filter@0.8.1:
-  version "0.8.1"
-  resolved "http://localhost:4873/advanced-poe-filter/-/advanced-poe-filter-0.8.1.tgz#ac0730cc7d13ae792ea17a13a450429f675bac9b"
-  integrity sha512-TpZla0uk1KVpvIUTcWDTsvY1Z7QJyJBLWhubsyEnatkjJJr7xkZYUvOxRocDSQsl+ivZB3yYa6Uu92t++Y07UQ==
+advanced-poe-filter@0.8.2:
+  version "0.8.2"
+  resolved "http://localhost:4873/advanced-poe-filter/-/advanced-poe-filter-0.8.2.tgz#6e0cab7971d5603b069c89f7c28125339c09565f"
+  integrity sha512-aNA54VD0RSSNUwvaB1DlfkzvgAX+n9qKsAetlH/MfgEa0ZJ4qyDWHi8WE/hWls9474MFpjtMn/4qD1SVCgL9FA==
   dependencies:
     color "^3.1.0"
 
