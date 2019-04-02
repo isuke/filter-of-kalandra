@@ -114,10 +114,74 @@ Show "Property Sample"
 # However, the maximum number of scripts is two (Current version).
 
 
-## Mixin
+## Fork and Mixin
 
-# 'Mixin' is very important keyword.
+# 'Fork' and 'Mixin' is very important keyword.
+
 # First, please look at the script below.
+
+Show "Fork Sample"
+    Class "Map"
+    SetBorderColor     255 255 255
+    SetBackgroundColor 0 0 0
+    SetFontSize 32
+
+    Fork "Rarity"
+        Show "Unique"
+            Rarity Unique
+            SetTextColor Var("Unique Item Color")
+        Show "Rare"
+            Rarity Rare
+            SetTextColor Var("Rare Item Color")
+        Show "Magic"
+            Rarity Magic
+            SetTextColor Var("Magic Item Color")
+        Show "Normal"
+            Rarity Normal
+            SetTextColor Var("Normal Item Color")
+
+# This Script is converted as follows by compile.
+
+#: ################################################################################
+#: # Fork Sample                                                                  #
+#: ################################################################################
+#: # Rarity is "Unique"
+#: Show
+#:     Class "Map"
+#:     Rarity Unique
+#:     SetFontSize 32
+#:     SetBorderColor 255 255 255 255
+#:     SetBackgroundColor 0 0 0 255
+#:     SetTextColor 175 96 37 255
+#:
+#: # Rarity is "Rare"
+#: Show
+#:     Class "Map"
+#:     Rarity Rare
+#:     SetFontSize 32
+#:     SetBorderColor 255 255 255 255
+#:     SetBackgroundColor 0 0 0 255
+#:     SetTextColor 255 255 119 255
+#:
+#: # Rarity is "Magic"
+#: Show
+#:     Class "Map"
+#:     Rarity Magic
+#:     SetFontSize 32
+#:     SetBorderColor 255 255 255 255
+#:     SetBackgroundColor 0 0 0 255
+#:     SetTextColor 136 136 255 255
+#:
+#: # Rarity is "Normal"
+#: Show
+#:     Class "Map"
+#:     Rarity Normal
+#:     SetFontSize 32
+#:     SetBorderColor 255 255 255 255
+#:     SetBackgroundColor 0 0 0 255
+#:     SetTextColor 200 200 200 255
+
+# Next, please look at the script below.
 
 Show "Mixin Sample"
     Class "Gem"
@@ -285,7 +349,7 @@ Show "Complex Mixin Sample"
 
 # This means that gems with 'High Level' AND 'Drop Only' gets SetFontSize 36 AND SetBorderColor is yellow.
 
-# Mixin can nest.
+# 'Fork' and 'Mixin' can nest.
 
 Hide "Nested Mixin Sample"
     Class "Gloves" "Boots" "Body Armours" "Helmets" "Shields"
@@ -366,6 +430,53 @@ Hide "Nested Mixin Sample"
 
 ## ↓ Unorganized Documents ↓ ##
 
+## Unset
+
+Unset "Unset Sample1"
+    Class "Map"
+
+#: ################################################################################
+#: # Unset Sample1                                                                #
+#: ################################################################################
+#: # Unset
+#:
+
+Unset "Unset Sample2"
+    Class "Map"
+
+    Mixin "Rarity"
+        Show "Rare"
+            Rarity Rare
+        Unset "Magic"
+            Rarity Magic
+        Hide "Normal"
+            Rarity Normal
+
+#: ################################################################################
+#: # Unset Sample2                                                                #
+#: ################################################################################
+#: # Rarity is "Rare"
+#: Show
+#:     Class "Map"
+#:     Rarity Rare
+#:     SetFontSize 32
+#:
+#: # Rarity is "Magic"
+#: # Unset
+#:
+#: # Rarity is "Normal"
+#: Hide
+#:     Class "Map"
+#:     Rarity Normal
+#:     SetFontSize 32
+#:     DisableDropSound True
+#:
+#: # Rarity is Any
+#: # Unset
+#:
+
+## Color Function
+
 Show "Color Function Sample"
     SetBackgroundColor Var("Skill Gem Color")
     SetFontSize 45
@@ -404,6 +515,8 @@ Show "Color Function Sample"
         Show "Lightness(10%)"
             Quality = 11
             SetBackgroundColor Lightness(10%)
+
+## FontSize Function
 
 Show "FontSize Function Sample"
     SetBackgroundColor Var("Skill Gem Color")
