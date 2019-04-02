@@ -118,6 +118,7 @@ export default
         when "White"  then { "background-color": "rgba(255, 255, 255 , 0.6)", color: "black" }
         when "Yellow" then { "background-color": "hsla( 60, 100%, 45%, 0.6)", color: "black" }
     reload: ->
+      @$emit('add-toaster', "started to reload")
       @$store.dispatch("requestSimpleScriptObjectToWorker")
     scrollToSection: (sectionName) ->
       # HACK

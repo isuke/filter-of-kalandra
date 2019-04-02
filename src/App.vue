@@ -1,11 +1,13 @@
 <template lang="pug">
 #app
-  the-global-header.header
+  the-global-header.header(@add-toaster="$refs.toaster.add($event)")
 
   keep-alive
-    router-view.main
+    router-view.main(@add-toaster="$refs.toaster.add($event)")
 
   the-global-footer.footer
+
+  the-toaster-list.toaster(ref="toaster")
 </template>
 
 <script lang="coffee">
@@ -13,6 +15,7 @@ import debounce from "lodash.debounce"
 
 import TheGlobalHeader from "@/components/TheGlobalHeader"
 import TheGlobalFooter from "@/components/TheGlobalFooter"
+import TheToasterList  from "@/components/TheToasterList"
 
 import sample from "@/sample.coffee"
 
@@ -20,6 +23,7 @@ export default
   components:
     "the-global-header": TheGlobalHeader
     "the-global-footer": TheGlobalFooter
+    "the-toaster-list":  TheToasterList
   computed:
     filterName:         -> @$store.state.filterName
     advancedScriptText: -> @$store.state.advancedScriptText
@@ -76,7 +80,13 @@ export default
       ).catch((e) =>
         console.error e.message
       )
-    @$store.dispatch("createCompileWorker")
+    @$store.dispatch "createCompileWorker",
+      successCallback: debounce =>
+        @$refs.toaster.add("completed to compile")
+      , 1000
+      failCallback: debounce =>
+        @$refs.toaster.add("failed compile")
+      , 1000
 </script>
 
 <style lang="scss" scoped>
@@ -106,6 +116,14 @@ export default
   > .footer {
     grid-row: 3;
     grid-column: 1;
+  }
+
+  > .toaster {
+    position: fixed;
+    top: $global-header-height;
+    right: 0;
+    margin: var(--space-size-s);
+    z-index: $toaster-z-index;
   }
 }
 </style>

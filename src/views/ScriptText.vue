@@ -37,6 +37,7 @@ export default
             theme: "advancedPoeFilterTheme"
             tabSize: 4
     reload: ->
+      @$emit('add-toaster', "started to reload")
       @$store.dispatch("requestSimpleScriptTextsToWorker")
   created: ->
     @currentScriptName = @$store.getters.scriptNames[0]

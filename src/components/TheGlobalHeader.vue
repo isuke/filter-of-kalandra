@@ -50,14 +50,22 @@ export default
     importAll: ->
       @$ga.event('import button', 'click') if process.env.NODE_ENV == "production"
       if @importType == 'dir'
-        @$store.dispatch('importAllFromFileList', fileList: @importFileList)
+        @$store.dispatch 'importAllFromFileList',
+          fileList: @importFileList
+          callback: => @$emit('add-toaster', "completed to import")
       else
-        @$store.dispatch('importAllFromZip', file: @importZipFile)
+        @$store.dispatch 'importAllFromZip',
+          file: @importZipFile
+          callback: => @$emit('add-toaster', "completed to import")
       @$refs.importAllModal.close('execed')
       @canOverwrite = false
     exportAll: ->
       @$ga.event('export button', 'click') if process.env.NODE_ENV == "production"
-      @$store.dispatch('exportAll')
+      @$emit('add-toaster', "started to export")
+      setTimeout =>
+        @$store.dispatch 'exportAll'
+      , 600 # $duration-slow
+
 </script>
 
 <style lang="scss" scoped>

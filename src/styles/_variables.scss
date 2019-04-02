@@ -70,12 +70,13 @@ $border-radius-base: 3px;
 //
 $base-z-index: 0;
 $editor-z-index: 5;
+$toaster-z-index: 100;
 
 // -----------------------------------------------------------------------------
 // Interaction
 // -----------------------------------------------------------------------------
 
 $duration-base: 150ms;
-$duration-slow: 550ms;
+$duration-slow: 600ms;
 
 $timing-base: ease-out;

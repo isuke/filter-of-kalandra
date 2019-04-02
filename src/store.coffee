@@ -304,7 +304,7 @@ export default new Vuex.Store
     #
     # web-worker
     #
-    createCompileWorker: ({ state, getters, commit }) ->
+    createCompileWorker: ({ state, getters, commit }, payload) ->
       worker = new CompileWorker()
       worker.addEventListener "message", (message) =>
         if message.data.status == "success"
@@ -315,8 +315,10 @@ export default new Vuex.Store
           else
             console.error "Unkown type: `#{message.data.type}`"
           commit "setSyntaxError", syntaxError: undefined
+          payload.successCallback() if payload.successCallback
         else
           commit "setSyntaxError", syntaxError: message.data.result
+          payload.failCallback() if payload.failCallback
       worker.addEventListener "error", (error) =>
         commit "setSyntaxError", syntaxError: { message: error.message }
       state._compileWorker = worker
@@ -440,6 +442,8 @@ export default new Vuex.Store
               if ext == 'advancedfilter'
                 commit("setFilterName", filterName: name)
                 dispatch("importAdvancedScriptTextFromTextFile", file: file)
+
+      payload.callback() if payload.callback
     importAllFromZip: ({ state, commit, dispatch }, payload = {}) ->
       zip = await `import(/* webpackChunkName: "zip" */ "jsziptools/zip")`
 
@@ -468,9 +472,9 @@ export default new Vuex.Store
                   if ext == 'advancedfilter'
                     commit("setFilterName", filterName: name)
                     dispatch("importAdvancedScriptTextFromTextFile", file: file)
-    exportAll: ({ state, getters, dispatch }) ->
-      alert "Started export. Please wait a second after click 'ok'."
 
+          payload.callback() if payload.callback
+    exportAll: ({ state, getters, dispatch }) ->
       zip = await `import(/* webpackChunkName: "zip" */ "jsziptools/zip")`
 
       filters = []
