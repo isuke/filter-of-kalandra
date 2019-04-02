@@ -109,7 +109,7 @@ export default
       font-size: var(--ft-size-xxl);
 
       &::after {
-        content: "(α)";
+        content: "(β)";
         font-style: italic;
         font-size: var(--ft-size-xl);
       }

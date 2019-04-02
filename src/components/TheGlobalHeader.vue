@@ -87,7 +87,7 @@ export default
     cursor: pointer;
 
     &::after {
-      content: "(α)";
+      content: "(β)";
       font-style: italic;
       font-size: var(--ft-size-m);
     }
