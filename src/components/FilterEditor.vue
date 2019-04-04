@@ -1,6 +1,7 @@
 <template lang="pug">
 .filer-editor(:class="{ '-error': hasSyntaxError }")
   .textarea(ref="textarea")
+    span.loading(v-if="!editor") Now Loading...
 </template>
 
 <script lang="coffee">
@@ -84,7 +85,12 @@ export default
   }
 
   > .textarea {
+    display: flex;
+    align-items: center;
+    justify-content: center;
     height: 100%;
+
+    > .loading { font-size: var(--ft-size-l); }
   }
 }
 </style>
