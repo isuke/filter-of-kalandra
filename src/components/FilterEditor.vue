@@ -42,7 +42,7 @@ export default
             }
           ]
         else
-          console.error error
+          @$emit 'add-toaster', { message: error.message, type: 'error' }
       else
         @editor.deltaDecorations @errorDecorations, []
         @errorDecorations = []

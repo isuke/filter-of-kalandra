@@ -4,6 +4,7 @@
     ref="editor",
     v-model="$store.state.advancedScriptText",
     :syntax-error="$store.state.syntaxError",
+    @add-toaster="$emit('add-toaster', $event)"
   )
 </template>
 

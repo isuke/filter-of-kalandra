@@ -85,7 +85,7 @@ export default
         @$refs.toaster.add("completed to compile")
       , 1000
       failCallback: debounce =>
-        @$refs.toaster.add("failed compile")
+        @$refs.toaster.add { message: "failed compile", type: "error" }
       , 1000
 </script>
 

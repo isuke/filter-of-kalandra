@@ -3,6 +3,7 @@ transition-group.simple-toaster-list(name="slide-list", tag="ul")
   li.item(
     v-for="item in items",
     :key="item.id",
+    :class="`-${item.type}`"
     @click="remove(item.id)"
   ) {{ item.message }}
 </template>
@@ -17,11 +18,20 @@ export default
   data: ->
     id: 0
     items: []
+    defaultItemVals:
+      message: ""
+      type: "normal"
   methods:
-    add: (message) ->
+    add: (payload) ->
       id = @id++
 
-      @items.push id: id, message: message
+      item = if typeof payload == "string"
+        Object.assign {}, @defaultItemVals, { id: id, message: payload }
+      else
+        Object.assign {}, @defaultItemVals, { id: id }, payload
+
+      @items.push item
+
       setTimeout =>
         @remove id
       , @timeout
@@ -38,8 +48,6 @@ export default
   > .item {
     padding: var(--space-size-m);
     border-radius: $border-radius-base;
-    background-color: $global-bg-color-day;
-    color: $global-ft-color-day;
     opacity: 0.9;
     min-width: 6rem;
     max-width: 50vw;
@@ -51,6 +59,15 @@ export default
     @ghost transition(#{$duration-slow}, ease, transform, opacity);
 
     &:not(:last-child) { margin-bottom: var(--space-size-s); }
+
+    &.-normal {
+      background-color: $global-bg-color-day;
+      color: $global-ft-color-day;
+    }
+    &.-error {
+      background-color: $error-bg-color;
+      color: $global-ft-color-night;
+    }
 
     &.slide-list-enter {
       transform: translateX(100%);
