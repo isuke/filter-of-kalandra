@@ -77,6 +77,22 @@ main.home
         p.text
           | Make to import own or others filter from GitHub URL.
         span.badge.-todo
+  section.section.changelogs
+    h1.headding Change Logs
+    ul.list
+      li.item
+        h2.headding
+          span.version v0.8.x
+          span.date 2019-04-xx
+        ul.list
+          li.item feat(ScriptEditor): Add loading message.
+          li.item feat(ScriptEditor): Make to show error toaster when occurred error (other than syntax error).
+      li.item
+        h2.headding
+          span.version v0.8.0
+          span.date 2019-04-02
+        ul.list
+          li.item tada: Release Beta.
 </template>
 
 <script lang="coffee">
@@ -171,9 +187,9 @@ export default
         > .headding {
           font-size: var(--ft-size-l);
           text-align: center;
+          margin-bottom: var(--space-size-s);
         }
         > .text {
-          margin-top: var(--space-size-s);
           @ghost font-size-line-height(var(--ft-size-m), 0.5em);
           text-align: center;
 
@@ -206,6 +222,39 @@ export default
             background-color: $base-bg-green-day;
             @include text-shadow();
             &::after { content: "DONE"; }
+          }
+        }
+      }
+    }
+  }
+
+  > .changelogs {
+    > .headding {
+      font-size: var(--ft-size-xl);
+      text-align: center;
+      margin-bottom: var(--space-size-xl);
+    }
+
+    > .list {
+      > .item {
+        margin-bottom: var(--space-size-l);
+
+        > .headding {
+          text-align: center;
+
+          > .version {
+            font-size: var(--ft-size-l);
+          }
+          > .date {
+            font-size: var(--ft-size-m);
+            margin-left: var(--space-size-s);
+          }
+        }
+        > .list {
+          margin-top: var(--space-size-s);
+
+          > .item {
+            @ghost font-size-line-height(var(--ft-size-m), 0.5em);
           }
         }
       }
