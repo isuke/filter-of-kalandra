@@ -164,6 +164,12 @@ export default new Vuex.Store
         propNames: []
         values: []
       }
+      state.options = {
+        addDisableDropSoundToHideBlock: true
+        convertPlayAlertSoundPositionalToPlayAlertSound: false
+        removeCustomAlertSound: false
+        initialFontSize: 32
+      }
   actions:
     #
     # advancedScriptText
