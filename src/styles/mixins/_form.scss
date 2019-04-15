@@ -6,9 +6,15 @@
 
   @ghost transition(#{$duration-base}, #{$timing-base}, background-color, color, border-color);
 
-  &:focus {
-    background-color: $global-bg-color-day;
-    color: $global-ft-color-day;
-    border-color: $global-ft-accent-color-day;
+  &:not(:read-only) {
+    &:focus {
+      background-color: $global-bg-color-day;
+      color: $global-ft-color-day;
+      border-color: $global-ft-accent-color-day;
+    }
+  }
+
+  &:read-only {
+    color: $global-ft-non-accent-color-day;
   }
 }

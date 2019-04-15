@@ -7,7 +7,7 @@ import Color from "color"
 import localStorage from "store/dist/store.modern.min.js"
 import * as advancedPoeFilter from "advanced-poe-filter"
 
-import { forIn, download } from "@/scripts/utils.coffee"
+import { forIn, isEmpty, download } from "@/scripts/utils.coffee"
 
 import CompileWorker from './compile.worker.js'
 
@@ -16,7 +16,6 @@ import defaultData from "./defaultData.coffee"
 export default new Vuex.Store
   strict: false
   state:
-    filterName: "New Filter"
     advancedScriptText: ""
     simpleScriptObject: {}
     simpleScriptTexts: {}
@@ -27,6 +26,9 @@ export default new Vuex.Store
       scriptNames: ["No Name"]
       propNames: []
       values: []
+    filterInfo:
+      name: "New Filter"
+      appVersion: process.env.VUE_APP_VERSION
     options:
       addDisableDropSoundToHideBlock: true
       convertPlayAlertSoundPositionalToPlayAlertSound: false
@@ -88,11 +90,6 @@ export default new Vuex.Store
       result
   mutations:
     #
-    # filterName
-    #
-    setFilterName: (state, payload = {}) -> state.filterName = payload.filterName
-
-    #
     # advancedScriptText
     #
     setAdvancedScriptText: (state, payload = {}) ->
@@ -145,6 +142,11 @@ export default new Vuex.Store
       state.properties.values.forEach (value) => value.splice(payload.index, 1)
 
     #
+    # filterInfo
+    #
+    setFilterInfo: (state, payload = {}) -> state.filterInfo = payload.filterInfo
+
+    #
     # options
     #
     setOptions: (state, payload = {}) -> state.options = payload.options
@@ -153,7 +155,6 @@ export default new Vuex.Store
     # all
     #
     resetAll: (state) ->
-      state.filterName = "New Filter"
       state.advancedScriptText = ""
       state.simpleScriptObject = {}
       state.syntaxError = undefined
@@ -163,6 +164,10 @@ export default new Vuex.Store
         scriptNames: ["No Name"]
         propNames: []
         values: []
+      }
+      state.filterInfo = {
+        name: "New Filter"
+        appVersion: process.env.VUE_APP_VERSION
       }
       state.options = {
         addDisableDropSoundToHideBlock: true
@@ -270,6 +275,20 @@ export default new Vuex.Store
       )
 
     #
+    # filterInfo
+    #
+    importFilterInfoFromJSONFile: ({ state, commit }, payload = {}) ->
+      new Promise((resolve, reject) =>
+        reader = new FileReader()
+        reader.onload = (event) => resolve(event.target.result)
+        reader.readAsText payload.file
+      ).then((result) =>
+        commit "setFilterInfo", options: JSON.parse(result)
+      ).catch((error) =>
+        console.error error.message
+      )
+
+    #
     # options
     #
     importOptionsFromJSONFile: ({ state, commit }, payload = {}) ->
@@ -291,7 +310,7 @@ export default new Vuex.Store
         state.advancedScriptText,
         getters.variablesForCompiler,
         getters.propertiesForCompiler,
-        state.filterName,
+        state.filterInfo,
         state.options
       )
       commit "setSimpleScriptObject", simpleScriptObject: object
@@ -301,7 +320,7 @@ export default new Vuex.Store
         state.advancedScriptText,
         getters.variablesForCompiler,
         getters.propertiesForCompiler,
-        state.filterName,
+        state.filterInfo,
         state.options
       )
       commit "setSimpleScriptTexts", simpleScriptTexts: texts
@@ -335,7 +354,7 @@ export default new Vuex.Store
           advancedScriptText: state.advancedScriptText
           variables:  getters.variablesForCompiler
           properties: getters.propertiesForCompiler
-          filterName: state.filterName
+          filterInfo: state.filterInfo
           options:    state.options
     requestSimpleScriptTextsToWorker: ({ state, getters }) ->
       if state._compileWorker
@@ -344,19 +363,12 @@ export default new Vuex.Store
           advancedScriptText: state.advancedScriptText
           variables:  getters.variablesForCompiler
           properties: getters.propertiesForCompiler
-          filterName: state.filterName
+          filterInfo: state.filterInfo
           options:    state.options
 
     #
     # local strorage
     #
-    saveFilterNameToLocalStorage: ({ state }) ->
-      new Promise (resolve, reject) =>
-        try
-          localStorage.set "filter-of-kalandra_filterName", state.filterName
-          resolve()
-        catch e
-          reject(e)
     saveAdvancedScriptTextToLocalStorage: ({ state }) ->
       new Promise (resolve, reject) =>
         try
@@ -385,6 +397,14 @@ export default new Vuex.Store
           resolve()
         catch e
           reject(e)
+    saveFilterInfoToLocalStorage: ({ state }) ->
+      new Promise (resolve, reject) =>
+        try
+          localStorage.set "filter-of-kalandra_filterInfo", JSON.stringify(state.filterInfo)
+          localStorage.remove "filter-of-kalandra_filterName" # remove old version garbage
+          resolve()
+        catch e
+          reject(e)
     saveOptionsToLocalStorage: ({ state }) ->
       new Promise (resolve, reject) =>
         try
@@ -396,30 +416,40 @@ export default new Vuex.Store
       new Promise (resolve, reject) =>
         try
           loaded = []
-          filterName         = localStorage.get "filter-of-kalandra_filterName"
           advancedScriptText = localStorage.get "filter-of-kalandra_advancedScriptText"
           variables          = localStorage.get "filter-of-kalandra_variables"
           colors             = localStorage.get "filter-of-kalandra_colors"
           properties         = localStorage.get "filter-of-kalandra_properties"
+          filterInfo         = localStorage.get "filter-of-kalandra_filterInfo"
           options            = localStorage.get "filter-of-kalandra_options"
-          if filterName
-            commit "setFilterName", filterName: filterName
-            loaded.push 'filterName'
-          if advancedScriptText
+
+          filterName = localStorage.get "filter-of-kalandra_filterName" # old version
+
+          unless isEmpty advancedScriptText
             commit "setAdvancedScriptText", advancedScriptText: advancedScriptText
             loaded.push 'advancedScriptText'
-          if variables
+          unless isEmpty variables
             commit "setVariables", variables: JSON.parse variables
             loaded.push 'variables'
-          if colors
+          unless isEmpty colors
             commit "setColors", colors: JSON.parse colors
             loaded.push 'colors'
-          if properties
+          unless isEmpty properties
             commit "setProperties", properties: JSON.parse properties
             loaded.push 'properties'
-          if options
+          unless isEmpty filterInfo
+            commit "setFilterInfo", filterInfo: JSON.parse filterInfo
+            loaded.push 'filterInfo'
+          unless isEmpty options
             commit "setOptions", options: JSON.parse options
             loaded.push 'options'
+          if isEmpty(filterInfo) && ! isEmpty(filterName)
+            console.warn "load old version data from local storage."
+            commit "setFilterInfo",
+              filterInfo:
+                name: filterName
+                appVersion: process.env.VUE_APP_VERSION
+            loaded.push 'filterInfo'
           resolve loaded
         catch e
           reject e
@@ -427,29 +457,54 @@ export default new Vuex.Store
     #
     # zip import/export
     #
-    importAllFromFileList: ({ state, commit, dispatch }, payload = {}) ->
+    importAll: ({ state, commit, dispatch }, payload = {}) ->
       commit "resetAll"
 
-      Array.prototype.forEach.call payload.fileList, (file) =>
-        switch file.name
+      existFilterInfoFile = false
+      filterName = "New Filter"
+
+      payload.fileNames.forEach (fileName, index) =>
+        file = payload.files[index]
+
+        switch fileName
           when "variables.json"
             dispatch("importVariablesFromJSONFile", file: file, canOverwrite: true)
           when "colors.json"
             dispatch("importColorsFromJSONFile", file: file, canOverwrite: true)
           when "properties.json"
             dispatch("importPropertiesFromJSONFile", file: file)
+          when "filterInfo.json"
+            dispatch("importFilterInfoFromJSONFile", file: file)
+            existFilterInfoFile = true
           when "options.json"
             dispatch("importOptionsFromJSONFile", file: file)
           else
-            match = file.name.match /^(.*)\.(.*)$/
+            match = fileName.match /^(.*)\.(.*)$/
             if match
               name = match[1]
               ext  = match[2]
               if ext == 'advancedfilter'
-                commit("setFilterName", filterName: name)
+                filterName = name
                 dispatch("importAdvancedScriptTextFromTextFile", file: file)
 
+      # for old data
+      unless existFilterInfoFile
+        console.warn "import old version data."
+        commit "setFilterInfo",
+          filterInfo:
+            name: filterName
+            appVersion: process.env.VUE_APP_VERSION
+
       payload.callback() if payload.callback
+    importAllFromFileList: ({ state, commit, dispatch }, payload = {}) ->
+      fileNames = []
+      files = []
+
+      Array.prototype.forEach.call payload.fileList, (file) =>
+        fileNames.push file.name
+        files.push file
+
+      dispatch "importAll", { fileNames: fileNames, files: files, callback: payload.callback }
     importAllFromZip: ({ state, commit, dispatch }, payload = {}) ->
       zip = await `import(/* webpackChunkName: "zip" */ "jsziptools/zip")`
 
@@ -457,29 +512,11 @@ export default new Vuex.Store
         .unpack
           buffer: payload.file
         .then (reader) =>
-          commit "resetAll"
+          filePathes = reader.getFileNames()
+          fileNames = filePathes.map (filePath) => filePath.match(/([^\/]+?)?$/)[1]
+          files = await Promise.all filePathes.map (filePath) => reader.readFileAsBlob(filePath)
 
-          reader.getFileNames().forEach (filePath) =>
-            reader.readFileAsBlob(filePath).then (file) =>
-              fileName = filePath.match(/([^\/]+?)?$/)[1]
-              switch fileName
-                when "variables.json"
-                  dispatch("importVariablesFromJSONFile", file: file, canOverwrite: true)
-                when "colors.json"
-                  dispatch("importColorsFromJSONFile", file: file, canOverwrite: true)
-                when "properties.json"
-                  dispatch("importPropertiesFromJSONFile", file: file)
-                when "options.json"
-                  dispatch("importOptionsFromJSONFile", file: file)
-                else
-                  match = fileName.match /^(.*)\.(.*)$/
-                  name = match[1]
-                  ext  = match[2]
-                  if ext == 'advancedfilter'
-                    commit("setFilterName", filterName: name)
-                    dispatch("importAdvancedScriptTextFromTextFile", file: file)
-
-          payload.callback() if payload.callback
+          dispatch "importAll", { fileNames: fileNames, files: files, callback: payload.callback }
     exportAll: ({ state, getters, dispatch }) ->
       zip = await `import(/* webpackChunkName: "zip" */ "jsziptools/zip")`
 
@@ -487,15 +524,16 @@ export default new Vuex.Store
 
       texts = await dispatch("createSimpleScriptTexts")
       forIn texts, (simpleScriptText, scriptName) =>
-        filters.push { name: "#{state.filterName}_#{scriptName}.filter", buffer: simpleScriptText }
+        filters.push { name: "#{state.filterInfo.name}_#{scriptName}.filter", buffer: simpleScriptText }
 
       files = [
-        name: state.filterName
+        name: state.filterInfo.name
         dir: filters.concat [
-          { name: "#{state.filterName}.advancedfilter", buffer: state.advancedScriptText }
+          { name: "#{state.filterInfo.name}.advancedfilter", buffer: state.advancedScriptText }
           { name: "variables.json" , buffer: JSON.stringify(state.variables) }
           { name: "colors.json"    , buffer: JSON.stringify(state.colors) }
           { name: "properties.json", buffer: JSON.stringify(state.properties) }
+          { name: "filterInfo.json", buffer: JSON.stringify(state.filterInfo) }
           { name: "options.json"   , buffer: JSON.stringify(state.options) }
         ]
       ]
@@ -504,4 +542,4 @@ export default new Vuex.Store
         .pack
           files: files
         .then (buffer) =>
-          download "#{state.filterName}.zip", buffer, "application/zip"
+          download "#{state.filterInfo.name}.zip", buffer, "application/zip"

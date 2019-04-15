@@ -25,18 +25,13 @@ export default
     "the-global-footer": TheGlobalFooter
     "the-toaster-list":  TheToasterList
   computed:
-    filterName:         -> @$store.state.filterName
     advancedScriptText: -> @$store.state.advancedScriptText
     variables:          -> @$store.state.variables
     colors:             -> @$store.state.colors
     properties:         -> @$store.state.properties
+    filterInfo:         -> @$store.state.filterInfo
     options:            -> @$store.state.options
   watch:
-    filterName: debounce ->
-      @$store.dispatch("saveFilterNameToLocalStorage")
-        .then()
-        .catch((e) => console.error e.message)
-    , 1500
     advancedScriptText: debounce ->
       @$store.dispatch("saveAdvancedScriptTextToLocalStorage")
         .then()
@@ -63,6 +58,13 @@ export default
           .catch((e) => console.error e.message)
       , 1500
       deep: true
+    filterInfo:
+      handler: debounce ->
+        @$store.dispatch("saveFilterInfoToLocalStorage")
+          .then()
+          .catch((e) => console.error e.message)
+      , 1500
+      deep: true
     options:
       handler: debounce ->
         @$store.dispatch("saveOptionsToLocalStorage")
@@ -70,23 +72,30 @@ export default
           .catch((e) => console.error e.message)
       , 1500
       deep: true
+  methods:
+    loadFromLocalStorage: ->
+      @$store.dispatch("loadFromLocalStorage")
+        .then((loaded) =>
+          @sedDefaultValues loaded
+        ).catch((e) =>
+          console.error e.message
+        )
+    sedDefaultValues: (loaded) ->
+      @$store.commit "setAdvancedScriptText", advancedScriptText: sample.advancedScriptText unless loaded.includes "advancedScriptText"
+      @$store.dispatch "importDefaultVariables", canOverwrite: false                        unless loaded.includes "variables"
+      @$store.dispatch "importDefaultColors", canOverwrite: false                           unless loaded.includes "colors"
+      @$store.commit "setProperties", properties: sample.properties                         unless loaded.includes "properties"
+    createCompileWorker: ->
+      @$store.dispatch "createCompileWorker",
+        successCallback: debounce =>
+          @$refs.toaster.add("completed to compile")
+        , 1000
+        failCallback: debounce =>
+          @$refs.toaster.add { message: "failed compile", type: "error" }
+        , 1000
   created: ->
-    @$store.dispatch("loadFromLocalStorage")
-      .then((loaded) =>
-        @$store.commit "setAdvancedScriptText", advancedScriptText: sample.advancedScriptText unless loaded.includes "advancedScriptText"
-        @$store.dispatch "importDefaultVariables", canOverwrite: false                        unless loaded.includes "variables"
-        @$store.dispatch "importDefaultColors", canOverwrite: false                           unless loaded.includes "colors"
-        @$store.commit "setProperties", properties: sample.properties                         unless loaded.includes "properties"
-      ).catch((e) =>
-        console.error e.message
-      )
-    @$store.dispatch "createCompileWorker",
-      successCallback: debounce =>
-        @$refs.toaster.add("completed to compile")
-      , 1000
-      failCallback: debounce =>
-        @$refs.toaster.add { message: "failed compile", type: "error" }
-      , 1000
+    @loadFromLocalStorage()
+    @createCompileWorker()
 </script>
 
 <style lang="scss" scoped>

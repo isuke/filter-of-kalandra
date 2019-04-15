@@ -10,11 +10,11 @@ self.addEventListener('message', (event) => {
         event.data.advancedScriptText,
         event.data.variables,
         event.data.properties,
-        event.data.filterName,
+        event.data.filterInfo,
         event.data.options
       )
     } else if (event.data.type === 'Text') {
-      result = advancedPoeFilter.compile(event.data.advancedScriptText, event.data.variables, event.data.properties, event.data.filterName, event.data.options)
+      result = advancedPoeFilter.compile(event.data.advancedScriptText, event.data.variables, event.data.properties, event.data.filterInfo, event.data.options)
     } else {
       console.error(`Unkown type: \`${event.data.type}\``)
     }

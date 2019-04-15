@@ -1,8 +1,11 @@
 <template lang="pug">
 main.setting
   form.form
+    //- label.label(:for="`appversion-${_uid}`") App Version
+    //- input.input(type="text", v-model="$store.state.filterInfo.appVersion", :id="`appversion-${_uid}`", readOnly)
+
     label.label(:for="`filtername-${_uid}`") Filter Name
-    input.input(type="text", v-model="$store.state.filterName", :id="`filtername-${_uid}`")
+    input.input(type="text", v-model="$store.state.filterInfo.name", :id="`filtername-${_uid}`")
 
     label.label(:for="`adddisabledropsoundtohideblock-${_uid}`") Add DisableDropSound to Hide Block (default: true)
     input.input(type="checkbox", v-model="$store.state.options.addDisableDropSoundToHideBlock", :id="`adddisabledropsoundtohideblock-${_uid}`")
