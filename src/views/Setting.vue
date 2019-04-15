@@ -7,6 +7,9 @@ main.setting
     label.label(:for="`filtername-${_uid}`") Filter Name
     input.input(type="text", v-model="$store.state.filterInfo.name", :id="`filtername-${_uid}`")
 
+    label.label(:for="`version-${_uid}`") Filter Version
+    input.input(type="text", v-model="$store.state.filterInfo.version", :id="`version-${_uid}`")
+
     label.label(:for="`adddisabledropsoundtohideblock-${_uid}`") Add DisableDropSound to Hide Block (default: true)
     input.input(type="checkbox", v-model="$store.state.options.addDisableDropSoundToHideBlock", :id="`adddisabledropsoundtohideblock-${_uid}`")
 

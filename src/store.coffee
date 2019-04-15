@@ -28,6 +28,7 @@ export default new Vuex.Store
       values: []
     filterInfo:
       name: "New Filter"
+      version: "0.0.1"
       appVersion: process.env.VUE_APP_VERSION
     options:
       addDisableDropSoundToHideBlock: true
@@ -167,6 +168,7 @@ export default new Vuex.Store
       }
       state.filterInfo = {
         name: "New Filter"
+        version: "0.0.1"
         appVersion: process.env.VUE_APP_VERSION
       }
       state.options = {
@@ -448,6 +450,7 @@ export default new Vuex.Store
             commit "setFilterInfo",
               filterInfo:
                 name: filterName
+                version: "0.0.1"
                 appVersion: process.env.VUE_APP_VERSION
             loaded.push 'filterInfo'
           resolve loaded
