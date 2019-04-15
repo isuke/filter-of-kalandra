@@ -82,8 +82,8 @@ main.home
     ul.list
       li.item
         h2.headding
-          span.version v0.8.x
-          span.date 2019-04-xx
+          span.version v0.8.2
+          span.date 2019-04-16
         ul.list
           li.item up: Upgrade advanced-poe-filter to v0.8.3.
           li.item feat(Setting): Add filter version.
