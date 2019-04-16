@@ -285,7 +285,7 @@ export default new Vuex.Store
         reader.onload = (event) => resolve(event.target.result)
         reader.readAsText payload.file
       ).then((result) =>
-        commit "setFilterInfo", options: JSON.parse(result)
+        commit "setFilterInfo", filterInfo: JSON.parse(result)
       ).catch((error) =>
         console.error error.message
       )
