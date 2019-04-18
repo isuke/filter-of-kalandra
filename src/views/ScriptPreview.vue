@@ -45,7 +45,7 @@ import MinimapIcon from "@/components/MinimapIcon.vue"
 
 import { forIn } from "@/scripts/utils.coffee"
 
-import soundAudible from "@/mixins/soundAudible.coffee"
+import soundAudible from "@/scripts/mixins/soundAudible.coffee"
 
 import bgImage from "@/assets/images/preview-bg-208x48.png"
 
