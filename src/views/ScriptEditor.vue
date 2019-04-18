@@ -21,7 +21,7 @@ export default
   watch:
     advancedScriptText: debounce ->
       @$store.dispatch("requestSimpleScriptObjectToWorker")
-    , 1000
+    , 2500
   methods:
     scrollToSection: (sectionName) ->
       @$refs.editor.scrollToSection(sectionName)

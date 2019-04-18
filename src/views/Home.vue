@@ -82,6 +82,12 @@ main.home
     ul.list
       li.item
         h2.headding
+          span.version v0.8.x
+          span.date 2019-04-xx
+        ul.list
+          li.item feat(ScriptEditor): implement suggestions
+      li.item
+        h2.headding
           span.version v0.8.3
           span.date 2019-04-16
         ul.list
