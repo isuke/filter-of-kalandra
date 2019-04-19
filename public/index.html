@@ -10,6 +10,8 @@
       gtag('js', new Date());
 
       gtag('config', '<%= VUE_APP_GoogleAnalyticsID %>');
+
+      ga('set', 'anonymizeIp', true);
     </script>
     <% } else { %>
     <meta http-equiv="Cache-control" content="no-cache">

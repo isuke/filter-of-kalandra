@@ -4,6 +4,13 @@ footer.the-global-footer
   address.info
     ul.list
       li.item: a.link(href="https://github.com/isuke", target="_blank", rel="noopener noreferrer") https://github.com/isuke
+  p.policy
+    | This website uses "Google Analytics".
+    | Google Analytics uses "cookies".
+    | cookies help the website operators analyze how visitors use the website.
+    | The site send visitors data (e.g. IP Address).
+    | On the website, IP anonymization has been activated.
+    | The sended data don't include personal information.
 </template>
 
 <script lang="coffee">
@@ -33,6 +40,12 @@ export default {}
         }
       }
     }
+  }
+
+  > .policy {
+    margin-top: var(--space-size-m);
+    color: $global-ft-non-accent-color-night;
+    font-size: var(--ft-size-s);
   }
 }
 </style>
