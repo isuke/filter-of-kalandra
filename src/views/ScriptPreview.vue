@@ -69,19 +69,21 @@ export default
       @$store.getters.sectionNames.forEach (sectionName) =>
         @$set @simpleScriptObjectForPreview, sectionName, {}
     createSectionObject: (sectionName) ->
-      result = {}
-      forIn @simpleScriptObject, (sections, scriptName) =>
-        section = sections.filter((s) => s.name == sectionName)[0]
-        if section
-          # if section.blocks.length > 100 # TODO: wait cursor
-          section.blocks.forEach (block) =>
-            result[block.id] = {}                                unless result[block.id]
-            result[block.id].name = @getBlockNameStr(block.name) unless result[block.id].name
-            result[block.id].vals = {}                           unless result[block.id].vals
-            result[block.id].vals[scriptName] = {}               unless result[block.id].vals[scriptName]
-            result[block.id].vals[scriptName].activity = block.activity
-            result[block.id].vals[scriptName].actions = block.actions
-      @$set @simpleScriptObjectForPreview, sectionName, result
+      @$emit('add-toaster', "started to create preview '#{sectionName}'")
+      setTimeout =>
+        result = {}
+        forIn @simpleScriptObject, (sections, scriptName) =>
+          section = sections.filter((s) => s.name == sectionName)[0]
+          if section
+            section.blocks.forEach (block) =>
+              result[block.id] = {}                                unless result[block.id]
+              result[block.id].name = @getBlockNameStr(block.name) unless result[block.id].name
+              result[block.id].vals = {}                           unless result[block.id].vals
+              result[block.id].vals[scriptName] = {}               unless result[block.id].vals[scriptName]
+              result[block.id].vals[scriptName].activity = block.activity
+              result[block.id].vals[scriptName].actions = block.actions
+        @$set @simpleScriptObjectForPreview, sectionName, result
+      , 600  # $duration-slow
     getBlockNameStr: (blockNameObject) ->
       temp = []
       forIn blockNameObject, (val, key) =>
