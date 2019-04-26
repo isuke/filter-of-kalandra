@@ -82,10 +82,17 @@ main.home
     ul.list
       li.item
         h2.headding
+          span.version v0.8.5
+          span.date 2019-04-26
+        ul.list
+          li.item chore(ScriptEditor): Add <a class="link" href="https://marketplace.visualstudio.com/items?itemName=isuke.vscode-advanced-poe-filter" target="_blank" rel="noopener noreferrer">vscode extention</a> link.
+          li.item feat(ScriptPreview): Make to show toaster when create preview.
+      li.item
+        h2.headding
           span.version v0.8.4
           span.date 2019-04-19
         ul.list
-          li.item feat(ScriptEditor): implement suggestions
+          li.item feat(ScriptEditor): Implement suggestions
       li.item
         h2.headding
           span.version v0.8.3
@@ -275,6 +282,10 @@ export default
 
           > .item {
             @ghost font-size-line-height(var(--ft-size-m), 0.5em);
+
+            > .link {
+              text-decoration: underline;
+            }
           }
         }
       }

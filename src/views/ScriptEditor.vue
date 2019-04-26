@@ -6,6 +6,8 @@
     :syntax-error="$store.state.syntaxError",
     @add-toaster="$emit('add-toaster', $event)"
   )
+  .hint
+    p.item Do you want to edit by text editor? There is <a class="link" href="https://marketplace.visualstudio.com/items?itemName=isuke.vscode-advanced-poe-filter" target="_blank" rel="noopener noreferrer">vscode extention</a>!
 </template>
 
 <script lang="coffee">
@@ -33,5 +35,20 @@ export default
 
   background-color: $global-bg-color-day;
   color: $global-ft-color-day;
+  font-size: var(--ft-size-m);
+
+  > .editor {
+    height: 100%;
+  }
+
+  > .hint {
+    padding: var(--space-size-m);
+
+    > .item {
+      > .link {
+        text-decoration: underline;
+      }
+    }
+  }
 }
 </style>
