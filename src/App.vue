@@ -46,6 +46,10 @@ export default
   created: ->
     @loadFromLocalStorage()
     @createCompileWorker()
+    # HACK
+    setTimeout =>
+      @$store.dispatch("requestSimpleScriptObjectToWorker")
+    , 2000
 </script>
 
 <style lang="scss" scoped>

@@ -358,6 +358,8 @@ export default new Vuex.Store
           properties: getters.propertiesForCompiler
           filterInfo: state.filterInfo
           options:    state.options
+      else
+        console.error "Compile Worker not exist."
     requestSimpleScriptTextsToWorker: ({ state, getters }) ->
       if state._compileWorker
         state._compileWorker.postMessage
