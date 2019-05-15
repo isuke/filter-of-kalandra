@@ -55,7 +55,9 @@ $property-color-hue: 80 + 42 * 0;
 //
 $aside-size-width: 14rem;
 
+$global-hint-height: 1.5rem;
 $global-header-height: 3rem;
+$global-fixed-height: $global-hint-height + $global-header-height;
 $sub-header-height: 3rem;
 
 //

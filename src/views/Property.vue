@@ -25,7 +25,7 @@ export default
     grid-row: 1;
     grid-column: 1;
     position: sticky;
-    top: $global-header-height;
+    top: $global-fixed-height;
   }
 
   > .main {

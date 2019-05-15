@@ -1,5 +1,7 @@
 <template lang="pug">
 #app
+  the-global-hint.hint
+
   the-global-header.header(@add-toaster="$refs.toaster.add($event)")
 
   keep-alive
@@ -15,6 +17,7 @@ import debounce from "lodash.debounce"
 
 import localStrorageUsable from "@/scripts/mixins/localStorageUsable.coffee"
 
+import TheGlobalHint   from "@/components/TheGlobalHint"
 import TheGlobalHeader from "@/components/TheGlobalHeader"
 import TheGlobalFooter from "@/components/TheGlobalFooter"
 import TheToasterList  from "@/components/TheToasterList"
@@ -24,6 +27,7 @@ export default
     localStrorageUsable
   ]
   components:
+    "the-global-hint": TheGlobalHint
     "the-global-header": TheGlobalHeader
     "the-global-footer": TheGlobalFooter
     "the-toaster-list":  TheToasterList
@@ -57,14 +61,25 @@ export default
   width: 100%;
   min-height: 100vh;
   display: grid;
-  grid-template-rows: $global-header-height 1fr auto;
+  grid-template-rows: $global-hint-height $global-header-height 1fr auto;
   grid-template-columns: 1fr;
 
-  > .header {
+  > .hint {
     grid-row: 1;
     grid-column: 1;
     position: fixed;
     top: 0;
+    left: 0;
+    width: 100%;
+    height: $global-hint-height;
+    z-index: $editor-z-index + 10;
+  }
+
+  > .header {
+    grid-row: 2;
+    grid-column: 1;
+    position: fixed;
+    top: $global-hint-height;
     left: 0;
     width: 100%;
     height: $global-header-height;
@@ -72,18 +87,18 @@ export default
   }
 
   > .main {
-    grid-row: 2;
+    grid-row: 3;
     grid-column: 1;
   }
 
   > .footer {
-    grid-row: 3;
+    grid-row: 4;
     grid-column: 1;
   }
 
   > .toaster {
     position: fixed;
-    top: $global-header-height;
+    top: $global-fixed-height;
     right: 0;
     margin: var(--space-size-s);
     z-index: $toaster-z-index;

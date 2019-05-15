@@ -29,8 +29,8 @@ export default {}
 
   > .list {
     position: sticky;
-    top: $global-header-height;
-    max-height: calc(100vh - #{$global-header-height} - #{$sub-header-height});
+    top: $global-fixed-height;
+    max-height: calc(100vh - #{$global-fixed-height} - #{$sub-header-height});
     overflow-y: scroll;
 
     @include hide-scrollbar();

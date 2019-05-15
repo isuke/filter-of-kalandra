@@ -33,7 +33,7 @@ export default
     grid-row: 1;
     grid-column: 2;
     position: sticky;
-    top: $global-header-height;
+    top: $global-fixed-height;
   }
 
   > .aside {

@@ -138,7 +138,7 @@ export default
   color: $global-ft-color-day;
 
   > .section {
-    min-height: calc(100vh - #{$global-header-height});
+    min-height: calc(100vh - #{$global-fixed-height});
     padding: var(--space-size-xxl);
   }
 
