@@ -3,11 +3,12 @@ main.home
   section.section.hero
     h1.title Filter of Kalandra
     h2.version v{{ version }}
+    h3.description This is next level <a class="link" href="https://www.pathofexile.com" target="_blank" rel="noopener noreferrer">path of exile</a> filter editor.
 
   section.section.motivation
     h1.headding Motivation
     p.text
-      | We felt that there are some problems in the current "Item Filter".
+      | We felt that there are some problems in the current <a class="link" href="https://www.pathofexile.com" target="_blank" rel="noopener noreferrer">Path of Exile</a> Item Filter.
       | These problems are primarily one for filter creators.
     p.text
       | First, it is difficult to maintain a huge filter.
@@ -170,6 +171,10 @@ export default
         content: "-";
         margin-left: 0.5em;
       }
+    }
+
+    > .description {
+      margin-top: var(--space-size-m);
     }
   }
 
