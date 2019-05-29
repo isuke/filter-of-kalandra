@@ -36,7 +36,7 @@ main.home
         h2.headding Change Domain
         p.text
           | Should get cool Domain.
-        span.badge.-todo
+        span.badge.-done
       li.item
         h2.headding Usage Page
         p.text
@@ -81,6 +81,12 @@ main.home
   section.section.changelogs
     h1.headding Change Logs
     ul.list
+      li.item
+        h2.headding
+          span.version v0.9.0
+          span.date 2019-05-29
+        ul.list
+          li.item chore: Change Domain.
       li.item
         h2.headding
           span.version v0.8.5
