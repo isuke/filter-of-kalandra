@@ -1,1 +1,6 @@
+# These rules will change if you change your site’s custom domains or HTTPS settings
+
+# Redirect default Netlify subdomain to primary domain
+https://filter-of-kalandra.netlify.com/* https://filter-of-kalandra.xyz/:splat 301!
+
 /*    /index.html   200
