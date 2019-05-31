@@ -9,7 +9,6 @@ footer.the-global-footer
     | Google Analytics uses "cookies".
     | cookies help the website operators analyze how visitors use the website.
     | The site send visitors data (e.g. IP Address).
-    | On the website, IP anonymization has been activated.
     | The sended data don't include personal information.
 </template>
 
