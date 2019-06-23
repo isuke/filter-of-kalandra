@@ -83,6 +83,12 @@ main.home
     ul.list
       li.item
         h2.headding
+          span.version v0.9.1
+          span.date 2019-06-23
+        ul.list
+          li.item feat(Setting): Add 'defaultAlertSoundVolume' and 'defaultAlertSoundPositionalVolume' options.
+      li.item
+        h2.headding
           span.version v0.9.0
           span.date 2019-05-29
         ul.list
