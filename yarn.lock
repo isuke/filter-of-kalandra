@@ -1418,11 +1418,17 @@ address@^1.0.3:
   resolved "https://registry.yarnpkg.com/address/-/address-1.0.3.tgz#b5f50631f8d6cec8bd20c963963afb55e06cbce9"
   integrity sha512-z55ocwKBRLryBs394Sm3ushTtBeg6VAeuku7utSoSnsJKvKcnXFIyC6vh27n3rXyxSgkJBBCAvyOn7gSUcTYjg==
 
-advanced-poe-filter@0.8.3:
-  version "0.8.3"
-  resolved "http://localhost:4873/advanced-poe-filter/-/advanced-poe-filter-0.8.3.tgz#99094dfcba1cd9ff8e8835d4f10eb87445c22fd0"
-  integrity sha512-XtGf0JiQ1TfgrDxO2XkZVyOwkbVJanaesl1huumXvLLTZxaGECCHew0Q/LEOnv1r1ezdzIbMo7NZTxnWGwRikw==
+advanced-poe-filter-parser@0.1.0:
+  version "0.1.0"
+  resolved "http://localhost:4873/advanced-poe-filter-parser/-/advanced-poe-filter-parser-0.1.0.tgz#b5da843de703f199f603d3af5fbdc447a430cabf"
+  integrity sha512-KXrmR1JbDG8PqGIJQGYRYpiDKYQi5yPeSLQaFSciHVdDuHMuSqhDVASVRRQ5uddA7eFlHPTJtXDE4xZNQgGOIA==
+
+advanced-poe-filter@0.8.4:
+  version "0.8.4"
+  resolved "http://localhost:4873/advanced-poe-filter/-/advanced-poe-filter-0.8.4.tgz#0d16ab2d559304281016c016fb02049d7aa91858"
+  integrity sha512-dnjTYWPrF4VQqqTHQfbMXg4kcdpxoklMZaVK13p6YJfrp1C2Sm7y7XNNbJ5g/RV9/+hGEataXe/60Hb9m6wUNw==
   dependencies:
+    advanced-poe-filter-parser "0.1.0"
     color "^3.1.0"
 
 ajv-errors@^1.0.0:

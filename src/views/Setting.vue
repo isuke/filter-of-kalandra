@@ -19,8 +19,14 @@ main.setting
     label.label(:for="`removecustomalertsound-${_uid}`") Remove CustomAlertSound (default: false)
     input.input(type="checkbox", v-model="$store.state.options.removeCustomAlertSound", :id="`removecustomalertsound-${_uid}`")
 
+    label.label(:for="`defaultalertsoundvolume-${_uid}`") defaultAlertSoundVolume (default: 150)
+    input.input(type="number", min="0", max="300", v-model.number="$store.state.options.defaultAlertSoundVolume", :id="`defaultalertsoundvolume-${_uid}`")
+
+    label.label(:for="`defaultalertsoundpositionalvolume-${_uid}`") defaultAlertSoundPositionalVolume (default: 150)
+    input.input(type="number", min="0", max="300", v-model.number="$store.state.options.defaultAlertSoundPositionalVolume", :id="`defaultalertsoundpositionalvolume-${_uid}`")
+
     label.label(:for="`initialfontsize-${_uid}`") Initial FontSize (default: 32)
-    input.input(type="number", min="18", max="42", v-model="$store.state.options.initialFontSize", :id="`initialfontsize-${_uid}`")
+    input.input(type="number", min="18", max="42", v-model.number="$store.state.options.initialFontSize", :id="`initialfontsize-${_uid}`")
 </template>
 
 <script lang="coffee">

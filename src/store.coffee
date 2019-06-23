@@ -34,6 +34,8 @@ export default new Vuex.Store
       addDisableDropSoundToHideBlock: true
       convertPlayAlertSoundPositionalToPlayAlertSound: false
       removeCustomAlertSound: false
+      defaultAlertSoundVolume: 150
+      defaultAlertSoundPositionalVolume: 150
       initialFontSize: 32
     scriptNumLimit: if process.env.NODE_ENV == "development" then 10 else 2
     _compileWorker: undefined
