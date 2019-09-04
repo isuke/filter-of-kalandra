@@ -28,6 +28,8 @@
     'Corrupted'
     'Identified'
     'ShapedMap'
+    'ElderMap'
+    'BlightedMap'
     'Height'
     'Width'
     'HasExplicitMod'
