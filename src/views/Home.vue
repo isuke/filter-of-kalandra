@@ -83,6 +83,12 @@ main.home
     ul.list
       li.item
         h2.headding
+          span.version v0.9.2
+          span.date 2019-09-04
+        ul.list
+          li.item feat(ScriptEditor): Support 'ElderMap' and 'BlightedMap' conditions.
+      li.item
+        h2.headding
           span.version v0.9.1
           span.date 2019-06-23
         ul.list
