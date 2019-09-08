@@ -1423,10 +1423,10 @@ advanced-poe-filter-parser@0.1.1:
   resolved "http://localhost:4873/advanced-poe-filter-parser/-/advanced-poe-filter-parser-0.1.1.tgz#a243b41fe111e64b8dbac44e2e4044df083df57f"
   integrity sha512-rjHrug0ISyepBlFZjHdf9ZbDMwdXRV8RbfEYfIRCkjYG6yjNJ6vnr7DimFagXDhiw6FTUElesOyzc1gUNZ2/3w==
 
-advanced-poe-filter@0.8.5:
-  version "0.8.5"
-  resolved "http://localhost:4873/advanced-poe-filter/-/advanced-poe-filter-0.8.5.tgz#43574d858ae1423c4aca838882162a492c8c83da"
-  integrity sha512-Jzn5q49PkTucIPS6jKVkWPZTm8lvZ76PbRl0ZAfyaXC+MtfdRHNO2kz8GPXrM3BzJFv8qf/bgDLHXBmJxDdZSw==
+advanced-poe-filter@0.8.7:
+  version "0.8.7"
+  resolved "http://localhost:4873/advanced-poe-filter/-/advanced-poe-filter-0.8.7.tgz#f875c94b5a3b57c60ef6099d9a709cfff2cfe953"
+  integrity sha512-LFt86bcgP58pwmJzuXK94OPpH/bGp0mqSh5Gk9ZWet3sNe/fhCHoHGxxA5FqLpp/YQCNblIUyIXMsRlOaiDVDA==
   dependencies:
     advanced-poe-filter-parser "0.1.1"
     color "^3.1.0"
