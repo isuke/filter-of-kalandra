@@ -174,6 +174,7 @@ export default
       name: "Atlas Base Gears"
       items: [
         "Bone Helmet"
+        "Convoking Wand"
         "Spiked Gloves"
         "Gripped Gloves"
         "Fingerless Silk Gloves"
@@ -187,6 +188,8 @@ export default
         "Blue Pearl Amulet"
         "Opal Ring"
         "Steel Ring"
+        "Vermillion Ring"
+        "Cerulean Ring"
         "Vanguard Belt"
         "Crystal Belt"
       ]
