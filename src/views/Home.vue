@@ -83,6 +83,13 @@ main.home
     ul.list
       li.item
         h2.headding
+          span.version v0.9.3
+          span.date 2019-09-10
+        ul.list
+          li.item fix(Script): Fix 'ElderMap' and 'BlightedMap' conditions don't work bug
+          li.item chore(Variable): Add 'Atlas Base Items' to default variables
+      li.item
+        h2.headding
           span.version v0.9.2
           span.date 2019-09-04
         ul.list
