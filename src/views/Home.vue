@@ -83,6 +83,12 @@ main.home
     ul.list
       li.item
         h2.headding
+          span.version v0.9.4
+          span.date 2019-10-04
+        ul.list
+          li.item feat(Script): Support `==` (Exact Match).
+      li.item
+        h2.headding
           span.version v0.9.3
           span.date 2019-09-10
         ul.list
