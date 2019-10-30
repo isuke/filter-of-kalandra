@@ -1,5 +1,7 @@
-const PreloadWebpackPlugin = require('@vue/preload-webpack-plugin')
+const path = require('path')
 const MonacoWebpackPlugin = require('monaco-editor-webpack-plugin')
+const PreloadWebpackPlugin = require('@vue/preload-webpack-plugin')
+const PrerenderSPAPlugin = require('prerender-spa-plugin')
 
 process.env.VUE_APP_VERSION = require('./package.json').version
 
@@ -44,6 +46,10 @@ module.exports = {
     //   config.plugins.delete('prefetch')
     // },
     plugins: [
+      new PrerenderSPAPlugin({
+        staticDir: path.join(__dirname, 'dist'),
+        routes: ['/']
+      }),
       new PreloadWebpackPlugin({
         rel: 'preload',
         include: {
