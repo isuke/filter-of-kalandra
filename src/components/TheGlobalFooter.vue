@@ -10,27 +10,38 @@ footer.the-global-footer
     | cookies help the website operators analyze how visitors use the website.
     | The site send visitors data (e.g. IP Address).
     | The sended data don't include personal information.
+  contact-form.form
 </template>
 
 <script lang="coffee">
-export default {}
+import ContactForm from "@/components/ContactForm.vue"
+
+export default
+  components:
+    "contact-form": ContactForm
 </script>
 
 
 <style lang="scss" scoped>
 .the-global-footer {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
+  display: grid;
+  grid-template-rows: auto auto auto;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: var(--space-size-m);
+  align-items: end;
   @ghost padding-top-bottom(var(--space-size-xl));
   @ghost padding-left-right(var(--space-size-l));
   background-color: $global-bg-color-night;
   color: $global-ft-color-night;
 
-  > .copyright { /* no-op */ }
+  > .copyright {
+    grid-row: 1;
+    grid-column: 1;
+  }
 
   > .info {
-    margin-top: var(--space-size-m);
+    grid-row: 2;
+    grid-column: 1;
 
     > .list {
       > .item {
@@ -42,9 +53,16 @@ export default {}
   }
 
   > .policy {
-    margin-top: var(--space-size-m);
+    grid-row: 3;
+    grid-column: 1;
+
     color: $global-ft-non-accent-color-night;
     font-size: var(--ft-size-s);
+  }
+
+  > .form {
+    grid-row: 1 / -1;
+    grid-column: 2;
   }
 }
 </style>

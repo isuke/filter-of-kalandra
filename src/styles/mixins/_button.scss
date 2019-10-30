@@ -25,8 +25,8 @@
   @include _button-base();
 
   background-color: transparent;
-  color: $global-ft-color-night;
-  border: $border-height-base $global-ft-color-night solid;
+  color: _ft-color($color-hue, $mode);
+  border: $border-height-base _ft-color($color-hue, $mode) solid;
 
   @ghost transition(#{$duration-base}, #{$timing-base}, background-color, color, border-color);
 
