@@ -67,7 +67,7 @@ main.home
         p.text
           | Should set form that contact us.
           | You will can use if you have new ideas and questions.
-        span.badge.-todo
+        span.badge.-done
       li.item
         h2.headding Improve Performance
         p.text
@@ -81,6 +81,12 @@ main.home
   section.section.changelogs
     h1.headding Change Logs
     ul.list
+      li.item
+        h2.headding
+          span.version v0.9.x
+          span.date 2019-xx-xx
+        ul.list
+          li.item feat: Implement contact form.
       li.item
         h2.headding
           span.version v0.9.4
