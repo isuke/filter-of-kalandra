@@ -5,6 +5,7 @@ export default
       items: [
         "Albino Rhoa Feather"
         "Armourer's Scrap"
+        "Awakener's Orb"
         "Blacksmith's Whetstone"
         "Blessed Orb"
         "Cartographer's Chisel"
@@ -12,6 +13,10 @@ export default
         "Chromatic Orb"
         "Divine Orb"
         "Exalted Orb"
+        "Crusader's Exalted Orb"
+        "Redeemer's Exalted Orb"
+        "Hunter's Exalted Orb"
+        "Warlord's Exalted Orb"
         "Gemcutter's Prism"
         "Glassblower's Bauble"
         "Jeweller's Orb"

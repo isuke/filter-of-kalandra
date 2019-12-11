@@ -87,6 +87,7 @@ main.home
           span.date 2019-xx-xx
         ul.list
           li.item feat: Implement contact form.
+          li.item chore(Variable): Add "Awakener's Orb" and new "Exalted Orb"s to default variables.
       li.item
         h2.headding
           span.version v0.9.4
