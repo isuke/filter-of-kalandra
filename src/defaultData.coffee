@@ -73,6 +73,7 @@ export default
         "#'E' Series Gems"
         "Portal"
         "Vaal"
+        "Awakened"
       ]
     }
     {
