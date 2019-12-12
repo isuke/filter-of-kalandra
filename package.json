@@ -12,7 +12,7 @@
     "deploy": "netlify deploy --prod"
   },
   "dependencies": {
-    "advanced-poe-filter": "0.8.8",
+    "advanced-poe-filter": "0.8.9",
     "axios": "^0.19.0",
     "color": "^3.1.0",
     "destyle.css": "^1.0.5",

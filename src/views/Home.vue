@@ -83,11 +83,12 @@ main.home
     ul.list
       li.item
         h2.headding
-          span.version v0.9.x
-          span.date 2019-xx-xx
+          span.version v0.9.5
+          span.date 2019-12-12
         ul.list
-          li.item feat: Implement contact form.
+          li.item feat(ScriptEditor): Support `HasInfluence`.
           li.item chore(Variable): Add "Awakener's Orb" and new "Exalted Orb"s to default variables.
+          li.item feat: Implement contact form.
       li.item
         h2.headding
           span.version v0.9.4

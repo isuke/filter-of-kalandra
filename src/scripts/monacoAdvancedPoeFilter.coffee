@@ -35,6 +35,7 @@
     'HasExplicitMod'
     'AnyEnchantment'
     'HasEnchantment'
+    'HasInfluence'
   ]
   actionTextKeywords = [
     'SetBorderColor'
