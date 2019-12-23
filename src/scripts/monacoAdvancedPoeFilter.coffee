@@ -2,7 +2,7 @@
   languageID = 'advancedPoeFilter'
 
   activityKeywords = [
-    'Show', 'Hide', 'Unset'
+    'Show', 'Hide', 'Unset', 'Ignore'
   ]
   branchKeywords = [
     'Fork', 'Mixin'
