@@ -83,6 +83,14 @@ main.home
     ul.list
       li.item
         h2.headding
+          span.version v0.9.6
+          span.date 2019-12-24
+        ul.list
+          li.item chore(Property): Up script max num to 3 from 2.
+          li.item feat: Support 'Ignore' activity.
+          li.item feat(ScriptPreview): Remake ScriptPreview.
+      li.item
+        h2.headding
           span.version v0.9.5
           span.date 2019-12-12
         ul.list
