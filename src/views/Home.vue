@@ -83,6 +83,13 @@ main.home
     ul.list
       li.item
         h2.headding
+          span.version v0.9.7
+          span.date 2019-12-26
+        ul.list
+          li.item feat(Color): Implement remove all button.
+          li.item feat(Variable): Implement remove all button.
+      li.item
+        h2.headding
           span.version v0.9.6
           span.date 2019-12-24
         ul.list
