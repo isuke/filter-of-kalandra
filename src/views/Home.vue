@@ -86,6 +86,7 @@ main.home
           span.version v0.9.7
           span.date 2019-12-26
         ul.list
+          li.item feat(ScriptText): Implement copy button.
           li.item feat(Color): Implement remove all button.
           li.item feat(Variable): Implement remove all button.
       li.item
