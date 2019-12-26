@@ -1,11 +1,10 @@
 <template lang="pug">
 .script-preview
   header.header
+    .sectionname {{ currentSectionName }}
     .actions
       button.button.reload(@click.prevent="isAlt = !isAlt") ALT (Now {{ isAlt ? 'ON' : 'OFF' }})
       button.button.reload(@click.prevent="reload") Reload
-
-  .sectionname {{ currentSectionName }}
 
   .script(v-for="scriptName in $store.getters.scriptNames", :key="scriptName")
     .name {{ scriptName }}
@@ -47,24 +46,32 @@ export default
 </script>
 
 <style lang="scss" scoped>
-$my-bg-height: 1056px;
-$my-bg-width: 594px;
-$my-header-z-index: $base-z-index + 10;
+$my-sub-header-height: 3rem;
+$my-sub-header-z-index: $base-z-index + 20;
+$my-section-name-z-index: $base-z-index + 10;
 
 .script-preview {
   background-color: $global-bg-color-day;
   color: $global-ft-color-day;
 
   > .header {
+    position: sticky;
+    top: calc(#{$global-fixed-height} + #{$sub-header-height});
+    height: $my-sub-header-height;
     display: inline-flex;
     flex-direction: row;
     align-items: center;
-    justify-content: flex-end;
-    // padding-left: var(--space-size-l);
     width: 100%;
     height: $sub-header-height;
+    z-index: $my-sub-header-z-index;
 
     @include bg-ft-color($script-color-hue, "day");
+
+    > .sectionname {
+      flex: 1;
+      padding: var(--space-size-m);
+      font-size: var(--ft-size-l);
+    }
 
     > .actions {
       display: inline-flex;
@@ -77,19 +84,14 @@ $my-header-z-index: $base-z-index + 10;
     }
   }
 
-  > .sectionname {
-    padding: var(--space-size-m);
-    font-size: var(--ft-size-l);
-  }
-
   > .script {
     > .name {
       position: sticky;
-      top: calc(#{$global-fixed-height} + #{$sub-header-height});
+      top: calc(#{$global-fixed-height} + #{$sub-header-height} + #{$my-sub-header-height});
       padding: var(--space-size-m);
       font-size: var(--ft-size-l);
       background-color: $global-bg-color-day;
-      z-index: $my-header-z-index;
+      z-index: $my-section-name-z-index;
     }
 
     > .items {
