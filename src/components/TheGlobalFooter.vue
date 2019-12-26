@@ -1,6 +1,6 @@
 <template lang="pug">
 footer.the-global-footer
-  .copyright © 2019 HUJIYAMA Isuke
+  .copyright © 2019 FUJIYAMA Isuke
   address.info
     ul.list
       li.item: a.link(href="https://github.com/isuke", target="_blank", rel="noopener noreferrer") https://github.com/isuke
