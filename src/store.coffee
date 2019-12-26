@@ -3,11 +3,10 @@ import Vuex from "vuex"
 
 Vue.use(Vuex)
 
-import Color from "color"
 import localStorage from "store/dist/store.modern.min.js"
 import * as advancedPoeFilter from "advanced-poe-filter"
 
-import { forIn, isEmpty, download } from "@/scripts/utils.coffee"
+import { forIn, isEmpty, hexToRGB, rgbToHex, download } from "@/scripts/utils.coffee"
 
 import CompileWorker from './compile.worker.js'
 
@@ -63,8 +62,8 @@ export default new Vuex.Store
       state.variables.forEach (variable) =>
         result[variable.name] = if variable.items.length <= 1 then variable.items[0] else variable.items
 
-      state.colors.forEach (color, index) =>
-        rgb = getters.colorObject(index).rgb().color
+      state.colors.forEach (color) =>
+        rgb = hexToRGB(color.hex)
         result[color.name] = "#{rgb[0]} #{rgb[1]} #{rgb[2]}"
 
       result
@@ -72,8 +71,6 @@ export default new Vuex.Store
     #
     # colors
     #
-    # TODO: remove
-    colorObject: (state) -> (index) => new Color(state.colors[index].hex)
 
     #
     # properties
@@ -251,11 +248,15 @@ export default new Vuex.Store
           index = state.colors.findIndex (c) => c.name == importColor.name
           if index > -1
             if payload.canOverwrite
-              state.colors[index].hex = importColor.hex
+              if importColor.rgb
+                state.colors[index].hex = rgbToHex importColor.rgb
+              else if importColor.hex
+                state.colors[index].hex = importColor.hex
             else
               console.log "skip '#{importColor.name}'"
           else
-            state.colors.push importColor
+            hex = if importColor.rgb then rgbToHex(importColor.rgb) else importColor.hex
+            state.colors.push { name: importColor.name, hex: hex }
       ).catch((error) =>
         console.error error.message
       )
