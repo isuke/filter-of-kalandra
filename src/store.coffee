@@ -234,7 +234,7 @@ export default new Vuex.Store
     importDefaultColors: ({ state }, payload = {}) ->
       defaultData.colors.forEach (defaultColor) =>
         index = state.colors.findIndex (c) => c.name == defaultColor.name
-        if index > -1 && payload.canOverwrite
+        if index > -1
           if payload.canOverwrite
             state.colors[index].hex = defaultColor.hex
           else
@@ -249,7 +249,7 @@ export default new Vuex.Store
       ).then((result) =>
         JSON.parse(result).forEach (importColor) =>
           index = state.colors.findIndex (c) => c.name == importColor.name
-          if index > -1 && payload.canOverwrite
+          if index > -1
             if payload.canOverwrite
               state.colors[index].hex = importColor.hex
             else
