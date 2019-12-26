@@ -71,6 +71,9 @@ export default new Vuex.Store
     #
     # colors
     #
+    colorsRGBFormat: (state) ->
+      state.colors.map (color) =>
+        { name: color.name, rgb: hexToRGB(color.hex) }
 
     #
     # properties
@@ -260,8 +263,8 @@ export default new Vuex.Store
       ).catch((error) =>
         console.error error.message
       )
-    exportColors: ({ state }) ->
-      download "colors.json", JSON.stringify(state.colors), "application/json"
+    exportColors: ({ state, getters }) ->
+      download "colors.json", JSON.stringify(getters.colorsRGBFormat), "application/json"
 
     #
     # properties
@@ -539,7 +542,7 @@ export default new Vuex.Store
         dir: filters.concat [
           { name: "#{state.filterInfo.name}.advancedfilter", buffer: state.advancedScriptText }
           { name: "variables.json" , buffer: JSON.stringify(state.variables) }
-          { name: "colors.json"    , buffer: JSON.stringify(state.colors) }
+          { name: "colors.json"    , buffer: JSON.stringify(getters.colorsRGBFormat) }
           { name: "properties.json", buffer: JSON.stringify(state.properties) }
           { name: "filterInfo.json", buffer: JSON.stringify(state.filterInfo) }
           { name: "options.json"   , buffer: JSON.stringify(state.options) }
