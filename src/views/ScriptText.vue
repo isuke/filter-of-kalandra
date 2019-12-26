@@ -10,6 +10,7 @@
       )
         | {{ scriptName }}
     .actions
+      button.button.copy(@click.prevent="copy") Copy to Clipboard
       button.button.reload(@click.prevent="reload") Reload
   pre.text(ref="text", v-text="text")
 </template>
@@ -36,6 +37,10 @@ export default
             mimeType: "advancedPoeFilter"
             theme: "advancedPoeFilterTheme"
             tabSize: 4
+    copy: ->
+      navigator.clipboard.writeText(@text)
+      .then(() => @$emit('add-toaster', "copied"))
+      .catch((e) => console.error e.message)
     reload: ->
       @$emit('add-toaster', "started to reload")
       @$store.dispatch("requestSimpleScriptTextsToWorker")
