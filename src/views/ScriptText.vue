@@ -46,11 +46,17 @@ export default
 </script>
 
 <style lang="scss" scoped>
+$my-sub-header-height: 3rem;
+$my-sub-header-z-index: $base-z-index + 20;
+
 .script-text {
   background-color: $global-bg-color-day;
   color: $global-ft-color-day;
 
   > .header {
+    position: sticky;
+    top: calc(#{$global-fixed-height} + #{$sub-header-height});
+    height: $my-sub-header-height;
     display: inline-flex;
     flex-direction: row;
     align-items: center;
