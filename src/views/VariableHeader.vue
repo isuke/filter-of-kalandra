@@ -2,9 +2,19 @@
 .variable-header
   .actions
     button.button.new(@click.prevent="$store.commit('addVariable')") Add New Variable
+    button.button.removeall(@click.prevent="$refs.removeAllModal.open()") Remove All
     button.button.importdefault(@click.prevent="$refs.importDefaultModal.open()") Import Default Variables
     button.button.importjson(@click.prevent="$refs.importJSONModal.open()") Import JSON
     button.button.export(@click.prevent="$store.dispatch('exportVariables')") Export
+
+  simple-modal.modal.removeall(
+    ref="removeAllModal",
+    headerStr="Remove All Variables",
+    execStr="Remove All",
+    @exec="removeAll"
+  )
+    template(v-slot:content)
+      p.text Are you sure?
 
   simple-modal.modal.importdefault(
     ref="importDefaultModal",
@@ -40,6 +50,9 @@ export default
   components:
     "simple-modal": SimpleModal
   methods:
+    removeAll: ->
+      @$store.commit('setVariables', { variables: [] })
+      @$refs.removeAllModal.close('execed')
     changeJSONFile: (event) -> @jsonFile = event.target.files[0]
     importDefault: ->
       await @$store.dispatch('importDefaultVariables', { canOverwrite: @canOverwrite })
@@ -67,6 +80,9 @@ export default
       @include button-fill($variable-color-hue);
       margin-right: var(--space-size-s);
 
+      &.removeall {
+        &::after { content: " ..."; }
+      }
       &.importdefault {
         &::after { content: " ..."; }
       }
