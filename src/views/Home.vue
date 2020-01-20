@@ -41,7 +41,7 @@ main.home
         h2.headding Usage Page
         p.text
           | Need usage page, and detailed documentation on usage.
-        span.badge.-todo
+        span.badge.-doing
       li.item
         h2.headding Improve Editor
         p.text

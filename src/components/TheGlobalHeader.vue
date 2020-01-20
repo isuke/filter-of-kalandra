@@ -8,6 +8,7 @@ header.the-global-header
       router-link.item.color(tag="li", to="/color") Color
       router-link.item.property(tag="li", to="/property") Property
       router-link.item.setting(tag="li", to="/setting") Setting
+      a.item.doc(href="https://filter-of-kalandra-doc.netlify.com/", target="_blank", rel="noopener noreferrer") Doc
   .actions
     button.button.import(@click.prevent="$refs.importAllModal.open()") Import
     button.button.export(@click.prevent="exportAll") Export
