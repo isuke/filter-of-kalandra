@@ -170,17 +170,23 @@ export default
       ]
     }
     {
-      name: "Atlas Base Items"
-      items: [
+      "name": "Atlas Base Items"
+      "items": [
+        "#Atlas Base Weapons"
         "#Atlas Base Gears"
         "#Atlas Base Accessories"
       ]
     }
     {
-      name: "Atlas Base Gears"
-      items: [
-        "Bone Helmet"
+      "name": "Atlas Base Weapons"
+      "items": [
         "Convoking Wand"
+      ]
+    }
+    {
+      "name": "Atlas Base Gears"
+      "items": [
+        "Bone Helmet"
         "Spiked Gloves"
         "Gripped Gloves"
         "Fingerless Silk Gloves"
