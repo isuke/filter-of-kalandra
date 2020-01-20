@@ -83,12 +83,20 @@ main.home
     ul.list
       li.item
         h2.headding
+          span.version v0.9.9
+          span.date 2020-01-20
+        ul.list
+          li.item feat: Add doc link.
+          li.item chore(Variable): Fix 'Convoking Wand' of defaultData.
+      li.item
+        h2.headding
           span.version v0.9.8
           span.date 2019-12-27
         ul.list
           li.item feat(Color): Make to export by rgb format.
           li.item feat(Color): Make able to import by rgb format.
           li.item fix(Color): Fix duplicate name color import bug.
+      li.item
         h2.headding
           span.version v0.9.7
           span.date 2019-12-26

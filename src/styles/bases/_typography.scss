@@ -1,0 +1,9 @@
+a[target="_blank"] {
+  &::after {
+    content: "⭎"; // ⬀⬏
+    display: inline-block;
+    margin-left: 0.2em;
+    font-size: 1.2em;
+    text-decoration: none;
+  }
+}
