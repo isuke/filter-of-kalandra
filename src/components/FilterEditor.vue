@@ -53,7 +53,7 @@ export default
       `import(/* webpackChunkName: "monaco" */ "monaco-editor")`.then (monaco) =>
         @editor = monaco.editor.create @$refs.textarea,
           value: @value
-          theme: "advancedPoeFilterTheme"
+          theme: "advancedPoeFilterNightTheme"
           language: "advancedPoeFilter"
           wordWrap: 'bounded'
           wordWrapColumn: 160
@@ -78,10 +78,12 @@ export default
 <style lang="scss" scoped>
 .filer-editor {
   height: 100%;
-  border: $border-height-bold $day-bg-color solid;
+  border-width: $border-height-bold;
+  border-style: solid;
+  border-color: $night-bg-color;
 
   &.-error {
-    border: $border-height-bold $error-ft-color solid;
+    border-color: $error-bg-color;
   }
 
   > .textarea {
@@ -89,6 +91,8 @@ export default
     align-items: center;
     justify-content: center;
     height: 100%;
+    background-color: $night-bg-color;
+    color: $night-ft-color;
 
     > .loading { font-size: var(--ft-size-l); }
   }

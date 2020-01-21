@@ -101,7 +101,7 @@
           action: 'comment.output'
         },
         {
-          regex: /^ *#[^:].*$/
+          regex: /^ *#[^:]?.*$/
           action: 'comment'
         },
         {
@@ -186,25 +186,58 @@
         }
       ]
 
-  monaco.editor.defineTheme 'advancedPoeFilterTheme',
+  monaco.editor.defineTheme 'advancedPoeFilterDayTheme',
     base: 'vs'
     inherit: true
+    colors: {
+      'editor.background': '#f0f0f0'
+      'editor.foreground': '#04041b',
+    }
     rules: [
-      { token: 'comment'            , foreground: '073642' }
-      { token: 'comment.output'     , foreground: '8282ff' }
-      { token: 'keyword'            , foreground: '268bd2' }
-      { token: 'keyword.show'       , foreground: '268bd2' }
-      { token: 'keyword.hide'       , foreground: '4984ab' }
-      { token: 'keyword.unset'      , foreground: '3d86b7' }
-      { token: 'keyword.fork'       , foreground: '2542ce' }
-      { token: 'keyword.mixin'      , foreground: '2542ce' }
-      { token: 'keyword.condition'  , foreground: '7c8f00' }
-      { token: 'keyword.action.text', foreground: '3a9900' }
-      { token: 'keyword.action.effect', foreground: 'cc0086' }
-      { token: 'number'             , foreground: 'cb4b16' }
-      { token: 'variable.value'     , foreground: 'cb4b16' }
-      { token: 'macro'              , foreground: '2aa198', fontStyle: 'underline' }
-      { token: 'function'           , foreground: 'd33682' }
+      { token: 'comment'              , foreground: '#073642' }
+      { token: 'comment.output'       , foreground: '#8282ff' }
+      { token: 'keyword'              , foreground: '#268bd2' }
+      { token: 'keyword.show'         , foreground: '#268bd2' }
+      { token: 'keyword.hide'         , foreground: '#4984ab' }
+      { token: 'keyword.unset'        , foreground: '#3d86b7' }
+      { token: 'keyword.fork'         , foreground: '#2542ce' }
+      { token: 'keyword.mixin'        , foreground: '#2542ce' }
+      { token: 'keyword.condition'    , foreground: '#7c8f00' }
+      { token: 'keyword.action.text'  , foreground: '#3a9900' }
+      { token: 'keyword.action.effect', foreground: '#cc0086' }
+      { token: 'number'               , foreground: '#cb4b16' }
+      { token: 'variable.value'       , foreground: '#cb4b16' }
+      { token: 'macro'                , foreground: '#2aa198', fontStyle: 'underline' }
+      { token: 'function'             , foreground: '#d33682' }
+      { background: '#f0f0f0' }
+      { foreground: '#04041b' }
+    ]
+
+  monaco.editor.defineTheme 'advancedPoeFilterNightTheme',
+    base: 'vs-dark'
+    inherit: true
+    colors: {
+      'editor.background': '#252525'
+      'editor.foreground': '#fafafd'
+    }
+    rules: [
+      { token: 'comment'              , foreground: '#737268' }
+      { token: 'comment.output'       , foreground: '#71a1d0' }
+      { token: 'keyword'              , foreground: '#f2787a' }
+      { token: 'keyword.show'         , foreground: '#f2787a' }
+      { token: 'keyword.hide'         , foreground: '#f4878a' }
+      { token: 'keyword.unset'        , foreground: '#f99058' }
+      { token: 'keyword.fork'         , foreground: '#fdb35d' }
+      { token: 'keyword.mixin'        , foreground: '#fdb35d' }
+      { token: 'keyword.condition'    , foreground: '#ffcc66' }
+      { token: 'keyword.action.text'  , foreground: '#6699cc' }
+      { token: 'keyword.action.effect', foreground: '#99cc99' }
+      { token: 'number'               , foreground: '#ffd278' }
+      { token: 'variable.value'       , foreground: '#ffd278' }
+      { token: 'macro'                , foreground: '#d4d1c9', fontStyle: 'underline' }
+      { token: 'function'             , foreground: '#cc99cc' }
+      { background: '#252525' }
+      { foreground: '#fafafd' }
     ]
 
   monaco.languages.registerCompletionItemProvider languageID,

@@ -35,7 +35,7 @@ export default
         `import(/* webpackChunkName: "monaco" */ "monaco-editor")`.then (monaco) =>
           monaco.editor.colorizeElement @$refs.text,
             mimeType: "advancedPoeFilter"
-            theme: "advancedPoeFilterTheme"
+            theme: "advancedPoeFilterNightTheme"
             tabSize: 4
     copy: ->
       navigator.clipboard.writeText(@text)
@@ -110,8 +110,8 @@ $my-sub-header-z-index: $base-z-index + 20;
 
   > .text {
     padding: 0.5em;
-    background-color: $day-bg-color;
-    color: $day-ft-color;
+    background-color: $night-bg-color;
+    color: $night-ft-color;
     overflow-x: scroll;
   }
 }
