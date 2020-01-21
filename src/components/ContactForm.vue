@@ -110,7 +110,9 @@ export default
       text-align: right;
     }
 
-    > .select { /* no-op */ }
+    > .select {
+      @include select();
+    }
 
     > .input {
       @include text-input();

@@ -5,28 +5,31 @@ main.setting
     //- input.input(type="text", v-model="$store.state.filterInfo.appVersion", :id="`appversion-${_uid}`", readOnly)
 
     label.label(:for="`filtername-${_uid}`") Filter Name
-    input.input(type="text", v-model="$store.state.filterInfo.name", :id="`filtername-${_uid}`")
+    input.input.text(type="text", v-model="$store.state.filterInfo.name", :id="`filtername-${_uid}`")
 
     label.label(:for="`version-${_uid}`") Filter Version
-    input.input(type="text", v-model="$store.state.filterInfo.version", :id="`version-${_uid}`")
+    input.input.text(type="text", v-model="$store.state.filterInfo.version", :id="`version-${_uid}`")
 
     label.label(:for="`adddisabledropsoundtohideblock-${_uid}`") Add DisableDropSound to Hide Block (default: true)
-    input.input(type="checkbox", v-model="$store.state.options.addDisableDropSoundToHideBlock", :id="`adddisabledropsoundtohideblock-${_uid}`")
+    input.input.checkbox(type="checkbox", v-model="$store.state.options.addDisableDropSoundToHideBlock", :id="`adddisabledropsoundtohideblock-${_uid}`")
+    label.icon(:for="`adddisabledropsoundtohideblock-${_uid}`")
 
     label.label(:for="`convertplayalertsound-${_uid}`") Convert PlayAlertSoundPositional to PlayAlertSound (default: false)
-    input.input(type="checkbox", v-model="$store.state.options.convertPlayAlertSoundPositionalToPlayAlertSound", :id="`convertplayalertsound-${_uid}`")
+    input.input.checkbox(type="checkbox", v-model="$store.state.options.convertPlayAlertSoundPositionalToPlayAlertSound", :id="`convertplayalertsound-${_uid}`")
+    label.icon(:for="`convertplayalertsound-${_uid}`")
 
     label.label(:for="`removecustomalertsound-${_uid}`") Remove CustomAlertSound (default: false)
-    input.input(type="checkbox", v-model="$store.state.options.removeCustomAlertSound", :id="`removecustomalertsound-${_uid}`")
+    input.input.checkbox(type="checkbox", v-model="$store.state.options.removeCustomAlertSound", :id="`removecustomalertsound-${_uid}`")
+    label.icon(:for="`removecustomalertsound-${_uid}`")
 
     label.label(:for="`defaultalertsoundvolume-${_uid}`") defaultAlertSoundVolume (default: 150)
-    input.input(type="number", min="0", max="300", v-model.number="$store.state.options.defaultAlertSoundVolume", :id="`defaultalertsoundvolume-${_uid}`")
+    input.input.text(type="number", min="0", max="300", v-model.number="$store.state.options.defaultAlertSoundVolume", :id="`defaultalertsoundvolume-${_uid}`")
 
     label.label(:for="`defaultalertsoundpositionalvolume-${_uid}`") defaultAlertSoundPositionalVolume (default: 150)
-    input.input(type="number", min="0", max="300", v-model.number="$store.state.options.defaultAlertSoundPositionalVolume", :id="`defaultalertsoundpositionalvolume-${_uid}`")
+    input.input.text(type="number", min="0", max="300", v-model.number="$store.state.options.defaultAlertSoundPositionalVolume", :id="`defaultalertsoundpositionalvolume-${_uid}`")
 
     label.label(:for="`initialfontsize-${_uid}`") Initial FontSize (default: 32)
-    input.input(type="number", min="18", max="42", v-model.number="$store.state.options.initialFontSize", :id="`initialfontsize-${_uid}`")
+    input.input.text(type="number", min="18", max="42", v-model.number="$store.state.options.initialFontSize", :id="`initialfontsize-${_uid}`")
 </template>
 
 <script lang="coffee">
@@ -51,7 +54,8 @@ export default {}
       grid-column: 2;
       padding: var(--space-size-m);
 
-      @include text-input();
+      &.text { @include text-input(); }
+      &.checkbox { @include checkbox(); }
     }
   }
 }

@@ -4,7 +4,6 @@
   border-bottom-width: $border-height-bold;
   border-bottom-style: solid;
   border-color: $gray;
-  @ghost border-top-radius(#{$border-radius-base});
 
   @ghost transition(#{$duration-base}, #{$timing-base}, background-color, color, border-color);
 
@@ -15,6 +14,35 @@
   }
 
   &:read-only {
+    color: $gray;
+  }
+}
+
+@mixin select() {
+  padding: 0.5em;
+  border-bottom-width: $border-height-bold;
+  border-bottom-style: solid;
+  border-color: $gray;
+}
+
+@mixin checkbox() {
+  display: none;
+
+  & + .icon:before {
+    font-size: 180%;
+    font-weight: $bold-font-weight;
+  }
+
+  &:not(:checked) + .icon:before {
+    content: '☐';
+    color: $gray;
+  }
+  &:checked + .icon:before {
+    content: '☑';
+    color: $theme-color;
+  }
+  &:disabled + .icon:before {
+    content: '☒';
     color: $gray;
   }
 }
