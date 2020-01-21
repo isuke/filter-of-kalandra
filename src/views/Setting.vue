@@ -37,9 +37,6 @@ export default {}
 .setting {
   padding: var(--space-size-s);
 
-  background-color: $global-bg-color-day;
-  color: $global-ft-color-day;
-
   > .form {
     display: grid;
     align-items: center;

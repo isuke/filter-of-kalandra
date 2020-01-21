@@ -42,7 +42,8 @@ export default
   align-items: stretch;
   padding-left: var(--space-size-s);
 
-  @include bg-ft-color($property-color-hue, "night");
+  background-color: $day-bg-color;
+  color: $day-ft-color;
 
   > .actions {
     flex: 1;
@@ -50,7 +51,7 @@ export default
     align-items: center;
 
     > .button {
-      @include button-fill($property-color-hue);
+      @include button-fill();
       margin-right: var(--space-size-s);
 
       &.importjson {

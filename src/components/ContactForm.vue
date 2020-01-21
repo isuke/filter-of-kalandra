@@ -12,7 +12,7 @@
     select.select(name="type", v-model="inputContactType")
       option(v-for="contactType in contactTypes", :value="contactType") {{ contactType }}
 
-    label.label Your Email for Replay
+    label.label {{ isEmailRequired ? '' : '[opstion]' }} Your Email for Replay
     input.input(name="email", type="email", v-model="inputEmail", placeholder="foobar@example.com", :required="isEmailRequired")
 
     label.label Content
@@ -84,8 +84,8 @@ export default
 
 <style lang="scss" scoped>
 .contact-form {
-  background-color: $global-bg-color-day;
-  color: $global-ft-color-day;
+  background-color: $day-bg-color;
+  color: $day-ft-color;
   border-radius: $border-radius-base;
   padding: var(--space-size-s);
 
@@ -125,7 +125,7 @@ export default
     }
 
     > .button {
-      @include button-skelton($global-accent-color-hue, "day");
+      @include button-fill();
 
       grid-column: span 2;
     }

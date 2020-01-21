@@ -21,10 +21,9 @@ export default {}
   padding-left:   var(--space-size-l);
   padding-right:  var(--space-size-l);
 
-  @include bg-ft-color($script-color-hue, "night");
-
   > .title {
     font-size: var(--ft-size-l);
+    color: $day-ft-accent-color2;
   }
 
   > .list {
@@ -37,7 +36,7 @@ export default {}
 
     > .item {
       cursor: pointer;
-      text-decoration: underline;
+      color: $day-ft-accent-color3;
       margin-top:    var(--space-size-s);
       margin-bottom: var(--space-size-s);
     }

@@ -31,9 +31,7 @@ export default
   grid-auto-flow: row;
   gap: var(--space-size-s);
   padding: var(--space-size-s);
-
-  background-color: $global-bg-color-day;
-  color: $global-ft-color-day;
+  padding-top: 0;
 
   > .color {
     display: grid;
@@ -41,8 +39,10 @@ export default
     grid-template-rows: auto auto 1fr;
     grid-template-columns: 1fr 2rem;
 
+    background-color: $night-bg-color2;
+    color: $night-ft-color;
+
     @include card();
-    @include bg-ft-color($color-color-hue, "day");
 
     > .name {
       grid-row: 1;

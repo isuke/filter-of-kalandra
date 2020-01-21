@@ -78,7 +78,7 @@ export default
 <style lang="scss" scoped>
 .filer-editor {
   height: 100%;
-  border: $border-height-bold $global-bg-color-day solid;
+  border: $border-height-bold $day-bg-color solid;
 
   &.-error {
     border: $border-height-bold $error-ft-color solid;

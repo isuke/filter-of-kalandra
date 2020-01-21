@@ -61,12 +61,12 @@ export default
     &:not(:last-child) { margin-bottom: var(--space-size-s); }
 
     &.-normal {
-      background-color: $global-bg-color-day;
-      color: $global-ft-color-day;
+      background-color: $day-bg-color;
+      color: $day-ft-color;
     }
     &.-error {
       background-color: $error-bg-color;
-      color: $global-ft-color-night;
+      color: $night-ft-color;
     }
 
     &.slide-list-enter {

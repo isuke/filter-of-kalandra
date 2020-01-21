@@ -14,11 +14,11 @@ export default {}
   align-items: center;
   padding-left:   var(--space-size-l);
   padding-right:  var(--space-size-l);
-  background-color: $global-bg-color-night;
-  color: $global-ft-color-night;
+  background-color: $night-bg-color;
+  color: $night-ft-color;
   font-size: var(--ft-size-s);
 
-  border-bottom: $border-height-base $global-ft-color-night solid;
+  border-bottom: $border-height-base $night-ft-color solid;
 
   > .message {
     width: 100%;

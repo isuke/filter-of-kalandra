@@ -32,9 +32,6 @@ export default
 <style lang="scss" scoped>
 .script-editor {
   max-width: calc(100vw - #{$aside-size-width});
-
-  background-color: $global-bg-color-day;
-  color: $global-ft-color-day;
   font-size: var(--ft-size-m);
 
   > .editor {

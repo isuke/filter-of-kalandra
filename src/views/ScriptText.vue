@@ -8,7 +8,7 @@
         @click.prevent="changeCurrentScript(scriptName)",
         :class="{ '-current': scriptName === currentScriptName }"
       )
-        | {{ scriptName }}
+        .title {{ scriptName }}
     .actions
       button.button.copy(@click.prevent="copy") Copy to Clipboard
       button.button.reload(@click.prevent="reload") Reload
@@ -55,9 +55,6 @@ $my-sub-header-height: 3rem;
 $my-sub-header-z-index: $base-z-index + 20;
 
 .script-text {
-  background-color: $global-bg-color-day;
-  color: $global-ft-color-day;
-
   > .header {
     position: sticky;
     top: calc(#{$global-fixed-height} + #{$sub-header-height});
@@ -69,7 +66,8 @@ $my-sub-header-z-index: $base-z-index + 20;
     width: 100%;
     height: $sub-header-height;
 
-    @include bg-ft-color($script-color-hue, "day");
+    background-color: $night-bg-color2;
+    color: $night-ft-color;
 
     > .list {
       flex: 1;
@@ -82,11 +80,19 @@ $my-sub-header-z-index: $base-z-index + 20;
         flex: 1;
         display: inline-flex;
         align-items: center;
-        text-decoration-line: underline;
         cursor: pointer;
 
-        &.-current {
-          color: _ft-color($script-color-hue, "day", true);
+        > .title {
+          color: $night-ft-accent-color3;
+          font-weight: $bold-font-weight;
+          border-bottom-width: $border-height-bold;
+          border-bottom-style: solid;
+          border-color: $night-bg-color2;
+        }
+
+        &.-current > .title {
+          color: $night-ft-accent-color1;
+          border-color: $night-ft-accent-color1;
         }
       }
     }
@@ -96,7 +102,7 @@ $my-sub-header-z-index: $base-z-index + 20;
       align-items: center;
 
       > .button {
-        @include button-fill($color-color-hue);
+        @include button-fill();
         margin-right: var(--space-size-s);
       }
     }
@@ -104,7 +110,8 @@ $my-sub-header-z-index: $base-z-index + 20;
 
   > .text {
     padding: 0.5em;
-    background-color: white;
+    background-color: $day-bg-color;
+    color: $day-ft-color;
     overflow-x: scroll;
   }
 }

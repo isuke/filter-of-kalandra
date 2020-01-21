@@ -11,43 +11,57 @@ $mono-font-family: "Courier New", Consolas, monospace;
 //
 // Font Weight
 //
-$default-font-weight:      400;
-$bold-font-weight:         700;
+$default-font-weight: 400;
+$bold-font-weight:    600;
 
 // -----------------------------------------------------------------------------
 // Colors
 // -----------------------------------------------------------------------------
 
-$base-bg-blue-day:    #009fff;
-$base-bg-red-day:     #ff5042;
-$base-bg-yellow-day:  #b3b100;
-$base-bg-green-day:   #00b800;
-$base-bg-magenta-day: #ff5fc6;
-$base-bg-cyan-day:    #01bfbe;
-$base-bg-gray-day:    #ababab;
+// hsl
 
-$global-bg-color-day:         #f0f0f0;
-$global-bg-disable-color-day: #82828a;
-$global-ft-color-day:         #04041b;
-$global-ft-non-accent-color-day: #a8a8b0;
-$global-ft-accent-color-day:     #e94d4d;
+$theme-color: hsl(170, 70%, 35%);
 
-$global-bg-color-night: #252525;
-$global-ft-color-night: #fafafd;
-$global-ft-non-accent-color-night: #a8a8b0;
-$global-accent-color-hue: 215;
+$blue:    #009fff;
+$red:     #ff5042;
+$yellow:  #b3b100;
+$green:   #00b800;
+$magenta: #ff5fc6;
+$cyan:    #01bfbe;
+$gray:    #ababab;
 
-$success-ft-color: #00ac00;
-$success-bg-color: $base-bg-green-day;
+$success-ft-color: $green;
+$success-bg-color: $green;
 
-$error-ft-color: #fd574e;
-$error-bg-color: $base-bg-red-day;
+$error-ft-color: $red;
+$error-bg-color: $red;
 
-$home-color-hue:     80 + 42 * 4;
-$script-color-hue:   80 + 42 * 3;
-$variable-color-hue: 80 + 42 * 2;
-$color-color-hue:    80 + 42 * 1;
-$property-color-hue: 80 + 42 * 0;
+//
+// day
+//
+$day-bg-color: #f0f0f0;
+
+$day-ft-color: #04041b;
+$day-ft-accent-color1: lighten($theme-color, 5%);
+$day-ft-accent-color2: $theme-color;
+$day-ft-accent-color3: darken($theme-color, 10%);
+
+//
+// night
+//
+$night-bg-color: #252525;
+$night-bg-color2: #353535;
+$night-bg-color3: #4b4b4b;
+
+$night-ft-color: #fafafd;
+$night-ft-accent-color1: lighten($theme-color, 10%);
+$night-ft-accent-color2: lighten($theme-color,  3%);
+$night-ft-accent-color3: $theme-color;
+
+//
+// day-night
+//
+$day-night-border-color: lighten($theme-color, 10%);
 
 // -----------------------------------------------------------------------------
 // Layouts
@@ -68,6 +82,7 @@ $sub-header-height: 3rem;
 //
 $border-height-base: 1px;
 $border-height-bold: 2px;
+$border-height-extra-bold: 4px;
 
 $border-radius-base: 3px;
 

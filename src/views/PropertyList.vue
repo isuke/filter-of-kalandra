@@ -39,10 +39,8 @@ export default
   grid-template-rows: min-content 2rem;
   grid-template-columns: 1fr auto;
   padding: var(--space-size-s);
+  padding-top: 0;
   gap: var(--space-size-s);
-
-  background-color: $global-bg-color-day;
-  color: $global-ft-color-day;
 
   overflow-x: scroll;
 
@@ -51,8 +49,9 @@ export default
     grid-column: 1;
 
     > .head {
-      border-bottom: $border-height-base $global-ft-color-day solid;
-      background-color: darken($global-bg-color-day, 8%); // HACK: mixin
+      background-color: $night-bg-color2;
+      color: $night-ft-color;
+      border-bottom: $border-height-extra-bold $day-night-border-color solid;
 
       > .row {
         > .head { padding: var(--space-size-s); }
@@ -74,8 +73,7 @@ export default
     }
     > .body {
       > .row {
-        &:nth-child(odd)  { background-color: darken($global-bg-color-day,  4%); } // HACK: mixin
-        &:nth-child(even) { background-color: darken($global-bg-color-day, 10%); } // HACK: mixin
+        &:nth-child(even) { background-color: darken($day-bg-color, 10%); }
 
         > .data {
           padding: var(--space-size-s);
@@ -104,7 +102,7 @@ export default
 
     > .button {
       width: 100%;
-      @include button-fill($property-color-hue);
+      @include button-fill();
     }
   }
 
@@ -114,7 +112,7 @@ export default
 
     > .button {
       height: 100%;
-      @include button-fill($property-color-hue);
+      @include button-fill();
     }
   }
 }

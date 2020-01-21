@@ -69,7 +69,8 @@ export default
   align-items: stretch;
   padding-left: var(--space-size-s);
 
-  @include bg-ft-color($color-color-hue, "night");
+  background-color: $day-bg-color;
+  color: $day-ft-color;
 
   > .actions {
     flex: 1;
@@ -77,7 +78,7 @@ export default
     align-items: center;
 
     > .button {
-      @include button-fill($color-color-hue);
+      @include button-fill();
       margin-right: var(--space-size-s);
 
       &.removeall {

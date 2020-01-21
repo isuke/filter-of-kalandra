@@ -50,9 +50,11 @@ export default
     align-items: center;
     width: 100%;
 
-    background-color: $global-bg-color-night;
-    color: $global-ft-color-night;
+    background-color: $night-bg-color;
+    color: $night-ft-color;
     padding: var(--space-size-l);
+
+    border-bottom: $border-height-extra-bold $day-night-border-color solid;
 
     @ghost border-top-radius(#{$border-radius-base});
 
@@ -67,8 +69,8 @@ export default
   }
 
   > .content {
-    background-color: $global-bg-color-day;
-    color: $global-ft-color-day;
+    background-color: $day-bg-color;
+    color: $day-ft-color;
     padding: var(--space-size-l);
   }
 
@@ -77,14 +79,14 @@ export default
     align-items: center;
     justify-content: flex-end;
     width: 100%;
-    background-color: $global-bg-color-day;
-    color: $global-ft-color-day;
+    background-color: $day-bg-color;
+    color: $day-ft-color;
     padding: var(--space-size-l);
 
     @ghost border-bottom-radius(#{$border-radius-base});
 
     > .button {
-      @include button-fill(0);
+      @include button-fill();
     }
   }
 }

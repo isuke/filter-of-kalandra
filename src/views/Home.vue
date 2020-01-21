@@ -205,8 +205,8 @@ export default
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  background-color: $global-bg-color-day;
-  color: $global-ft-color-day;
+  background-color: $day-bg-color;
+  color: $day-ft-color;
 
   > .section {
     min-height: calc(100vh - #{$global-fixed-height});
@@ -244,6 +244,7 @@ export default
     }
 
     > .description {
+      color: $day-ft-accent-color2;
       margin-top: var(--space-size-m);
     }
   }
@@ -256,8 +257,8 @@ export default
     }
 
     > .text {
-      margin-bottom: 0.5em;
-      @ghost font-size-line-height(var(--ft-size-l), 0.5em);
+      margin-bottom: 0.8em;
+      @ghost font-size-line-height(var(--ft-size-l), 0.2em);
       text-align: center;
 
       > .link {
@@ -308,20 +309,20 @@ export default
           border-radius: $border-radius-base;
 
           &.-todo {
-            color: $global-ft-color-night;
-            background-color: $base-bg-gray-day;
+            color: $night-ft-color;
+            background-color: $gray;
             @include text-shadow();
             &::after { content: "TODO"; }
           }
           &.-doing {
-            color: $global-ft-color-night;
-            background-color: $base-bg-yellow-day;
+            color: $night-ft-color;
+            background-color: $yellow;
             @include text-shadow();
             &::after { content: "DOING"; }
           }
           &.-done {
-            color: $global-ft-color-night;
-            background-color: $base-bg-green-day;
+            color: $night-ft-color;
+            background-color: $green;
             @include text-shadow();
             &::after { content: "DONE"; }
           }

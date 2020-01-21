@@ -21,10 +21,9 @@ export default {}
   padding-left:   var(--space-size-l);
   padding-right:  var(--space-size-l);
 
-  @include bg-ft-color($variable-color-hue, "night");
-
   > .title {
     font-size: var(--ft-size-l);
+    color: $day-ft-accent-color2;
   }
 
   > .list {
@@ -32,13 +31,12 @@ export default {}
     top: $global-fixed-height;
     max-height: calc(100vh - #{$global-fixed-height} - #{$sub-header-height});
     overflow-y: scroll;
-    @include bg-ft-color($variable-color-hue, "night");
 
     @include hide-scrollbar();
 
     > .item {
       cursor: pointer;
-      text-decoration: underline;
+      color: $day-ft-accent-color3;
       margin-top:    var(--space-size-s);
       margin-bottom: var(--space-size-s);
     }

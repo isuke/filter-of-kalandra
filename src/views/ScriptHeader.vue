@@ -2,9 +2,9 @@
 .script-header
   nav.nav
     ul.list
-      router-link.item(tag="li", to="/script/editor") Editor
-      router-link.item(tag="li", to="/script/preview") Preview
-      router-link.item(tag="li", to="/script/text") Text
+      router-link.item(tag="li", to="/script/editor"): .title Editor
+      router-link.item(tag="li", to="/script/preview"): .title  Preview
+      router-link.item(tag="li", to="/script/text"): .title  Text
 </template>
 
 <script lang="coffee">
@@ -18,7 +18,8 @@ export default {}
   align-items: stretch;
   padding-left: var(--space-size-xl);
 
-  @include bg-ft-color($script-color-hue, "night");
+  background-color: $day-bg-color;
+  color: $day-ft-color;
 
   > .nav {
     flex: 1;
@@ -34,11 +35,20 @@ export default {}
         flex: 1;
         display: inline-flex;
         align-items: center;
-        text-decoration-line: underline;
+
         cursor: pointer;
 
-        &.-current {
-          color: _ft-color($script-color-hue, "night", true);
+        > .title {
+          color: $day-ft-accent-color3;
+          font-weight: $bold-font-weight;
+          border-bottom-width: $border-height-bold;
+          border-bottom-style: solid;
+          border-color: $day-bg-color;
+        }
+
+        &.-current > .title {
+          color: $day-ft-accent-color1;
+          border-color: $day-ft-accent-color1;
         }
       }
     }

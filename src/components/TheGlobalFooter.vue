@@ -26,13 +26,13 @@ export default
 .the-global-footer {
   display: grid;
   grid-template-rows: auto auto auto;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr 2fr;
   grid-gap: var(--space-size-m);
   align-items: end;
   @ghost padding-top-bottom(var(--space-size-xl));
   @ghost padding-left-right(var(--space-size-l));
-  background-color: $global-bg-color-night;
-  color: $global-ft-color-night;
+  background-color: $night-bg-color;
+  color: $night-ft-color;
 
   > .copyright {
     grid-row: 1;
@@ -56,7 +56,6 @@ export default
     grid-row: 3;
     grid-column: 1;
 
-    color: $global-ft-non-accent-color-night;
     font-size: var(--ft-size-s);
   }
 

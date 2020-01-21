@@ -51,9 +51,6 @@ $my-sub-header-z-index: $base-z-index + 20;
 $my-section-name-z-index: $base-z-index + 10;
 
 .script-preview {
-  background-color: $global-bg-color-day;
-  color: $global-ft-color-day;
-
   > .header {
     position: sticky;
     top: calc(#{$global-fixed-height} + #{$sub-header-height});
@@ -65,7 +62,8 @@ $my-section-name-z-index: $base-z-index + 10;
     height: $sub-header-height;
     z-index: $my-sub-header-z-index;
 
-    @include bg-ft-color($script-color-hue, "day");
+    background-color: $night-bg-color2;
+    color: $night-ft-color;
 
     > .sectionname {
       flex: 1;
@@ -78,7 +76,7 @@ $my-section-name-z-index: $base-z-index + 10;
       align-items: center;
 
       > .button {
-        @include button-fill($color-color-hue);
+        @include button-fill();
         margin-right: var(--space-size-s);
       }
     }
@@ -90,7 +88,10 @@ $my-section-name-z-index: $base-z-index + 10;
       top: calc(#{$global-fixed-height} + #{$sub-header-height} + #{$my-sub-header-height});
       padding: var(--space-size-m);
       font-size: var(--ft-size-l);
-      background-color: $global-bg-color-day;
+
+      background-color: $night-bg-color3;
+      color: $night-ft-color;
+
       z-index: $my-section-name-z-index;
     }
 

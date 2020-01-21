@@ -76,8 +76,8 @@ export default
   align-items: stretch;
   padding-left:   var(--space-size-l);
   padding-right:  var(--space-size-l);
-  background-color: $global-bg-color-night;
-  color: $global-ft-color-night;
+  background-color: $night-bg-color;
+  color: $night-ft-color;
 
   .logo {
     align-self: center;
@@ -113,15 +113,12 @@ export default
         padding-bottom: var(--space-size-xs);
         @ghost border-top-radius(#{$border-radius-base});
         margin-top: var(--space-size-xs);
+        font-weight: $bold-font-weight;
         cursor: pointer;
 
-        &.script.-current   { @include bg-ft-color($script-color-hue  , "night"); }
-        &.variable.-current { @include bg-ft-color($variable-color-hue, "night"); }
-        &.color.-current    { @include bg-ft-color($color-color-hue   , "night"); }
-        &.property.-current { @include bg-ft-color($property-color-hue, "night"); }
-        &.setting.-current {
-          background-color: $global-bg-color-day;
-          color: $global-ft-color-day
+        &.-current {
+          background-color: $day-bg-color;
+          color: $day-ft-color;
         }
       }
     }
@@ -132,7 +129,7 @@ export default
     align-items: center;
 
     > .button {
-      @include button-skelton($global-accent-color-hue, "night");
+      @include button-fill();
       margin-left: var(--space-size-m);
 
       &.import {
