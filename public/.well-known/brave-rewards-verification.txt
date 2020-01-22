@@ -1,0 +1,4 @@
+This is a Brave Rewards publisher verification file.
+
+Domain: filter-of-kalandra.xyz
+Token: 4965bfd29e8c768c322861c7a3c4b8275964776a2c31948bc182091adfb228c1
