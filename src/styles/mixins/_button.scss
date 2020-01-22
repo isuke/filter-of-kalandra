@@ -1,24 +1,24 @@
 @import "./shadow";
 
-@mixin button-fill() {
+@mixin button-fill($bg-color: $theme-color) {
   @include _button-base();
 
-  background-color: $theme-color;
+  background-color: $bg-color;
   color: $night-ft-color;
   @include text-shadow();
 
   @ghost transition(#{$duration-base}, #{$timing-base}, background-color, color);
 
   &:hover {
-    background-color: lighten($theme-color, 15%);
+    background-color: lighten($bg-color, 15%);
   }
 
   &:active {
-    background-color: lighten($theme-color, 20%);
+    background-color: lighten($bg-color, 20%);
   }
 
   &:disabled {
-    background-color: darken($theme-color, 15%);
+    background-color: darken($bg-color, 15%);
   }
 }
 

@@ -375,6 +375,8 @@ export default new Vuex.Store
           properties: getters.propertiesForCompiler
           filterInfo: state.filterInfo
           options:    state.options
+    terminateCompileWorker: ({ state, getters, commit }, payload) ->
+      state._compileWorker.terminate() if state._compileWorker
 
     #
     # local strorage
@@ -464,6 +466,8 @@ export default new Vuex.Store
           resolve loaded
         catch e
           reject e
+    clearFromLocalStorage: ->
+      localStorage.clearAll()
 
     #
     # zip import/export

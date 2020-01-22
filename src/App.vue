@@ -7,7 +7,7 @@
   keep-alive
     router-view.main(@add-toaster="$refs.toaster.add($event)")
 
-  the-global-footer.footer
+  the-global-footer.footer(@clear="clearAllDataAndClose()")
 
   the-toaster-list.toaster(ref="toaster")
 </template>
@@ -47,6 +47,10 @@ export default
         failCallback: debounce =>
           @$refs.toaster.add { message: "failed compile", type: "error" }
         , 1000
+    clearAllDataAndClose: ->
+      await @$store.dispatch "clearFromLocalStorage"
+      await @$store.dispatch "terminateCompileWorker"
+      window.open('about:blank', '_self').close()
   created: ->
     @loadFromLocalStorage()
     @createCompileWorker()
