@@ -58,6 +58,10 @@ export default
     setTimeout =>
       @$store.dispatch("requestSimpleScriptObjectToWorker")
     , 2000
+  mounted: ->
+    setTimeout =>
+      @$ga.event('front page', 'open') if process.env.NODE_ENV == "production"
+    , 4000
 </script>
 
 <style lang="scss" scoped>

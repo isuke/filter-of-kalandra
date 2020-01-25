@@ -22,6 +22,7 @@ export default
     advancedScriptText: -> @$store.state.advancedScriptText
   watch:
     advancedScriptText: debounce ->
+      @$ga.event('script', 'edit') if process.env.NODE_ENV == "production"
       @$store.dispatch("requestSimpleScriptObjectToWorker")
     , 2500
   methods:

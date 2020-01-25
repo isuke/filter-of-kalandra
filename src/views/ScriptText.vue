@@ -38,6 +38,7 @@ export default
             theme: "advancedPoeFilterNightTheme"
             tabSize: 4
     copy: ->
+      @$ga.event('text', 'copy to clipboard') if process.env.NODE_ENV == "production"
       navigator.clipboard.writeText(@text)
       .then(() => @$emit('add-toaster', "copied"))
       .catch((e) => console.error e.message)
