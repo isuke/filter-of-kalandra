@@ -7052,10 +7052,10 @@ monaco-editor-webpack-plugin@1.8.x:
   dependencies:
     loader-utils "^1.2.3"
 
-monaco-editor@0.19.x:
-  version "0.19.2"
-  resolved "https://registry.yarnpkg.com/monaco-editor/-/monaco-editor-0.19.2.tgz#57f07151e462640874561c89c0b41dfb08c3ca59"
-  integrity sha512-LqsdIU3cNUSS9Zrxrpjirloa5KT36bc725JK7Dwu7eAVqqairlGVs8ioxUaVNQ96svOJaOEKXqcIHVVbSSrveg==
+monaco-editor@0.20.0:
+  version "0.20.0"
+  resolved "https://registry.yarnpkg.com/monaco-editor/-/monaco-editor-0.20.0.tgz#5d5009343a550124426cb4d965a4d27a348b4dea"
+  integrity sha512-hkvf4EtPJRMQlPC3UbMoRs0vTAFAYdzFQ+gpMb8A+9znae1c43q8Mab9iVsgTcg/4PNiLGGn3SlDIa8uvK1FIQ==
 
 move-concurrently@^1.0.1:
   version "1.0.1"
