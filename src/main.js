@@ -24,12 +24,12 @@ Vue.config.productionTip = process.env.NODE_ENV !== 'production'
 if (process.env.NODE_ENV === 'production') {
   Vue.use(VueAnalytics, {
     id: process.env.VUE_APP_GoogleAnalyticsID,
-    router
+    router,
   })
 }
 
 new Vue({
   router,
   store,
-  render: (h) => h(App)
+  render: (h) => h(App),
 }).$mount('#app')

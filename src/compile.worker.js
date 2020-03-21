@@ -27,8 +27,8 @@ self.addEventListener('message', (event) => {
           name: 'SyntaxError',
           type: event.data.type,
           message: error.message,
-          location: error.location
-        }
+          location: error.location,
+        },
       })
     } else {
       self.postMessage({
@@ -36,8 +36,8 @@ self.addEventListener('message', (event) => {
         result: {
           name: 'Error',
           type: event.data.type,
-          message: error.message
-        }
+          message: error.message,
+        },
       })
     }
   }
