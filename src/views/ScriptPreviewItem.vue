@@ -79,12 +79,17 @@ export default
       @sound(sound.id, sound.volume)
     getPlayEffectStyle: (playEffect) ->
       switch playEffect.color
-        when "Red"    then { "background-color": "hsla(  0, 100%, 45%, 0.6)", color: "white" }
-        when "Green"  then { "background-color": "hsla(110, 100%, 45%, 0.6)", color: "white" }
-        when "Blue"   then { "background-color": "hsla(230, 100%, 45%, 0.6)", color: "white" }
-        when "Brown"  then { "background-color": "hsla( 20, 100%, 45%, 0.6)", color: "white" }
-        when "White"  then { "background-color": "rgba(255, 255, 255 , 0.6)", color: "black" }
-        when "Yellow" then { "background-color": "hsla( 60, 100%, 45%, 0.6)", color: "black" }
+        when "Red"    then { "background-color": "hsla(  0, 100%, 45%, 0.8)", color: "white" }
+        when "Green"  then { "background-color": "hsla(110, 100%, 45%, 0.8)", color: "white" }
+        when "Blue"   then { "background-color": "hsla(230, 100%, 45%, 0.8)", color: "white" }
+        when "Brown"  then { "background-color": "hsla( 20, 100%, 45%, 0.8)", color: "white" }
+        when "White"  then { "background-color": "rgba(255, 255, 255 , 0.8)", color: "black" }
+        when "Yellow" then { "background-color": "hsla( 60, 100%, 45%, 0.8)", color: "black" }
+        when "Cyan"   then { "background-color": "hsla(180, 100%, 45%, 0.8)", color: "white" }
+        when "Grey"   then { "background-color": "rgba( 60,  60,  60 , 0.8)", color: "white" }
+        when "Orange" then { "background-color": "hsla( 20, 100%, 65%, 0.8)", color: "white" }
+        when "Pink"   then { "background-color": "hsla(300,  30%, 65%, 0.8)", color: "black" }
+        when "Purple" then { "background-color": "hsla(270, 100%, 50%, 0.8)", color: "white" }
 </script>
 
 <style lang="scss" scoped>

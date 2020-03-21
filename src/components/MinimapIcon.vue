@@ -18,206 +18,45 @@ export default
     color:
       type: String
       required: true
-      validator: (val) -> ["Red", "Green", "Blue", "Brown", "White", "Yellow"].includes val
+      validator: (val) -> ["Blue", "Green", "Brown", "Red", "White", "Yellow", "Cyan", "Grey", "Orange", "Pink", "Purple"].includes val
     shape:
       type: String
       required: true
-      validator: (val) -> ["Circle", "Diamond", "Hexagon", "Square", "Star", "Triangle"].includes val
+      validator: (val) -> ["Circle", "Diamond", "Hexagon", "Square", "Star", "Triangle", "Cross", "Moon", "Raindrop", "Kite", "Pentagon", "UpsideDownHouse"].includes val
   computed:
     style: ->
-      switch @shape
-        when "Circle"
-          switch @color
-            when "Blue"
-              switch @size
-                when "0", "Largest" then { top: "#{@unit *  -0}px", left: "#{@unit *  -4}px" }
-                when "1", "Medium"  then { top: "#{@unit *  -0}px", left: "#{@unit *  -5}px" }
-                when "2", "Small"   then { top: "#{@unit *  -0}px", left: "#{@unit *  -6}px" }
-            when "Green"
-              switch @size
-                when "0", "Largest" then { top: "#{@unit *  -0}px", left: "#{@unit *  -7}px" }
-                when "1", "Medium"  then { top: "#{@unit *  -0}px", left: "#{@unit *  -8}px" }
-                when "2", "Small"   then { top: "#{@unit *  -0}px", left: "#{@unit *  -9}px" }
-            when "Brown"
-              switch @size
-                when "0", "Largest" then { top: "#{@unit *  -0}px", left: "#{@unit * -10}px" }
-                when "1", "Medium"  then { top: "#{@unit *  -0}px", left: "#{@unit * -11}px" }
-                when "2", "Small"   then { top: "#{@unit *  -0}px", left: "#{@unit * -12}px" }
-            when "Red"
-              switch @size
-                when "0", "Largest" then { top: "#{@unit *  -0}px", left: "#{@unit * -13}px" }
-                when "1", "Medium"  then { top: "#{@unit *  -1}px", left: "#{@unit *  -0}px" }
-                when "2", "Small"   then { top: "#{@unit *  -1}px", left: "#{@unit *  -1}px" }
-            when "White"
-              switch @size
-                when "0", "Largest" then { top: "#{@unit *  -1}px", left: "#{@unit *  -2}px" }
-                when "1", "Medium"  then { top: "#{@unit *  -1}px", left: "#{@unit *  -3}px" }
-                when "2", "Small"   then { top: "#{@unit *  -1}px", left: "#{@unit *  -4}px" }
-            when "Yellow"
-              switch @size
-                when "0", "Largest" then { top: "#{@unit *  -1}px", left: "#{@unit *  -5}px" }
-                when "1", "Medium"  then { top: "#{@unit *  -1}px", left: "#{@unit *  -6}px" }
-                when "2", "Small"   then { top: "#{@unit *  -1}px", left: "#{@unit *  -7}px" }
-        when "Diamond"
-          switch @color
-            when "Blue"
-              switch @size
-                when "0", "Largest" then { top: "#{@unit *  -1}px", left: "#{@unit *  -8}px" }
-                when "1", "Medium"  then { top: "#{@unit *  -1}px", left: "#{@unit *  -9}px" }
-                when "2", "Small"   then { top: "#{@unit *  -1}px", left: "#{@unit * -10}px" }
-            when "Green"
-              switch @size
-                when "0", "Largest" then { top: "#{@unit *  -1}px", left: "#{@unit * -11}px" }
-                when "1", "Medium"  then { top: "#{@unit *  -1}px", left: "#{@unit * -12}px" }
-                when "2", "Small"   then { top: "#{@unit *  -1}px", left: "#{@unit * -13}px" }
-            when "Brown"
-              switch @size
-                when "0", "Largest" then { top: "#{@unit *  -2}px", left: "#{@unit *  -0}px" }
-                when "1", "Medium"  then { top: "#{@unit *  -2}px", left: "#{@unit *  -1}px" }
-                when "2", "Small"   then { top: "#{@unit *  -2}px", left: "#{@unit *  -2}px" }
-            when "Red"
-              switch @size
-                when "0", "Largest" then { top: "#{@unit *  -2}px", left: "#{@unit *  -3}px" }
-                when "1", "Medium"  then { top: "#{@unit *  -2}px", left: "#{@unit *  -4}px" }
-                when "2", "Small"   then { top: "#{@unit *  -2}px", left: "#{@unit *  -5}px" }
-            when "White"
-              switch @size
-                when "0", "Largest" then { top: "#{@unit *  -2}px", left: "#{@unit *  -6}px" }
-                when "1", "Medium"  then { top: "#{@unit *  -2}px", left: "#{@unit *  -7}px" }
-                when "2", "Small"   then { top: "#{@unit *  -2}px", left: "#{@unit *  -8}px" }
-            when "Yellow"
-              switch @size
-                when "0", "Largest" then { top: "#{@unit *  -2}px", left: "#{@unit *  -9}px" }
-                when "1", "Medium"  then { top: "#{@unit *  -2}px", left: "#{@unit * -10}px" }
-                when "2", "Small"   then { top: "#{@unit *  -2}px", left: "#{@unit * -11}px" }
-        when "Hexagon"
-          switch @color
-            when "Blue"
-              switch @size
-                when "0", "Largest" then { top: "#{@unit *  -2}px", left: "#{@unit * -12}px" }
-                when "1", "Medium"  then { top: "#{@unit *  -2}px", left: "#{@unit * -13}px" }
-                when "2", "Small"   then { top: "#{@unit *  -3}px", left: "#{@unit *  -0}px" }
-            when "Green"
-              switch @size
-                when "0", "Largest" then { top: "#{@unit *  -3}px", left: "#{@unit *  -1}px" }
-                when "1", "Medium"  then { top: "#{@unit *  -3}px", left: "#{@unit *  -2}px" }
-                when "2", "Small"   then { top: "#{@unit *  -3}px", left: "#{@unit *  -3}px" }
-            when "Brown"
-              switch @size
-                when "0", "Largest" then { top: "#{@unit *  -3}px", left: "#{@unit *  -4}px" }
-                when "1", "Medium"  then { top: "#{@unit *  -3}px", left: "#{@unit *  -5}px" }
-                when "2", "Small"   then { top: "#{@unit *  -3}px", left: "#{@unit *  -6}px" }
-            when "Red"
-              switch @size
-                when "0", "Largest" then { top: "#{@unit *  -3}px", left: "#{@unit *  -7}px" }
-                when "1", "Medium"  then { top: "#{@unit *  -3}px", left: "#{@unit *  -8}px" }
-                when "2", "Small"   then { top: "#{@unit *  -3}px", left: "#{@unit *  -9}px" }
-            when "White"
-              switch @size
-                when "0", "Largest" then { top: "#{@unit *  -3}px", left: "#{@unit * -10}px" }
-                when "1", "Medium"  then { top: "#{@unit *  -3}px", left: "#{@unit * -11}px" }
-                when "2", "Small"   then { top: "#{@unit *  -3}px", left: "#{@unit * -12}px" }
-            when "Yellow"
-              switch @size
-                when "0", "Largest" then { top: "#{@unit *  -3}px", left: "#{@unit * -13}px" }
-                when "1", "Medium"  then { top: "#{@unit *  -4}px", left: "#{@unit *  -0}px" }
-                when "2", "Small"   then { top: "#{@unit *  -4}px", left: "#{@unit *  -1}px" }
-        when "Square"
-          switch @color
-            when "Blue"
-              switch @size
-                when "0", "Largest" then { top: "#{@unit *  -4}px", left: "#{@unit *  -2}px" }
-                when "1", "Medium"  then { top: "#{@unit *  -4}px", left: "#{@unit *  -3}px" }
-                when "2", "Small"   then { top: "#{@unit *  -4}px", left: "#{@unit *  -4}px" }
-            when "Green"
-              switch @size
-                when "0", "Largest" then { top: "#{@unit *  -4}px", left: "#{@unit *  -5}px" }
-                when "1", "Medium"  then { top: "#{@unit *  -4}px", left: "#{@unit *  -6}px" }
-                when "2", "Small"   then { top: "#{@unit *  -4}px", left: "#{@unit *  -7}px" }
-            when "Brown"
-              switch @size
-                when "0", "Largest" then { top: "#{@unit *  -4}px", left: "#{@unit *  -8}px" }
-                when "1", "Medium"  then { top: "#{@unit *  -4}px", left: "#{@unit *  -9}px" }
-                when "2", "Small"   then { top: "#{@unit *  -4}px", left: "#{@unit * -10}px" }
-            when "Red"
-              switch @size
-                when "0", "Largest" then { top: "#{@unit *  -4}px", left: "#{@unit * -11}px" }
-                when "1", "Medium"  then { top: "#{@unit *  -4}px", left: "#{@unit * -12}px" }
-                when "2", "Small"   then { top: "#{@unit *  -4}px", left: "#{@unit * -13}px" }
-            when "White"
-              switch @size
-                when "0", "Largest" then { top: "#{@unit *  -5}px", left: "#{@unit *  -0}px" }
-                when "1", "Medium"  then { top: "#{@unit *  -5}px", left: "#{@unit *  -1}px" }
-                when "2", "Small"   then { top: "#{@unit *  -5}px", left: "#{@unit *  -2}px" }
-            when "Yellow"
-              switch @size
-                when "0", "Largest" then { top: "#{@unit *  -5}px", left: "#{@unit *  -3}px" }
-                when "1", "Medium"  then { top: "#{@unit *  -5}px", left: "#{@unit *  -4}px" }
-                when "2", "Small"   then { top: "#{@unit *  -5}px", left: "#{@unit *  -5}px" }
-        when "Star"
-          switch @color
-            when "Blue"
-              switch @size
-                when "0", "Largest" then { top: "#{@unit *  -5}px", left: "#{@unit *  -6}px" }
-                when "1", "Medium"  then { top: "#{@unit *  -5}px", left: "#{@unit *  -7}px" }
-                when "2", "Small"   then { top: "#{@unit *  -5}px", left: "#{@unit *  -8}px" }
-            when "Green"
-              switch @size
-                when "0", "Largest" then { top: "#{@unit *  -5}px", left: "#{@unit *  -9}px" }
-                when "1", "Medium"  then { top: "#{@unit *  -5}px", left: "#{@unit * -10}px" }
-                when "2", "Small"   then { top: "#{@unit *  -5}px", left: "#{@unit * -11}px" }
-            when "Brown"
-              switch @size
-                when "0", "Largest" then { top: "#{@unit *  -5}px", left: "#{@unit * -12}px" }
-                when "1", "Medium"  then { top: "#{@unit *  -5}px", left: "#{@unit * -13}px" }
-                when "2", "Small"   then { top: "#{@unit *  -6}px", left: "#{@unit *  -0}px" }
-            when "Red"
-              switch @size
-                when "0", "Largest" then { top: "#{@unit *  -6}px", left: "#{@unit *  -1}px" }
-                when "1", "Medium"  then { top: "#{@unit *  -6}px", left: "#{@unit *  -2}px" }
-                when "2", "Small"   then { top: "#{@unit *  -6}px", left: "#{@unit *  -3}px" }
-            when "White"
-              switch @size
-                when "0", "Largest" then { top: "#{@unit *  -6}px", left: "#{@unit *  -4}px" }
-                when "1", "Medium"  then { top: "#{@unit *  -6}px", left: "#{@unit *  -5}px" }
-                when "2", "Small"   then { top: "#{@unit *  -6}px", left: "#{@unit *  -6}px" }
-            when "Yellow"
-              switch @size
-                when "0", "Largest" then { top: "#{@unit *  -6}px", left: "#{@unit *  -7}px" }
-                when "1", "Medium"  then { top: "#{@unit *  -6}px", left: "#{@unit *  -8}px" }
-                when "2", "Small"   then { top: "#{@unit *  -6}px", left: "#{@unit *  -9}px" }
-        when "Triangle"
-          switch @color
-            when "Blue"
-              switch @size
-                when "0", "Largest" then { top: "#{@unit *  -6}px", left: "#{@unit * -10}px" }
-                when "1", "Medium"  then { top: "#{@unit *  -6}px", left: "#{@unit * -11}px" }
-                when "2", "Small"   then { top: "#{@unit *  -6}px", left: "#{@unit * -12}px" }
-            when "Green"
-              switch @size
-                when "0", "Largest" then { top: "#{@unit *  -6}px", left: "#{@unit * -13}px" }
-                when "1", "Medium"  then { top: "#{@unit *  -7}px", left: "#{@unit *  -0}px" }
-                when "2", "Small"   then { top: "#{@unit *  -7}px", left: "#{@unit *  -1}px" }
-            when "Brown"
-              switch @size
-                when "0", "Largest" then { top: "#{@unit *  -7}px", left: "#{@unit *  -2}px" }
-                when "1", "Medium"  then { top: "#{@unit *  -7}px", left: "#{@unit *  -3}px" }
-                when "2", "Small"   then { top: "#{@unit *  -7}px", left: "#{@unit *  -4}px" }
-            when "Red"
-              switch @size
-                when "0", "Largest" then { top: "#{@unit *  -7}px", left: "#{@unit *  -5}px" }
-                when "1", "Medium"  then { top: "#{@unit *  -7}px", left: "#{@unit *  -6}px" }
-                when "2", "Small"   then { top: "#{@unit *  -7}px", left: "#{@unit *  -7}px" }
-            when "White"
-              switch @size
-                when "0", "Largest" then { top: "#{@unit *  -7}px", left: "#{@unit *  -8}px" }
-                when "1", "Medium"  then { top: "#{@unit *  -7}px", left: "#{@unit *  -9}px" }
-                when "2", "Small"   then { top: "#{@unit *  -7}px", left: "#{@unit * -10}px" }
-            when "Yellow"
-              switch @size
-                when "0", "Largest" then { top: "#{@unit *  -7}px", left: "#{@unit * -11}px" }
-                when "1", "Medium"  then { top: "#{@unit *  -7}px", left: "#{@unit * -12}px" }
-                when "2", "Small"   then { top: "#{@unit *  -7}px", left: "#{@unit * -13}px" }
+      column = switch @shape
+        when "Circle"          then 0
+        when "Diamond"         then 1
+        when "Hexagon"         then 2
+        when "Square"          then 3
+        when "Star"            then 4
+        when "Triangle"        then 5
+        when "Cross"           then 6
+        when "Moon"            then 7
+        when "Raindrop"        then 8
+        when "Kite"            then 9
+        when "Pentagon"        then 10
+        when "UpsideDownHouse" then 11
+
+      row = switch @color
+        when "Blue"   then 0  * 3
+        when "Green"  then 1  * 3
+        when "Brown"  then 2  * 3
+        when "Red"    then 3  * 3
+        when "White"  then 4  * 3
+        when "Yellow" then 5  * 3
+        when "Cyan"   then 6  * 3
+        when "Grey"   then 7  * 3
+        when "Orange" then 8  * 3
+        when "Pink"   then 9  * 3
+        when "Purple" then 10 * 3
+      switch @size
+        when "0", "Largest" then row += 0
+        when "1", "Medium"  then row += 1
+        when "2", "Small"   then row += 2
+
+      { top: "#{column * @unit * -1}px", left: "#{row * @unit * -1}px" }
 </script>
 
 <style lang="scss" scoped>

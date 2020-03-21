@@ -72,8 +72,8 @@
     'Largest', 'Medium', 'Small',
     'ShAlchemy', 'ShBlessed', 'ShChaos', 'ShDivine', 'ShExalted', 'ShFusing', 'ShGeneral', 'ShMirror', 'ShRegal', 'ShVaal',
     'True', 'False',
-    'Red', 'Green', 'Blue', 'Brown', 'White', 'Yellow',
-    'Circle', 'Diamond', 'Hexagon', 'Square', 'Star', 'Triangle',
+    'Red', 'Green', 'Blue', 'Brown', 'White', 'Yellow', 'Cyan', 'Grey', 'Orange', 'Pink', 'Purple',
+    'Circle', 'Diamond', 'Hexagon', 'Square', 'Star', 'Triangle', 'Cross','Moon','Raindrop','Kite','Pentagon','UpsideDownHouse',
     'Temp',
   ]
 
