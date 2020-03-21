@@ -41,7 +41,6 @@
     "eslint": "6.8.0",
     "eslint-config-prettier": "6.10.0",
     "eslint-plugin-prettier": "3.1.2",
-    "lint-staged": "^8.2.0",
     "monaco-editor-webpack-plugin": "1.8.x",
     "node-sass": "4.13.x",
     "postcss-ghost-utils": "^0.0.5",
@@ -52,18 +51,5 @@
     "vue-cli-plugin-pug": "1.0.x",
     "vue-template-compiler": "2.6.x",
     "worker-loader": "2.0.x"
-  },
-  "gitHooks": {
-    "pre-commit": "lint-staged"
-  },
-  "lint-staged": {
-    "*.js": [
-      "vue-cli-service lint",
-      "git add"
-    ],
-    "*.vue": [
-      "vue-cli-service lint",
-      "git add"
-    ]
   }
 }
