@@ -19,7 +19,7 @@
     "jsziptools": "^3.0.0-rc4",
     "lodash.debounce": "^4.0.8",
     "monaco-editor": "0.20.0",
-    "register-service-worker": "1.6.x",
+    "register-service-worker": "1.7.1",
     "store": "^2.0.12",
     "vue": "2.6.x",
     "vue-analytics": "5.21.x",
