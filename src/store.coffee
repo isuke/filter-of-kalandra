@@ -4,7 +4,7 @@ import Vuex from "vuex"
 Vue.use(Vuex)
 
 import localStorage from "store/dist/store.modern.min.js"
-import * as advancedPoeFilter from "advanced-poe-filter"
+import * as advancedPoeFilter from "@fok/advanced-poe-filter"
 
 import { forIn, isEmpty, hexToRGB, rgbToHex, download } from "@/scripts/utils.coffee"
 

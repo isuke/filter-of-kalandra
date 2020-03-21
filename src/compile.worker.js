@@ -1,4 +1,4 @@
-import * as advancedPoeFilter from 'advanced-poe-filter'
+import * as advancedPoeFilter from '@fok/advanced-poe-filter'
 
 console.log(`load: Advanced PoE Filter (Ver: ${advancedPoeFilter.version})`)
 
