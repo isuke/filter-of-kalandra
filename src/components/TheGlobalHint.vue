@@ -2,8 +2,10 @@
 .the-global-hint
   p.message
     | The site support only latest Chrome, Firefox and
-    a.link(href="https://brave.com/fil720" target="_blank" rel="noopener noreferrer"): img.bravelogo(src="@/assets/images/brave-logotype-light.svg")
+    a.logolink(href="https://brave.com/fil720" target="_blank" rel="noopener noreferrer"): img.bravelogo(src="@/assets/images/brave-logotype-light.svg")
     | on desktop.
+    span.attention
+      a.link(href="https://filter-of-kalandra-doc.netlify.com/usage/#attention-when-using-with-firefox" target="_blank" rel="noopener noreferrer") Please see when use with Firefox
 </template>
 
 <script lang="coffee">
@@ -35,7 +37,7 @@ export default {}
 
     &::-webkit-scrollbar { display: none; }
 
-    > .link {
+    > .logolink {
       display: inline-flex;
       flex-direction: row;
       align-items: center;
@@ -48,6 +50,11 @@ export default {}
         margin-left: 0.5em;
         margin-right: 0.5em;
       }
+    }
+
+    > .attention {
+      margin-left: 1em;
+      color: $warn-ft-color;
     }
   }
 }
