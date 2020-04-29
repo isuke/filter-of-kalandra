@@ -53,16 +53,16 @@ export default
       if @importType == 'dir'
         @$store.dispatch 'importAllFromFileList',
           fileList: @importFileList
-          callback: => @$emit('add-toaster', "completed to import")
+          callback: => @$store.dispatch "toasterStore/add", message: "completed to import"
       else
         @$store.dispatch 'importAllFromZip',
           file: @importZipFile
-          callback: => @$emit('add-toaster', "completed to import")
+          callback: => @$store.dispatch "toasterStore/add", message: "completed to import"
       @$refs.importAllModal.close('execed')
       @canOverwrite = false
     exportAll: ->
       @$ga.event('export button', 'click') if process.env.NODE_ENV == "production"
-      @$emit('add-toaster', "started to export")
+      @$store.dispatch "toasterStore/add", message: "started to export"
       setTimeout =>
         @$store.dispatch 'exportAll'
       , 600 # $duration-slow

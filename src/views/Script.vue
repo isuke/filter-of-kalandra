@@ -5,7 +5,7 @@ main.script
   script-adide.aside(@click-section-name="scrollToSection")
 
   keep-alive
-    router-view.main(ref="main", @add-toaster="$emit('add-toaster', $event)")
+    router-view.main(ref="main")
 </template>
 
 <script lang="coffee">

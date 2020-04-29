@@ -2,14 +2,14 @@
 #app
   the-global-hint.hint
 
-  the-global-header.header(@add-toaster="$refs.toaster.add($event)")
+  the-global-header.header
 
   keep-alive
-    router-view.main(@add-toaster="$refs.toaster.add($event)")
+    router-view.main
 
   the-global-footer.footer(@clear="clearAllDataAndClose()")
 
-  the-toaster-list.toaster(ref="toaster")
+  the-toaster-list.toaster
 </template>
 
 <script lang="coffee">
@@ -42,10 +42,10 @@ export default
     createCompileWorker: ->
       @$store.dispatch "createCompileWorker",
         successCallback: debounce =>
-          @$refs.toaster.add("completed to compile")
+          @$store.dispatch "toasterStore/add", message: "completed to compile"
         , 1000
         failCallback: debounce =>
-          @$refs.toaster.add { message: "failed compile", type: "error" }
+          @$store.dispatch "toasterStore/add", message: "failed compile", type: "error"
         , 1000
     clearAllDataAndClose: ->
       await @$store.dispatch "clearFromLocalStorage"

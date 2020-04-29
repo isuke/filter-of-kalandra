@@ -42,7 +42,7 @@ export default
             }
           ]
         else
-          @$emit 'add-toaster', { message: error.message, type: 'error' }
+          @$store.dispatch "toasterStore/add", message: error.message, type: 'error'
       else
         @editor.deltaDecorations @errorDecorations, []
         @errorDecorations = []

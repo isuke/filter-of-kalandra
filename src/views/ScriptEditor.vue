@@ -3,8 +3,7 @@
   filter-editor.editor(
     ref="editor",
     v-model="$store.state.advancedScriptText",
-    :syntax-error="$store.state.syntaxError",
-    @add-toaster="$emit('add-toaster', $event)"
+    :syntax-error="$store.state.syntaxError"
   )
   .hint
     p.item Do you want to edit by text editor? There is <a class="link" href="https://marketplace.visualstudio.com/items?itemName=isuke.vscode-advanced-poe-filter" target="_blank" rel="noopener noreferrer">vscode extention</a>!

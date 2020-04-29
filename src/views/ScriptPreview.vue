@@ -31,10 +31,10 @@ export default
     isAlt: false
   methods:
     reload: ->
-      @$emit('add-toaster', "started to reload")
+      @$store.dispatch "toasterStore/add", message: "started to reload"
       @$store.dispatch("requestSimpleScriptObjectToWorker")
     scrollToSection: (sectionName) ->
-      @$emit('add-toaster', "started to create preview '#{sectionName}'")
+      @$store.dispatch "toasterStore/add", message: "started to create preview '#{sectionName}'"
       setTimeout =>
         @currentSectionName = sectionName
       , 600  # $duration-slow

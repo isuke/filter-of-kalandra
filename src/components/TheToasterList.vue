@@ -10,37 +10,8 @@ transition-group.simple-toaster-list(name="slide-list", tag="ul")
 
 <script lang="coffee">
 export default
-  props:
-    timeout:
-      type: Number
-      required: false
-      default: 8000
   data: ->
-    id: 0
-    items: []
-    defaultItemVals:
-      message: ""
-      type: "normal"
-  methods:
-    add: (payload) ->
-      id = @id++
-
-      item = if typeof payload == "string"
-        Object.assign {}, @defaultItemVals, { id: id, message: payload }
-      else
-        Object.assign {}, @defaultItemVals, { id: id }, payload
-
-      @items.push item
-
-      setTimeout =>
-        @remove id
-      , @timeout
-      id
-    remove: (id) ->
-      index = @items.findIndex (item) => item.id == id
-      return if index < 0
-      @items.splice(index, 1)
-      id
+    items: @$store.state.toasterStore.items
 </script>
 
 <style lang="scss" scoped>

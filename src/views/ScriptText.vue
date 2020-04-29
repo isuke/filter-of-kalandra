@@ -40,11 +40,11 @@ export default
     copy: ->
       @$ga.event('text', 'copy to clipboard') if process.env.NODE_ENV == "production"
       navigator.clipboard.writeText(@text)
-      .then(() => @$emit('add-toaster', "copied"))
+      .then(() => @$store.dispatch "toasterStore/add", message: "copied")
       .catch((e) => console.error e.message)
     reload: ->
-      @$emit('add-toaster', "started to reload")
-      @$store.dispatch("requestSimpleScriptTextsToWorker")
+      @$store.dispatch "toasterStore/add", message: "started to reload"
+      @$store.dispatch "requestSimpleScriptTextsToWorker"
   created: ->
     @currentScriptName = @$store.getters.scriptNames[0]
   mounted: ->

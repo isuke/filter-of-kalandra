@@ -6,6 +6,8 @@ Vue.use(Vuex)
 import localStorage from "store/dist/store.modern.min.js"
 import * as advancedPoeFilter from "@fok/advanced-poe-filter"
 
+import ToasterStore from "@/scripts/stores/ToasterStore.coffee"
+
 import { forIn, isEmpty, hexToRGB, rgbToHex, download } from "@/scripts/utils.coffee"
 
 import CompileWorker from './compile.worker.js'
@@ -14,6 +16,8 @@ import defaultData from "./defaultData.coffee"
 
 export default new Vuex.Store
   strict: false
+  modules:
+    toasterStore: ToasterStore
   state:
     advancedScriptText: ""
     simpleScriptObject: {}
