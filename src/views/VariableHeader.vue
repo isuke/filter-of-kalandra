@@ -57,9 +57,11 @@ export default
     importDefault: ->
       await @$store.dispatch('importDefaultVariables', { canOverwrite: @canOverwrite })
       @$refs.importDefaultModal.close('execed')
+      @$store.dispatch "toasterStore/add", message: "completed to import"
     importJSON: ->
       await @$store.dispatch('importVariablesFromJSONFile', { canOverwrite: @canOverwrite, file: @jsonFile })
       @$refs.importJSONModal.close('execed')
+      @$store.dispatch "toasterStore/add", message: "completed to import"
 </script>
 
 <style lang="scss" scoped>

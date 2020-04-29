@@ -32,6 +32,7 @@ export default
     importJSON: ->
       await @$store.dispatch('importPropertiesFromJSONFile', { file: @jsonFile })
       @$refs.importJSONModal.close('execed')
+      @$store.dispatch "toasterStore/add", message: "completed to import"
       @canOverwrite = false
 </script>
 
