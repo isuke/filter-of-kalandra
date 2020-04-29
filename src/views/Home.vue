@@ -78,6 +78,12 @@ main.home
         p.text
           | Make to import own or others filter from GitHub URL.
         span.badge.-todo
+      li.item
+        h2.headding Sign in with PoE OAuth
+        p.text
+          | Make to sign in with PoE OAuth (like <a class="link" href="https://www.filterblade.xyz" target="_blank" rel="noopener noreferrer">FilterBlade</a>).
+          | But not found official document about this.
+        span.badge.-todo
 </template>
 
 <script lang="coffee">
