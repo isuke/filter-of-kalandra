@@ -76,6 +76,7 @@
     'Red', 'Green', 'Blue', 'Brown', 'White', 'Yellow', 'Cyan', 'Grey', 'Orange', 'Pink', 'Purple',
     'Circle', 'Diamond', 'Hexagon', 'Square', 'Star', 'Triangle', 'Cross','Moon','Raindrop','Kite','Pentagon','UpsideDownHouse',
     'Temp',
+    'None'
   ]
 
   monaco.languages.register(id: languageID)

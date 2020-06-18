@@ -13,7 +13,7 @@
     "deploy": "netlify deploy --prod"
   },
   "dependencies": {
-    "@fok/advanced-poe-filter": "0.9.2",
+    "@fok/advanced-poe-filter": "0.9.3",
     "axios": "0.19.x",
     "color": "3.1.x",
     "destyle.css": "1.0.x",
