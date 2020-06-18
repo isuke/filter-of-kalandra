@@ -36,6 +36,7 @@
     'AnyEnchantment'
     'HasEnchantment'
     'HasInfluence'
+    'EnchantmentPassiveNode'
   ]
   actionTextKeywords = [
     'SetBorderColor'
