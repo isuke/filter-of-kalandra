@@ -111,7 +111,6 @@ Show "Property Sample"
 # This generator can create multiple files at once!
 
 # You can add/remove property free.
-# However, the maximum number of scripts is three (Current version).
 
 
 ## Fork and Mixin
