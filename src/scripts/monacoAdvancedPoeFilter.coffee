@@ -14,6 +14,7 @@
     'DropLevel'
     'ItemLevel'
     'GemLevel'
+    'GemQualityType'
     'StackSize'
     'MapTier'
     'Quality'
@@ -37,6 +38,8 @@
     'HasEnchantment'
     'HasInfluence'
     'EnchantmentPassiveNode'
+    'AlternateQuality'
+    'Replica'
   ]
   actionTextKeywords = [
     'SetBorderColor'

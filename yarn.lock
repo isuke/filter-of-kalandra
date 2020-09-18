@@ -823,12 +823,12 @@
     debug "^3.1.0"
     lodash.once "^4.1.1"
 
-"@fok/advanced-poe-filter@0.9.3":
-  version "0.9.3"
-  resolved "http://localhost:4873/@fok%2fadvanced-poe-filter/-/advanced-poe-filter-0.9.3.tgz#72a6b4263fc9b52b9f9607d3f621fb5b964c7e00"
-  integrity sha512-JKSOs5sV+W7DLKWUl0t8MzhQmbOXsrXMvWVJ0+O/IWWD2vosNa8aWfO31fmHO7xSSBLuycZIoB86IJev4/knDA==
+"@fok/advanced-poe-filter@0.9.4":
+  version "0.9.4"
+  resolved "http://localhost:4873/@fok%2fadvanced-poe-filter/-/advanced-poe-filter-0.9.4.tgz#4d4a04a23dba8c123bbdb20020ce21c9d527d90f"
+  integrity sha512-75pz7JVrrllNTh/07ab72lN522g9C3V9+3CN2+mukk6t0xzICc6cVBaUtvFr1HTuabLT0fVMQijcpoEp5v99Cw==
   dependencies:
-    advanced-poe-filter-parser "0.2.3"
+    advanced-poe-filter-parser "0.2.4"
     color "3.1.2"
     core-js "3.6.4"
 
@@ -1477,10 +1477,10 @@ address@^1.1.2:
   resolved "https://registry.yarnpkg.com/address/-/address-1.1.2.tgz#bf1116c9c758c51b7a933d296b72c221ed9428b6"
   integrity sha512-aT6camzM4xEA54YVJYSqxz1kv4IHnQZRtThJJHhUMRExaU5spC7jX5ugSwTaTgJliIgs4VhZOk7htClvQ/LmRA==
 
-advanced-poe-filter-parser@0.2.3:
-  version "0.2.3"
-  resolved "https://registry.yarnpkg.com/advanced-poe-filter-parser/-/advanced-poe-filter-parser-0.2.3.tgz#d58e991d69179cb9bca0f58fdf945bf23a81256e"
-  integrity sha512-9bZAaN4RvC6YgONo2c5SnsGeDM/Wa/0KeV7447hcxS3T7Iw5Sz3Ve1lO4kn7y2EU4OpJBR3a+PWFHkynNa7GQg==
+advanced-poe-filter-parser@0.2.4:
+  version "0.2.4"
+  resolved "https://registry.yarnpkg.com/advanced-poe-filter-parser/-/advanced-poe-filter-parser-0.2.4.tgz#c10e050af247c871e2745b6db12507e15f3649ba"
+  integrity sha512-PXezWTaIVyNQefkAGW7G0XSY4zRtqnU8ZsUu7n/c3BaJxGowvmmiyEA1JkEklqBoUBWxdsW62TRcHnNDgb+7vg==
 
 agent-base@^4.3.0:
   version "4.3.0"
