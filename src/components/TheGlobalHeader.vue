@@ -140,7 +140,7 @@ export default
 }
 
 .the-global-header > .modal {
-  /deep/ .content {
+  ::v-deep .content {
     display: flex;
     flex-direction: column;
 
