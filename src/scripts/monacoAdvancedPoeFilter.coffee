@@ -42,12 +42,15 @@
     'CorruptedMods'
     'EnchantmentPassiveNum'
     'HasExplicitMod'
+    'HasEaterOfWorldsImplicit'
+    'HasSearingExarchImplicit'
     'AnyEnchantment'
     'HasEnchantment'
     'HasInfluence'
     'EnchantmentPassiveNode'
     'AlternateQuality'
     'Replica'
+    'ArchnemesisMod'
   ]
   actionTextKeywords = [
     'SetBorderColor'
