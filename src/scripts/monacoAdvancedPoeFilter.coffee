@@ -10,7 +10,6 @@
   conditionKeywords = [
     'Class'
     'BaseType'
-    'Prophecy'
     'DropLevel'
     'ItemLevel'
     'AreaLevel'
@@ -28,8 +27,6 @@
     'BaseEnergyShield'
     'BaseEvasion'
     'BaseWard'
-    'ShaperItem'
-    'ElderItem'
     'FracturedItem'
     'SynthesisedItem'
     'Corrupted'
