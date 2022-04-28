@@ -6,7 +6,7 @@ main.home
     h3.description This is next level <a class="link" href="https://www.pathofexile.com" target="_blank" rel="noopener noreferrer">path of exile</a> filter editor.
 
   section.section.motivation
-    h1.headding Motivation
+    h1.heading Motivation
     p.text
       | We felt that there are some problems in the current <a class="link" href="https://www.pathofexile.com" target="_blank" rel="noopener noreferrer">Path of Exile</a> Item Filter.
       | These problems are primarily one for filter creators.
@@ -30,56 +30,56 @@ main.home
       | We hope you will be pleased using this tool.
 
   section.section.issues
-    h1.headding Issues
+    h1.heading Issues
     ul.list
       li.item
-        h2.headding Change Domain
+        h2.heading Change Domain
         p.text
           | Should get cool Domain.
         span.badge.-done
       li.item
-        h2.headding Usage Page
+        h2.heading Usage Page
         p.text
           | Need usage page, and detailed documentation on usage.
         span.badge.-doing
       li.item
-        h2.headding Improve Editor
+        h2.heading Improve Editor
         p.text
           | The editor is created by <a class="link" href="https://microsoft.github.io/monaco-editor/index.html" target="_blank" rel="noopener noreferrer">monaco-editor</a>.
           | This have many exciting features.
           | These features can make the editor better.
         span.badge.-doing
       li.item
-        h2.headding Improve Preview
+        h2.heading Improve Preview
         p.text
           | Current preview is so cheap.
           | Should make rich it.
         span.badge.-doing
       li.item
-        h2.headding Split View
+        h2.heading Split View
         p.text
           | It is a pain to go back and forth on multiple pages.
           | You would want to see multiple pages at the same time.
           | Should remove the pain.
         span.badge.-todo
       li.item
-        h2.headding Contact Form
+        h2.heading Contact Form
         p.text
           | Should set form that contact us.
           | You will can use if you have new ideas and questions.
         span.badge.-done
       li.item
-        h2.headding Improve Performance
+        h2.heading Improve Performance
         p.text
           | Always try to improve performance.
         span.badge.-doing
       li.item
-        h2.headding Import from GitHub URL
+        h2.heading Import from GitHub URL
         p.text
           | Make to import own or others filter from GitHub URL.
         span.badge.-todo
       li.item
-        h2.headding Sign in with PoE OAuth
+        h2.heading Sign in with PoE OAuth
         p.text
           | Make to sign in with PoE OAuth (like <a class="link" href="https://www.filterblade.xyz" target="_blank" rel="noopener noreferrer">FilterBlade</a>).
           | But not found official document about this.
@@ -143,7 +143,7 @@ export default
   }
 
   > .motivation {
-    > .headding {
+    > .heading {
       font-size: var(--ft-size-xl);
       text-align: center;
       margin-bottom: var(--space-size-xl);
@@ -161,7 +161,7 @@ export default
   }
 
   > .issues {
-    > .headding {
+    > .heading {
       font-size: var(--ft-size-xl);
       text-align: center;
       margin-bottom: var(--space-size-xl);
@@ -180,7 +180,7 @@ export default
         flex-direction: column;
         position: relative;
 
-        > .headding {
+        > .heading {
           font-size: var(--ft-size-l);
           text-align: center;
           margin-bottom: var(--space-size-s);
