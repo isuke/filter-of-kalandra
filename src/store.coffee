@@ -211,7 +211,7 @@ export default new Vuex.Store
             console.log "skip '#{defaultVariable.name}'"
         else
           state.variables.push defaultVariable
-    importVariablesFromJSONFile: ({ state }, payload = {}) ->
+    importVariablesFromJSONFile: ({ state, dispatch }, payload = {}) ->
       new Promise((resolve, reject) =>
         reader = new FileReader()
         reader.onload = (event) => resolve(event.target.result)
@@ -227,6 +227,7 @@ export default new Vuex.Store
           else
             state.variables.push importVariable
       ).catch((error) =>
+        dispatch "toasterStore/add", message: error.message, type: "error"
         console.error error.message
       )
     exportVariables: ({ state }) ->
@@ -245,7 +246,7 @@ export default new Vuex.Store
             console.log "skip '#{defaultColor.name}'"
         else
           state.colors.push defaultColor
-    importColorsFromJSONFile: ({ state }, payload = {}) ->
+    importColorsFromJSONFile: ({ state, dispatch }, payload = {}) ->
       new Promise((resolve, reject) =>
         reader = new FileReader()
         reader.onload = (event) => resolve(event.target.result)
@@ -265,6 +266,7 @@ export default new Vuex.Store
             hex = if importColor.rgb then rgbToHex(importColor.rgb) else importColor.hex
             state.colors.push { name: importColor.name, hex: hex }
       ).catch((error) =>
+        dispatch "toasterStore/add", message: error.message, type: "error"
         console.error error.message
       )
     exportColors: ({ state, getters }) ->
@@ -275,7 +277,7 @@ export default new Vuex.Store
     #
     exportProperties: ({ state }) ->
       download "properties.json", JSON.stringify(state.properties), "application/json"
-    importPropertiesFromJSONFile: ({ state, commit }, payload = {}) ->
+    importPropertiesFromJSONFile: ({ state, commit, dispatch }, payload = {}) ->
       new Promise((resolve, reject) =>
         reader = new FileReader()
         reader.onload = (event) => resolve(event.target.result)
@@ -283,13 +285,14 @@ export default new Vuex.Store
       ).then((result) =>
         commit "setProperties", properties: JSON.parse(result)
       ).catch((error) =>
+        dispatch "toasterStore/add", message: error.message, type: "error"
         console.error error.message
       )
 
     #
     # filterInfo
     #
-    importFilterInfoFromJSONFile: ({ state, commit }, payload = {}) ->
+    importFilterInfoFromJSONFile: ({ state, commit, dispatch }, payload = {}) ->
       new Promise((resolve, reject) =>
         reader = new FileReader()
         reader.onload = (event) => resolve(event.target.result)
@@ -297,13 +300,14 @@ export default new Vuex.Store
       ).then((result) =>
         commit "setFilterInfo", filterInfo: JSON.parse(result)
       ).catch((error) =>
+        dispatch "toasterStore/add", message: error.message, type: "error"
         console.error error.message
       )
 
     #
     # options
     #
-    importOptionsFromJSONFile: ({ state, commit }, payload = {}) ->
+    importOptionsFromJSONFile: ({ state, commit, dispatch }, payload = {}) ->
       new Promise((resolve, reject) =>
         reader = new FileReader()
         reader.onload = (event) => resolve(event.target.result)
@@ -311,6 +315,7 @@ export default new Vuex.Store
       ).then((result) =>
         commit "setOptions", options: JSON.parse(result)
       ).catch((error) =>
+        dispatch "toasterStore/add", message: error.message, type: "error"
         console.error error.message
       )
 
