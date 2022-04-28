@@ -361,12 +361,12 @@ Hide "Nested Mixin Sample"
 
             Mixin "Shaper/Elder"
                 Show "Shaper"
-                    ShaperItem True
+                    HasInfluence "Shaper"
                     SetBackgroundColor 0 0 255 200
                     MinimapIcon Largest Blue Triangle
                     PlayEffect White
                 Show "Elder"
-                    ElderItem True
+                    HasInfluence "Elder"
                     SetBackgroundColor 20 20 255 200
                     MinimapIcon Largest Brown Triangle
                     PlayEffect White
@@ -386,7 +386,7 @@ Hide "Nested Mixin Sample"
 #: Show
 #:     Class "Gloves" "Boots" "Body Armours" "Helmets" "Shields"
 #:     Rarity Rare
-#:     ShaperItem True
+#:     HasInfluence "Shaper"
 #:     SetFontSize 45
 #:     PlayEffect White
 #:     SetBackgroundColor 0 0 255 200
@@ -395,7 +395,7 @@ Hide "Nested Mixin Sample"
 #: Show
 #:     Class "Gloves" "Boots" "Body Armours" "Helmets" "Shields"
 #:     Rarity Rare
-#:     ElderItem True
+#:     HasInfluence "Elder"
 #:     SetFontSize 45
 #:     PlayEffect White
 #:     SetBackgroundColor 20 20 255 200
