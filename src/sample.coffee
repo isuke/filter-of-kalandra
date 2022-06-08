@@ -254,7 +254,7 @@ Show "Complex Mixin Sample"
             BaseType Var("Drop Only Gems")
             SetBorderColor 70 70 0
         Show "'E' Series"
-            BaseType Var("'E' Series Gems")
+            BaseType Var("Exceptional Gems")
             SetBorderColor 70 0 0
 
 # This Script is converted as follows by compile.
@@ -266,7 +266,7 @@ Show "Complex Mixin Sample"
 #: Show
 #:     Class "Gems"
 #:     GemLevel >= 18
-#:     BaseType "#'E' Series Gems" "#White Gems" "Added Chaos Damage Support" "Vaal"
+#:     BaseType "#Exceptional Gems" "#White Gems" "Added Chaos Damage Support" "Vaal"
 #:     SetBorderColor 70 70 0 255
 #:     SetTextColor 255 255 255 255
 #:     SetBackgroundColor 27 162 155 255
@@ -295,7 +295,7 @@ Show "Complex Mixin Sample"
 #: Show
 #:     Class "Gems"
 #:     GemLevel >= 10
-#:     BaseType "#'E' Series Gems" "#White Gems" "Added Chaos Damage Support" "Vaal"
+#:     BaseType "#Exceptional Gems" "#White Gems" "Added Chaos Damage Support" "Vaal"
 #:     SetBorderColor 70 70 0 255
 #:     SetTextColor 255 255 255 255
 #:     SetBackgroundColor 27 162 155 255
@@ -323,7 +323,7 @@ Show "Complex Mixin Sample"
 #: # Level is Any - Special is "Drop Only"
 #: Show
 #:     Class "Gems"
-#:     BaseType "#'E' Series Gems" "#White Gems" "Added Chaos Damage Support" "Vaal"
+#:     BaseType "#Exceptional Gems" "#White Gems" "Added Chaos Damage Support" "Vaal"
 #:     SetBorderColor 70 70 0 255
 #:     SetTextColor 255 255 255 255
 #:     SetBackgroundColor 27 162 155 255

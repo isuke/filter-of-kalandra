@@ -70,7 +70,7 @@ export default
       ]
     }
     {
-      name: "'E' Series Gems"
+      name: "Exceptional Gems"
       items: [
         "Enhance Support"
         "Enlighten Support"
@@ -87,7 +87,7 @@ export default
     {
       name: "Drop Only Gems"
       items: [
-        "#'E' Series Gems"
+        "#Exceptional Gems"
         "Portal"
         "Vaal"
         "Awakened"
