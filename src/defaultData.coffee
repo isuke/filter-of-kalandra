@@ -97,6 +97,7 @@ export default
       name: "Vendor Only Gems"
       items: [
         "Block Chance Reduction Support"
+        "Elemental Penetration Support"
         "Mirror Arrow"
       ]
     }
