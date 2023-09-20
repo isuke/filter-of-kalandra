@@ -1,19 +1,9 @@
-/******************************************************************************\
-| sweep.css                                                                    |
-| version: 0.0.1                                                               |
-| author: isuke <isuke770@gmail.com>                                           |
-|                                                                              |
-| This work is licensed under a                                                |
-| Creative Commons Attribution 4.0 International License.                      |
-| http://creativecommons.org/licenses/by/4.0/                                  |
-\******************************************************************************/
-
 dialog {
-  vertical-align: middle;
-  color: inherit;
-  font: inherit;
-  border: 0;
-  background: transparent;
   padding: 0;
+  font: inherit;
+  color: inherit;
+  vertical-align: middle;
+  background: transparent;
+  border: 0;
   outline: 0;
 }

@@ -1,13 +1,11 @@
 :root {
   --unit: 16px;
-
   --ft-size-xxl: calc(var(--unit) * 3.25);
   --ft-size-xl:  calc(var(--unit) * 2.00);
   --ft-size-l:   calc(var(--unit) * 1.25);
   --ft-size-m:   calc(var(--unit) * 0.75);
   --ft-size-s:   calc(var(--unit) * 0.63);
   --ft-size-xs:  calc(var(--unit) * 0.50);
-
   --space-size-xxl: calc(var(--unit) * 3.25);
   --space-size-xl:  calc(var(--unit) * 2.00);
   --space-size-l:   calc(var(--unit) * 1.25);
@@ -25,6 +23,6 @@ body {
   min-height: 100%;
   font-family: $default-font-family;
   font-size: var(--ft-size-m);
-  background-color: $day-bg-color;
   color: $day-ft-color;
+  background-color: $day-bg-color;
 }

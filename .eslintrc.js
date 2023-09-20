@@ -1,39 +1,71 @@
 module.exports = {
-  "env": {
-    "es6": true,
-    "amd": true,
-    "node": true,
-    "browser": true
+  env: {
+    node: true,
   },
-  "plugins": ["prettier"],
-  "extends": [
+  extends: [
+    "@vue/typescript/recommended",
     "eslint:recommended",
-    "plugin:prettier/recommended"
+    "plugin:vue/vue3-essential",
+    "plugin:import/recommended",
+    "plugin:import/errors",
+    "plugin:import/warnings",
   ],
-  "parserOptions": {
-    "ecmaVersion": 2017,
-    "sourceType": "module"
+  parser: "vue-eslint-parser",
+  parserOptions: {
+    ecmaVersion: "latest",
+    tsconfigRootDir: ".",
+    project: ["./tsconfig.json"],
+    sourceType: "module",
   },
-  "rules": {
-    "no-console": process.env.NODE_ENV === "production" ? "error" : "off",
-    "no-debugger": process.env.NODE_ENV === "production" ? "error" : "off",
+  plugins: ["@typescript-eslint", "import"],
+  settings: {
+    "import/resolver": {
+      typescript: {},
+    },
+    "import/extensions": [".ts"],
+  },
+  rules: {
+    "no-console": [process.env.NODE_ENV === "production" ? "error" : "warn", { allow: ["info", "warn", "error"] }],
+    "no-debugger": process.env.NODE_ENV === "production" ? "error" : "warn",
     "no-unused-vars": [
-      "error",
+      process.env.NODE_ENV === "production" ? "error" : "warn",
       {
-        "varsIgnorePattern": "^_",
-        "argsIgnorePattern": "^_",
-        "caughtErrorsIgnorePattern": "^_"
-      }
+        argsIgnorePattern: "^_",
+        varsIgnorePattern: "^_",
+        caughtErrorsIgnorePattern: "^_",
+        destructuredArrayIgnorePattern: "^_",
+      },
     ],
-    "prettier/prettier": [
+    "@typescript-eslint/no-unused-vars": [
+      process.env.NODE_ENV === "production" ? "error" : "warn",
+      {
+        argsIgnorePattern: "^_",
+        varsIgnorePattern: "^_",
+        caughtErrorsIgnorePattern: "^_",
+        destructuredArrayIgnorePattern: "^_",
+      },
+    ],
+    "import/no-unresolved": "error",
+    "import/extensions": [
       "error",
       {
-        "semi": false,
-        "singleQuote": true,
-        "trailingComma": "es5",
-        "printWidth": 160,
-        "arrowParens": "always"
-      }
-    ]
-  }
+        ignorePackages: true,
+        pattern: {
+          js: "never",
+          ts: "never",
+          json: "always",
+        },
+      },
+    ],
+    "import/order": [
+      "error",
+      {
+        "groups": ["builtin", "external", "internal", "parent", "sibling", "index", "object", "type"],
+        "pathGroupsExcludedImportTypes": ["builtin"],
+        "alphabetize": { order: "asc" },
+        "newlines-between": "always",
+      },
+    ],
+    "vue/multi-word-component-names": "off",
+  },
 }

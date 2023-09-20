@@ -1,0 +1,16 @@
+@mixin text-break() {
+  text-wrap: normal;
+  word-wrap: break-word;
+  white-space: pre-wrap;
+}
+
+@mixin text-no-break() {
+  text-wrap: nowrap;
+  word-wrap: normal;
+  white-space: nowrap;
+}
+
+@mixin font-size-line-height($font-size, $line-gap) {
+  font-size: $font-size;
+  line-height: calc(#{$font-size} + #{$line-gap} * 2);
+}
