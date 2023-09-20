@@ -185,16 +185,28 @@ export default {
       if (payload.callback) payload.callback()
     },
     importAllFromFileList: ({ dispatch }: { dispatch: Dispatch }, payload: { fileList: FileList; callback: () => void }) => {
-      const fileNames: string[] = []
-      const files: File[] = []
+      const promiseList: Promise<{ filename: string; content: string }>[] = []
+
       Array.from(payload.fileList).forEach((file) => {
-        fileNames.push(file.name)
-        files.push(file)
+        promiseList.push(
+          new Promise<{ filename: string; content: string }>((resolve, _reject) => {
+            const reader = new FileReader()
+            reader.onload = () => resolve({ filename: file.name, content: reader.result as string })
+            reader.readAsText(file)
+          }),
+        )
       })
-      dispatch("importAll", {
-        fileNames: fileNames,
-        files: files,
-        callback: payload.callback,
+
+      Promise.all(promiseList).then((result) => {
+        const files: { [name: string]: string } = {}
+
+        result.forEach((r) => {
+          if (/\.json$/.test(r.filename) || /\.advancedfilter$/.test(r.filename)) {
+            files[r.filename] = r.content
+          }
+        })
+
+        dispatch("importAll", { files: files, callback: payload.callback })
       })
     },
     importAllFromZip: async ({ dispatch }: { dispatch: Dispatch }, payload: { file: File; callback?: () => void }) => {
