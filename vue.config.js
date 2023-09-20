@@ -1,63 +1,54 @@
-const path = require('path')
-const MonacoWebpackPlugin = require('monaco-editor-webpack-plugin')
-const PreloadWebpackPlugin = require('@vue/preload-webpack-plugin')
-const PrerenderSPAPlugin = require('prerender-spa-plugin')
+const path = require("path")
 
-process.env.VUE_APP_VERSION = require('./package.json').version
+const { defineConfig } = require("@vue/cli-service")
+const PreloadWebpackPlugin = require("@vue/preload-webpack-plugin")
+const MonacoWebpackPlugin = require("monaco-editor-webpack-plugin")
+const TsconfigPathsPlugin = require("tsconfig-paths-webpack-plugin")
 
-module.exports = {
-  productionSourceMap: false,
+process.env.VUE_APP_VERSION = require("./package.json").version
+
+module.exports = defineConfig({
+  parallel: false,
+  transpileDependencies: true,
   css: {
     loaderOptions: {
       sass: {
-        prependData: `
+        additionalData: `
           @import "@/styles/_variables.scss";
           @import "@/styles/_mixins.scss";
-        `
-      }
-    }
+        `,
+      },
+    },
   },
   configureWebpack: {
-    module: {
-      rules: [
-        {
-          test: /worker\.js$/,
-          use: {
-            loader: 'worker-loader',
-            options: {
-              inline: true,
-              fallback: false
-              // inline: process.env.NODE_ENV !== 'production',
-              // name: '[name].[hash].js',
-              // publicPath: '/workers/'
-            }
-          }
-        }
-      ]
+    resolve: {
+      fallback: { path: false },
+      plugins: [new TsconfigPathsPlugin()],
+      alias: {
+        "@": path.resolve(__dirname, "src/"),
+        "@/pages": path.resolve(__dirname, "src/components/pages/"),
+        "@/commons": path.resolve(__dirname, "src/components/commons/"),
+      },
     },
     optimization: {
       splitChunks: {
         minSize: 10000,
-        maxSize: 250000
-      }
+        maxSize: 250000,
+      },
     },
     // chainWebpack: (config) => {
     //   config.plugins.delete('preload')
     //   config.plugins.delete('prefetch')
     // },
     plugins: [
-      new PrerenderSPAPlugin({
-        staticDir: path.join(__dirname, 'dist'),
-        routes: ['/']
-      }),
       new PreloadWebpackPlugin({
-        rel: 'preload',
+        rel: "preload",
         include: {
-          type: 'asyncChunks',
-          entries: ['monaco']
-        }
+          type: "asyncChunks",
+          entries: ["monaco"],
+        },
       }),
-      new MonacoWebpackPlugin({ languages: [] })
-    ]
-  }
-}
+      new MonacoWebpackPlugin({ languages: [] }),
+    ],
+  },
+})

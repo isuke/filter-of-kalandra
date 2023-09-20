@@ -1,97 +1,93 @@
-<template lang="pug">
-#app
-  the-global-hint.hint
-
-  the-global-header.header
-
-  keep-alive
-    router-view.main
-
-  the-global-footer.footer(@clear="clearAllDataAndClose()")
-
-  the-toaster-list.toaster
+<template>
+  <div id="app">
+    <the-global-hint class="hint" />
+    <the-global-header class="header" />
+    <router-view v-slot="{ Component }">
+      <keep-alive>
+        <component class="main" :is="Component" />
+      </keep-alive>
+    </router-view>
+    <the-global-footer class="footer" @clear="clearAllDataAndClose()" />
+    <the-toaster-list class="toaster" />
+  </div>
 </template>
 
-<script lang="coffee">
+<script lang="ts" setup>
 import debounce from "lodash.debounce"
+import { onMounted, nextTick } from "vue"
+import { useStore } from "vuex"
 
-import localStrorageUsable from "@/scripts/mixins/localStorageUsable.coffee"
+import TheGlobalFooter from "@/commons/TheGlobalFooter.vue"
+import TheGlobalHeader from "@/commons/TheGlobalHeader.vue"
+import TheGlobalHint from "@/commons/TheGlobalHint.vue"
+import TheToasterList from "@/commons/TheToasterList.vue"
+import { eventGtag } from "@/composables/gtag"
+import { useLocalStorageAutoSave, loadFromLocalStorage } from "@/composables/localStorage"
 
-import TheGlobalHint   from "@/components/TheGlobalHint"
-import TheGlobalHeader from "@/components/TheGlobalHeader"
-import TheGlobalFooter from "@/components/TheGlobalFooter"
-import TheToasterList  from "@/components/TheToasterList"
+const store = useStore()
 
-export default
-  mixins: [
-    localStrorageUsable
-  ]
-  components:
-    "the-global-hint": TheGlobalHint
-    "the-global-header": TheGlobalHeader
-    "the-global-footer": TheGlobalFooter
-    "the-toaster-list":  TheToasterList
-  computed:
-    advancedScriptText: -> @$store.state.advancedScriptText
-    variables:          -> @$store.state.variables
-    colors:             -> @$store.state.colors
-    properties:         -> @$store.state.properties
-    filterInfo:         -> @$store.state.filterInfo
-    options:            -> @$store.state.options
-  methods:
-    createCompileWorker: ->
-      @$store.dispatch "createCompileWorker",
-        successCallback: debounce =>
-          @$store.dispatch "toasterStore/add", message: "completed to compile"
-        , 1000
-        failCallback: debounce =>
-          @$store.dispatch "toasterStore/add", message: "failed compile", type: "error"
-        , 1000
-    clearAllDataAndClose: ->
-      await @$store.dispatch "clearFromLocalStorage"
-      await @$store.dispatch "terminateCompileWorker"
-      window.open('about:blank', '_self').close()
-  created: ->
-    @loadFromLocalStorage()
-    @createCompileWorker()
-    # HACK
-    setTimeout =>
-      @$store.dispatch("requestSimpleScriptObjectToWorker")
-    , 2000
-  mounted: ->
-    setTimeout =>
-      @$ga.event('front page', 'open') if process.env.NODE_ENV == "production"
-    , 4000
+useLocalStorageAutoSave(store)
+
+const createCompileWorker = () => {
+  return store.dispatch("workerStore/createCompileWorker", {
+    successCallback: debounce(() => {
+      store.dispatch("toasterStore/add", { message: "completed to compile" })
+    }),
+    failCallback: debounce(() => {
+      store.dispatch("toasterStore/add", { message: "failed compile", type: "error" })
+    }),
+  })
+}
+const clearAllDataAndClose = async () => {
+  await store.dispatch("localStorageStore/clearFromLocalStorage")
+  await store.dispatch("workerStore/terminateCompileWorker")
+
+  nextTick(() => {
+    window.open("about:blank", "_self")?.close()
+  })
+}
+
+loadFromLocalStorage(store)
+createCompileWorker()
+setTimeout(() => {
+  store.dispatch("workerStore/requestSimpleScriptObjectToWorker")
+}, 2000)
+
+onMounted(() => {
+  setTimeout(() => {
+    eventGtag("front page", "open")
+  }, 4000)
+})
 </script>
 
 <style lang="scss" scoped>
 #app {
-  width: 100%;
-  min-height: 100vh;
   display: grid;
   grid-template-rows: $global-hint-height $global-header-height 1fr auto;
   grid-template-columns: 1fr;
+  width: 100%;
+  min-height: 100vh;
 
   > .hint {
-    grid-row: 1;
-    grid-column: 1;
     position: fixed;
     top: 0;
     left: 0;
+    z-index: $editor-z-index + 10;
+    grid-row: 1;
+    grid-column: 1;
     width: 100%;
     height: $global-hint-height;
-    z-index: $editor-z-index + 10;
   }
 
   > .header {
-    grid-row: 2;
-    grid-column: 1;
     position: fixed;
     top: $global-hint-height;
     left: 0;
+    z-index: $editor-z-index + 10;
+    grid-row: 2;
+    grid-column: 1;
     width: 100%;
     height: $global-header-height;
-    z-index: $editor-z-index + 10;
   }
 
   > .main {
@@ -108,8 +104,8 @@ export default
     position: fixed;
     top: $global-fixed-height;
     right: 0;
-    margin: var(--space-size-s);
     z-index: $toaster-z-index;
+    margin: var(--space-size-s);
   }
 }
 </style>

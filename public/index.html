@@ -1,37 +1,39 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <% if (NODE_ENV === "production") { %>
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=<%= VUE_APP_GoogleAnalyticsID %>"></script>
     <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag() { dataLayer.push(arguments); }
-      gtag('js', new Date());
+      window.dataLayer = window.dataLayer || []
+      function gtag() {
+        dataLayer.push(arguments)
+      }
+      gtag("js", new Date())
 
-      gtag('config', '<%= VUE_APP_GoogleAnalyticsID %>');
+      gtag("config", "<%= VUE_APP_GoogleAnalyticsID %>")
     </script>
     <% } else { %>
-    <meta http-equiv="Cache-control" content="no-cache">
+    <meta http-equiv="Cache-control" content="no-cache" />
     <% } %>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width,initial-scale=1.0">
-    <meta name="keywords" content="path of exile">
-    <meta name="description" content="Next level 'path of exile' filter editor.">
-    <meta property="og:title" content="Filter of Kalandra">
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+    <meta name="keywords" content="path of exile" />
+    <meta name="description" content="Next level 'path of exile' filter editor." />
+    <meta property="og:title" content="Filter of Kalandra" />
     <meta property="og:locale" content="en_US" />
     <meta property="og:site_name" content="Filter of Kalandra" />
-    <meta property="og:type" content="website">
+    <meta property="og:type" content="website" />
     <meta property="og:url" content="https://filter-of-kalandra.xyz/" />
     <meta property="og:image" content="https://filter-of-kalandra.xyz/img/ogp01.png" />
     <meta property="og:description" content="Next level 'path of exile' filter editor." />
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:creator" content="@Isuke_0">
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:creator" content="@Isuke_0" />
     <meta name="twitter:image" content="https://filter-of-kalandra.xyz/img/ogp01.png" />
-    <meta name="twitter:title" content="Filter of Kalandra">
-    <meta name="twitter:description" content="Next level 'path of exile' filter editor.">
-    <link rel="icon" href="<%= BASE_URL %>favicon.ico">
+    <meta name="twitter:title" content="Filter of Kalandra" />
+    <meta name="twitter:description" content="Next level 'path of exile' filter editor." />
+    <link rel="icon" href="<%= BASE_URL %>favicon.ico" />
     <title><%= NODE_ENV === "development" ? '[DEV] ' : '' %>Filter of Kalandra</title>
   </head>
   <body>

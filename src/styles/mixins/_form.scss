@@ -1,11 +1,14 @@
-
 @mixin text-input() {
   padding: 0.5em;
-  border-bottom-width: $border-height-bold;
-  border-bottom-style: solid;
   border-color: $gray;
+  border-bottom-style: solid;
+  border-bottom-width: $border-height-bold;
 
-  @ghost transition(#{$duration-base}, #{$timing-base}, background-color, color, border-color);
+  transition: {
+    timing-function: $timing-base;
+    duration: $duration-base;
+    property: background-color, color, border-color;
+  }
 
   &:not(:read-only) {
     &:focus {
@@ -20,29 +23,31 @@
 
 @mixin select() {
   padding: 0.5em;
-  border-bottom-width: $border-height-bold;
-  border-bottom-style: solid;
   border-color: $gray;
+  border-bottom-style: solid;
+  border-bottom-width: $border-height-bold;
 }
 
 @mixin checkbox() {
   display: none;
 
-  & + .icon:before {
+  & + .icon::before {
     font-size: 180%;
     font-weight: $bold-font-weight;
   }
 
-  &:not(:checked) + .icon:before {
-    content: '☐';
+  &:not(:checked) + .icon::before {
     color: $gray;
+    content: "☐";
   }
-  &:checked + .icon:before {
-    content: '☑';
+
+  &:checked + .icon::before {
     color: $theme-color;
+    content: "☑";
   }
-  &:disabled + .icon:before {
-    content: '☒';
+
+  &:disabled + .icon::before {
     color: $gray;
+    content: "☒";
   }
 }

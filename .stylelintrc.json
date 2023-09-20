@@ -1,0 +1,22 @@
+{
+  "extends": ["stylelint-config-standard", "stylelint-config-standard-scss", "stylelint-config-recommended-vue/scss", "stylelint-config-recess-order"],
+  "ignoreFiles": ["**/node_modules/**"],
+  "plugins": ["stylelint-order"],
+  "rules": {
+    "color-hex-length": "long",
+    "comment-whitespace-inside": null,
+    "no-descending-specificity": null,
+    "declaration-block-no-duplicate-properties": true,
+    "declaration-property-value-no-unknown": [
+      true,
+      {
+        "ignoreProperties": {
+          "/.+/": "/\\$.+/"
+        }
+      }
+    ],
+    "selector-class-pattern": null,
+    "scss/comment-no-empty": null,
+    "scss/dollar-variable-empty-line-before": null
+  }
+}

@@ -1,3 +1,5 @@
+@use "sass:color";
+
 // -----------------------------------------------------------------------------
 // Typographies
 // -----------------------------------------------------------------------------
@@ -5,14 +7,19 @@
 //
 // Font Family
 //
-$default-font-family: HiraginoSans, Hiragino Kaku Gothic ProN, Meiryo, Arial, sans-serif;
-$mono-font-family: "Courier New", Consolas, monospace;
+$default-font-family: // stylelint-disable-line scss/dollar-variable-colon-space-after
+  hiraginosans,
+  hiragino kaku gothic pron,
+  meiryo,
+  arial,
+  sans-serif;
+$mono-font-family: menlo, monaco, "Courier New", monospace;
 
 //
 // Font Weight
 //
 $default-font-weight: 400;
-$bold-font-weight:    600;
+$bold-font-weight: 600;
 
 // -----------------------------------------------------------------------------
 // Colors
@@ -20,15 +27,15 @@ $bold-font-weight:    600;
 
 // hsl
 
-$theme-color: hsl(170, 70%, 35%);
+$theme-color: hsl(170deg 70% 35%);
 
-$blue:    #009fff;
-$red:     #ff5042;
-$yellow:  #b3b100;
-$green:   #00b800;
+$blue: #009fff;
+$red: #ff5042;
+$yellow: #b3b100;
+$green: #00b800;
 $magenta: #ff5fc6;
-$cyan:    #01bfbe;
-$gray:    #ababab;
+$cyan: #01bfbe;
+$gray: #ababab;
 
 $success-ft-color: $green;
 $success-bg-color: $green;
@@ -44,11 +51,12 @@ $danger-bg-color: $red;
 // day
 //
 $day-bg-color: #f0f0f0;
+$day-bg-color-darken: color.adjust($day-bg-color, $lightness: -10%);
 
 $day-ft-color: #04041b;
-$day-ft-accent-color1: lighten($theme-color, 5%);
+$day-ft-accent-color1: color.adjust($theme-color, $lightness: 5%);
 $day-ft-accent-color2: $theme-color;
-$day-ft-accent-color3: darken($theme-color, 10%);
+$day-ft-accent-color3: color.adjust($theme-color, $lightness: -10%);
 
 //
 // night
@@ -58,14 +66,14 @@ $night-bg-color2: #353535;
 $night-bg-color3: #4b4b4b;
 
 $night-ft-color: #fafafd;
-$night-ft-accent-color1: lighten($theme-color, 10%);
-$night-ft-accent-color2: lighten($theme-color,  3%);
+$night-ft-accent-color1: color.adjust($theme-color, $lightness: 10%);
+$night-ft-accent-color2: color.adjust($theme-color, $lightness: 3%);
 $night-ft-accent-color3: $theme-color;
 
 //
 // day-night
 //
-$day-night-border-color: lighten($theme-color, 10%);
+$day-night-border-color: color.adjust($theme-color, $lightness: 10%);
 
 // -----------------------------------------------------------------------------
 // Layouts
@@ -105,3 +113,8 @@ $duration-base: 150ms;
 $duration-slow: 600ms;
 
 $timing-base: ease-out;
+
+// -----------------------------------------------------------------------------
+// AdvancedPoeFilter
+// -----------------------------------------------------------------------------
+$advanced-poe-filter-bg-color: color.adjust($error-bg-color, $alpha: -0.2);

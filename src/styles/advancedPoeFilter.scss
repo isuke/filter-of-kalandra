@@ -1,8 +1,9 @@
 [data-mode-id="advancedPoeFilter"] .monaco-editor {
   .error {
-    background-color: transparentize($error-bg-color, 0.2);
-    cursor: default;
+    cursor: pointer;
+    background-color: $advanced-poe-filter-bg-color;
   }
+
   .error-gutter {
     background-color: $error-bg-color;
   }
