@@ -1,7 +1,8 @@
 {
   "name": "filter-of-kalandra",
   "version": "0.9.17",
-  "private": true,
+  "license": "MIT",
+  "private": false,
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
@@ -13,6 +14,7 @@
     "lint:fix": "npm run lint:es:fix; npm run lint:style:fix",
     "prettier": "prettier --write --loglevel=warn '**/*.{js,ts,json,html,vue}'",
     "format": "npm run --silent prettier; npm rum --silent lint:fix",
+    "preview": "netlify deploy --build --context=deploy-preview",
     "deploy": "netlify deploy --prod"
   },
   "dependencies": {
