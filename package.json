@@ -1,6 +1,6 @@
 {
   "name": "filter-of-kalandra",
-  "version": "0.9.18",
+  "version": "0.9.19",
   "license": "MIT",
   "private": false,
   "scripts": {
@@ -15,6 +15,7 @@
     "prettier": "prettier --write --loglevel=warn '**/*.{js,ts,json,html,vue}'",
     "format": "npm run --silent prettier; npm rum --silent lint:fix",
     "preview": "netlify deploy --build --context=deploy-preview",
+    "predeploy": "npm run build",
     "deploy": "netlify deploy --prod"
   },
   "dependencies": {
