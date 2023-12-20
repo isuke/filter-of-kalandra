@@ -38,11 +38,10 @@ const colorObjectLazy = ref<Color<string> | undefined>(new Color(props.hex))
 
 watch(
   () => props.hex,
-  (hex) =>
-    debounce(() => {
-      hexLazy.value = hex
-      colorObjectLazy.value = new Color<string>(hex)
-    }, 0),
+  debounce((hex) => {
+    hexLazy.value = hex
+    colorObjectLazy.value = new Color<string>(hex)
+  }),
 )
 
 const rgbStr = computed<ColorRGBString | "">(() => {
