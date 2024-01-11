@@ -27,71 +27,55 @@ import ShVaal from "@/assets/sounds/ShVaal.webm"
 
 import type * as advancedPoeFilterParser from "advanced-poe-filter-parser"
 
-const playSound = (sound: advancedPoeFilterParser.Sound): void => {
+const playSound = (sound: advancedPoeFilterParser.AlertSound): void => {
   const audioElement = new Audio()
   switch (sound.id) {
     case "1":
-    case "Sh01":
       audioElement.src = Sh01
       break
     case "2":
-    case "Sh02":
       audioElement.src = Sh02
       break
     case "3":
-    case "Sh03":
       audioElement.src = Sh03
       break
     case "4":
-    case "Sh04":
       audioElement.src = Sh04
       break
     case "5":
-    case "Sh05":
       audioElement.src = Sh05
       break
     case "6":
-    case "Sh06":
       audioElement.src = Sh06
       break
     case "7":
-    case "Sh07":
       audioElement.src = Sh07
       break
     case "8":
-    case "Sh08":
       audioElement.src = Sh08
       break
     case "9":
-    case "Sh09":
       audioElement.src = Sh09
       break
     case "10":
-    case "Sh10":
       audioElement.src = Sh10
       break
     case "11":
-    case "Sh11":
       audioElement.src = Sh11
       break
     case "12":
-    case "Sh12":
       audioElement.src = Sh12
       break
     case "13":
-    case "Sh13":
       audioElement.src = Sh13
       break
     case "14":
-    case "Sh14":
       audioElement.src = Sh14
       break
     case "15":
-    case "Sh15":
       audioElement.src = Sh15
       break
     case "16":
-    case "Sh16":
       audioElement.src = Sh16
       break
     case "ShAlchemy":
@@ -125,7 +109,7 @@ const playSound = (sound: advancedPoeFilterParser.Sound): void => {
       audioElement.src = ShVaal
       break
   }
-  audioElement.volume = (sound.volume || 0) / 300
+  audioElement.volume = sound.volume / 300
   audioElement.play()
 }
 

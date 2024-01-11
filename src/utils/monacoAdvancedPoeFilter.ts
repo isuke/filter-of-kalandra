@@ -53,11 +53,14 @@ import(/* webpackChunkName: "monaco" */ "monaco-editor").then((monaco) => {
   ]
   const actionTextKeywords: advancedPoeFilterParser.Action[] = ["SetBorderColor", "SetTextColor", "SetBackgroundColor", "SetFontSize"]
   const actionEffectKeywords: advancedPoeFilterParser.Action[] = [
-    "PlayAlertSound",
     "PlayAlertSoundPositional",
+    "PlayAlertSound",
+    "CustomAlertSoundOptional",
+    "CustomAlertSound",
+    "DisableDropSoundIfAlertSound",
+    "EnableDropSoundIfAlertSound",
     "DisableDropSound",
     "EnableDropSound",
-    "CustomAlertSound",
     "MinimapIcon",
     "PlayEffect",
   ]

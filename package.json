@@ -19,7 +19,7 @@
     "deploy": "netlify deploy --prod"
   },
   "dependencies": {
-    "advanced-poe-filter": "0.9.12",
+    "advanced-poe-filter": "0.9.20",
     "axios": "1.5.0",
     "color": "4.2.3",
     "core-js": "3.32.2",

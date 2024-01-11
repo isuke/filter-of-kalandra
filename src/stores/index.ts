@@ -48,10 +48,6 @@ type FilterInfoState = {
 type OptionsState = {
   options: {
     addDisableDropSoundToHideBlock: boolean
-    convertPlayAlertSoundPositionalToPlayAlertSound: boolean
-    removeCustomAlertSound: boolean
-    defaultAlertSoundVolume: number
-    defaultAlertSoundPositionalVolume: number
     initialFontSize: number
   }
 }
@@ -86,10 +82,6 @@ export default createStore({
     },
     options: {
       addDisableDropSoundToHideBlock: true,
-      convertPlayAlertSoundPositionalToPlayAlertSound: false,
-      removeCustomAlertSound: false,
-      defaultAlertSoundVolume: 150,
-      defaultAlertSoundPositionalVolume: 150,
       initialFontSize: 32,
     },
   } as State,
@@ -274,10 +266,6 @@ export default createStore({
       }
       state.options = {
         addDisableDropSoundToHideBlock: true,
-        convertPlayAlertSoundPositionalToPlayAlertSound: false,
-        removeCustomAlertSound: false,
-        defaultAlertSoundVolume: 150,
-        defaultAlertSoundPositionalVolume: 150,
         initialFontSize: 32,
       }
     },

@@ -10,7 +10,7 @@
       />
     </div>
     <span class="name" :style="getNameStyle(block.actions)" @click.prevent="playAlertSound(block.actions)" v-show="block.activity === 'Show' || isAlt">
-      Item Name {{ hasAlertSound ? "♪" : "" }} {{ block.actions.CustomAlertSound ? "♫" : "" }}
+      Item Name {{ hasAlertSound ? "♪" : "" }} {{ hasCustomAlertSound ? "♫" : "" }}
     </span>
     <div class="play-effect-wrap">
       <div
@@ -52,6 +52,10 @@ const isShowTooltip = ref<boolean>(false)
 
 const hasAlertSound = computed<boolean>(() => {
   return !!(props.block.actions.PlayAlertSound || props.block.actions.PlayAlertSoundPositional)
+})
+
+const hasCustomAlertSound = computed<boolean>(() => {
+  return !!(props.block.actions.CustomAlertSound || props.block.actions.CustomAlertSoundOptional)
 })
 
 const getNameStyle = (actions: advancedPoeFilter.Block["actions"]) => {
