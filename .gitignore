@@ -9,6 +9,9 @@ node_modules
 # Log files
 npm-debug.log*
 
+# Brave Rewords
+/public/.well-known/brave-rewards-verification.txt
+
 # Editor directories and files
 .idea
 .vscode
